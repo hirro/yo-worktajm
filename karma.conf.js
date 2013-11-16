@@ -27,7 +27,10 @@ module.exports = function(config) {
     captureTimeout: 60000,
     colors: true,
     exclude: ['dist/'],
-    logLevel: config.LOG_INFO,
+    
+    // level of logging
+    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+    logLevel: config.LOG_DEBUG,
     port: 9876,
     plugins: [
       'karma-chrome-launcher',
