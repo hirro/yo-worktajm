@@ -50,7 +50,7 @@ describe('Controller: RegisterCtrl', function () {
     var failure = false;
     scope.email = 'email';
     scope.password = 'password';
-    httpBackend.whenGET('http://localhost:8080/api/api/registration?email=email&password=password').respond(201);
+    httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/registration?email=email&password=password').respond(201);
     scope.register().then(function () {
       success = true;
     }, function () {
@@ -68,7 +68,7 @@ describe('Controller: RegisterCtrl', function () {
     var failure = false;
     scope.email = 'email';
     scope.password = 'password';
-    httpBackend.whenGET('http://localhost:8080/api/api/registration?email=email&password=password').respond(401);
+    httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/registration?email=email&password=password').respond(401);
     scope.register().then(function () {
       success = true;
     }, function () {

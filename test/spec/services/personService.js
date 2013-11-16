@@ -64,7 +64,7 @@ describe('Service: PersonService', function () {
     it('should get the currenly logged in person', function () {
 
       // Test setup
-      httpBackend.whenGET('http://localhost:8080/api/api/person/1').respond(persons[0]);
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/person/1').respond(persons[0]);
       spyOn(service, 'getPerson').andCallThrough();
 
       // Test
@@ -100,7 +100,7 @@ describe('Service: PersonService', function () {
 
     it('should fail gracefully when token has expired or is invalid', function () {
         // Test setup
-        httpBackend.whenGET('http://localhost:8080/api/api/person/1').respond(403);
+        httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/person/1').respond(403);
         spyOn(service, 'getPerson').andCallThrough();
 
         // Test
@@ -125,7 +125,7 @@ describe('Service: PersonService', function () {
     it('should return the -1 when no project is active', function () {
 
       // Test setup
-      httpBackend.whenGET('http://localhost:8080/api/api/person/1').respond(persons[0]);
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/person/1').respond(persons[0]);
       var person = null;
       service.getPerson().then(function (result) {
         person = result;
@@ -144,7 +144,7 @@ describe('Service: PersonService', function () {
 
     it('should return the project id when no user is logged in', function () {
       // Test setup
-      httpBackend.whenGET('http://localhost:8080/api/api/person/1').respond(persons[2]);
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/person/1').respond(persons[2]);
       var person = null;
       service.getPerson().then(function (result) {
         person = result;
@@ -164,7 +164,7 @@ describe('Service: PersonService', function () {
     beforeEach(function () {
 
       // Test setup
-      httpBackend.whenGET('http://localhost:8080/api/api/person/1').respond(persons[0]);
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/person/1').respond(persons[0]);
       spyOn(service, 'getPerson').andCallThrough();
 
       // Test
@@ -188,7 +188,7 @@ describe('Service: PersonService', function () {
     it('should set the active time entry', function () {
       var failed = false;
       var activated = false;
-      httpBackend.whenPUT('http://localhost:8080/api/api/person/1').respond(timeEntries[0]);
+      httpBackend.whenPUT('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/person/1').respond(timeEntries[0]);
       service.setActiveTimeEntry(timeEntries[0]).then(function () {
         activated = true;
       }, function () {
@@ -206,7 +206,7 @@ describe('Service: PersonService', function () {
     it('setActiveTimeEntry should handle backend error gracefully', function () {
       var failed = false;
       var activated = false;
-      httpBackend.whenPUT('http://localhost:8080/api/api/person/1').respond(401);
+      httpBackend.whenPUT('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/person/1').respond(401);
       service.setActiveTimeEntry(timeEntries[0]).then(function () {
         activated = true;
       }, function () {
@@ -236,8 +236,8 @@ describe('Service: PersonService', function () {
       expect(person).toBeNull();
 
       // Make the requiest go through
-      httpBackend.whenGET('http://localhost:8080/api/api/authenticate?password=PasswordA&username=UserA').respond(persons[0]);
-      httpBackend.whenGET('http://localhost:8080/api/api/person/1').respond(persons[0]);
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/authenticate?password=PasswordA&username=UserA').respond(persons[0]);
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/person/1').respond(persons[0]);
       scope.$digest();
       httpBackend.flush();    
       
@@ -260,8 +260,8 @@ describe('Service: PersonService', function () {
       expect(person).toBeNull();
 
       // Make the requiest go through
-      httpBackend.whenGET('http://localhost:8080/api/api/authenticate?password=PasswordA&username=UserA').respond(401);
-      httpBackend.whenGET('http://localhost:8080/api/api/person/1').respond(persons[0]);
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/authenticate?password=PasswordA&username=UserA').respond(401);
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/person/1').respond(persons[0]);
       scope.$digest();
       httpBackend.flush();    
       
@@ -285,8 +285,8 @@ describe('Service: PersonService', function () {
       expect(person).toBeNull();
 
       // Make the requiest go through
-      httpBackend.whenGET('http://localhost:8080/api/api/authenticate?password=PasswordA&username=UserA').respond(persons[0]);
-      httpBackend.whenGET('http://localhost:8080/api/api/person/1').respond(401);
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/authenticate?password=PasswordA&username=UserA').respond(persons[0]);
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/person/1').respond(401);
       scope.$digest();
       httpBackend.flush();    
       

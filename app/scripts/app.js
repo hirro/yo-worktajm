@@ -29,10 +29,10 @@ angular.module('tpsApp', [
     }
   )
   .config(function (RestangularProvider) {
-    RestangularProvider.setBaseUrl('http://localhost:8080/api/api');
+    RestangularProvider.setBaseUrl('http://worktajm.arnellconsulting.dyndns.org:8080/api/api');
   })
   .config(function (AuthProvider) {
-    AuthProvider.setUrl('http://localhost:8080/tps/api/token');
+    AuthProvider.setUrl('http://worktajm.arnellconsulting.dyndns.org:8080/tps/api/token');
   });
 
 

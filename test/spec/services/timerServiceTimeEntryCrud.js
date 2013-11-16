@@ -64,7 +64,7 @@ describe('Service: TimerService - CRUD operations for TimeEntry', function () {
   });
 
   it('should return the time entry with the provided id', function() {
-    httpBackend.whenGET('http://localhost:8080/api/api/timeEntry').respond(timeEntries);      
+    httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/timeEntry').respond(timeEntries);      
     timerService.getTimeEntries().then(function () {
       console.log('Promise fulfilled, got time entry');
     });
@@ -78,7 +78,7 @@ describe('Service: TimerService - CRUD operations for TimeEntry', function () {
   });
 
   it('should remove the provided time entry', function () {
-    httpBackend.whenGET('http://localhost:8080/api/api/timeEntry').respond(timeEntries);      
+    httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/timeEntry').respond(timeEntries);      
     timerService.getTimeEntries().then(function () {
       console.log('Promise fulfilled, got time entry');
     });
@@ -92,7 +92,7 @@ describe('Service: TimerService - CRUD operations for TimeEntry', function () {
     // Remove time entry
     timerService.removeTimeEntry(timeEntry);
     // Make the requests go though
-    httpBackend.whenDELETE('http://localhost:8080/api/api/timeEntry/201').respond();
+    httpBackend.whenDELETE('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/timeEntry/201').respond();
     scope.$digest();
     httpBackend.flush();
     // Verify its gone
@@ -102,7 +102,7 @@ describe('Service: TimerService - CRUD operations for TimeEntry', function () {
 
   it('should update the time entry with a valid id', function() {
     // Must load time entries      
-    httpBackend.whenGET('http://localhost:8080/api/api/timeEntry').respond(timeEntries);
+    httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/timeEntry').respond(timeEntries);
     timerService.getTimeEntries().then(function () {
       console.log('Got time entries from service');
     });
@@ -115,7 +115,7 @@ describe('Service: TimerService - CRUD operations for TimeEntry', function () {
     var updatedTimeEntry = timeEntry;
     var receivedTimeEntry = null;
     updatedTimeEntry.project = projects[1];
-    httpBackend.whenPUT('http://localhost:8080/api/api/timeEntry/202').respond(updatedTimeEntry);
+    httpBackend.whenPUT('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/timeEntry/202').respond(updatedTimeEntry);
     timerService.updateTimeEntry(updatedTimeEntry).then(function (result) {
       receivedTimeEntry = result;
     });
@@ -127,7 +127,7 @@ describe('Service: TimerService - CRUD operations for TimeEntry', function () {
 
   it('should handle an update for an id which does not exist', function () {
     // Must load time entries      
-    httpBackend.whenGET('http://localhost:8080/api/api/timeEntry').respond([]);
+    httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/timeEntry').respond([]);
     timerService.getTimeEntries().then(function () {
       console.log('Got time entries from service');
     });
@@ -150,7 +150,7 @@ describe('Service: TimerService - CRUD operations for TimeEntry', function () {
 
   it('should handle an update with a HTTP error', function () {
     // Must load time entries      
-    httpBackend.whenGET('http://localhost:8080/api/api/timeEntry').respond(timeEntries);
+    httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/timeEntry').respond(timeEntries);
     timerService.getTimeEntries().then(function () {
       console.log('Got time entries from service');
     });
@@ -162,7 +162,7 @@ describe('Service: TimerService - CRUD operations for TimeEntry', function () {
     var timeEntry = timeEntries[0];
     var receivedTimeEntry = null;
     var failed = false;
-    httpBackend.whenPUT('http://localhost:8080/api/api/timeEntry/202').respond(401);
+    httpBackend.whenPUT('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/timeEntry/202').respond(401);
     timerService.updateTimeEntry(timeEntry).then(function (result) {
       receivedTimeEntry = result;
     }, function () {
@@ -175,7 +175,7 @@ describe('Service: TimerService - CRUD operations for TimeEntry', function () {
 
   it('should handle an update that returns HTTP error', function () {
     // Must load time entries      
-    httpBackend.whenGET('http://localhost:8080/api/api/timeEntry').respond(301);
+    httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/timeEntry').respond(301);
     timerService.getTimeEntries().then(function () {
       console.log('Got time entries from service');
     });
