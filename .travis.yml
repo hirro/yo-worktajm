@@ -6,6 +6,8 @@ rvm:
   - "1.8.7"  
 
 install:
+  - gem update --system
+  - gem install compass
   - npm install -g grunt-cli bower
   - npm install
   - bower install
