@@ -5,7 +5,7 @@ module.exports = function(config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine'],
-    browsers: ['Firefox'],    
+    browsers: ['PhantomJS'],    
     files: [
       'app/bower_components/angular/angular.js',
       'app/bower_components/jquery/jquery.js',
