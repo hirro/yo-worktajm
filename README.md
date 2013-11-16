@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/hirro/yo-worktajm.png?branch=master)](https://travis-ci.org/hirro/yo-worktajm)
+[![Code Climate](https://codeclimate.com/github/hirro/yo-worktajm.png)](https://codeclimate.com/github/hirro/yo-worktajm)
 
 # WorkTajm front end
 
@@ -26,7 +27,7 @@
 	* [Bootstrap 3](http://getbootstrap.com/)
 	* [Restangular](https://github.com/mgonto/restangular)
 	* [toastr](https://github.com/CodeSeven/toastr)
-	
+
 
 ## Build
 

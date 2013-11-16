@@ -1,6 +1,17 @@
 {
   "name": "yo-worktajm",
   "version": "0.0.0",
+  "licenses": [
+    {
+      "type": "GPL3"
+    }
+  ],  
+  "repositories"  : [
+    {
+      "type": "git",
+      "url" : "https://github.com/hirro/yo-worktajm.git"
+    }
+  ], 
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -41,7 +52,8 @@
     "karma-growl-reporter": "~0.1",
     "karma-junit-reporter": "~0.1",
     "karma-osx-reporter": "*",
-    "karma-coverage": "~0.1"    
+    "karma-coverage": "~0.1",
+    "phantomjs": "~1.9.2-2"
   },
   "engines": {
     "node": ">=0.8.0"
