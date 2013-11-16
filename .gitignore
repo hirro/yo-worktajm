@@ -1,11 +1,7 @@
-.settings
-.classpath
-.project
-target
-.DS_Store
-server-work
-.idea
-bower_components
 node_modules
-test-results.xml
+dist
+.tmp
+.sass-cache
+app/bower_components
+.DS_Store
 coverage
