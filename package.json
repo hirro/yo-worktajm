@@ -6,12 +6,10 @@
       "type": "GPL3"
     }
   ],  
-  "repositories"  : [
-    {
+  "repository": {
       "type": "git",
       "url" : "https://github.com/hirro/yo-worktajm.git"
-    }
-  ], 
+  }, 
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
