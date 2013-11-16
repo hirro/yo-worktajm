@@ -1,0 +1,50 @@
+<div ng-include src="'views/partials/dashboard/timeEntryModal.html'">
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">Time Entries</h4>
+      </div>
+      <div class="panel-body projects">
+        <p>
+          <form action="#">
+            <input type="date" ng-model="selectedDate"/>
+          </form>
+        </p>
+        <table  class="table table-condensed table-hover" >
+          <thead>
+            <tr>
+              <th class="col-md-4" >Project</th>
+              <th class="col-md-2">Start</th>
+              <th class="col-md-2">End</th>
+              <th class="col-md-2">Duration</th>
+              <th class="col-md-2">&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody ng-repeat="timeEntry in filteredTimeEntries = (timeEntries | dateFilter:selectedDate)">
+            <tr>
+              <td>
+                <div contentEditable="true" ng-model="timeEntry.project.name" title="Click to edit">{{timeEntry.project.name}}</div>
+              </td>
+              <td contentEditable="true" >{{timeEntry.startTime | date: 'HH:mm:ss'}}</td>
+              <td contentEditable="true" >{{getEndTime(timeEntry)}}</td>
+              <td>{{getDuration(timeEntry)}}</td>
+              <td>
+                <div class="btn-group">
+                  <!-- <button class="btn btn-link glyphicon glyphicon-floppy-disk" ng-click="saveTimeEntry(timeEntry)"></button> -->
+                  <button class="btn btn-link glyphicon glyphicon-edit" ng-click="editTimeEntry(timeEntry)"></button>
+                  <button class="btn btn-link glyphicon glyphicon-remove" ng-click="removeTimeEntry(timeEntry)"></button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+

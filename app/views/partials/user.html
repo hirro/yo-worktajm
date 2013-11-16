@@ -1,0 +1,34 @@
+<div class="alert">
+	<button type="button" class="close" data-dismiss="alert">&times;</button>
+	<strong>Warning!</strong>
+	<p>
+	  Email address is unverified, please respond to the verification sent to your email address {{user.email}}.
+	</p>
+	<p>
+	  <a class="glyphicon-envelope-alt" ng-click="resendVerification()"> Click here to resend the verification.</a>
+	</p>
+	<p>
+	  <a href="#userPreferencesModal" class="glyphicon-edit" data-toggle="modal" > Edit email address.</a>
+	</p>
+	</div>
+	<div class="modal hide fade" id="userPreferencesModal" tabindex="-1" role="dialog" aria-labelledby="userPreferencesModal" aria-hidden="true">
+	<div class="modal-header">
+	  <button class="close" type="button" data-dismiss="modal" aria-hidden="true">x</button>
+	  <h3 id="myModalLabel">User Preferences</h3>
+	</div>
+	<div class="modal-body">
+	  <p>
+	    <form>
+	      <fieldset>
+	        <label>Email</label>
+	        <input type="email" placeholder="Enter email address" ng-model="user.email">
+	      </fieldset>
+	    </form>                
+	  </p>
+	</div>
+	<div class="modal-footer">
+	  <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+	  <button class="btn btn-primary">Save changes</button>
+	</div>
+		
+</div>

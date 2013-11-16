@@ -1,0 +1,11 @@
+.settings
+.classpath
+.project
+target
+.DS_Store
+server-work
+.idea
+app/bower_components
+node_modules
+test-results.xml
+coverage

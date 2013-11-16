@@ -1,0 +1,65 @@
+<link rel="stylesheet" href="styles/inside.css">
+
+<div class="navbar navbar-inverse navbar-fixed-top" ng-show="person" ng-controller="LoginCtrl" >
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="glyphicon-bar"></span>
+        <span class="glyphicon-bar"></span>
+        <span class="glyphicon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">worktajm</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="active"><a>Dashboard</a></li>
+        <li><a href="#/reports">Reports</a></li>
+        <li><a href="#/about">About</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a ng-click="logout()">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="container" ng-show="person" >
+
+  <div class="row">
+      <div ng-include src="'views/partials/loading.html'" >
+      </div>        
+  </div>
+
+  <!-- Projects -->
+	<div class="row">
+    <!-- Column 1 -->
+    <div class="col-md-3">
+      <div ng-controller="DashboardProjectsCtrl">
+        <div ng-include src="'views/partials/dashboard/projects.html'"></div>
+      </div>
+    </div>
+    <!-- Center column -->
+    <div class="col-md-6">
+
+      <!-- Conditonal alert if user is not yet verified  -->
+      <div ng-include src="'views/partials/user.html'" ng-hide="person.emailVerified">
+      </div>
+
+      <!-- Time entries table -->
+      <div ng-controller="DashboardTimeEntriesCtrl">
+        <div ng-include src="'views/partials/dashboard/timeEntries.html'"></div>    
+      </div>
+
+    </div>
+    <!-- Column 3 -->
+    <div class="col-md-3" ng-include="'views/partials/dashboard/company.html'" >
+    </div>
+
+    </div>
+	</div>
+</div>
