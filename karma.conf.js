@@ -5,7 +5,7 @@ module.exports = function(config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine'],
-    browsers: ['PhantomJS'],    
+    browsers: ['Firefox'],    
     files: [
       'app/bower_components/angular/angular.js',
       'app/bower_components/jquery/jquery.js',
@@ -27,7 +27,7 @@ module.exports = function(config) {
     captureTimeout: 60000,
     colors: true,
     exclude: ['dist/'],
-    
+
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_DEBUG,
