@@ -1,6 +1,9 @@
 language: node_js
 node_js:
   - '0.10'
+addons:
+  hosts:
+    - worktajm.arnellconsulting.dyndns.org
 before_script:
   - gem update --system
   - gem install compass
