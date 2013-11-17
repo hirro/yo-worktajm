@@ -11,4 +11,4 @@ before_script:
   - ./scripts/web-server.js > /dev/null &
   - sleep 1 # give server time to start  
 script:
-  - karma start karma.conf.js --no-auto-watch --single-run --reporters=dots --browsers=Firefox
+  - grunt test:travis

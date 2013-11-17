@@ -5,8 +5,7 @@ angular.module('tpsApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'restangular', 
-  'tokenauth'
+  'restangular'
 ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -30,9 +29,6 @@ angular.module('tpsApp', [
   )
   .config(function (RestangularProvider) {
     RestangularProvider.setBaseUrl('http://worktajm.arnellconsulting.dyndns.org:8080/api/api');
-  })
-  .config(function (AuthProvider) {
-    AuthProvider.setUrl('http://worktajm.arnellconsulting.dyndns.org:8080/tps/api/token');
   });
 
 

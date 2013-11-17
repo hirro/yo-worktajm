@@ -20,7 +20,6 @@ module.exports = function(config) {
       'app/bower_components/jquery/jquery.js',
       'app/bower_components/restangular/dist/restangular.js',
       'app/bower_components/lodash/lodash.js',
-      'app/bower_components/angular-webstorage/angular-webstorage.js',
       'app/bower_components/angular-tokenauth/angular-tokenauth.js',
       'app/bower_components/toastr/toastr.js',
       'app/scripts/*.js',
@@ -35,7 +34,7 @@ module.exports = function(config) {
     // use dots reporter, as travis terminal does not support escaping sequences
     // possible values: 'dots', 'progress', 'junit', 'teamcity'
     // CLI --reporters progress
-    reporters: ['progress', 'coverage','osx'],
+    reporters: ['progress', 'coverage','junit', 'osx'],
 
     junitReporter: {
       // will be resolved to basePath (in the same way as files/exclude patterns)
@@ -70,7 +69,7 @@ module.exports = function(config) {
     singleRun: false,
 
     // Coverage configuration
-   preprocessors: {
+    preprocessors: {
       // source files, that you wanna generate coverage for
       // do not include tests or libraries
       // (these files will be instrumented by Istanbul)

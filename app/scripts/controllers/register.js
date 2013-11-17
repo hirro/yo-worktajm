@@ -23,23 +23,28 @@
           for the JavaScript code in this page.  
 */
 
+/* globals toastr */
+
 'use strict';
 
 angular.module('tpsApp').controller('RegisterCtrl', function ($scope, Restangular, $location) {
-	$scope.register = function () {
-		console.log('Register, email: %s', $scope.email);
-		var promise = Restangular.one('registration').get({ 'email': $scope.email, 'password': $scope.password});
+  $scope.register = function () {
+    console.log('RegisterCtrl::register -  email: [%s]', $scope.registration.email);
+    var promise = Restangular.one('registration').get({
+      'email': $scope.registration.email, 
+      'password': $scope.registration.password
+    });
 
-		promise.then(function (token) {
-			console.log('Successfully registered user');
-			$scope.token = token;
-			$location.path( '/dashboard' );
+    promise.then(function (token) {
+      console.log('RegisterCtrl::register - Successfully registered user');
+      $scope.token = token;
+      $location.path( '/dashboard' );
       toastr.success('Registration succeeded, moving to dashboard');
-		}, function (reason) {
-			console.error('Failed to register user, error: %s', reason);
+    }, function (reason) {
+      console.error('RegisterCtrl::register - Failed to register user, error: %s', reason);
       toastr.error('Registration failed');
-		});
+    });
     return promise;
-	};
+  };
 });
 

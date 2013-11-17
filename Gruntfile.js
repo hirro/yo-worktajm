@@ -321,7 +321,12 @@ module.exports = function (grunt) {
           ]
         }
       }
-    }
+    },
+    coveralls: {
+      options: {
+        coverage_dir: 'coverage/'
+      }
+    }    
   });
 
   grunt.registerTask('server', function (target) {
@@ -360,6 +365,15 @@ module.exports = function (grunt) {
     'rev',
     'usemin'
   ]);
+
+  grunt.registerTask('test:travis', [
+    'clean:server',
+    'concurrent:test',
+    'autoprefixer',
+    'connect:test',
+    'karma',
+    'coveralls'
+  ]);  
 
   grunt.registerTask('default', [
     'jshint',

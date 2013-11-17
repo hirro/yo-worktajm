@@ -27,7 +27,7 @@
 
 'use strict';
 
-describe('Controller: RegisterCtrl', function () {
+xdescribe('Controller: RegisterCtrl', function () {
 
   // load the controller's module
   beforeEach(module('tpsApp'));
