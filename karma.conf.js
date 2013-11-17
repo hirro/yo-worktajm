@@ -75,8 +75,13 @@ module.exports = function(config) {
       // do not include tests or libraries
       // (these files will be instrumented by Istanbul)
       'app/scripts/**/*.js': ['coverage']
-    }
-    
+    },
+
+    coverageReporter: {
+      type: 'lcov',
+      dir: 'coverage/'
+    }    
+
   });
 };
 

@@ -1,16 +1,24 @@
 {
   "name": "yo-worktajm",
   "version": "0.0.0",
+  "keywords": [
+    "bootstrap",
+    "angular",
+    "restangular"
+  ], 
   "licenses": [
     {
       "type": "GPL3"
     }
-  ],  
+  ],
+  "homepage": "http://worktajm.com",
+  "author": "Jim Arnell",
   "repository": {
-      "type": "git",
-      "url" : "https://github.com/hirro/yo-worktajm.git"
-  }, 
-  "dependencies": {},
+    "type": "git",
+    "url": "https://github.com/hirro/yo-worktajm.git"
+  },
+  "dependencies": {
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-autoprefixer": "~0.4.0",
@@ -46,7 +54,11 @@
     "karma-coffee-preprocessor": "~0.1.0",
     "karma-phantomjs-launcher": "~0.1.0",
     "karma": "~0.10.4",
-    "karma-ng-html2js-preprocessor": "~0.1.0"
+    "karma-ng-html2js-preprocessor": "~0.1.0",
+    "nodeunit": "~0.8.2",
+    "karma-coverage": "~0.1.0",
+    "coveralls": "~2.3.0",
+    "grunt-karma-coveralls": "~2.0.2"
   },
   "engines": {
     "node": ">=0.8.0"
@@ -55,4 +67,3 @@
     "test": "grunt test"
   }
 }
-
