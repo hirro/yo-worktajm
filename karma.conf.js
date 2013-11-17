@@ -32,16 +32,26 @@ module.exports = function(config) {
     // list of files / patterns to exclude
     exclude: [],
 
+    // use dots reporter, as travis terminal does not support escaping sequences
+    // possible values: 'dots', 'progress', 'junit', 'teamcity'
+    // CLI --reporters progress
+    reporters: ['progress', 'junit'],
+
+    junitReporter: {
+      // will be resolved to basePath (in the same way as files/exclude patterns)
+      outputFile: 'test-results.xml'
+    },
+
     // web server port
-    port: 8080,
+    port: 9876,
 
     // level of logging
     // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-    logLevel: config.LOG_INFO,
+    logLevel: config.LOG_DEBUG,
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
+    autoWatch: true,
 
 
     // Start these browsers, currently available:
