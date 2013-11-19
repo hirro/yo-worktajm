@@ -13,7 +13,7 @@ This is the front end for my hobby time reporting application.
 
 It is not functional yet.
 
-Backend needs to be released to Github next time I do a major change in it.
+Status is kept on Pivotal.
 
 ## Stack
 	
