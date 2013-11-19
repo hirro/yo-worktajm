@@ -13,7 +13,7 @@ This is the front end for my hobby time reporting application.
 
 It is not functional yet.
 
-Status is kept on Pivotal.
+Status is kept on Pivotal..
 
 ## Stack
 	
