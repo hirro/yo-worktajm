@@ -1,4 +1,3 @@
-# Continious Integration Server Status
 [![Build Status](https://travis-ci.org/hirro/yo-worktajm.png?branch=master)](https://travis-ci.org/hirro/yo-worktajm)
 [![Code Climate](https://codeclimate.com/github/hirro/yo-worktajm.png)](https://codeclimate.com/github/hirro/yo-worktajm)
 [![Coverage Status](https://coveralls.io/repos/hirro/yo-worktajm/badge.png?branch=master)](https://coveralls.io/r/hirro/yo-worktajm?branch=master)
@@ -10,28 +9,25 @@
 ***
 
 ## Purpose
-	This is the front end for my hobby time reporting application.
+This is the front end for my hobby time reporting application.
 
-	This is just for fun coding. Feel free to host this wherever you want as soon as it is functional. 
+It is not functional yet.
 
-	Release plan TBD.
-
-	Backend needs to be released to Github next time I do a major change in it.
+Backend needs to be released to Github next time I do a major change in it.
 
 ## Stack
 	
 ### Backend - Spring 
-	* Tomcat 7.42+
-	* [Spring](www.spring.org)  Spring Data
-	* [Spring](www.spring.org)  Spring  Security
+* Tomcat 7.42+
+* [Spring](www.spring.org)  Spring Data
+* [Spring](www.spring.org)  Spring  Security
 
 ### Front end:
-	* [Yeoman 1.0](http://yeoman.io/)
-	* [AngularJS 1.2.1](http://www.angularjs.org/) 
-	* [Bootstrap 3](http://getbootstrap.com/)
-	* [Restangular](https://github.com/mgonto/restangular)
-	* [toastr](https://github.com/CodeSeven/toastr)
-
+* [Yeoman 1.0](http://yeoman.io/)
+* [AngularJS 1.2.1](http://www.angularjs.org/) 
+* [Bootstrap 3](http://getbootstrap.com/)
+* [Restangular](https://github.com/mgonto/restangular)
+* [toastr](https://github.com/CodeSeven/toastr)
 
 ## Build
 
