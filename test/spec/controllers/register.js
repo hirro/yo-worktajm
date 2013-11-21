@@ -27,7 +27,7 @@
 
 'use strict';
 
-xdescribe('Controller: RegisterCtrl', function () {
+describe('Controller: RegisterCtrl', function () {
 
   // load the controller's module
   beforeEach(module('tpsApp'));
@@ -48,8 +48,10 @@ xdescribe('Controller: RegisterCtrl', function () {
   it('should register successfully', function () {
     var success = false;
     var failure = false;
-    scope.email = 'email';
-    scope.password = 'password';
+    scope.registration = {
+      email: 'email',
+      password:  'password'
+    };
     httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/registration?email=email&password=password').respond(201);
     scope.register().then(function () {
       success = true;
@@ -66,8 +68,10 @@ xdescribe('Controller: RegisterCtrl', function () {
   it('should handle registration failure gracefully', function () {
     var success = false;
     var failure = false;
-    scope.email = 'email';
-    scope.password = 'password';
+    scope.registration = {
+      email: 'email',
+      password:  'password'
+    };
     httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/registration?email=email&password=password').respond(401);
     scope.register().then(function () {
       success = true;

@@ -20,7 +20,6 @@ module.exports = function(config) {
       'app/bower_components/jquery/jquery.js',
       'app/bower_components/restangular/dist/restangular.js',
       'app/bower_components/lodash/lodash.js',
-      'app/bower_components/angular-tokenauth/angular-tokenauth.js',
       'app/bower_components/toastr/toastr.js',
       'app/scripts/*.js',
       'app/scripts/**/*.js',
