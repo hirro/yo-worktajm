@@ -27,7 +27,7 @@
 'use strict';
 
 angular.module('tpsApp')
-  .controller('LoginCtrl', function ($scope, $rootScope, Restangular, $location, PersonService, toaster) {
+  .controller('LoginCtrl', function ($scope, $rootScope, Restangular, $location, PersonService) {
 
   var devMode = false;
 
