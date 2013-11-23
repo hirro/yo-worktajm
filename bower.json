@@ -16,7 +16,6 @@
     "datejs": "*",
     "string-format": "~1.0.2",
     "angular-bootstrap-datetimepicker": "latest",
-    "AngularJS-Toaster": "*",
     "toastr": "~2.0.1"
   },
   "devDependencies": {
