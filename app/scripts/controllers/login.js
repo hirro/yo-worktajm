@@ -23,11 +23,11 @@
       for the JavaScript code in this page.  
 */
 
-/* globals angular */
+/* globals angular, toastr */
 'use strict';
 
 angular.module('tpsApp')
-  .controller('LoginCtrl', function ($scope, $rootScope, Restangular, $location, PersonService) {
+  .controller('LoginCtrl', function ($scope, $rootScope, Restangular, $location, PersonService, toaster) {
 
   var devMode = false;
 
@@ -37,7 +37,9 @@ angular.module('tpsApp')
       console.log('LoginCtrl::login - Successfully authenticated, user: %s', $scope.username);
       $rootScope.user = user;
       $location.path( '/dashboard' );
+      toastr.success('Successfully logged in as ' + $scope.username);
     }, function (reason) {
+      toastr.error('Authentication failed');
       console.error(reason);
       $rootScope.user = null;      
       $location.path( '/main' );

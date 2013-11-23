@@ -17,7 +17,6 @@ body {
 footer {
   height: 50px;
   background: #181818;
-  position: fixed;
   bottom: 0;
   width: 100%;  
 }
@@ -26,23 +25,23 @@ footer {
 -------------------------------------------------- */
 
 /* Special class on .container surrounding .navbar, used for positioning it into place. */
-.navbar-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 20;
-}
+// .navbar-wrapper {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+//   z-index: 20;
+// }
 
-/* Flip around the padding for proper display in narrow viewports */
-.navbar-wrapper .container {
-  padding-left: 0;
-  padding-right: 0;
-}
-.navbar-wrapper .navbar {
-  padding-left: 15px;
-  padding-right: 15px;
-}
+// /* Flip around the padding for proper display in narrow viewports */
+// .navbar-wrapper .container {
+//   padding-left: 0;
+//   padding-right: 0;
+// }
+// .navbar-wrapper .navbar {
+//   padding-left: 15px;
+//   padding-right: 15px;
+// }
 
 /* @projects.scss
 -------------------------------------------------- */
@@ -98,26 +97,26 @@ footer {
     padding-right: 0;
   }
 
-  /* Navbar positioning foo */
-  .navbar {
-    margin-bottom: 18px;
-  }
-  .navbar-wrapper {
-    margin-top: 20px;
-  }
-  .navbar-wrapper .container {
-    padding-left:  15px;
-    padding-right: 15px;
-  }
-  .navbar-wrapper .navbar {
-    padding-left:  0;
-    padding-right: 0;
-  }
+  // /* Navbar positioning foo */
+  // .navbar {
+  //   margin-bottom: 18px;
+  // }
+  // .navbar-wrapper {
+  //   margin-top: 20px;
+  // }
+  // .navbar-wrapper .container {
+  //   padding-left:  15px;
+  //   padding-right: 15px;
+  // }
+  // .navbar-wrapper .navbar {
+  //   padding-left:  0;
+  //   padding-right: 0;
+  // }
 
-  /* The navbar becomes detached from the top, so we round the corners */
-  .navbar-wrapper .navbar {
-    border-radius: 4px;
-  }
+  // /* The navbar becomes detached from the top, so we round the corners */
+  // .navbar-wrapper .navbar {
+  //   border-radius: 4px;
+  // }
 
 }
 
@@ -125,4 +124,7 @@ footer {
   .featurette-heading {
     margin-top: 120px;
   }
+  .footer {
+    position: fixed;
+  }  
 }

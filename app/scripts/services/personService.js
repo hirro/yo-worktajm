@@ -23,6 +23,8 @@
           for the JavaScript code in this page.  
 */
 
+/* globals toastr */
+
 'use strict';
 
 /**
@@ -60,8 +62,7 @@ angular.module('tpsApp')
             console.log('BROADCAST: onLoggedIn (id [%d])', person.id);
             $rootScope.$broadcast('onLoggedIn', person);
             $rootScope.token = token;
-            $rootScope.person = person;            
-
+            $rootScope.person = person;
           }, function (reason) {
             return deferred.reject(reason);
           });

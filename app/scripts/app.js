@@ -5,7 +5,9 @@ angular.module('tpsApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'restangular'
+  'restangular',
+  'ngAnimate', 
+  'toaster'  
 ])
   .config(function ($routeProvider) {
     $routeProvider
