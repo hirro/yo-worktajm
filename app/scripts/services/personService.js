@@ -1,7 +1,7 @@
 /*
   @licstart The following is the entire license notice for the 
             JavaScript code in this page.
-  @source TBD
+  @source https://github.com/hirro/yo-worktajm
 
   Copyright (C) 2013 Jim Arnell.
 
@@ -23,8 +23,6 @@
           for the JavaScript code in this page.  
 */
 
-/* globals toastr */
-
 'use strict';
 
 /**
@@ -33,148 +31,147 @@
  * @tbdEvent onLoggedOut()
  * @tbdEvent onLoggedIn()
  */
-angular.module('tpsApp')
-  .service('PersonService', function PersonService($rootScope, $q, Restangular) {
-    var person = null;
-    var token = null;
-    var svc;
-    svc = {
+angular.module('tpsApp').service('PersonService', function PersonService($rootScope, $q, Restangular) {
+  var personService = {
+    person: null,
+    token:  null
+  };
 
-      login: function (username, password) {
-        console.log('PersonService::login');
+  /**
+   * Returns the logged in person.
+   * If person has not been loaded before it will be retrieved from backend.
+   * @return promise to Person.
+   */
+  personService.getPerson = function () {
+    console.log('PersonService:getPerson');
 
-        var deferred = $q.defer();
-        token = Restangular.one('authenticate').get({
-          username: username,
-          password: password
-        }).then(function(returnedToken) {
-          console.log('PersonService::login - Received authentication token for user: %s', returnedToken.token);
-          token = returnedToken.token;
+    var deferred = $q.defer();
 
-          // Use the token to set the authentication token, once done the person can be fetched.
-          Restangular.setDefaultHeaders({
-          'Auth-Token': token
-          });
+    if (personService.person) {
+      console.log('PersonService:getPerson - OK (local)');
+      deferred.resolve(personService.person);
+    } else {
+      var qPerson = Restangular.one('person', 1).get();
+      qPerson.then(function (p) {
+        console.log('PersonService:getPerson - OK (backend)');
+        personService.person = p;
+        return deferred.resolve(p);
+      }, function () {
+        var msg = 'Failed to load the person from backend';
+        console.error('PersonService:getPerson - %s', msg);
+        return deferred.reject(msg);
+      });
+    }
+    return deferred.promise;        
+  };
 
-          svc.getPerson().then(function (returnedPerson) {
-            person = returnedPerson;
-            deferred.resolve(person);
-            console.log('BROADCAST: onLoggedIn (id [%d])', person.id);
-            $rootScope.$broadcast('onLoggedIn', person);
-            $rootScope.token = token;
-            $rootScope.person = person;
-          }, function (reason) {
-            return deferred.reject(reason);
-          });
+  personService.login = function (username, password) {
+    console.log('PersonService::login');
 
-        }, function (reason) {
-          console.error('PersonService::login - Login failed');
-          person = null;
-          token = null;
-          return deferred.reject(reason);
-        });
-        return deferred.promise;
-      },
+    var deferred = $q.defer();
+    personService.token = Restangular.one('authenticate').get({
+        username: username,
+        password: password
+    }).then(function(returnedToken) {
+      console.log('PersonService::login - Received authentication token for user: %s', returnedToken.token);
+      personService.token = returnedToken.token;
 
-      logout: function () {
-        console.log('Logging out user [%s]', person.username);
-        person = null;
-        token = null;
-        Restangular.setDefaultHeaders({
-        });
-        console.log('BROADCAST: onLoggedOut ()');
-        $rootScope.$broadcast('onLoggedOut');
-      },
+      // Use the token to set the authentication token, once done the person can be fetched.
+      Restangular.setDefaultHeaders({
+        'Auth-Token': personService.token
+      });
 
-      /**
-       * Returns the logged in person.
-       * If person has not been loaded before it will be retrieved from backend.
-       * @return promise to Person.
-       */
-      getPerson: function () {
-        console.log('PersonService:getPerson');
+      personService.getPerson().then(function (returnedPerson) {
+        personService.person = returnedPerson;
+        deferred.resolve(personService.person);
+        console.log('BROADCAST: onLoggedIn (id [%d])', personService.person.id);
+        $rootScope.$broadcast('onLoggedIn', personService.person);
+        $rootScope.token = personService.token;
+        $rootScope.person = personService.person;
+      }, function (reason) {
+        return deferred.reject(reason);
+      });
 
-        var deferred = $q.defer();
+    }, function (reason) {
+      console.error('PersonService::login - Login failed');
+      personService.erson = null;
+      personService.token = null;
+      return deferred.reject(reason);
+    });
+    return deferred.promise;
+  };
 
-        if (person) {
-          console.log('PersonService:getPerson - OK (local)');
-          deferred.resolve(person);
-        } else {
-          var qPerson = Restangular.one('person', 1).get();
-          qPerson.then(function (p) {
-            console.log('PersonService:getPerson - OK (backend)');
-            person = p;
-            return deferred.resolve(p);
-          }, function () {
-            var msg = 'Failed to load the person from backend';
-            console.error('PersonService:getPerson - %s', msg);
-            return deferred.reject(msg);
-          });
-        }
-        return deferred.promise;        
-      },
+  personService.logout = function () {
+    console.log('Logging out user [%s]', personService.person.username);
+    personService.person = null;
+    personService.token = null;
+    Restangular.setDefaultHeaders({
+    });
+    console.log('BROADCAST: onLoggedOut ()');
+    $rootScope.$broadcast('onLoggedOut');
+  };
 
-      /**
-       * Sets the logged in person as actively running the provided time entry.
-       * @return promise to the person.
-       */
-      setActiveTimeEntry: function (timeEntry) {
-        var deferred = $q.defer();
-        console.log('PersonService:setActiveTimeEntry(id [%d])', timeEntry ? timeEntry.id : null);
-        var stoppedProject = person.activeTimeEntry ? person.activeTimeEntry.project : null;
-        var startedProject = timeEntry ? timeEntry.project : null;
-        person.activeTimeEntry = timeEntry;
-        person.put().then(function (result) {
-          // Signal that the project status has changed.
-          if (stoppedProject) {
-            stoppedProject.active = false;
-            console.log('BROADCAST: onProjectUpdated (id [%d])', stoppedProject.id);
-            $rootScope.$broadcast('onProjectUpdated', stoppedProject);
-          } else {
-            console.log('PersonService:::setActiveTimeEntry - No project stopped');
-          }
-          if (startedProject) {
-            console.log('BROADCAST: onProjectUpdated (id [%d])', startedProject.id);
-            startedProject.active = true;
-            $rootScope.$broadcast('onProjectUpdated', startedProject);
-          } else {
-            console.log('PersonService:::setActiveTimeEntry - No project started');
-          }
-          return deferred.resolve(result);
-        }, function (reason) {
-          console.error('PersonService::setActiveTimeEntry failed. %s', reason);
-          return deferred.reject(reason);
-        });
-        return deferred.promise;
-      },
-
-      /**
-       * Returns the active time entry of the logged in person.
-       * @return active time entry of logged in person, null if not active.
-       */
-      getActiveTimeEntry: function () {
-        var timeEntry = null;
-        if (person && person.activeTimeEntry) {
-          timeEntry = person.activeTimeEntry;
-        }
-        return timeEntry;
-      },
-
-      /** Returns the id if the active project.
-       * @return id of the active project, -1 if no project is active.
-       */
-      getActiveProjectId: function () {
-        var result = -1;
-        if (person &&
-            person.activeTimeEntry &&
-            person.activeTimeEntry.project) {
-          console.log('PersonService::getActiveProjectId(id [%d])', person.activeTimeEntry.project.id);
-          result = person.activeTimeEntry.project.id;
-        } else {
-          console.log('PersonService::getActiveProjectId - No active project');
-        }
-        return result;
+  /**
+   * Sets the logged in person as actively running the provided time entry.
+   * @return promise to the person.
+   */
+  personService.setActiveTimeEntry = function (timeEntry) {
+    var deferred = $q.defer();
+    console.log('PersonService:setActiveTimeEntry(id [%d])', timeEntry ? timeEntry.id : null);
+    var stoppedProject = personService.person.activeTimeEntry ? personService.person.activeTimeEntry.project : null;
+    var startedProject = timeEntry ? timeEntry.project : null;
+    personService.person.activeTimeEntry = timeEntry;
+    personService.person.put().then(function (result) {
+      // Signal that the project status has changed.
+      if (stoppedProject) {
+        stoppedProject.active = false;
+        console.log('BROADCAST: onProjectUpdated (id [%d])', stoppedProject.id);
+        $rootScope.$broadcast('onProjectUpdated', stoppedProject);
+      } else {
+        console.log('PersonService:::setActiveTimeEntry - No project stopped');
       }
-    };
-    return svc;
-  });
+      if (startedProject) {
+        console.log('BROADCAST: onProjectUpdated (id [%d])', startedProject.id);
+        startedProject.active = true;
+        $rootScope.$broadcast('onProjectUpdated', startedProject);
+      } else {
+        console.log('PersonService:::setActiveTimeEntry - No project started');
+      }
+      return deferred.resolve(result);
+    }, function (reason) {
+      console.error('PersonService::setActiveTimeEntry failed. %s', reason);
+      return deferred.reject(reason);
+    });
+    return deferred.promise;
+  };
+
+  /**
+   * Returns the active time entry of the logged in person.
+   * @return active time entry of logged in person, null if not active.
+   */
+  personService.getActiveTimeEntry = function () {
+    var timeEntry = null;
+    if (personService.person && personService.person.activeTimeEntry) {
+      timeEntry = personService.person.activeTimeEntry;
+    }
+    return timeEntry;
+  };
+
+  /** Returns the id if the active project.
+   * @return id of the active project, -1 if no project is active.
+   */
+  personService.getActiveProjectId = function () {
+    var result = -1;
+    if (personService.person &&
+        personService.person.activeTimeEntry &&
+        personService.person.activeTimeEntry.project) {
+      console.log('PersonService::getActiveProjectId(id [%d])', personService.person.activeTimeEntry.project.id);
+      result = personService.person.activeTimeEntry.project.id;
+    } else {
+      console.log('PersonService::getActiveProjectId - No active project');
+    }
+    return result;
+  };
+
+  return personService;
+});

@@ -1,7 +1,7 @@
 /*
   @licstart The following is the entire license notice for the 
             JavaScript code in this page.
-  @source TBD
+  @source https://github.com/hirro/yo-worktajm
 
   Copyright (C) 2013 Jim Arnell.
 
@@ -23,265 +23,267 @@
           for the JavaScript code in this page.  
 */
 
-/*globals  _, $, $q */
+/*globals  _, $ */
 
 'use strict';
 
 // This service should encapsulate all data access. 
 // A future extension could be offline support.
-angular.module('tpsApp')
-  .service('TimerService', function TimerService(Restangular, $rootScope, $q, PersonService) {
-    var svc;
-    var baseProjects = Restangular.all('project');
-    var projects = [];
-    var projectsLoaded = false;
-    var baseTimeEntries = Restangular.all('timeEntry');
-    var selectedDate = new Date().toISOString().substring(0, 10);
-    var timeEntries;    
+angular.module('tpsApp').service('TimerService', function TimerService(Restangular, $rootScope, $q, PersonService) {
+  var svc = {
+    baseProjects: Restangular.all('project'),
+    projects: [],
+    projectsLoaded: false,
+    baseTimeEntries: Restangular.all('timeEntry'),
+    timeEntries: [],
+    selectedDate: new Date().toISOString().substring(0, 10)
+  };
+    
+  //
+  // Get all available project for the given person
+  // No server reload done
+  // 
+  svc.reloadProject = function () {
+    console.log('TimerService::reloadProject');
+    var q = svc.baseProjects.getList();
+    q.then(function (result) {
+      console.log('TimerService::reloadProject - List retrieved from backend, size: %d', result.length);
+      svc.projects = result;
+      svc.projectsLoaded = true;
+      var activeProjectId = PersonService.getActiveProjectId();
+      _(svc.projects).each(function (project) {
+        if (project.id === activeProjectId) {
+          project.active = true;
+        } else {
+          project.active = false;
+        }
+      });
 
-    svc = {
+      // Notify all listeners that project list has been refreshed
+      console.log('BROADCAST: onProjectsRefreshed');
+      $rootScope.$broadcast('onProjectsRefreshed', svc.projects);
+      return result;
+    });
+    return q;
+  };
 
-      //
-      // Get all available project for the given person
-      // No server reload done
-      // 
-      reloadProject: function () {
-        console.log('TimerService::reloadProject');
-        var q = baseProjects.getList();
-        q.then(function (result) {
-          console.log('TimerService::reloadProject - List retrieved from backend, size: %d', result.length);
-          projects = result;
-          projectsLoaded = true;
-          var activeProjectId = PersonService.getActiveProjectId();
-          _(projects).each(function (project) {
-            if (project.id === activeProjectId) {
-              project.active = true;
-            } else {
-              project.active = false;
-            }
-          });
+  //
+  // CRUD for Project
+  //
+  svc.updateProject = function (project) {
+    var deferred = $q.defer();
+    if (project.id) {
+      console.log('TimerService::updateProject');
+      project.put().then(function (updatedProject) {
+        console.log('TimerService::updateProject - Backend updated successfully');
+        console.log('BROADCAST: - onProjectUpdated (%d)', project.id);
+        $rootScope.$broadcast('onProjectUpdated', project);
+        deferred.resolve(updatedProject);
+      }, function (reason) {
+        deferred.reject(reason);
+      });
+    } else {
+      console.log('updateProject - creating new entry');
+      svc.baseProjects.post(project).then(function (newProject) {
+        console.log('Updated project successfully at backend. New id is: %s', newProject.id);
+        svc.projects.push(newProject);
+        $rootScope.$broadcast('onProjectUpdated', newProject);
+        deferred.resolve(newProject);
+      }, function (reason) {
+        deferred.reject(reason);
+      });
+    }
+    return deferred.promise;
+  };
 
-          // Notify all listeners that project list has been refreshed
-          console.log('BROADCAST: onProjectsRefreshed');
-          $rootScope.$broadcast('onProjectsRefreshed', projects);
-          return result;
+  svc.removeProject = function (project) {
+    console.log('TimerService::remove(name: [%s], id: [%d])', project.name, project.id);
+    project.remove().then(function () {
+      console.log('Project deleted from backend');
+      var index = _.indexOf(svc.projects, project);
+      console.log('Removing project at index %d', index);
+      svc.projects.splice(index, 1);
+      //svc.projects = _.without(svc.projects, project);
+    });
+  };
+
+  svc.getProject = function (id) {
+    console.log('TimerService::getProject(id [%d])', id);
+    var item = _.find(svc.projects, function (p) {
+      return p.id === id;
+    });
+    return item;
+  };
+
+  svc.getProjects = function () {
+    return svc.projects;
+  };
+
+  //
+  // Set project status
+  // Only one project may be active at the time.
+  svc.setActive = function (project, active) {
+    console.log('TimerService::setActive - %d', active);
+    var p = this.getProject(project.id);
+    if (p) {
+     p.active = active;        
+    } else {
+      console.error('TimerService::setActive - Failed to find project to set as active');
+    }
+  };
+
+  svc.setSelectedDate = function ( date ) {
+    svc.selectedDate = date;
+  };
+  svc.getSelectedDate = function () {
+    return svc.selectedDate;
+  };
+
+  //
+  // CRUD for time entries
+  //
+  svc.getTimeEntries = function () {
+    console.log('TimerService::getTimeEntries');
+    var q = svc.baseTimeEntries.getList();
+    q.then(function (result) {
+      console.log('TimerService::getTimeEntries - List retrieved from backend, size: %d', result.length);
+      svc.timeEntries = result;
+      
+      console.log('BROADCAST onTimeEntriesRefreshed');
+      $rootScope.$broadcast('onTimeEntriesRefreshed', svc.timeEntries);
+      return svc.timeEntries;
+    });
+    return q;
+  };
+  svc.createTimeEntry = function (timeEntry) {
+    return svc.baseTimeEntries.post(timeEntry);
+  };
+  svc.updateTimeEntry = function (timeEntry) {
+    console.log('TimerService::updateTimeEntry(id: [%d])', timeEntry.id);
+    var deferred = $q.defer();
+    var restangularTimeEntry = svc.findTimeEntryById(timeEntry.id);
+    if (restangularTimeEntry) {
+      restangularTimeEntry.put().then(function (result) {
+        console.log('TimerService::updateTimeEntry - OK');
+        $rootScope.$broadcast('onTimeEntryUpdated', result);
+        deferred.resolve(result);
+      }, function () {
+        var errorMsg = 'Failed to update the time entry';
+        console.error('TimerService::updateTimeEntry - FAILED [%s]', errorMsg);
+        deferred.reject(errorMsg);
+      });
+    } else {
+      var errorMsg = 'Failed to find time entry';
+      console.error('TimerService::updateTimeEntry - FAILED [%s]', errorMsg);
+      deferred.reject(errorMsg);
+    }
+    return deferred.promise;        
+  };
+  svc.removeTimeEntry = function (entry) {
+    var id = entry.id;
+    var timeEntry = this.findTimeEntryById(id);
+    var index = _.indexOf(svc.timeEntries, timeEntry);
+    console.log('removeTimeEntry::removeTimeEntry(%s)', id);
+    var q = timeEntry.remove();
+    q.then(function () {
+      console.log('removeTimeEntry::removeTimeEntry - OK');
+      svc.timeEntries.splice(index, 1);
+      console.log('BROADCAST: onTimeEntryRemoved(id [%d]', timeEntry.id);
+      $rootScope.$broadcast('onTimeEntryRemoved', timeEntry);
+    });
+
+    // Mark time entry as invalid until it is physically removed
+    timeEntry.disable = true;
+    return q;
+  };
+  svc.findTimeEntryById = function (id) {
+    return _(svc.timeEntries).find({
+      'id': id
+    });
+  };
+  //
+  // CRUD time entries - END
+  //
+
+  // Start the timer for the specified project.
+  // Returns a promise to the operation
+  svc.startTimer = function(project) {
+    console.log('timerService::startTimer');
+    var deferred = $q.defer();        
+
+    // Get the currently logged in person
+    PersonService.getPerson().then(function (person) {
+
+      // Create the new time entry
+      var timeEntry = { person: person, project: project, startTime: $.now()};
+      svc.createTimeEntry(timeEntry).then(function (newTimeEntry) {
+        console.log('timerService::startTimer - Time entry created at backend(id [%d]', newTimeEntry.id);
+        newTimeEntry.active = true;
+        svc.setActive(project, true);
+        svc.timeEntries.push(newTimeEntry);
+
+        // Update the person
+        PersonService.setActiveTimeEntry(newTimeEntry).then(function () {
+          // Signal the events
+          console.log('timerService::startTimer - OK');
+
+          // Resolve the promise
+          deferred.resolve(newTimeEntry);
+
+          // Send events
+          console.log('BROADCAST: onTimeEntryUpdated');
+          $rootScope.$broadcast('onTimeEntryUpdated', newTimeEntry);
+        }, function (reason) {
+          console.error('timerService::startTimer - Failed to setActiveTimeEntry %s', reason);
+          deferred.reject(reason);
         });
-        return q;
-      },
+      }, function (reason) {
+        console.error('timerService::startTimer - Failed to create time entry. %s', reason);
+        return deferred.reject(reason);
+      });
+    }, function (reason) {
+      console.error('timerService::startTimer - Failed to get logged in user. %s', reason);
+      return deferred.reject(reason);
+    });
 
-      //
-      // CRUD for Project
-      //
-      updateProject: function (project) {
-        var deferred = $q.defer();
-        if (project.id) {
-          console.log('TimerService::updateProject');
-          project.put().then(function (updatedProject) {
-            console.log('TimerService::updateProject - Backend updated successfully');
-            console.log('BROADCAST: - onProjectUpdated (%d)', project.id);
-            $rootScope.$broadcast('onProjectUpdated', project);
-            deferred.resolve(updatedProject);
+    return deferred.promise;
+  };
+  // Stop the active task.
+  // If no task is active an error is returned.
+  svc.stopTimer = function() {
+    console.log('timerService::stopTimer');
+    var deferred = $q.defer();
+
+    // Get hold of the active time entry of the logged in user
+    PersonService.getPerson().then(function (person) {   
+      var timeEntry = person.activeTimeEntry;
+      var project = timeEntry ? timeEntry.project : null;
+      if (timeEntry && project) {
+        console.log('timerService::stopTimer - Got an active project');
+        timeEntry.endTime = $.now();
+        svc.updateTimeEntry(timeEntry).then(function () {
+          console.log('timerService::stopTimer - Time entry updated at backend');
+          PersonService.setActiveTimeEntry(null).then(function () {
+            console.log('timerService::stopTimer - OK');                
+            deferred.resolve();
           }, function (reason) {
+            console.error(reason);
             deferred.reject(reason);
           });
-        } else {
-          console.log('updateProject - creating new entry');
-          baseProjects.post(project).then(function (newProject) {
-            console.log('Updated project successfully at backend. New id is: %s', newProject.id);
-            projects.push(newProject);
-            $rootScope.$broadcast('onProjectUpdated', newProject);
-            deferred.resolve(newProject);
-          }, function (reason) {
-            deferred.reject(reason);
-          });
-        }
-        return deferred.promise;
-      },
-      removeProject: function (project) {
-        console.log('TimerService::remove(name: [%s], id: [%d])', project.name, project.id);
-        project.remove().then(function () {
-          console.log('Project deleted from backend');
-          var index = _.indexOf(projects, project);
-          console.log('Removing project at index %d', index);
-          projects.splice(index, 1);
-          //projects = _.without(projects, project);
-        });
-      },
-      getProject: function (id) {
-        console.log('TimerService::getProject(id [%d])', id);
-        var item = _.find(projects, function (p) {
-          return p.id === id;
-        });
-        return item;
-      },
-      getProjects: function () {
-        return projects;
-      },
-
-      //
-      // Set project status
-      // Only one project may be active at the time.
-      setActive: function (project, active) {
-        console.log('TimerService::setActive - %d', active);
-        var p = this.getProject(project.id);
-        if (p) {
-         p.active = active;        
-        } else {
-          console.error('TimerService::setActive - Failed to find project to set as active');
-        }
-      },
-      setSelectedDate: function ( date ) {
-        selectedDate = date;
-      },
-      getSelectedDate: function () {
-        return selectedDate;
-      },
-
-      //
-      // CRUD for time entries
-      //
-      getTimeEntries: function () {
-        console.log('TimerService::getTimeEntries');
-        var q = baseTimeEntries.getList();
-        q.then(function (result) {
-          console.log('TimerService::getTimeEntries - List retrieved from backend, size: %d', result.length);
-          timeEntries = result;
-          
-          console.log('BROADCAST onTimeEntriesRefreshed');
-          $rootScope.$broadcast('onTimeEntriesRefreshed', timeEntries);
-          return timeEntries;
-        });
-        return q;
-      },
-      createTimeEntry: function (timeEntry) {
-        return baseTimeEntries.post(timeEntry);
-      },
-      updateTimeEntry: function (timeEntry) {
-        console.log('TimerService::updateTimeEntry(id: [%d])', timeEntry.id);
-        var deferred = $q.defer();
-        var restangularTimeEntry = svc.findTimeEntryById(timeEntry.id);
-        if (restangularTimeEntry) {
-          restangularTimeEntry.put().then(function (result) {
-            console.log('TimerService::updateTimeEntry - OK');
-            $rootScope.$broadcast('onTimeEntryUpdated', result);
-            deferred.resolve(result);
-          }, function () {
-            var errorMsg = 'Failed to update the time entry';
-            console.error('TimerService::updateTimeEntry - FAILED [%s]', errorMsg);
-            deferred.reject(errorMsg);
-          });
-        } else {
-          var errorMsg = 'Failed to find time entry';
-          console.error('TimerService::updateTimeEntry - FAILED [%s]', errorMsg);
-          deferred.reject(errorMsg);
-        }
-        return deferred.promise;        
-      },
-      removeTimeEntry: function (entry) {
-        var id = entry.id;
-        var timeEntry = this.findTimeEntryById(id);
-        var index = _.indexOf(timeEntries, timeEntry);
-        console.log('removeTimeEntry::removeTimeEntry(%s)', id);
-        var q = timeEntry.remove();
-        q.then(function () {
-          console.log('removeTimeEntry::removeTimeEntry - OK');
-          timeEntries.splice(index, 1);
-          console.log('BROADCAST: onTimeEntryRemoved(id [%d]', timeEntry.id);
-          $rootScope.$broadcast('onTimeEntryRemoved', timeEntry);
-        });
-
-        // Mark time entry as invalid until it is physically removed
-        timeEntry.disable = true;
-        return q;
-      },
-      findTimeEntryById: function (id) {
-        return _(timeEntries).find({
-          'id': id
-        });
-      },
-      //
-      // CRUD time entries - END
-      //
-
-      // Start the timer for the specified project.
-      // Returns a promise to the operation
-      startTimer: function(project) {
-        console.log('timerService::startTimer');
-        var deferred = $q.defer();        
-
-        // Get the currently logged in person
-        PersonService.getPerson().then(function (person) {
-
-          // Create the new time entry
-          var timeEntry = { person: person, project: project, startTime: $.now()};
-          svc.createTimeEntry(timeEntry).then(function (newTimeEntry) {
-            console.log('timerService::startTimer - Time entry created at backend(id [%d]', newTimeEntry.id);
-            newTimeEntry.active = true;
-            svc.setActive(project, true);
-            timeEntries.push(newTimeEntry);
-
-            // Update the person
-            PersonService.setActiveTimeEntry(newTimeEntry).then(function () {
-              // Signal the events
-              console.log('timerService::startTimer - OK');
-
-              // Resolve the promise
-              deferred.resolve(newTimeEntry);
-
-              // Send events
-              console.log('BROADCAST: onTimeEntryUpdated');
-              $rootScope.$broadcast('onTimeEntryUpdated', newTimeEntry);
-            }, function (reason) {
-              console.error('timerService::startTimer - Failed to setActiveTimeEntry %s', reason);
-              deferred.reject(reason);
-            });
-          }, function (reason) {
-            console.error('timerService::startTimer - Failed to create time entry. %s', reason);
-            return deferred.reject(reason);
-          });
         }, function (reason) {
-          console.error('timerService::startTimer - Failed to get logged in user. %s', reason);
-          return deferred.reject(reason);
+          console.error('timerService::stopTimer - Failed to update time entry');
+          deferred.reject(reason);
         });
+      } else {
+        console.log('timerService::stopTimer - This person has no active timer');
+        return deferred.resolve(null);
+      }            
+    }, function (reason) {
+      console.error('timerService::stopTimer - Failed to get logged in person');
+      return deferred.reject(reason);
+    });
+    return deferred.promise;  
+  };
 
-        return deferred.promise;
-      },
-      // Stop the active task.
-      // If no task is active an error is returned.
-      stopTimer: function() {
-        console.log('timerService::stopTimer');
-        var deferred = $q.defer();
-
-        // Get hold of the active time entry of the logged in user
-        PersonService.getPerson().then(function (person) {   
-          var timeEntry = person.activeTimeEntry;
-          var project = timeEntry ? timeEntry.project : null;
-          if (timeEntry && project) {
-            console.log('timerService::stopTimer - Got an active project');
-            timeEntry.endTime = $.now();
-            svc.updateTimeEntry(timeEntry).then(function () {
-              console.log('timerService::stopTimer - Time entry updated at backend');
-              PersonService.setActiveTimeEntry(null).then(function () {
-                console.log('timerService::stopTimer - OK');                
-                deferred.resolve();
-              }, function (reason) {
-                console.error(reason);
-                deferred.reject(reason);
-              });
-            }, function (reason) {
-              console.error('timerService::stopTimer - Failed to update time entry');
-              deferred.reject(reason);
-            });
-          } else {
-            console.log('timerService::stopTimer - This person has no active timer');
-            return deferred.resolve(null);
-          }            
-        }, function (reason) {
-          console.error('timerService::stopTimer - Failed to get logged in person');
-          return deferred.reject(reason);
-        });
-        return deferred.promise;  
-      }
-    };
-    return svc;
-  });
+  return svc;
+});
