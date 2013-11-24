@@ -2,7 +2,7 @@
 /*
   @licstart The following is the entire license notice for the 
             JavaScript code in this page.
-  @source TBD
+  @source https://github.com/hirro/yo-worktajm
 
   Copyright (C) 2013 Jim Arnell.
 
