@@ -41,8 +41,8 @@ angular.module('tpsApp')
     }, function (reason) {
       toastr.error('Authentication failed');
       console.error(reason);
-      $rootScope.user = null;      
-      $location.path( '/main' );
+      $rootScope.user = null;
+      $location.path( '/login' );
     });
   };
 

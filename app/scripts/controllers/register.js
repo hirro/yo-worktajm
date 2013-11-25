@@ -29,20 +29,26 @@
 
 angular.module('tpsApp').controller('RegisterCtrl', function ($scope, Restangular, $location) {
   $scope.register = function () {
-    console.log('RegisterCtrl::register -  email: [%s]', $scope.registration.email);
-    var promise = Restangular.one('registration').get({
-      'email': $scope.registration.email, 
-      'password': $scope.registration.password
-    });
+    if ($scope.registration && $scope.registration.email) {
+      console.log('RegisterCtrl::register -  email: [%s]', $scope.registration.email);
+      var promise = Restangular.one('registration').get({
+        'email': $scope.registration.email, 
+        'password': $scope.registration.password
+      });
 
-    promise.then(function (token) {
-      console.log('RegisterCtrl::register - Successfully registered user');
-      $scope.token = token;
-      $location.path( '/dashboard' );
-    }, function (reason) {
-      console.error('RegisterCtrl::register - Failed to register user, error: %s', reason);
-    });
-    return promise;
+      promise.then(function (token) {
+        console.log('RegisterCtrl::register - Successfully registered user');
+        $scope.token = token;
+        $location.path( '/dashboard' );
+        toastr.success('Registration succeeded');      
+      }, function (reason) {
+        console.error('RegisterCtrl::register - Failed to register user, error: %s', reason);
+        toastr.error('Registration failed');
+      });
+      return promise;
+    } else {
+      toastr.error('Email address missing');
+    }
   };
 });
 
