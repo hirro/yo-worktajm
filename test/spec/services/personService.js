@@ -46,13 +46,23 @@ describe('Service: PersonService', function () {
     { id: 1, username: 'User A', activeTimeEntry: null },
     { id: 2, username: 'User B' },
     { id: 3, username: 'User C', activeTimeEntry: timeEntries[0] }];
+  var authenicationResponse = {
+    token:  'jim@arnellconsulting.com:1385447985128:632a4ef7344da65b43ca694090da2813',
+    roles:  {
+      ROLE_USER:  true
+    },
+    personId:   1
+  };
 
   // Inject the person service
   beforeEach(inject(function (PersonService, $httpBackend, $rootScope) {
     service = PersonService;
     httpBackend = $httpBackend;
     scope = $rootScope;
-  }));  
+
+    // Assume we are logged in as user id 1
+    service.personId = 1;
+  }));
 
   afterEach(function () {
     httpBackend.verifyNoOutstandingExpectation();
@@ -227,6 +237,7 @@ describe('Service: PersonService', function () {
       var person = null;
       var suceeded = false;
       var failed = false;
+
       service.login('UserA', 'PasswordA').then(function (result) {
         person = result;
         suceeded = true;
@@ -236,10 +247,10 @@ describe('Service: PersonService', function () {
       expect(person).toBeNull();
 
       // Make the requiest go through
-      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/authenticate?password=PasswordA&username=UserA').respond(persons[0]);
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/authenticate?password=PasswordA&username=UserA').respond(authenicationResponse);
       httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/person/1').respond(persons[0]);
       scope.$digest();
-      httpBackend.flush();    
+      httpBackend.flush();
       
       // Validations
       expect(person).not.toBeNull();
@@ -263,7 +274,7 @@ describe('Service: PersonService', function () {
       httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/authenticate?password=PasswordA&username=UserA').respond(401);
       httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/person/1').respond(persons[0]);
       scope.$digest();
-      httpBackend.flush();    
+      httpBackend.flush();
       
       // Validations
       expect(person).toBeNull();
@@ -285,7 +296,7 @@ describe('Service: PersonService', function () {
       expect(person).toBeNull();
 
       // Make the requiest go through
-      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/authenticate?password=PasswordA&username=UserA').respond(persons[0]);
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/authenticate?password=PasswordA&username=UserA').respond(authenicationResponse);
       httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/person/1').respond(401);
       scope.$digest();
       httpBackend.flush();    

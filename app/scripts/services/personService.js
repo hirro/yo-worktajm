@@ -34,7 +34,8 @@
 angular.module('tpsApp').service('PersonService', function PersonService($rootScope, $q, Restangular) {
   var personService = {
     person: null,
-    token:  null
+    token:  null,
+    personId: 0
   };
 
   /**
@@ -51,7 +52,7 @@ angular.module('tpsApp').service('PersonService', function PersonService($rootSc
       console.log('PersonService:getPerson - OK (local)');
       deferred.resolve(personService.person);
     } else {
-      var qPerson = Restangular.one('person', 1).get();
+      var qPerson = Restangular.one('person', personService.personId).get();
       qPerson.then(function (p) {
         console.log('PersonService:getPerson - OK (backend)');
         personService.person = p;
@@ -75,6 +76,7 @@ angular.module('tpsApp').service('PersonService', function PersonService($rootSc
     }).then(function(returnedToken) {
       console.log('PersonService::login - Received authentication token for user: %s', returnedToken.token);
       personService.token = returnedToken.token;
+      personService.personId = returnedToken.personId;
 
       // Use the token to set the authentication token, once done the person can be fetched.
       Restangular.setDefaultHeaders({
