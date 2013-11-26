@@ -23,7 +23,7 @@
           for the JavaScript code in this page.  
 */
 
-/*globals angular, $, _ , string */
+/*globals $ */
 'use strict';
 
 angular.module('tpsApp')
@@ -47,10 +47,10 @@ angular.module('tpsApp')
 
     $scope.editTimeEntry = function (timeEntry) {
       console.log('DashboardTimeEntriesCtrl::editTimeEntry');
-      $scope.timeEntry = timeEntry;
 
       // Build project list for combo
       timeEntry.projects = TimerService.getProjects();
+      $scope.timeEntry = timeEntry;
 
       $('#timeEntryModal').modal('show');
     };
