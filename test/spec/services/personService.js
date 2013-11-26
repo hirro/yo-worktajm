@@ -271,6 +271,7 @@ describe('Service: PersonService', function () {
       expect(person).toBeNull();
 
       // Make the requiest go through
+      // XXX I dont like host and path hard coded...
       httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/authenticate?password=PasswordA&username=UserA').respond(401);
       httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/person/1').respond(persons[0]);
       scope.$digest();
