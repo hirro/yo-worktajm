@@ -60,6 +60,9 @@ describe('Controller: LoginCtrl', function ($q) {
         deferred.reject();
       }
       return deferred.promise;
+    },
+    logout: function () {
+      scope.$broadcast('onLoggedOut');
     }
   };  
 
@@ -111,6 +114,13 @@ describe('Controller: LoginCtrl', function ($q) {
     // Verify
     expect(PersonServiceMock.login).toHaveBeenCalled();
     expect(scope.user).toBeNull();    
+  });
+
+  it('should logout', function () {
+    spyOn(PersonServiceMock, 'logout').andCallThrough();
+    scope.logout();
+    scope.$digest();
+    expect(PersonServiceMock.logout).toHaveBeenCalled();
   });
 
 
