@@ -29,7 +29,7 @@
 angular.module('tpsApp')
   .controller('LoginCtrl', function ($scope, $rootScope, Restangular, $location, PersonService) {
 
-  var devMode = false;
+  var devMode = true;
 
   $scope.login = function () {
     console.log('login(username [%s], password [%s])', $scope.username, $scope.password);
@@ -41,8 +41,8 @@ angular.module('tpsApp')
     }, function (reason) {
       toastr.error('Authentication failed');
       console.error(reason);
-      $rootScope.user = null;      
-      $location.path( '/main' );
+      $rootScope.user = null;
+      $location.path( '/login' );
     });
   };
 

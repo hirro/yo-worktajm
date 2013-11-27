@@ -56,6 +56,9 @@ describe('Service: TimerService', function () {
     personService = PersonService;    
     httpBackend = $httpBackend;
     scope = $rootScope;
+
+    // Assume we are logged in as user id 1
+    personService.personId = 1;
   }));  
 
   afterEach(function () {

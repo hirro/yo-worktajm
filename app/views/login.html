@@ -1,1 +1,11 @@
-<p>This is the login view.</p>
+<div class="container" ng-controller="LoginCtrl">
+    <form class="form-signin">
+    <h2 class="form-signin-heading">Please sign in</h2>
+    <input type="text" class="form-control" placeholder="Email address" ng-model="username" required autofocus>
+    <input type="password" class="form-control" placeholder="Password" ng-model="password" equired>
+    <label class="checkbox hidden">
+      <input type="checkbox" value="remember-me"> Remember me
+    </label>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="login()">Sign in</button>
+  </form>
+</div>

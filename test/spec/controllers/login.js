@@ -64,7 +64,7 @@ describe('Controller: LoginCtrl', function ($q) {
     logout: function () {
       scope.$broadcast('onLoggedOut');
     }
-  };  
+  };
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope, $q, $httpBackend) {
@@ -94,7 +94,7 @@ describe('Controller: LoginCtrl', function ($q) {
 
     // Verify
     expect(PersonServiceMock.login).toHaveBeenCalled();
-    expect(scope.user.username).toBe('usernameA');    
+    expect(scope.user.username).toBe('usernameA');
   });
 
   it('should fail login', function () {
@@ -113,7 +113,7 @@ describe('Controller: LoginCtrl', function ($q) {
 
     // Verify
     expect(PersonServiceMock.login).toHaveBeenCalled();
-    expect(scope.user).toBeNull();    
+    expect(scope.user).toBeNull();
   });
 
   it('should logout', function () {
