@@ -21,6 +21,8 @@ module.exports = function(config) {
       'app/bower_components/restangular/dist/restangular.js',
       'app/bower_components/lodash/lodash.js',
       'app/bower_components/toastr/toastr.js',
+      'app/bower_components/angular-ui-bootstrap3/ui-bootstrap.js',
+      'app/bower_components/angular-ui-bootstrap3/ui-bootstrap-tpls.js',
       'app/scripts/*.js',
       'app/scripts/**/*.js',
       'test/mock/**/*.js',

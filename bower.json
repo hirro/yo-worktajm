@@ -15,8 +15,9 @@
     "restangular": "~1.1.8",
     "datejs": "*",
     "string-format": "~1.0.2",
-    "angular-bootstrap-datetimepicker": "latest",
-    "toastr": "~2.0.1"
+    "toastr": "~2.0.1",
+    "angular-ui-bootstrap3": "0.6.0",
+    "angular-ui-calendar": "latest"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.2",
