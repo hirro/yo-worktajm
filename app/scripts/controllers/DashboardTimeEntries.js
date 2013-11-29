@@ -27,7 +27,7 @@
 'use strict';
 
 angular.module('tpsApp')
-  .controller('DashboardTimeEntriesCtrl', function ($scope, $rootScope, $resource, $filter, $q, TimerService) {
+  .controller('DashboardTimeEntriesCtrl', function ($scope, $rootScope, $resource, $filter, $q, $timeout, TimerService) {
 
     console.log('Initiating DashboardTimeEntriesCtrl');
 
@@ -35,9 +35,23 @@ angular.module('tpsApp')
     $scope.date = new Date();
     $scope.selectedDate = new Date().toISOString().substring(0, 10);
     $scope.timeEntries = {};
+    $scope.dateOptions = {
+      'year-format': 'yy',
+      'starting-day': 1
+    };
+    $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'shortDate'];
+    $scope.format = $scope.formats[0];    
 
     // Load time entries from service
     TimerService.getTimeEntries();
+
+    // Calendar
+    $scope.openCalendar = function () {
+      console.log('DashboardTimeEntriesCtrl::openCalendar');
+      $timeout(function() {
+        $scope.opened = true;
+      });
+    };
 
     // User clicks remove button
     $scope.removeTimeEntry = function (timeEntry) {

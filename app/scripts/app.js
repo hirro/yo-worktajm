@@ -7,6 +7,7 @@ angular.module('tpsApp', [
   'ngSanitize',
   'ngRoute',
   'ui.bootstrap',
+  // 'ui.date',
   // 'ui.calendar',
   'restangular'
 ])

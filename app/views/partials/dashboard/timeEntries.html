@@ -8,11 +8,20 @@
         <h4 class="panel-title">Time Entries</h4>
       </div>
       <div class="panel-body projects">
-        <p>
-          <form action="#">
-            <input type="date" ng-model="selectedDate"/>
-          </form>
-        </p>
+        <div class="input-group" id="dateSelectionPanel">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+          <input type="text" 
+                 class="form-control"
+                 datepicker-popup="{{format}}" 
+                 ng-model="selectedDate" 
+                 is-open="opened" 
+                 min="minDate" 
+                 max="'2015-06-22'" 
+                 datepicker-options="dateOptions" 
+                 date-disabled="disabled(date, mode)" 
+                 ng-required="true" 
+                 close-text="Close" />
+        </div>
         <table  class="table table-condensed table-hover" >
           <thead>
             <tr>

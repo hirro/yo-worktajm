@@ -29,7 +29,7 @@
 angular.module('tpsApp')
   .controller('LoginCtrl', function ($scope, $rootScope, Restangular, $location, PersonService) {
 
-  var devMode = true;
+  var devMode = false;
 
   $scope.login = function () {
     console.log('login(username [%s], password [%s])', $scope.username, $scope.password);
