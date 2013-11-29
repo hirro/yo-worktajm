@@ -11,31 +11,20 @@
         <form role="form">
           <div class="form-group">
             <label for="startTime">Start time</label>
-            <input type="datetime" class="form-control" id="startTime" ng-model="timeEntry.startTime" autofocus="autofocus"/>
+            <input type="text" class="form-control" id="startTime" ng-model="timeEntry.startTime" autofocus="autofocus"/>
           </div>
           <div class="form-group">
             <label for="endTime">End Time</label>
-            <input type="time" class="form-control" id="endTime" ng-model="timeEntry.endTime"/>
+            <input type="text" class="form-control" id="endTime" ng-model="timeEntry.endTime"/>
           </div>
           <div class="form-group">
             <label for="project">Project</label>
             <input type="name" class="form-control" id="project" ng-model="timeEntry.project"/>
           </div>
-
-          <div class="dropdown">
-              <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#">
-                  Click here to show calendar
-              </a>
-              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                  <datetimepicker data-ng-model="timeEntry.endTime"
-                                  data-datetimepicker-config="{ dropdownSelector: '.dropdown-toggle' }">
-                  </datetimepicker>
-              </ul>
-          </div>
           
           <div class="form-group">
             <label for="description">Description</label>
-            <input type="name" class="form-control" id="description" placeholder="Enter description" ng-model="timeEntry.description"/>
+            <input type="text" class="form-control" id="description" placeholder="Enter description" ng-model="timeEntry.description"/>
           </div>
         </form>               
       </div>
