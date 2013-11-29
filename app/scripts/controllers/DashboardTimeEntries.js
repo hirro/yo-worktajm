@@ -23,7 +23,7 @@
           for the JavaScript code in this page.  
 */
 
-/*globals $ */
+/*globals $, _ */
 'use strict';
 
 angular.module('tpsApp')
@@ -63,10 +63,18 @@ angular.module('tpsApp')
       console.log('DashboardTimeEntriesCtrl::editTimeEntry');
 
       // Build project list for combo
-      timeEntry.projects = TimerService.getProjects();
-      $scope.timeEntry = timeEntry;
+      var projects = _.pluck(TimerService.getProjects(), 'name');
+      var start = new Date(timeEntry.startTime);
+      var end = new Date(timeEntry.endTime);
+      $scope.timeEntryForm = {
+        'projects': projects,
+        'startDate': start,
+        'endDate': end,
+        'startTime': start.toTimeString(),
+        'endTime': end.toTimeString()
+      };
 
-      $('#timeEntryModal').modal('show');
+      //$('#timeEntryModal').modal('show');
     };
 
     // Utility function to find the object being displayed in the controller

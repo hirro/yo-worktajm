@@ -26,7 +26,6 @@
 
 /*globals describe, beforeEach, inject, expect, it, spyOn */
 'use strict';
-
 describe('Controller: DashboardProjectsCtrl', function ($q) {
 
   // load the controller's module
