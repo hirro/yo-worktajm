@@ -6,6 +6,8 @@ angular.module('tpsApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
+  'ui.bootstrap',
+  // 'ui.calendar',
   'restangular'
 ])
   .config(function ($routeProvider) {
