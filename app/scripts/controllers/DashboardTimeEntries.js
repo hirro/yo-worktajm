@@ -29,7 +29,6 @@
 angular.module('tpsApp')
   .controller('DashboardTimeEntriesCtrl', function ($scope, $rootScope, $resource, $controller, $filter, $q, $timeout, $modal, TimerService) {
 
-    console.error('DashboardTimeEntriesCtrl');
     console.log('Initiating DashboardTimeEntriesCtrl');
 
     // Selected date

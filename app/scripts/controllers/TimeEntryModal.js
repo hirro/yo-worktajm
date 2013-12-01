@@ -29,21 +29,13 @@
 
 angular.module('tpsApp').controller('TimeEntryModalCtrl', function ($scope, $modal) {
 
-  console.error('TimeEntryModalCtrl');
-
   var ModalInstanceCtrl = function ($scope, $modalInstance, TimerService, timeEntry) {
 
-    $scope.timeEntry = timeEntry;
-    $scope.project = timeEntry.project.name;
     $scope.projectNames = _.pluck(TimerService.getProjects(), 'name');
-    $scope.startDate = new Date(timeEntry.startTime);
-    $scope.endDate = new Date(timeEntry.endTime);
-    $scope.startTime =  $scope.startDate.toTimeString();
-    $scope.endTime =  $scope.endDate.toTimeString();
-    $scope.duration = $scope.endDate - $scope.startDate;
+    $scope.timeEntry = timeEntry;
 
     $scope.ok = function () {
-      $modalInstance.close(timeEntry);
+      $modalInstance.close($scope.timeEntry);
     };
 
     $scope.cancel = function () {
@@ -69,7 +61,7 @@ angular.module('tpsApp').controller('TimeEntryModalCtrl', function ($scope, $mod
 
     modalInstance.result.then(function (timeEntry) {
       if (timeEntry) {
-        console.log('DashboardTimeEntriesCtrl::editTimeEntry - TimeEntry modified');
+        console.log('DashboardTimeEntriesCtrl::editTimeEntry - TimeEntry modified [%s] [%s]', timeEntry.startTime, timeEntry.endTime);
       } else {
         console.log('DashboardTimeEntriesCtrl::editTimeEntry - TimeEntry unmodified');
       }
