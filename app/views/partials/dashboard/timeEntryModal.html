@@ -9,23 +9,19 @@
 
       <div class="form-group">
         <label for="project">Project</label>
-        <input type="text" class="form-control" ng-model="project" typeahead="project for project in projectNames | filter:$viewValue | limitTo:8">
+        <input type="text" class="form-control" ng-model="timeEntry.project.name" typeahead="project for project in projectNames | filter:$viewValue | limitTo:8">
       </div>      
       <div class="form-group">
         <label for="startTime">Start time</label>
-        <input type="text" class="form-control" id="startTime" ng-model="startTime" autofocus="autofocus"/>
+        <input type="text" class="form-control" id="timeEntry" ng-model="timeEntry.startTime" autofocus="autofocus"/>
       </div>
       <div class="form-group">
         <label for="endTime">End Time</label>
-        <input type="text" class="form-control" id="endTime" ng-model="endTime"/>
-      </div>
-      <div class="form-group">
-        <label for="duration">Duration</label>
-        <input type="text" class="form-control" id="duration" ng-model="duration"/>
+        <input type="text" class="form-control" id="endTime" ng-model="timeEntry.endTime"/>
       </div>
       <div class="form-group">
         <label for="description">Description</label>
-        <textarea rows="10" class="form-control" id="description" placeholder="Enter description" ng-model="description"/>
+        <textarea rows="10" class="form-control" id="description" placeholder="Enter description" ng-model="timeEntry.description"/>
       </div>
     </form>               
   </div>
