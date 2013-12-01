@@ -41,3 +41,7 @@ Status is kept on Pivotal..
 ### Continious Integration
 
 * [Travis-CI](https://travis-ci.org/) integration
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/hirro/yo-worktajm/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
