@@ -33,7 +33,7 @@ angular.module('tpsApp')
     $scope.activeProject = null;
     $scope.project = {};
     $scope.projects = {};
-    TimerService.reloadProject();
+    TimerService.reloadProject();  
 
     // Show new project modal form
     $scope.showNewProject = function () {

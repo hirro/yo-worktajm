@@ -3,7 +3,7 @@
 	[
 		{
    			"path": ".",
-            "folder_exclude_patterns": ["node_modules", ".sass-cache", ".tmp", "coverage"],
+            "folder_exclude_patterns": ["node_modules", ".sass-cache", ".tmp", "coverage", "dist"],
             "follow_symlinks": true
   		}
 	],

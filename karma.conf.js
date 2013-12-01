@@ -23,7 +23,7 @@ module.exports = function(config) {
       'app/bower_components/toastr/toastr.js',
       'app/bower_components/angular-ui-bootstrap3/ui-bootstrap.js',
       'app/bower_components/angular-ui-bootstrap3/ui-bootstrap-tpls.js',
-      // 'bower_components/jquery-ui/ui/jquery-ui.js',
+      'app/bower_components/jasmine-jquery/lib/jasmine-jquery.js',
       // 'bower_components/angular-ui-calendar/calendar.js',
       // 'bower_components/fullcalendar/fullcalendar.js',
       // 'bower_components/fullcalendar/gcal.js',
@@ -51,7 +51,7 @@ module.exports = function(config) {
 
     // level of logging
     // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-    logLevel: config.LOG_DEBUG,
+    logLevel: config.LOG_ERROR,
 
 
     // enable / disable watching file and executing tests whenever any file changes

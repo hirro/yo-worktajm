@@ -27,8 +27,9 @@
 'use strict';
 
 angular.module('tpsApp')
-  .controller('DashboardTimeEntriesCtrl', function ($scope, $rootScope, $resource, $filter, $q, $timeout, TimerService) {
+  .controller('DashboardTimeEntriesCtrl', function ($scope, $rootScope, $resource, $controller, $filter, $q, $timeout, $modal, TimerService) {
 
+    console.error('DashboardTimeEntriesCtrl');
     console.log('Initiating DashboardTimeEntriesCtrl');
 
     // Selected date
@@ -41,17 +42,10 @@ angular.module('tpsApp')
     };
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'shortDate'];
     $scope.format = $scope.formats[0];    
+    $scope.showTimeEntryForm = false;
 
     // Load time entries from service
     TimerService.getTimeEntries();
-
-    // Calendar
-    $scope.openCalendar = function () {
-      console.log('DashboardTimeEntriesCtrl::openCalendar');
-      $timeout(function() {
-        $scope.opened = true;
-      });
-    };
 
     // User clicks remove button
     $scope.removeTimeEntry = function (timeEntry) {
@@ -61,20 +55,7 @@ angular.module('tpsApp')
 
     $scope.editTimeEntry = function (timeEntry) {
       console.log('DashboardTimeEntriesCtrl::editTimeEntry');
-
-      // Build project list for combo
-      var projects = _.pluck(TimerService.getProjects(), 'name');
-      var start = new Date(timeEntry.startTime);
-      var end = new Date(timeEntry.endTime);
-      $scope.timeEntryForm = {
-        'projects': projects,
-        'startDate': start,
-        'endDate': end,
-        'startTime': start.toTimeString(),
-        'endTime': end.toTimeString()
-      };
-
-      //$('#timeEntryModal').modal('show');
+      $rootScope.$broadcast('onEditTimeEntry', timeEntry);
     };
 
     // Utility function to find the object being displayed in the controller
@@ -127,11 +108,4 @@ angular.module('tpsApp')
       $scope.timeEntries = null;
     });    
 
-    //
-    // Bind events 
-    //
-    $scope.$watch('onSelectedDate', $scope.onSelectedDate);
-    $scope.onSelectedDate = function () {
-      console.log('WATCH: updateTimeEntries');
-    };
   });

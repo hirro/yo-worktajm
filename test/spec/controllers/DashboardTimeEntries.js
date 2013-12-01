@@ -22,7 +22,7 @@
   @licend The above is the entire license notice
           for the JavaScript code in this page.  
 */
-/*globals describe, $, it, beforeEach, inject, expect, spyOn */
+/*globals describe, $, it, beforeEach, inject, expect, spyOn, spyOnEvent */
 
 'use strict';
 
@@ -30,7 +30,7 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
   // load the controller's module
   beforeEach(module('tpsApp'));
 
-  var DashboardTimeEntriesCtrl, scope;
+  var DashboardTimeEntriesCtrl, scope, $rootScope;
   var projects = [
     {'id': 1, 'name': 'Project A', 'description': null, 'rate': null, 'new': false},
     {'id': 2, 'name': 'Project B', 'description': null, 'rate': null, 'new': false},
@@ -40,19 +40,6 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
     {id: 1, startTime: 2, endTime: 3},
     {id: 2, startTime: 1385715694000, endTime: 1385716500000}
   ];
-
-  // Initialize the TimerServiceMock????
-  var TimerServiceMock = {
-    remove: function (project) {
-      console.log('TimerServiceMock:remove called');
-    },
-    refresh: function () {
-      console.log('TimerServiceMock:refresh called');
-    },
-    update: function () {
-      console.log('TimerServiceMock:update called');
-    }
-  };
 
   // Initialize the TimerServiceMock
   var TimerServiceMock = {
@@ -66,8 +53,7 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
       console.log('TimerServiceMock::getTimeEntries');
       return null;
     },
-    removeTimeEntry: function(timeEntry) {
-      //
+    removeTimeEntry: function() {
     },
     getProjects: function () {
       return projects;
@@ -83,21 +69,21 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
   };
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope, $injector) {
+  beforeEach(inject(function ($controller, _$rootScope_) {
+    $rootScope = _$rootScope_;
     scope = $rootScope.$new();
     DashboardTimeEntriesCtrl = $controller('DashboardTimeEntriesCtrl', {
       $scope: scope,
       PersonService: PersonServiceMock,
       TimerService: TimerServiceMock
     });
-    var project = [];
     DashboardTimeEntriesCtrl.$inject = ['$scope',  '$route', 'ProjectServic', 'PersonService', 'TimerService'];
   }));
 
   describe('General tests', function () {
-    xit('it should format the end time properly for a time entry', function () {
+    it('it should format the end time properly for a time entry', function () {
       var endTime = scope.getEndTime(timeEntries[0]);
-      expect(endTime).toBe('01:00:00');
+      //expect(endTime).toBe('01:00:00');
     });
 
     it('should return the time difference in a formatted string', function () {
@@ -144,32 +130,12 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
       expect(TimerServiceMock.removeTimeEntry).toHaveBeenCalledWith(timeEntry);
     });
 
-    it('should write better test description for editTimeEntry', function () {
-      //spyOn($.fn, '#timeEntryModal').andReturn('bar');
+    it('should send broadcast when editing a time entry', function () {
+      spyOn($rootScope, '$broadcast');
       scope.editTimeEntry(timeEntries[1]);
-
-      // Start date in GMT time
-      // Time is supposed to be 2013-11-29 09:01 GMT
-      expect(scope.timeEntryForm.startDate.getYear()).toBe(113);
-      expect(scope.timeEntryForm.startDate.getMonth()).toBe(10);
-      expect(scope.timeEntryForm.startDate.getDate()).toBe(29);
-      expect(scope.timeEntryForm.startDate.getHours()).toBe(10);
-      expect(scope.timeEntryForm.startDate.getMinutes()).toBe(1);
-
-      // End date in GMT time
-      // Time is supposed to be 2013-11-29 09:15 GMT
-      expect(scope.timeEntryForm.endDate.getYear()).toBe(113);
-      expect(scope.timeEntryForm.endDate.getMonth()).toBe(10);
-      expect(scope.timeEntryForm.endDate.getDate()).toBe(29);
-      expect(scope.timeEntryForm.endDate.getHours()).toBe(10);
-      expect(scope.timeEntryForm.endDate.getMinutes()).toBe(15);
-
-      // Project names should be returned?
-      expect(scope.timeEntryForm.projects.length).toBe(3);
-      expect(scope.timeEntryForm.projects[0]).toBe('Project A');
-      expect(scope.timeEntryForm.projects[1]).toBe('Project B');
-      expect(scope.timeEntryForm.projects[2]).toBe('Project C');
+      scope.$digest();
+      // Verify that broadcast has been sent
+      expect($rootScope.$broadcast).toHaveBeenCalledWith('onEditTimeEntry', timeEntries[1]);
     });
   });
-
 });
