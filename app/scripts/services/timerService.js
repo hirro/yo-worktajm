@@ -163,6 +163,9 @@ angular.module('tpsApp').service('TimerService', function TimerService(Restangul
     var deferred = $q.defer();
     var restangularTimeEntry = svc.findTimeEntryById(timeEntry.id);
     if (restangularTimeEntry) {
+      // Copy values from modified entry to managed entry
+      restangularTimeEntry.startTime = timeEntry.startTime;
+      restangularTimeEntry.endTime = timeEntry.endTime;
       restangularTimeEntry.put().then(function (result) {
         console.log('TimerService::updateTimeEntry - OK');
         $rootScope.$broadcast('onTimeEntryUpdated', result);
