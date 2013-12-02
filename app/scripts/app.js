@@ -9,7 +9,8 @@ angular.module('tpsApp', [
   'ui.bootstrap',
   // 'ui.date',
   // 'ui.calendar',
-  'restangular'
+  'restangular',
+  'ui.bootstrap.datetimepicker'
 ])
   .config(function ($routeProvider) {
     $routeProvider
