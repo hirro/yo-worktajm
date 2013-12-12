@@ -55,7 +55,7 @@ angular.module('tpsApp').controller('TimeEntryModalCtrl', function ($scope, $mod
     console.log('EVENT: TimeEntryModalCtrl::onEditTimeEntry');
 
     var modalInstance = $modal.open({
-      templateUrl: 'myModalContent.html',
+      templateUrl: 'timeEntryModal.html',
       controller: ModalInstanceCtrl,
       resolve: {
         timeEntry: function () {

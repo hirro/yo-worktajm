@@ -59,26 +59,32 @@
                 <div class="control-group">
                   <div class="controls">
                     <div class="btn-group">
-                      <a class="btn btn-xs dropdown-toggle" data-toggle="dropdown">
-                        More
-                        <span class="caret"></span>
-                      </a>
-                      <ul class="dropdown-menu">
-                        <li class="mini ">
-                          <small>
-                            <a ng-click="removeProject(project)">Delete Project</a>                                    
-                          </small>
-                        </li>
-                      </ul>
+                      <button type="button" 
+                              class="btn btn-primary btn-sm glyphicon glyphicon-ok" 
+                              ng-click="updateProject(project)"  
+                              data-toggle="collapse" 
+                              data-target=".project-{{project.id}}" 
+                              data-parent="#projects">
+                         Save
+                      </button>
+                      <button type="button" 
+                              class="btn btn-primary btn-sm glyphicon glyphicon-remove" 
+                              ng-click="restoreProject(project)" 
+                              data-toggle="collapse" 
+                              data-target=".project-{{project.id}}" 
+                              data-parent="#projects">
+                        Close
+                      </button>
                     </div>
-                  </div>
-                </div>
-
-                <div class="control-group">
-                  <div class="controls">
-                    <div class="btn-group btn-group-sm">
-                      <button type="button" class="btn btn-sm glyphicon glyphicon-ok" ng-click="updateProject(project)"  data-toggle="collapse" data-target=".project-{{project.id}}" data-parent="#projects"> Save</button>
-                      <button type="button" class="btn btn-sm glyphicon glyphicon-remove" ng-click="restoreProject(project)" data-toggle="collapse" data-target=".project-{{project.id}}" data-parent="#projects"> Close</button>
+                    <div class="btn-group">
+                      <button type="button" 
+                              class="btn btn-primary btn-sm glyphicon glyphicon-remove" 
+                              ng-click="removeProject(project)" 
+                              data-toggle="collapse" 
+                              data-target=".project-{{project.id}}" 
+                              data-parent="#projects">
+                        Delete
+                      </button>
                     </div>
                   </div>
                 </div>

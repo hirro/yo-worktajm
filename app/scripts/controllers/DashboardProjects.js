@@ -27,13 +27,24 @@
 'use strict';
 
 angular.module('tpsApp')
-  .controller('DashboardProjectsCtrl', function ($scope, $rootScope, $resource, $location, TimerService, PersonService) {
+  .controller('DashboardProjectsCtrl', function ($scope, $rootScope, $resource, $location, $modal, TimerService, PersonService) {
     console.log('Initiating DashboardProjectsCtrl');
 
     $scope.activeProject = null;
     $scope.project = {};
     $scope.projects = {};
     TimerService.reloadProject();  
+
+    var deleteProjectModal = function ($scope, $modalInstance, modalParams) {
+      $scope.title = modalParams.title;
+      $scope.text = modalParams.text;
+      $scope.ok = function () {
+        $modalInstance.close();
+      };
+      $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+      };
+    };
 
     // Show new project modal form
     $scope.showNewProject = function () {
@@ -83,7 +94,26 @@ angular.module('tpsApp')
     };
     // Delete
     $scope.removeProject = function (project) {
-      TimerService.removeProject(project);
+
+      var modalParams = {
+        title: 'Remove project',
+        text: 'Do you want to remove project?'
+      };
+      var modalInstance = $modal.open({
+        templateUrl: 'confirmationModal.html',
+        controller: deleteProjectModal,
+        resolve: {
+          modalParams: function () {
+            return modalParams;
+          }
+        }
+      });
+      modalInstance.result.then(function () {
+        TimerService.removeProject(project);
+      }, function () {
+        console.info('Modal dismissed at: ' + new Date());
+      });
+
     };
     // Restore the provided project to the value of the database.
     // XXX unused
