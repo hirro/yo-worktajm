@@ -45,10 +45,17 @@
               <td contentEditable="true" >{{getEndTime(timeEntry)}}</td>
               <td>{{getDuration(timeEntry)}}</td>
               <td>
-                <div class="btn-group">
-                  <!-- <button class="btn btn-link glyphicon glyphicon-floppy-disk" ng-click="saveTimeEntry(timeEntry)"></button> -->
-                  <button class="btn btn-link glyphicon glyphicon-edit" ng-click="editTimeEntry(timeEntry)"></button>
-                  <button class="btn btn-link glyphicon glyphicon-remove" ng-click="removeTimeEntry(timeEntry)"></button>
+                <div class="btn-group pull-right">
+                  <button type="button" 
+                          class="btn btn-default btn-sm glyphicon glyphicon-edit" 
+                          ng-click="editTimeEntry(timeEntry)">
+                     Edit
+                  </button>
+                  <button type="button" 
+                          class="btn btn-default btn-sm glyphicon glyphicon-remove" 
+                          ng-click="removeTimeEntry(timeEntry)">
+                     Remove
+                  </button>
                 </div>
               </td>
             </tr>
