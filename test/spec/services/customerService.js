@@ -284,4 +284,51 @@ describe('Service: CustomerService', function () {
     });
   });
 
+  describe('delete tests', function () {
+    it('should delete the customer with the provider id (unless it is associated with a project)', function () {
+      // Setup
+      httpBackend.whenDELETE('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer/1').respond(200);
+      spyOn(customerService, 'delete').andCallThrough();
+
+      // Test
+      var result;
+      var failMessage;
+      customerService.delete().then(function () {
+        result = 'ok';
+      }, function (msg) {
+        failMessage = msg;
+      });
+      scope.$digest();
+      httpBackend.flush();
+      
+      // Validation
+      expect(customerService.delete).toHaveBeenCalledWith(1);
+      expect(result).toBe('ok');
+      expect(failMessage).toBeUndefined();
+    });
+
+    it('should handle error from backend', function () {
+      // Setup
+      httpBackend.whenDELETE('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer/1').respond(401);
+      spyOn(customerService, 'delete').andCallThrough();
+
+      // Test
+      var result;
+      var failMessage;
+      customerService.delete().then(function () {
+        result = 'ok';
+      }, function (msg) {
+        failMessage = msg;
+      });
+      scope.$digest();
+      httpBackend.flush();
+      
+      // Validation
+      expect(customerService.delete).toHaveBeenCalledWith(1);
+      expect(result).toBeUndefined();
+      expect(failMessage.status).toBe(401);
+    });
+  });
+  
+
 });
