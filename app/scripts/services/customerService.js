@@ -66,6 +66,17 @@ angular.module('yoWorktajmApp')
       }
     };
 
+    svc.get = function (id) {
+      console.log('CustomerService::get');
+      var deferred = $q.defer();
+       Restangular.one('customer', id).get().then(function (existingCustomer) {
+        console.log('Retrieved customer successfully from backend. Id is: %s', existingCustomer.id);
+        deferred.resolve(existingCustomer);
+      }, function (reason) {
+        deferred.reject(reason);
+      });
+      return deferred.promise;
+    };
 
     return svc;
 

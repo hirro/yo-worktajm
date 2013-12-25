@@ -194,7 +194,7 @@ describe('Service: CustomerService', function () {
   describe('read tests', function () {
     it('should get the customer with the provided id', function () {
       // Setup
-      httpBackend.wheGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer/1').respond(_.clone(customerA));
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer/1').respond(_.clone(customerA));
       spyOn(customerService, 'get').andCallThrough();
 
       // Test
@@ -215,7 +215,7 @@ describe('Service: CustomerService', function () {
     });
     it('should handle get with invalid id gracefully', function () {
       // Setup
-      httpBackend.wheGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer/1').respond(401);
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer/1').respond(401);
       spyOn(customerService, 'get').andCallThrough();
 
       // Test
