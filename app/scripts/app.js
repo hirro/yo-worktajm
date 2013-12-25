@@ -1,7 +1,7 @@
 /* globals toastr */
 'use strict';
 
-angular.module('tpsApp', [
+angular.module('yoWorktajmApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',

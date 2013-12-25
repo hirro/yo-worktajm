@@ -26,7 +26,7 @@
 /* globals angular, toastr */
 'use strict';
 
-angular.module('tpsApp')
+angular.module('yoWorktajmApp')
   .controller('LoginCtrl', function ($scope, $rootScope, Restangular, $location, PersonService) {
 
   var devMode = true;

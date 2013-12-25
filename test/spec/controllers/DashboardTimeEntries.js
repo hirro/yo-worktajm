@@ -28,7 +28,7 @@
 
 describe('Controller: DashboardTimeEntriesCtrl', function () {
   // load the controller's module
-  beforeEach(module('tpsApp'));
+  beforeEach(module('yoWorktajmApp'));
 
   var DashboardTimeEntriesCtrl, scope, $rootScope;
   var projects = [

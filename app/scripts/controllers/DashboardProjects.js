@@ -26,7 +26,7 @@
 /*globals angular, _, $ */
 'use strict';
 
-angular.module('tpsApp')
+angular.module('yoWorktajmApp')
   .controller('DashboardProjectsCtrl', function ($scope, $rootScope, $resource, $location, $modal, TimerService, PersonService) {
     console.log('Initiating DashboardProjectsCtrl');
 
@@ -160,6 +160,8 @@ angular.module('tpsApp')
     });    
     //
     // @end Event handlers
-    //    
+    //  
+
+    $scope.customers = [ 'Customer A', 'Customer B', 'Customer C']  
 
   });

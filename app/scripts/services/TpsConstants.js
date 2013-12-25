@@ -1,4 +1,4 @@
 'use strict';
 
-angular.module('tpsApp')
+angular.module('yoWorktajmApp')
   .constant('TpsConstants', 42);

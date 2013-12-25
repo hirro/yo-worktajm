@@ -3,7 +3,7 @@
 describe('Service: TpsConstants', function () {
 
   // load the service's module
-  beforeEach(module('tpsApp'));
+  beforeEach(module('yoWorktajmApp'));
 
   // instantiate service
   var TpsConstants;

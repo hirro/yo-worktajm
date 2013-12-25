@@ -31,7 +31,7 @@
 describe('Controller: LoginCtrl', function ($q) {
 
   // load the controller's module
-  beforeEach(module('tpsApp'));
+  beforeEach(module('yoWorktajmApp'));
 
   var LoginCtrl, scope, q, httpBackend;
 

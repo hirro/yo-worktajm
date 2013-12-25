@@ -31,7 +31,7 @@
 describe('Service: TimerService - CRUD operations for TimeEntry', function () {
 
   // load the module
-  beforeEach(module('tpsApp'));
+  beforeEach(module('yoWorktajmApp'));
 
   // API
   var httpBackend;

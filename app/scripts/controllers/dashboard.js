@@ -27,7 +27,7 @@
 
 'use strict';
 
-angular.module('tpsApp')
+angular.module('yoWorktajmApp')
   .controller('DashboardCtrl', function ($scope, PersonService, $location) {
 
   PersonService.getPerson().then(function (person) {

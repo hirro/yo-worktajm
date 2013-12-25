@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('tpsApp')
+angular.module('yoWorktajmApp')
   .controller('AboutCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',

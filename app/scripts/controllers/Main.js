@@ -1,5 +1,5 @@
 'use strict';
 
-angular.module('tpsApp')
+angular.module('yoWorktajmApp')
   .controller('MainCtrl', function ($scope) {
   });

@@ -39,7 +39,7 @@ describe('Filter: dateFilter', function () {
   ];
 
   // load the filter's module
-  beforeEach(module('tpsApp'));
+  beforeEach(module('yoWorktajmApp'));
 
   // initialize a new instance of the filter before each test
   var dateFilter;

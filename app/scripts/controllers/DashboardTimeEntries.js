@@ -26,7 +26,7 @@
 /*globals $, _ */
 'use strict';
 
-angular.module('tpsApp')
+angular.module('yoWorktajmApp')
   .controller('DashboardTimeEntriesCtrl', function ($scope, $rootScope, $resource, $controller, $filter, $q, $timeout, $modal, TimerService) {
 
     console.log('Initiating DashboardTimeEntriesCtrl');

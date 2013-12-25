@@ -43,7 +43,7 @@
                 <div class="control-group">
                   <label>Customer Name
                     <span class="controls">
-                      <input type="text" placeholder="Customer name" ng-model="project.customerName"> 
+                      <input type="text" placeholder="Customer name" ng-model="project.customerName" typeahead="customer for customer in customers | filter:$viewValue | limitTo:8">
                     </span>
                   </label>
                 </div>

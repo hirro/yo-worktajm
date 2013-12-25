@@ -27,7 +27,7 @@
 
 'use strict';
 
-angular.module('tpsApp').controller('RegisterCtrl', function ($scope, Restangular, $location) {
+angular.module('yoWorktajmApp').controller('RegisterCtrl', function ($scope, Restangular, $location) {
   $scope.register = function () {
     if ($scope.registration && $scope.registration.email) {
       console.log('RegisterCtrl::register -  email: [%s]', $scope.registration.email);

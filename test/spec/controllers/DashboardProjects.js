@@ -29,7 +29,7 @@
 describe('Controller: DashboardProjectsCtrl', function ($q) {
 
   // load the controller's module
-  beforeEach(module('tpsApp'));
+  beforeEach(module('yoWorktajmApp'));
 
   var DashboardProjectsCtrl, scope, q;
   var projects = [

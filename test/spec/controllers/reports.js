@@ -3,7 +3,7 @@
 describe('Controller: ReportsCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('tpsApp'));
+  beforeEach(module('yoWorktajmApp'));
 
   var ReportsCtrl,
     scope;

@@ -30,7 +30,7 @@
 describe('Service: PersonService', function () {
 
   // load the service's module
-  beforeEach(module('tpsApp'));
+  beforeEach(module('yoWorktajmApp'));
 
   // API
   var httpBackend;

@@ -27,7 +27,7 @@
 
 'use strict';
 
-angular.module('tpsApp').controller('TimeEntryModalCtrl', function ($scope, $modal, TimerService) {
+angular.module('yoWorktajmApp').controller('TimeEntryModalCtrl', function ($scope, $modal, TimerService) {
 
   var ModalInstanceCtrl = function ($scope, $modalInstance, TimerService, timeEntry) {
 

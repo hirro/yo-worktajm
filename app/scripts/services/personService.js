@@ -31,7 +31,7 @@
  * @tbdEvent onLoggedOut()
  * @tbdEvent onLoggedIn()
  */
-angular.module('tpsApp').service('PersonService', function PersonService($rootScope, $q, Restangular) {
+angular.module('yoWorktajmApp').service('PersonService', function PersonService($rootScope, $q, Restangular) {
   var personService = {
     person: null,
     token:  null,

@@ -26,7 +26,7 @@
 /*globals _ */
 'use strict';
 
-angular.module('tpsApp')
+angular.module('yoWorktajmApp')
   .filter('dateFilter', function () {
     return function (inputArray, selectedDate) {
       var selectedDateInMs = new Date(selectedDate);

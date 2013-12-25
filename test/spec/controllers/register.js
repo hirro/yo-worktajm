@@ -30,7 +30,7 @@
 describe('Controller: RegisterCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('tpsApp'));
+  beforeEach(module('yoWorktajmApp'));
 
   var RegisterCtrl, scope, q, httpBackend;
 

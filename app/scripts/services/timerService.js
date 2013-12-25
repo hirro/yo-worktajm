@@ -29,7 +29,7 @@
 
 // This service should encapsulate all data access. 
 // A future extension could be offline support.
-angular.module('tpsApp').service('TimerService', function TimerService(Restangular, $rootScope, $q, PersonService) {
+angular.module('yoWorktajmApp').service('TimerService', function TimerService(Restangular, $rootScope, $q, PersonService) {
   var svc = {
     baseProjects: Restangular.all('project'),
     projects: [],

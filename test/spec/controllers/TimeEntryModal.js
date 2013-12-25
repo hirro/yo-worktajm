@@ -3,7 +3,7 @@
 describe('Controller: TimeEntryModalCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('tpsApp'));
+  beforeEach(module('yoWorktajmApp'));
 
   var TimeEntryModalCtrl, scope;
   var timeEntry = {
