@@ -241,12 +241,12 @@ describe('Service: CustomerService', function () {
     it('should successfully retrieve a list of all customers', function () {
       // Setup
       httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer').respond(_.clone(customers));
-      spyOn(customerService, 'get').andCallThrough();
+      spyOn(customerService, 'list').andCallThrough();
 
       // Test
       var result;
       var failMessage;
-      customerService.get(customerA.id).then(function (r) {
+      customerService.list().then(function (r) {
         result = r;
       }, function (msg) {
         failMessage = msg;
@@ -255,7 +255,7 @@ describe('Service: CustomerService', function () {
       httpBackend.flush();
       
       // Validation
-      expect(customerService.get).toHaveBeenCalledWith(1);
+      expect(customerService.list).toHaveBeenCalled();
       expect(result[0].id).toBe(customerA.id);
       expect(result[1].id).toBe(customerB.id);
       expect(failMessage).toBeUndefined();
@@ -264,12 +264,12 @@ describe('Service: CustomerService', function () {
     it('should gracefully handle error from backend', function () {
       // Setup
       httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer').respond(401);
-      spyOn(customerService, 'get').andCallThrough();
+      spyOn(customerService, 'list').andCallThrough();
 
       // Test
       var result;
       var failMessage;
-      customerService.get(customerA.id).then(function (r) {
+      customerService.list().then(function (r) {
         result = r;
       }, function (msg) {
         failMessage = msg;
@@ -278,7 +278,7 @@ describe('Service: CustomerService', function () {
       httpBackend.flush();
       
       // Validation
-      expect(customerService.get).toHaveBeenCalledWith(1);
+      expect(customerService.list).toHaveBeenCalled();
       expect(result).toBeUndefined();
       expect(failMessage.status).toBe(401);
     });

@@ -78,6 +78,18 @@ angular.module('yoWorktajmApp')
       return deferred.promise;
     };
 
+    svc.list = function () {
+      console.log('CustomerService::get');
+      var deferred = $q.defer();
+       svc.restangularCustomers.getList().then(function (existingCustomers) {
+        console.log('Retrieved customer successfully from backend. ');
+        deferred.resolve(existingCustomers);
+      }, function (reason) {
+        deferred.reject(reason);
+      });
+      return deferred.promise;
+    };
+
     return svc;
 
   });
