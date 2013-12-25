@@ -40,9 +40,38 @@ describe('Service: CustomerService', function () {
   var scope;
 
   // Test constants
+  var newCustomer = {
+    companyName: 'Company Name',
+    billingAddress: {
+      line1: 'Line 1',
+      line2: 'Line 2',
+      city: 'Sometown'
+    },
+    referencePerson: 'Reference Person'
+  };
+  var customerA = {
+    id: 1,
+    companyName: 'Company Name A',
+    billingAddress: {
+      line1: 'Line 1',
+      line2: 'Line 2',
+      city: 'Sometown'
+    },
+    referencePerson: 'Reference Person'
+  };
+  var customerB = {
+    id: 2,
+    companyName: 'Company Name B',
+    billingAddress: {
+      line1: 'Line 1',
+      line2: 'Line 2',
+      city: 'Sometown'
+    },
+    referencePerson: 'Reference Person'
+  };
   var customers = [
-    { id: 301, name: 'Project A' },
-    { id: 302, name: 'Project B' }
+    customerA,
+    customerB
   ];
 
   beforeEach(inject(function (PersonService, CustomerService, $httpBackend, $rootScope) {
@@ -60,36 +89,19 @@ describe('Service: CustomerService', function () {
     httpBackend.verifyNoOutstandingRequest();
   });
 
-  describe('create tests', function () {
+  describe('create / update tests', function () {
     it('should create a new customer', function () {
       // Setup
-      httpBackend.whenPOST('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer').respond(_.clone(customers[0]));
-      spyOn(customerService, 'updateCustomer').andCallThrough();
-      spyOn(scope, '$broadcast').andCallThrough();
+      httpBackend.whenPOST('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer').respond(_.clone(customerA));
+      spyOn(customerService, 'save').andCallThrough();
+      spyOn(customerService, 'create').andCallThrough();
+      spyOn(customerService, 'update').andCallThrough();
 
       // Test
       var result;
-      customerService.updateCustomer(customers[0]).then(function (r) {
-        result = r;
-      }, function () {
-      });
-      scope.$digest();
-      httpBackend.flush();
-      
-      // Validation
-      expect(customerService.updateCustomer).toHaveBeenCalledWith(customers[0]);
-      expect(result.id).toBe(1);
-    });
-
-    it('should try to create a new customer but get an error from backend', function () {
-      // Setup
-      httpBackend.whenPOST('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer').respond(401);
-      spyOn(customerService, 'getCustomer').andCallThrough();
-      spyOn(scope, '$broadcast').andCallThrough();
-
-      // Test
       var failMessage;
-      customerService.updateCustomer(customers[0]).then(function () {
+      customerService.save(_.clone(newCustomer)).then(function (r) {
+        result = r;
       }, function (msg) {
         failMessage = msg;
       });
@@ -97,8 +109,85 @@ describe('Service: CustomerService', function () {
       httpBackend.flush();
       
       // Validation
-      expect(customerService.getCustomer).toHaveBeenCalledWith(customers[0]);
-      expect(failMessage).toBe('error');
+      expect(customerService.save).toHaveBeenCalledWith(newCustomer);
+      expect(customerService.create).toHaveBeenCalledWith(newCustomer);
+      expect(result.id).toBe(customerA.id);
+      expect(failMessage).toBeUndefined();
+    });
+
+    it('should try to create a new customer but get an error from backend', function () {
+      // Setup
+      httpBackend.whenPOST('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer').respond(401);
+      spyOn(customerService, 'save').andCallThrough();
+      spyOn(customerService, 'create').andCallThrough();
+      spyOn(customerService, 'update').andCallThrough();
+
+      // Test
+      var result;
+      var failMessage;
+      customerService.save(_.clone(newCustomer)).then(function (r) {
+        result = r;
+      }, function (msg) {
+        failMessage = msg;
+      });
+      scope.$digest();
+      httpBackend.flush();
+      
+      // Validation
+      expect(customerService.save).toHaveBeenCalledWith(newCustomer);
+      expect(customerService.create).toHaveBeenCalledWith(newCustomer);
+      expect(result).toBeUndefined();
+      expect(failMessage.status).toBe(401);
+    });
+
+    it('should update a customer', function () {
+      // Setup
+      httpBackend.whenPUT('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer/1').respond(_.clone(customerA));
+      spyOn(customerService, 'save').andCallThrough();
+      spyOn(customerService, 'create').andCallThrough();
+      spyOn(customerService, 'update').andCallThrough();
+
+      // Test
+      var result;
+      var failMessage;
+      customerService.save(_.clone(customerA)).then(function (r) {
+        result = r;
+      }, function (msg) {
+        failMessage = msg;
+      });
+      scope.$digest();
+      httpBackend.flush();
+      
+      // Validation
+      expect(customerService.save).toHaveBeenCalledWith(customerA);
+      expect(customerService.update).toHaveBeenCalledWith(customerA);
+      expect(result.id).toBe(customerA.id);
+      expect(failMessage).toBeUndefined();
+    });
+
+    it('should try to update a customer but get an error from backend', function () {
+      // Setup
+      httpBackend.whenPUT('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer/1').respond(401);
+      spyOn(customerService, 'save').andCallThrough();
+      spyOn(customerService, 'create').andCallThrough();
+      spyOn(customerService, 'update').andCallThrough();
+
+      // Test
+      var result;
+      var failMessage;
+      customerService.save(_.clone(customerA)).then(function (r) {
+        result = r;
+      }, function (msg) {
+        failMessage = msg;
+      });
+      scope.$digest();
+      httpBackend.flush();
+      
+      // Validation
+      expect(customerService.save).toHaveBeenCalledWith(customerA);
+      expect(customerService.update).toHaveBeenCalledWith(customerA);
+      expect(result).toBeUndefined();
+      expect(failMessage.status).toBe(401);
     });
   });
 
