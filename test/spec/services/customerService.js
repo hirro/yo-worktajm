@@ -293,7 +293,7 @@ describe('Service: CustomerService', function () {
       // Test
       var result;
       var failMessage;
-      customerService.delete().then(function () {
+      customerService.delete(customerA.id).then(function () {
         result = 'ok';
       }, function (msg) {
         failMessage = msg;
@@ -315,7 +315,7 @@ describe('Service: CustomerService', function () {
       // Test
       var result;
       var failMessage;
-      customerService.delete().then(function () {
+      customerService.delete(customerA.id).then(function () {
         result = 'ok';
       }, function (msg) {
         failMessage = msg;

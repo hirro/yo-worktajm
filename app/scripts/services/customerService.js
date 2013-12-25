@@ -69,7 +69,7 @@ angular.module('yoWorktajmApp')
     svc.get = function (id) {
       console.log('CustomerService::get');
       var deferred = $q.defer();
-       Restangular.one('customer', id).get().then(function (existingCustomer) {
+      Restangular.one('customer', id).get().then(function (existingCustomer) {
         console.log('Retrieved customer successfully from backend. Id is: %s', existingCustomer.id);
         deferred.resolve(existingCustomer);
       }, function (reason) {
@@ -79,11 +79,23 @@ angular.module('yoWorktajmApp')
     };
 
     svc.list = function () {
-      console.log('CustomerService::get');
+      console.log('CustomerService::list');
       var deferred = $q.defer();
-       svc.restangularCustomers.getList().then(function (existingCustomers) {
+      svc.restangularCustomers.getList().then(function (existingCustomers) {
         console.log('Retrieved customer successfully from backend. ');
         deferred.resolve(existingCustomers);
+      }, function (reason) {
+        deferred.reject(reason);
+      });
+      return deferred.promise;
+    };
+
+    svc.delete = function (id) {
+      console.log('CustomerService::delete(%d)', id);
+      var deferred = $q.defer();
+      Restangular.one('customer', id).remove().then(function () {
+        console.log('Deleted customer successfully from backend. ');
+        deferred.resolve();
       }, function (reason) {
         deferred.reject(reason);
       });
