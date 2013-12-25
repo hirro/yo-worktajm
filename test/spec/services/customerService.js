@@ -191,4 +191,49 @@ describe('Service: CustomerService', function () {
     });
   });
 
+  describe('read tests', function () {
+    it('should get the customer with the provided id', function () {
+      // Setup
+      httpBackend.wheGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer/1').respond(_.clone(customerA));
+      spyOn(customerService, 'get').andCallThrough();
+
+      // Test
+      var result;
+      var failMessage;
+      customerService.get(customerA.id).then(function (r) {
+        result = r;
+      }, function (msg) {
+        failMessage = msg;
+      });
+      scope.$digest();
+      httpBackend.flush();
+      
+      // Validation
+      expect(customerService.get).toHaveBeenCalledWith(1);
+      expect(result.id).toBe(customerA.id);
+      expect(failMessage).toBeUndefined();
+    });
+    it('should handle get with invalid id gracefully', function () {
+      // Setup
+      httpBackend.wheGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer/1').respond(401);
+      spyOn(customerService, 'get').andCallThrough();
+
+      // Test
+      var result;
+      var failMessage;
+      customerService.get(customerA.id).then(function (r) {
+        result = r;
+      }, function (msg) {
+        failMessage = msg;
+      });
+      scope.$digest();
+      httpBackend.flush();
+      
+      // Validation
+      expect(customerService.get).toHaveBeenCalledWith(1);
+      expect(result).toBeUndefined();
+      expect(failMessage.status).toBe(401);
+    });
+  });
+
 });
