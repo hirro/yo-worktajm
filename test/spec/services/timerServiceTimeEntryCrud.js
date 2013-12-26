@@ -127,7 +127,8 @@ describe('Service: TimerService - CRUD operations for TimeEntry', function () {
     scope.$digest();
     httpBackend.flush();
     expect(receivedTimeEntry).toBeDefined();
-    expect(receivedTimeEntry).toBe(updatedTimeEntry);
+    expect(receivedTimeEntry.name).toBe(updatedTimeEntry.name);
+    expect(receivedTimeEntry.id).toBe(updatedTimeEntry.id);
   });
 
   it('should handle an update for an id which does not exist', function () {

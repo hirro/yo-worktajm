@@ -160,14 +160,27 @@ describe('Service: TimerService, CRUD tests for Project', function () {
 
     it('should create a new project when project has no id', function () {
       var project = { name: 'New project' };
+      var result;
+      var error;
+
       // Create the proejct
+      spyOn(timerService, 'updateProject').andCallThrough();
       httpBackend.whenPOST('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/project').respond(projects[1]);
-      timerService.updateProject(project);
+      timerService.updateProject(project).then(function (r) {
+        result = r;
+      }, function (m) {
+        error = m;
+      });
+
       // Make the requests go though
       scope.$digest();
       httpBackend.flush();
+
       // Verify it now was created  
-      expect(scope.$broadcast).toHaveBeenCalledWith('onProjectUpdated', projects[1]);
+      expect(timerService.updateProject).toHaveBeenCalledWith(project);
+      expect(error).toBeUndefined();
+      expect(result.id).toBe(projects[1].id);
+      expect(scope.$broadcast).toHaveBeenCalledWith('onProjectUpdated', result);
     });
 
     it('should mark the project as active', function () {
