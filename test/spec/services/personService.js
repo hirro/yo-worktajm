@@ -38,21 +38,10 @@ describe('Service: PersonService', function () {
   var scope;
 
   // Test constants
-  var projects = [
-    { id: 301, name: 'Project A', rate: null }];
-  var timeEntries = [
-    { id: 201, startTime: 0, endTime: 2, project: projects[0] }];
-  var persons = [
-    { id: 1, username: 'User A', activeTimeEntry: null },
-    { id: 2, username: 'User B' },
-    { id: 3, username: 'User C', activeTimeEntry: timeEntries[0] }];
-  var authenicationResponse = {
-    token:  'jim@arnellconsulting.com:1385447985128:632a4ef7344da65b43ca694090da2813',
-    roles:  {
-      ROLE_USER:  true
-    },
-    personId:   1
-  };
+  var projects;
+  var timeEntries;
+  var persons;
+  var authenicationResponse;
 
   // Inject the person service
   beforeEach(inject(function (PersonService, $httpBackend, $rootScope) {
@@ -62,6 +51,27 @@ describe('Service: PersonService', function () {
 
     // Assume we are logged in as user id 1
     service.personId = 1;
+
+    // Test constants
+    projects = [
+      { id: 301, name: 'Project A', rate: null }
+    ];
+    timeEntries = [
+      { id: 201, startTime: 0, endTime: 2, project: projects[0] }
+    ];
+    persons = [
+      { id: 1, username: 'User A', activeTimeEntry: null },
+      { id: 2, username: 'User B' },
+      { id: 3, username: 'User C', activeTimeEntry: timeEntries[0] }
+    ];
+    authenicationResponse = {
+      token:  'jim@arnellconsulting.com:1385447985128:632a4ef7344da65b43ca694090da2813',
+      roles:  {
+        ROLE_USER:  true
+      },
+      personId:   1
+    };
+
   }));
 
   afterEach(function () {

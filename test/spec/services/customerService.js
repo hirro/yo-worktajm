@@ -40,39 +40,10 @@ describe('Service: CustomerService', function () {
   var scope;
 
   // Test constants
-  var newCustomer = {
-    companyName: 'Company Name',
-    billingAddress: {
-      line1: 'Line 1',
-      line2: 'Line 2',
-      city: 'Sometown'
-    },
-    referencePerson: 'Reference Person'
-  };
-  var customerA = {
-    id: 1,
-    companyName: 'Company Name A',
-    billingAddress: {
-      line1: 'Line 1',
-      line2: 'Line 2',
-      city: 'Sometown'
-    },
-    referencePerson: 'Reference Person'
-  };
-  var customerB = {
-    id: 2,
-    companyName: 'Company Name B',
-    billingAddress: {
-      line1: 'Line 1',
-      line2: 'Line 2',
-      city: 'Sometown'
-    },
-    referencePerson: 'Reference Person'
-  };
-  var customers = [
-    customerA,
-    customerB
-  ];
+  var newCustomer;
+  var customerA;
+  var customerB;
+  var customers;
 
   beforeEach(inject(function (PersonService, CustomerService, $httpBackend, $rootScope) {
     customerService = CustomerService;
@@ -82,6 +53,43 @@ describe('Service: CustomerService', function () {
 
     // Assume we are logged in as user id 1
     PersonService.personId = 1;
+
+    // Test constants
+    newCustomer = {
+      companyName: 'Company Name',
+      billingAddress: {
+        line1: 'Line 1',
+        line2: 'Line 2',
+        city: 'Sometown'
+      },
+      referencePerson: 'Reference Person'
+    };
+    customerA = {
+      id: 1,
+      companyName: 'Company Name A',
+      billingAddress: {
+        line1: 'Line 1',
+        line2: 'Line 2',
+        city: 'Sometown'
+      },
+      referencePerson: 'Reference Person'
+    };
+    customerB = {
+      id: 2,
+      companyName: 'Company Name B',
+      billingAddress: {
+        line1: 'Line 1',
+        line2: 'Line 2',
+        city: 'Sometown'
+      },
+      referencePerson: 'Reference Person'
+    };
+    customers = [
+      customerA,
+      customerB
+    ];
+
+
   }));
 
   afterEach(function () {

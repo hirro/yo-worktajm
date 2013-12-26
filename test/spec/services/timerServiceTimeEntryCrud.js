@@ -39,16 +39,9 @@ describe('Service: TimerService - CRUD operations for TimeEntry', function () {
   var scope;
 
   // Test constants
-  var projects = [
-    { id: 301, name: 'Project A' },
-    { id: 302, name: 'Project B' }];
-  var timeEntries = [
-    { id: 201, startTime: 0, endTime: 1381337488*1000, project: projects[0] },
-    { id: 202, startTime: 0, endTime: 2 }];
-  var persons = [
-    { id: 1, username: 'User A', activeTimeEntry: null },
-    { id: 2, username: 'User B' },
-    { id: 3, username: 'User C', activeTimeEntry: timeEntries[0] }];
+  var projects;
+  var timeEntries;
+  var persons;
 
   // Inject the required services
   beforeEach(inject(function (TimerService, PersonService, $httpBackend, $rootScope) {
@@ -56,6 +49,18 @@ describe('Service: TimerService - CRUD operations for TimeEntry', function () {
     personService = PersonService;    
     httpBackend = $httpBackend;
     scope = $rootScope;
+
+    projects = [
+      { id: 301, name: 'Project A' },
+      { id: 302, name: 'Project B' }];
+    timeEntries = [
+      { id: 201, startTime: 0, endTime: 1381337488*1000, project: projects[0] },
+      { id: 202, startTime: 0, endTime: 2 }];
+    persons = [
+      { id: 1, username: 'User A', activeTimeEntry: null },
+      { id: 2, username: 'User B' },
+      { id: 3, username: 'User C', activeTimeEntry: timeEntries[0] }];
+
   }));  
 
   afterEach(function () {
@@ -111,7 +116,7 @@ describe('Service: TimerService - CRUD operations for TimeEntry', function () {
 
     // Perform the update
     var updatedTimeEntry = null;
-    var timeEntry = timeEntries[0];
+    var timeEntry = timeEntries[1];
     var updatedTimeEntry = timeEntry;
     var receivedTimeEntry = null;
     updatedTimeEntry.project = projects[1];
@@ -159,7 +164,7 @@ describe('Service: TimerService - CRUD operations for TimeEntry', function () {
 
     // Perform the update
     var updatedTimeEntry = null;
-    var timeEntry = timeEntries[0];
+    var timeEntry = timeEntries[1];
     var receivedTimeEntry = null;
     var failed = false;
     httpBackend.whenPUT('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/timeEntry/202').respond(401);

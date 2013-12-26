@@ -39,19 +39,9 @@ describe('Service: TimerService, CRUD tests for Project', function () {
   var scope;
 
   // Test constants
-  var projects = [
-    { id: 301, name: 'Project A' },
-    { id: 302, name: 'Project B' }
-  ];
-  var timeEntries = [
-    { id: 201, startTime: 0, endTime: 1381337488*1000, project: projects[0] },
-    { id: 202, startTime: 0, endTime: 2 }
-  ];
-  var persons = [
-    { id: 1, username: 'User A', activeTimeEntry: null },
-    { id: 2, username: 'User B' },
-    { id: 3, username: 'User C', activeTimeEntry: timeEntries[0] }
-  ];
+  var projects;
+  var timeEntries;
+  var persons;
 
   // Inject the required services
   beforeEach(inject(function (TimerService, PersonService, $httpBackend, $rootScope) {
@@ -59,6 +49,22 @@ describe('Service: TimerService, CRUD tests for Project', function () {
     personService = PersonService;
     httpBackend = $httpBackend;
     scope = $rootScope;
+
+    // Test constants
+    projects = [
+      { id: 301, name: 'Project A' },
+      { id: 302, name: 'Project B' }
+    ];
+    timeEntries = [
+      { id: 201, startTime: 0, endTime: 1381337488*1000, project: projects[0] },
+      { id: 202, startTime: 0, endTime: 2 }
+    ];
+    persons = [
+      { id: 1, username: 'User A', activeTimeEntry: null },
+      { id: 2, username: 'User B' },
+      { id: 3, username: 'User C', activeTimeEntry: timeEntries[0] }
+    ];
+
   }));
 
   afterEach(function () {
