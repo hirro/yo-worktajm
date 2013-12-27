@@ -27,13 +27,13 @@
 'use strict';
 
 angular.module('yoWorktajmApp')
-  .controller('DashboardProjectsCtrl', function ($scope, $rootScope, $resource, $location, $modal, TimerService, PersonService) {
+  .controller('DashboardProjectsCtrl', function ($scope, $rootScope, $resource, $location, $modal, $q, TimerService, PersonService, CustomerService) {
     console.log('Initiating DashboardProjectsCtrl');
 
     $scope.activeProject = null;
     $scope.project = {};
     $scope.projects = {};
-    TimerService.reloadProject();  
+    TimerService.reloadProject();
 
     var deleteProjectModal = function ($scope, $modalInstance, modalParams) {
       $scope.title = modalParams.title;
@@ -162,6 +162,9 @@ angular.module('yoWorktajmApp')
     // @end Event handlers
     //  
 
-    $scope.customers = [ 'Customer A', 'Customer B', 'Customer C']  
+    $scope.getCustomers = function () {
+      $scope.customers = CustomerService.list();
+      return $scope.customers;
+    };
 
   });

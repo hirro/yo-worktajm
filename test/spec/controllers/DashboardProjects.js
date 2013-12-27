@@ -24,9 +24,9 @@
           for the JavaScript code in this page.  
 */
 
-/*globals describe, beforeEach, inject, expect, it, spyOn */
+/*globals describe, beforeEach, inject, expect, it, spyOn, $ */
 'use strict';
-describe('Controller: DashboardProjectsCtrl', function ($q) {
+describe('Controller: DashboardProjectsCtrl', function () {
 
   // load the controller's module
   beforeEach(module('yoWorktajmApp'));
@@ -36,10 +36,6 @@ describe('Controller: DashboardProjectsCtrl', function ($q) {
     {'id': 1, 'name': 'Project A', 'description': null, 'rate': null, 'new': false},
     {'id': 2, 'name': 'Project B', 'description': null, 'rate': null, 'new': false},
     {'id': 3, 'name': 'Project C', 'description': null, 'rate': null, 'new': false}
-  ];
-  var timeEntries = [
-    {id: 1, startTime: 2, endTime: 3},
-    {id: 2, startTime: 2, endTime: 3}
   ];
 
   // Initialize the TimerServiceMock
@@ -57,7 +53,7 @@ describe('Controller: DashboardProjectsCtrl', function ($q) {
       console.log('TimerServiceMock::stopTimer done');
       return deferred.promise;
     },
-    removeProject: function (project) {
+    removeProject: function () {
       console.log('TimerServiceMock:removeProject called');
     },
     refresh: function () {
@@ -68,6 +64,15 @@ describe('Controller: DashboardProjectsCtrl', function ($q) {
     },
     reloadProject: function () {
       console.log('TimerServiceMock::reloadProject called');
+    }
+  };
+
+  var companies = [
+    { companyName: 'Company A'}
+  ];
+  var CustomerServiceMock = {
+    list: function () {
+      return companies;
     }
   };
 
@@ -86,7 +91,8 @@ describe('Controller: DashboardProjectsCtrl', function ($q) {
     DashboardProjectsCtrl = $controller('DashboardProjectsCtrl', {
       $scope: scope,
       TimerService: TimerServiceMock,
-      PersonService: PersonServiceMock
+      PersonService: PersonServiceMock,
+      CustomerService: CustomerServiceMock
     });
     //var projects = [];
     DashboardProjectsCtrl.$inject = ['$scope',  '$route', 'ProjectServic', 'PersonService', 'TimerService'];
@@ -193,8 +199,25 @@ describe('Controller: DashboardProjectsCtrl', function ($q) {
       var emptyList = {};
       scope.$broadcast('onProjectsRefreshed', emptyList);
       expect(scope.projects).toBe(emptyList);
-      scope.$broadcast('onProjectsRefreshed', projects);      
+      scope.$broadcast('onProjectsRefreshed', projects);
       expect(scope.projects).toBe(projects);
     });
+  });
+
+  describe('customer tests', function () {
+    it('should get a list of customers', function () {
+      spyOn(CustomerServiceMock, 'list').andCallThrough();
+
+      // Actual test
+      var result = scope.getCustomers();
+
+      // Make the request go through
+      scope.$digest();
+
+      // Verifications
+      expect(CustomerServiceMock.list).toHaveBeenCalled();
+      expect(result).toBe(companies);
+    });
+
   });
 });
