@@ -67,25 +67,48 @@ describe('Controller: DashboardProjectsCtrl', function () {
     }
   };
 
-  var companies = [
-    { companyName: 'Company A'}
-  ];
-  var CustomerServiceMock = {
-    list: function () {
-      return companies;
-    }
-  };
-
-  // Initialize the PersonServiceMock
-  var activeProjectId = -1;
-  var PersonServiceMock = {
-    getActiveProjectId: function () {
-      return activeProjectId;
-    }
-  };
+  // Declare test constants
+  var customerA;
+  var customers;
+  var CustomerServiceMock;
+  var activeProjectId;
+  var PersonServiceMock;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope, $injector, $q) {
+    // Setup constants
+    customerA = {
+      id: 1,
+      name: 'Company A'
+    };
+    customers = [
+      { customerName: 'Company A'}
+    ];
+    CustomerServiceMock = {
+
+      list: function () {
+        return customers;
+      },
+      findCustomerByName: function (name) {
+        var deferred = q.defer();
+        if (name === customerA.name) {
+          deferred.resolve(customerA);
+        } else {
+          deferred.resolve();
+        }
+        return deferred.promise;
+      }
+    };
+
+    // Initialize the PersonServiceMock
+    activeProjectId = -1;
+    PersonServiceMock = {
+      getActiveProjectId: function () {
+        return activeProjectId;
+      }
+    };
+
+    // The rest
     scope = $rootScope.$new();
     q =$q;
     DashboardProjectsCtrl = $controller('DashboardProjectsCtrl', {
@@ -138,12 +161,57 @@ describe('Controller: DashboardProjectsCtrl', function () {
     //expect(TimerServiceMock.removeProject).toHaveBeenCalled();
   });
 
-  it('should should call updateProject in TimerService', function () {
-    var project = projects[2];
-    spyOn(TimerServiceMock, 'updateProject').andCallThrough();
-    scope.updateProject(project);
-    expect(TimerServiceMock.updateProject).toHaveBeenCalled();
+  describe('update tests', function () {
+    describe('project with no customer', function () {
+      it('should just call updateProject in TimerService', function () {
+        var project = projects[2];
+        spyOn(TimerServiceMock, 'updateProject').andCallThrough();
+        scope.updateProject(project);
+        expect(TimerServiceMock.updateProject).toHaveBeenCalled();
+      });
+    });
+
+    describe('project with existing customer', function () {
+      it('should verify customer in CustomerService and then updateProject in TimerService', function () {
+        // Setup
+        var project = projects[2];
+        project.customerName = customerA.name;
+        spyOn(TimerServiceMock, 'updateProject').andCallThrough();
+        spyOn(CustomerServiceMock, 'findCustomerByName').andCallThrough();
+
+        // Test
+        scope.updateProject(project);
+
+        // Make the request go through
+        scope.$digest();
+
+        // Validation
+        expect(CustomerServiceMock.findCustomerByName).toHaveBeenCalledWith(project.customerName);
+        expect(TimerServiceMock.updateProject).toHaveBeenCalled();
+      });
+    });
+
+    describe('project with new customer', function () {
+      it('should verify customer in CustomerService and then stop. Customer must be created first.', function () {
+        // Setup
+        var project = projects[2];
+        project.customerName = 'new customer name';
+        spyOn(TimerServiceMock, 'updateProject').andCallThrough();
+        spyOn(CustomerServiceMock, 'findCustomerByName').andCallThrough();
+
+        // Test
+        scope.updateProject(project);
+
+        // Make the request go through
+        scope.$digest();
+
+        // Validation
+        expect(CustomerServiceMock.findCustomerByName).toHaveBeenCalledWith(project.customerName);
+        expect(TimerServiceMock.updateProject).not.toHaveBeenCalled();
+      });
+    });
   });
+
 
   it('should just start a timer for the given project', function () {
     // Register spyes
@@ -216,7 +284,7 @@ describe('Controller: DashboardProjectsCtrl', function () {
 
       // Verifications
       expect(CustomerServiceMock.list).toHaveBeenCalled();
-      expect(result).toBe(companies);
+      expect(result).toBe(customers);
     });
 
   });

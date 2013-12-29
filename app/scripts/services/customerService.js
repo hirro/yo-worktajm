@@ -23,6 +23,8 @@
           for the JavaScript code in this page.  
 */
 
+/*globals  _ */
+
 'use strict';
 
 angular.module('yoWorktajmApp')
@@ -96,6 +98,20 @@ angular.module('yoWorktajmApp')
       Restangular.one('customer', id).remove().then(function () {
         console.log('Deleted customer successfully from backend. ');
         deferred.resolve();
+      }, function (reason) {
+        deferred.reject(reason);
+      });
+      return deferred.promise;
+    };
+
+    svc.findCustomerByName = function(name) {
+      console.log('CustomerService::findCustomerByName(%d)', name);
+      var deferred = $q.defer();
+      svc.list().then(function (customers) {
+        var customer = _.find(customers, function(c) {
+          return c.name === name;
+        });
+        deferred.resolve(customer);
       }, function (reason) {
         deferred.reject(reason);
       });

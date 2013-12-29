@@ -56,7 +56,7 @@ describe('Service: CustomerService', function () {
 
     // Test constants
     newCustomer = {
-      companyName: 'Company Name',
+      name: 'Company Name',
       billingAddress: {
         line1: 'Line 1',
         line2: 'Line 2',
@@ -66,7 +66,7 @@ describe('Service: CustomerService', function () {
     };
     customerA = {
       id: 1,
-      companyName: 'Company Name A',
+      name: 'Company Name A',
       billingAddress: {
         line1: 'Line 1',
         line2: 'Line 2',
@@ -76,7 +76,7 @@ describe('Service: CustomerService', function () {
     };
     customerB = {
       id: 2,
-      companyName: 'Company Name B',
+      name: 'Company Name B',
       billingAddress: {
         line1: 'Line 1',
         line2: 'Line 2',
@@ -338,5 +338,54 @@ describe('Service: CustomerService', function () {
     });
   });
   
+  describe('findCustomerByName', function() {
+    it('should find customer with provided name', function () {
+      // Setup
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer').respond(customers);
+      spyOn(customerService, 'list').andCallThrough();
+      spyOn(customerService, 'findCustomerByName').andCallThrough();
 
+      // Test
+      var customer;
+      var error;
+      customerService.findCustomerByName(customerA.name).then(function (result) {
+        customer = result;
+      }, function (e) {
+        error = e;
+      });
+      scope.$digest();
+      httpBackend.flush();
+
+      // Verification
+      expect(customerService.list).toHaveBeenCalled();
+      expect(customerService.findCustomerByName).toHaveBeenCalledWith(customerA.name);
+      expect(customer.id).toBe(customerA.id);
+      expect(error).toBeUndefined();
+    });
+
+    it('should not find customer with undefined name', function () {
+      // Setup
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer').respond(customers);
+      spyOn(customerService, 'list').andCallThrough();
+      spyOn(customerService, 'findCustomerByName').andCallThrough();
+
+      // Test
+      var customer;
+      var error;
+      customerService.findCustomerByName('customerA.name').then(function (result) {
+        customer = result;
+      }, function (e) {
+        error = e;
+      });
+      scope.$digest();
+      httpBackend.flush();
+
+      // Verification
+      expect(customerService.list).toHaveBeenCalled();
+      expect(customerService.findCustomerByName).toHaveBeenCalledWith('customerA.name');
+      expect(customer).toBeUndefined();
+      expect(error).toBeUndefined();
+    });
+
+  });
 });

@@ -46,7 +46,7 @@
                       <input type="text" 
                              placeholder="Customer name" 
                              ng-model="project.customerName" 
-                             typeahead="customer.companyName for customer in getCustomers() | filter:$viewValue | limitTo:8">
+                             typeahead="customer.name for customer in getCustomers() | filter:$viewValue | limitTo:8">
                     </span>
                   </label>
                 </div>
