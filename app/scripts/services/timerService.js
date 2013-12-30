@@ -29,7 +29,7 @@
 
 // This service should encapsulate all data access. 
 // A future extension could be offline support.
-angular.module('yoWorktajmApp').service('TimerService', function TimerService(Restangular, $rootScope, $q, PersonService) {
+angular.module('yoWorktajmApp').service('TimerService', function TimerService(Restangular, $rootScope, $q, PersonService, CustomerService) {
   var svc = {
     baseProjects: Restangular.all('project'),
     projects: [],
@@ -52,10 +52,21 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
       svc.projectsLoaded = true;
       var activeProjectId = PersonService.getActiveProjectId();
       _(svc.projects).each(function (project) {
+        // Mark the active project
         if (project.id === activeProjectId) {
           project.active = true;
         } else {
           project.active = false;
+        }
+
+        // Check if customer id is defined, in that case fetch it from backend.
+        var customerId = project.customerId;
+        if (customerId) {
+          CustomerService.get(customerId).then(function (result) {
+            var customer = result;
+            console.log('Fetched custsomer name [%s]', customer.name);
+            project.customerName = customer.name;
+          });
         }
       });
 

@@ -56,7 +56,8 @@ describe('Service: TimerService', function () {
     // Test constants
     projects = [
       { id: 301, name: 'Project A' },
-      { id: 302, name: 'Project B' }
+      { id: 302, name: 'Project B' },
+      { id: 303, name: 'Project C', customerId: NaN }
     ];
     timeEntries = [
       { id: 201, startTime: 0, endTime: 1381337488*1000, project: projects[0] },

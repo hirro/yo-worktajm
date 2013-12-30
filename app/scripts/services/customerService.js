@@ -105,7 +105,7 @@ angular.module('yoWorktajmApp')
     };
 
     svc.findCustomerByName = function(name) {
-      console.log('CustomerService::findCustomerByName(%d)', name);
+      console.log('CustomerService::findCustomerByName(%s)', name);
       var deferred = $q.defer();
       svc.list().then(function (customers) {
         var customer = _.find(customers, function(c) {
