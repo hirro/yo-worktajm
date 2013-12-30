@@ -42,6 +42,7 @@ describe('Service: TimerService', function () {
   var projects;
   var timeEntries;
   var persons;
+  var customers;
 
   // Inject the required services
   beforeEach(inject(function (TimerService, PersonService, $httpBackend, $rootScope) {
@@ -57,7 +58,7 @@ describe('Service: TimerService', function () {
     projects = [
       { id: 301, name: 'Project A' },
       { id: 302, name: 'Project B' },
-      { id: 303, name: 'Project C', customerId: NaN }
+      { id: 303, name: 'Project C', customerId: 1066 }
     ];
     timeEntries = [
       { id: 201, startTime: 0, endTime: 1381337488*1000, project: projects[0] },
@@ -67,6 +68,9 @@ describe('Service: TimerService', function () {
       { id: 1, username: 'User A', activeTimeEntry: null },
       { id: 2, username: 'User B' },
       { id: 3, username: 'User C', activeTimeEntry: timeEntries[0] }
+    ];
+    customers = [
+      { id: 1066, name: 'Customer A'}
     ];
 
   }));
@@ -99,6 +103,7 @@ describe('Service: TimerService', function () {
 
       // Prereq 2 = Projects must be loaded
       httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/project').respond(_.clone(projects));
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer/1066').respond(customers[0]);
       spyOn(scope, '$broadcast').andCallThrough();
       timerService.reloadProject();
       scope.$digest();
@@ -135,6 +140,8 @@ describe('Service: TimerService', function () {
       httpBackend.whenPOST('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/timeEntry').respond(timeEntries[0]);
       // Person is updated with active time entry
       httpBackend.whenPUT('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/person/1').respond(person[0]);
+      // Customer
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer/1066').respond(customers[0]);
       scope.$digest();
       httpBackend.flush();
 

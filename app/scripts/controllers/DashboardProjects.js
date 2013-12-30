@@ -46,6 +46,17 @@ angular.module('yoWorktajmApp')
       };
     };
 
+    var customerModal = function ($scope, $modalInstance, modalParams) {
+      $scope.title = modalParams.title;
+      $scope.text = modalParams.text;
+      $scope.ok = function () {
+        $modalInstance.close();
+      };
+      $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+      };
+    };    
+
     // Show new project modal form
     $scope.showNewProject = function () {
       console.log('DashboardProjectsCtrl::showNewProject');
@@ -107,9 +118,7 @@ angular.module('yoWorktajmApp')
             project.customerId = customer.id;
           } else {
             console.log('Customer not found, stopping');
-            // Looks like a new customer, show verification modal where user has the possibility to complete customer with billing information
-            //showCustomerModal(project);
-            return;
+            $scope.createCustomer();
           }
           TimerService.updateProject(project);
         }).then(function () {
@@ -143,7 +152,6 @@ angular.module('yoWorktajmApp')
       }, function () {
         console.info('Modal dismissed at: ' + new Date());
       });
-
     };
     // Restore the provided project to the value of the database.
     // XXX unused
@@ -158,6 +166,29 @@ angular.module('yoWorktajmApp')
       });
     };
     // @end CRUD operations
+
+    // Create customer
+    $scope.createCustomer = function (customer) {
+
+      var modalParams = {
+        title: 'Create customer',
+        text: 'Do you want to create a new customer?'
+      };
+      var modalInstance = $modal.open({
+        templateUrl: 'customerModal.html',
+        controller: customerModal,
+        resolve: {
+          modalParams: function () {
+            return modalParams;
+          }
+        }
+      });
+      modalInstance.result.then(function () {
+        CustomerService.create(customer);
+      }, function () {
+        console.info('Modal dismissed at: ' + new Date());
+      });
+    };
 
     //
     // @start Event handlers
