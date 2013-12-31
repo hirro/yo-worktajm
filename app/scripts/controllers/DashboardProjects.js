@@ -116,11 +116,11 @@ angular.module('yoWorktajmApp')
             // Just assign the customer id to project and be gone with it
             console.log('Customer found, updating');
             project.customerId = customer.id;
+            TimerService.updateProject(project);
           } else {
             console.log('Customer not found, stopping');
             $scope.createCustomer();
           }
-          TimerService.updateProject(project);
         }).then(function () {
           console.log('Project updated in backend');
         });

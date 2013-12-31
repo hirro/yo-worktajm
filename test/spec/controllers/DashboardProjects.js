@@ -31,7 +31,7 @@ describe('Controller: DashboardProjectsCtrl', function () {
   // load the controller's module
   beforeEach(module('yoWorktajmApp'));
 
-  var DashboardProjectsCtrl, scope, q;
+  var DashboardProjectsCtrl, scope, q, httpBackend;
   var projects = [
     {'id': 1, 'name': 'Project A', 'description': null, 'rate': null, 'new': false},
     {'id': 2, 'name': 'Project B', 'description': null, 'rate': null, 'new': false},
@@ -75,7 +75,7 @@ describe('Controller: DashboardProjectsCtrl', function () {
   var PersonServiceMock;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope, $injector, $q) {
+  beforeEach(inject(function ($controller, $rootScope, $injector, $q, $httpBackend) {
     // Setup constants
     customerA = {
       id: 1,
@@ -92,8 +92,10 @@ describe('Controller: DashboardProjectsCtrl', function () {
       findCustomerByName: function (name) {
         var deferred = q.defer();
         if (name === customerA.name) {
+          console.log('Found customer in mock');
           deferred.resolve(customerA);
         } else {
+          console.log('Customer NOT found in mock');
           deferred.resolve();
         }
         return deferred.promise;
@@ -110,7 +112,8 @@ describe('Controller: DashboardProjectsCtrl', function () {
 
     // The rest
     scope = $rootScope.$new();
-    q =$q;
+    q = $q;
+    httpBackend = $httpBackend;
     DashboardProjectsCtrl = $controller('DashboardProjectsCtrl', {
       $scope: scope,
       TimerService: TimerServiceMock,
@@ -198,6 +201,7 @@ describe('Controller: DashboardProjectsCtrl', function () {
         project.customerName = 'new customer name';
         spyOn(TimerServiceMock, 'updateProject').andCallThrough();
         spyOn(CustomerServiceMock, 'findCustomerByName').andCallThrough();
+        httpBackend.whenGET('customerModal.html').respond();
 
         // Test
         scope.updateProject(project);
