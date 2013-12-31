@@ -4,7 +4,52 @@
     <h4>{{title}}</h4>
   </div>
   <div class="modal-body">
-  {{text}} 
+    <form class="form-horizontal" role="form">
+      <h4>Customer Information</h4>
+      <div class="form-group">
+        <label class="col-sm-4 control-label" for="name">Company Name</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" ng-model="customer.name"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-4 control-label" for="reference">Billing Reference</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" ng-model="customer.reference"/>
+        </div>
+      </div>
+      <h4>Billing Address</h4>
+      <div class="form-group">
+        <label class="col-sm-4 control-label" for="line1">Line 1</label>
+        <div class="col-sm-8">
+          <input id="line1" type="text" class="form-control" ng-model="customer.line1"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-4 control-label" for="line2">Line 2</label>
+        <div class="col-sm-8">
+          <input id="line2" type="text" class="form-control" ng-model="customer.line2"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-4 control-label" for="city">City</label>
+        <div class="col-sm-8">
+          <input id="city" type="text" class="form-control" ng-model="customer.city"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-4 control-label" for="zip">Zip code</label>
+        <div class="col-sm-8">
+          <input id="zip" type="text" class="form-control" ng-model="customer.zip"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-4 control-label" for="country">Country</label>
+        <div class="col-sm-8">
+          <input id="country" type="text" class="form-control" ng-model="customer.country"/>
+        </div>
+      </div>
+    </form>
   </div>
   <div class="modal-footer">
     <button id="cusomerModalConfirmBtn" type="button" class="btn btn-default" ng-click="ok()">Confirm</button>
