@@ -33,6 +33,7 @@ angular.module('yoWorktajmApp')
     $scope.activeProject = null;
     $scope.project = {};
     $scope.projects = {};
+    $scope.customer = {};
     TimerService.reloadProject();
 
     var deleteProjectModal = function ($scope, $modalInstance, modalParams) {
@@ -119,7 +120,10 @@ angular.module('yoWorktajmApp')
             TimerService.updateProject(project);
           } else {
             console.log('Customer not found, stopping');
-            $scope.createCustomer();
+            var customer = {
+              name: project.customerName
+            };
+            $scope.showCustomerModal(customer);
           }
         }).then(function () {
           console.log('Project updated in backend');
@@ -131,9 +135,27 @@ angular.module('yoWorktajmApp')
         TimerService.updateProject(project);
       }
     };
-    // Delete
-    $scope.removeProject = function (project) {
 
+    // Restore the provided project to the value of the database.
+    // XXX unused
+    $scope.restoreProject = function (project) {
+      console.log('createProjectFromScope:::restoreProject(id: %d, name: %s)', project.id, project.name);
+    };
+    // Read (cached)
+    $scope.getById = function (list, id) {
+      console.log('createProjectFromScope::getById([%d])', id);
+      return _(list).find({
+        'id': id
+      });
+    };
+    // @end CRUD operations
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Modals
+    ///////////////////////////////////////////////////////////////////////////
+
+    // Create verification modal
+    $scope.removeProject = function (project) {
       var modalParams = {
         title: 'Remove project',
         text: 'Do you want to remove project?'
@@ -153,26 +175,14 @@ angular.module('yoWorktajmApp')
         console.info('Modal dismissed at: ' + new Date());
       });
     };
-    // Restore the provided project to the value of the database.
-    // XXX unused
-    $scope.restoreProject = function (project) {
-      console.log('createProjectFromScope:::restoreProject(id: %d, name: %s)', project.id, project.name);
-    };
-    // Read (cached)
-    $scope.getById = function (list, id) {
-      console.log('createProjectFromScope::getById([%d])', id);
-      return _(list).find({
-        'id': id
-      });
-    };
-    // @end CRUD operations
 
-    // Create customer
-    $scope.createCustomer = function (customer) {
-
+    // Customer modal
+    $scope.showCustomerModal = function (customer) {
+      console.log('DashboardProjectsCtrl::showCustomerModalModal, customerName: %s', customer.name);
       var modalParams = {
         title: 'Create customer',
-        text: 'Do you want to create a new customer?'
+        text: 'Do you want to create a new customer?',
+        customer: customer
       };
       var modalInstance = $modal.open({
         templateUrl: 'customerModal.html',
