@@ -50,8 +50,9 @@ angular.module('yoWorktajmApp')
     var customerModal = function ($scope, $modalInstance, modalParams) {
       $scope.title = modalParams.title;
       $scope.text = modalParams.text;
+      $scope.customer = modalParams.customer;
       $scope.ok = function () {
-        $modalInstance.close();
+        $modalInstance.close($scope.customer);
       };
       $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
@@ -193,8 +194,8 @@ angular.module('yoWorktajmApp')
           }
         }
       });
-      modalInstance.result.then(function () {
-        CustomerService.create(customer);
+      modalInstance.result.then(function (result) {
+        CustomerService.create(result);
       }, function () {
         console.info('Modal dismissed at: ' + new Date());
       });
