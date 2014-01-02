@@ -32,11 +32,10 @@
         <table  class="table table-condensed table-hover" >
           <thead>
             <tr>
-              <th class="col-md-4" >Project</th>
+              <th class="col-md-5" >Project</th>
               <th class="col-md-2">Start</th>
               <th class="col-md-2">End</th>
-              <th class="col-md-2">Duration</th>
-              <th class="col-md-2">&nbsp;</th>
+              <th class="col-md-3">&nbsp;</th>
             </tr>
           </thead>
           <tbody ng-repeat="timeEntry in filteredTimeEntries = (timeEntries | dateFilter:selectedDate)">
@@ -46,18 +45,15 @@
               </td>
               <td contentEditable="true" >{{timeEntry.startTime | date: 'HH:mm:ss'}}</td>
               <td contentEditable="true" >{{getEndTime(timeEntry)}}</td>
-              <td>{{getDuration(timeEntry)}}</td>
               <td>
                 <div class="btn-group pull-right">
                   <button type="button" 
                           class="btn btn-default btn-sm glyphicon glyphicon-edit" 
                           ng-click="editTimeEntry(timeEntry)">
-                     Edit
                   </button>
                   <button type="button" 
                           class="btn btn-default btn-sm glyphicon glyphicon-remove" 
-                          ng-click="removeTimeEntry(timeEntry)">
-                     Remove
+                          ng-click="removeTimeEntry(timeEntry)">                     
                   </button>
                 </div>
               </td>
