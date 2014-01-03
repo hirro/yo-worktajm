@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('yoWorktajmApp')
-  .controller('AboutCtrl', function ($scope) {
+  .controller('CustomersCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',

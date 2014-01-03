@@ -26,9 +26,9 @@ angular.module('yoWorktajmApp', [
         templateUrl: 'views/login.html',
         controller: 'ReportsCtrl'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+      .when('/customers', {
+        templateUrl: 'views/customers.html',
+        controller: 'CustomersCtrl'
       })
       .otherwise({
         templateUrl: 'views/main.html',

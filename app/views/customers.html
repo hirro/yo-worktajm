@@ -1,0 +1,34 @@
+
+<div class="navbar navbar-inverse navbar-fixed-top" ng-show="person" ng-controller="LoginCtrl" >
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">worktajm</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#/dashboard">Dashboard</a></li>
+        <li><a href="#/reports">Reports</a></li>
+        <li class="active"><a>Customers</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a ng-click="logout()">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <i class="glyphicon-camera-retro"></i> glyphicon-camera-retro
+  <i class="glyphicon-camera-retro"></i> glyphicon-camera-retro
+  <p>This is the reports view.</p>    
+</div>

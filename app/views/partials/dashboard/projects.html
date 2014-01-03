@@ -33,33 +33,28 @@
                 <a class="collapse-arrow" data-toggle="collapse" data-target=".project-{{project.id}}" data-parent="#projects">
                   <i class="glyphicon glyphicon-chevron-down"></i>
                 </a>
-                <div class="control-group">
-                  <label>Project Name
-                    <span class="controls">
-                      <input type="text" placeholder="Project name" ng-model="project.name">
-                    </span>
-                  </label>
+                <div class="form-group">
+                  <label>Project Name</label>
+                  <input class="form-control" type="text" placeholder="Project name" ng-model="project.name">
                 </div>
-                <div class="control-group">
-                  <label>Customer Name
-                    <span class="controls">
-                      <input type="text" 
-                             placeholder="Customer name" 
-                             ng-model="project.customerName" 
-                             typeahead="customer.name for customer in getCustomers() | filter:$viewValue | limitTo:8">
-                    </span>
-                  </label>
+                <div class="form-group">
+                  <label>Customer Name</label>
+                  <input type="text"
+                         class="form-control"
+                         placeholder="Customer name" 
+                         ng-model="project.customerName" 
+                         typeahead="customer.name for customer in getCustomers() | filter:$viewValue | limitTo:8">
                 </div>
 
-                <div class="control-group">
-                  <label>Rate
-                    <div class="controls">
-                      <input type="number" placeholder="Hourly rate" ng-model="project.rate">
-                    </div>
-                  </label>                      
+                <div class="form-group">
+                  <label>Rate</label>
+                  <input type="number" 
+                         class="form-control"
+                         placeholder="Hourly rate" 
+                         ng-model="project.rate">
                 </div>
 
-                <div class="control-group">
+                <div class="form-group">
                   <div class="controls">
                     <div class="btn-group">
                       <button type="button" 
@@ -67,26 +62,32 @@
                               ng-click="updateProject(project)"  
                               data-toggle="collapse" 
                               data-target=".project-{{project.id}}" 
-                              data-parent="#projects">
-                         Save
+                              data-parent="#projects"
+                              popover="Save" 
+                              popover-placement="bottom"
+                              popover-trigger="mouseenter">
                       </button>
                       <button type="button" 
                               class="btn btn-primary btn-sm glyphicon glyphicon-remove" 
                               ng-click="restoreProject(project)" 
                               data-toggle="collapse" 
                               data-target=".project-{{project.id}}" 
-                              data-parent="#projects">
-                        Close
+                              data-parent="#projects"
+                              popover="Undo" 
+                              popover-placement="bottom"
+                              popover-trigger="mouseenter">                              
                       </button>
                     </div>
                     <div class="btn-group">
                       <button type="button" 
-                              class="btn btn-danger btn-sm glyphicon glyphicon-remove" 
+                              class="btn btn-danger btn-sm glyphicon glyphicon-trash" 
                               ng-click="removeProject(project)" 
                               data-toggle="collapse" 
                               data-target=".project-{{project.id}}" 
-                              data-parent="#projects">
-                        Delete
+                              data-parent="#projects"
+                              popover="Delete" 
+                              popover-placement="bottom"
+                              popover-trigger="mouseenter">                              
                       </button>
                     </div>
                   </div>

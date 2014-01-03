@@ -49,11 +49,17 @@
                 <div class="btn-group pull-right">
                   <button type="button" 
                           class="btn btn-default btn-sm glyphicon glyphicon-edit" 
-                          ng-click="editTimeEntry(timeEntry)">
+                          ng-click="editTimeEntry(timeEntry)"
+                          popover="Edit"
+                          popover-placement="left" 
+                          popover-trigger="mouseenter">                          
                   </button>
                   <button type="button" 
-                          class="btn btn-default btn-sm glyphicon glyphicon-remove" 
-                          ng-click="removeTimeEntry(timeEntry)">                     
+                          class="btn btn-default btn-sm glyphicon glyphicon-trash" 
+                          ng-click="removeTimeEntry(timeEntry)"
+                          popover="Remove" 
+                          popover-placement="right" 
+                          popover-trigger="mouseenter">
                   </button>
                 </div>
               </td>
