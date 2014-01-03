@@ -28,7 +28,7 @@
 'use strict';
 
 angular.module('yoWorktajmApp')
-  .service('CustomerService', function CustomerService(Restangular, $rootScope, $q) {
+  .service('CustomerService', function CustomerService(Restangular, $rootScope, $location, $q) {
     var svc = {
       restangularCustomers: Restangular.all('customer')
     };
@@ -88,6 +88,9 @@ angular.module('yoWorktajmApp')
         deferred.resolve(existingCustomers);
       }, function (reason) {
         deferred.reject(reason);
+        if (reason.status === 401) {
+          $location.path( '/login' );
+        }
       });
       return deferred.promise;
     };

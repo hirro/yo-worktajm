@@ -29,14 +29,18 @@
 angular.module('yoWorktajmApp')
   .controller('LoginCtrl', function ($scope, $rootScope, Restangular, $location, PersonService) {
 
-  var devMode = false;
+  var devMode = true;
+  if (devMode) {
+    $scope.username = 'jim@arnellconsulting.com';
+    $scope.password = 'password';
+  }
 
   $scope.login = function () {
     console.log('login(username [%s], password [%s])', $scope.username, $scope.password);
     PersonService.login($scope.username, $scope.password).then(function (user) {
       console.log('LoginCtrl::login - Successfully authenticated, user: %s', $scope.username);
       $rootScope.user = user;
-      $location.path( '/dashboard' );
+      $location.path( '/customers' );
       toastr.success('Successfully logged in as ' + $scope.username);
     }, function (reason) {
       toastr.error('Authentication failed');
@@ -58,12 +62,5 @@ angular.module('yoWorktajmApp')
     console.info('EVENT: onLoggedOut()');
     $rootScope.user = null;
   });
-
-  // Dev mode, using hardcoded credentials
-  if (devMode) {
-    $scope.username = 'jim@arnellconsulting.com';
-    $scope.password = 'password';
-    $scope.login();
-  }
 
 });
