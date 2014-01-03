@@ -37,13 +37,5 @@ angular.module('yoWorktajmApp')
     $location.path( '/main' );      
   });
 
-  //
-  // @start Event handlers
-  //
-  $scope.$on('onLoggedOut', function () {
-    console.info('EVENT: DashboardCtrl::onLoggedOut()');
-    $location.path( '/main' );
-  });
-
 });
 

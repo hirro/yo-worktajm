@@ -49,6 +49,19 @@
           <input id="country" type="text" class="form-control" ng-model="customer.billingAddress.country"/>
         </div>
       </div>
+      <h4>Invoice generation</h4>
+      <div class="form-group">
+        <label class="col-sm-4 control-label" for="billingFrequency">Invoice Frequency</label>
+        <div class="col-sm-8">
+          <select id="billingFrequency" type="text" class="form-control" ng-model="customer.billingFrequency">
+            <option>Daily</option>
+            <option>Weekly</option>
+            <option>Weekly (within month)</option>
+            <option>Monthly</option>
+          </select>
+        </div>
+      </div>
+
     </form>
   </div>
   <div class="modal-footer">

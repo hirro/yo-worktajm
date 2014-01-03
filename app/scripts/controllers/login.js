@@ -59,8 +59,9 @@ angular.module('yoWorktajmApp')
   // @start Event handlers
   //
   $scope.$on('onLoggedOut', function () {
-    console.info('EVENT: onLoggedOut()');
+    console.info('EVENT: LoginCtrl::onLoggedOut()');
     $rootScope.user = null;
+    $location.path( '/login' );
   });
 
 });
