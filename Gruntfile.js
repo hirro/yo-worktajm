@@ -306,11 +306,6 @@ module.exports = function (grunt) {
         configFile: 'karma.conf.js',
         autoWatch: false,
         singleRun: true
-      },
-      unit_auto: {
-        configFile: 'karma.conf.js',
-        autoWatch: true,
-        singleRun: false
       }
     },
     cdnify: {
@@ -430,9 +425,9 @@ module.exports = function (grunt) {
   ]);
 
   //autotest and watch tests
-  grunt.registerTask('autotest', ['karma:unit_auto']);
-  grunt.registerTask('autotest:unit', ['karma:unit_auto']);
-  grunt.registerTask('autotest:e2e', ['connect:testserver','shell:selenium','watch:protractor']);
+  //grunt.registerTask('autotest', ['karma:unit_auto']);
+  // grunt.registerTask('autotest:unit', ['karma:unit_auto']);
+  // grunt.registerTask('autotest:e2e', ['connect:testserver','shell:selenium','watch:protractor']);
 
   //installation-related
   grunt.registerTask('install', ['update','shell:protractor_install']);
