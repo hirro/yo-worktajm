@@ -55,6 +55,11 @@ angular.module('yoWorktajmApp')
     $scope.user = null;
   };
 
+  $scope.isActive = function (viewLocation) {
+    var active = (viewLocation === $location.path());
+    return active;
+  };  
+
   $scope.showUserProfile = function () {
     console.log('LoginCtrl::showUserProfile');
   };
