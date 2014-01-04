@@ -55,6 +55,10 @@ angular.module('yoWorktajmApp')
     $scope.user = null;
   };
 
+  $scope.showUserProfile = function () {
+    console.log('LoginCtrl::showUserProfile');
+  };
+
   //
   // @start Event handlers
   //
