@@ -40,7 +40,7 @@ angular.module('yoWorktajmApp')
     PersonService.login($scope.username, $scope.password).then(function (user) {
       console.log('LoginCtrl::login - Successfully authenticated, user: %s', $scope.username);
       $rootScope.user = user;
-      $location.path( '/customers' );
+      $location.path( '/dashboard' );
       toastr.success('Successfully logged in as ' + $scope.username);
     }, function (reason) {
       toastr.error('Authentication failed');

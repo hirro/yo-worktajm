@@ -44,7 +44,11 @@ module.exports = function (grunt) {
           '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
-      }
+      },
+      protractor: {
+        files: ['app/scripts/**/*.js','test/e2e/**/*.js'],
+        tasks: ['protractor:auto']
+      }      
     },
     autoprefixer: {
       options: ['last 1 version'],
@@ -87,7 +91,12 @@ module.exports = function (grunt) {
         options: {
           base: '<%= yeoman.dist %>'
         }
-      }
+      },
+      testserver: {
+        options: {
+          port: 9999
+        }
+      }      
     },
     clean: {
       dist: {
@@ -295,7 +304,13 @@ module.exports = function (grunt) {
     karma: {
       unit: {
         configFile: 'karma.conf.js',
+        autoWatch: false,
         singleRun: true
+      },
+      unit_auto: {
+        configFile: 'karma.conf.js',
+        autoWatch: true,
+        singleRun: false
       }
     },
     cdnify: {
@@ -326,7 +341,40 @@ module.exports = function (grunt) {
       options: {
         coverage_dir: 'coverage/'
       }
-    }    
+    },
+    shell: {
+      options: {
+        stdout: true
+      },
+      selenium: {
+        command: './selenium/start',
+        options: {
+          stdout: false,
+          async: true
+        }
+      },
+      protractor_install: {
+        command: 'node ./node_modules/protractor/bin/webdriver-manager update'
+      },
+      npm_install: {
+        command: 'npm install'
+      }
+    },
+    protractor: {
+      options: {
+        keepAlive: true,
+        configFile: "protractor-e2e.conf.js"
+      },
+      singlerun: {},
+      auto: {
+        keepAlive: true,
+        options: {
+          args: {
+            seleniumPort: 4444
+          }
+        }
+      }
+    }
   });
 
   grunt.registerTask('server', function (target) {
@@ -380,4 +428,14 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+
+  //autotest and watch tests
+  grunt.registerTask('autotest', ['karma:unit_auto']);
+  grunt.registerTask('autotest:unit', ['karma:unit_auto']);
+  grunt.registerTask('autotest:e2e', ['connect:testserver','shell:selenium','watch:protractor']);
+
+  //installation-related
+  grunt.registerTask('install', ['update','shell:protractor_install']);
+  grunt.registerTask('update', ['shell:npm_install']);
+
 };

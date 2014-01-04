@@ -195,7 +195,9 @@ angular.module('yoWorktajmApp')
         }
       });
       modalInstance.result.then(function (result) {
-        CustomerService.create(result);
+        CustomerService.create(result).then(function () {
+          // Update the project now
+        });
       }, function () {
         console.info('Modal dismissed at: ' + new Date());
       });

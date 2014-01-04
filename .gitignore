@@ -7,3 +7,4 @@ app/bower_components
 coverage
 test-results.xml
 .idea
+tmp

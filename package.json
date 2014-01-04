@@ -40,7 +40,9 @@
     "grunt-karma": "~0.7.2",
     "grunt-karma-coveralls": "~2.2.0",
     "grunt-ngmin": "~0.0.3",
+    "grunt-protractor-runner": "~0.1.6",
     "grunt-rev": "~0.1.0",
+    "grunt-shell-spawn": "~0.3.0",    
     "grunt-svgmin": "~0.3.0",
     "grunt-usemin": "~2.0.0",
     "jshint-stylish": "~0.1.4",
@@ -59,6 +61,7 @@
     "karma-script-launcher": "~0.1.0",
     "load-grunt-tasks": "~0.2.0",
     "nodeunit": "~0.8.2",
+    "protractor": "~0.14.0",
     "time-grunt": "~0.2.5"
   },
   "engines": {
