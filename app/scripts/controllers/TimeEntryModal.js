@@ -38,8 +38,8 @@ angular.module('yoWorktajmApp').controller('TimeEntryModalCtrl', function ($scop
 
     $scope.ok = function () {
       console.log('startTime [], endTime []', $scope.startTime, $scope.endTime);
-      $scope.timeEntry.endTime = $scope.timeEntry.end.getTime();
-      $scope.timeEntry.startTime = $scope.timeEntry.start.getTime();
+      $scope.timeEntry.endTime = new Date($scope.timeEntry.end);
+      $scope.timeEntry.startTime = new Date($scope.timeEntry.start);
       $modalInstance.close($scope.timeEntry);
     };
 

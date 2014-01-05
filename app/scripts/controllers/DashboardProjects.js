@@ -32,9 +32,23 @@ angular.module('yoWorktajmApp')
 
     $scope.activeProject = null;
     $scope.project = {};
-    $scope.projects = {};
+    $scope.projects = new Array();
     $scope.customer = {};
     TimerService.reloadProject();
+
+    var projectModal = function ($scope, $modalInstance, modalParams) {
+      $scope.title = modalParams.title;
+      $scope.text = modalParams.text;
+      $scope.project = {
+        name: 'sfsf'
+      };
+      $scope.ok = function () {
+        $modalInstance.close($scope.project);
+      };
+      $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+      };
+    };
 
     var deleteProjectModal = function ($scope, $modalInstance, modalParams) {
       $scope.title = modalParams.title;
@@ -57,18 +71,12 @@ angular.module('yoWorktajmApp')
       $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
       };
-    };    
-
-    // Show new project modal form
-    $scope.showNewProject = function () {
-      console.log('DashboardProjectsCtrl::showNewProject');
-      $('#projectModal').modal('show');
-    };
+    }; 
 
     $scope.createProject = function () {
       console.log('DashboardProjectsCtrl::updateProject(projectName: [%s])', $scope.project.name);
       TimerService.updateProject($scope.project).then(function () {
-        console.log('DashboardProjectsCtrl::updateProject(projectName -Successfully created project');
+        console.log('DashboardProjectsCtrl::updateProject(projectName - Successfully created project');
         $('#projectModal').modal('hide');
       }, function (reason) {
         console.error('DashboardProjectsCtrl::updateProject(projectName - Failed to create project: %s', reason);
@@ -128,12 +136,15 @@ angular.module('yoWorktajmApp')
           }
         }).then(function () {
           console.log('Project updated in backend');
+          project.isOpen = false;
         });
       } else {
         // Just save the project
         console.log('No customer name provided');
         project.customerId = NaN;
-        TimerService.updateProject(project);
+        TimerService.updateProject(project).then(function () {
+          project.isOpen = false;
+        });
       }
     };
 
@@ -141,6 +152,11 @@ angular.module('yoWorktajmApp')
     // XXX unused
     $scope.restoreProject = function (project) {
       console.log('createProjectFromScope:::restoreProject(id: %d, name: %s)', project.id, project.name);
+      var originalProject = TimerService.getProject(project.id);
+      project.name = originalProject.name;
+      project.description = originalProject.description;
+      project.rate = originalProject.rate;
+      project.isOpen = false;
     };
     // Read (cached)
     $scope.getById = function (list, id) {
@@ -154,6 +170,28 @@ angular.module('yoWorktajmApp')
     ///////////////////////////////////////////////////////////////////////////
     // Modals
     ///////////////////////////////////////////////////////////////////////////
+
+    // Create verification modal
+    $scope.createProject = function (project) {
+      var modalParams = {
+        title: 'Create project',
+        text: ''
+      };
+      var modalInstance = $modal.open({
+        templateUrl: 'projectModal.html',
+        controller: projectModal,
+        resolve: {
+          modalParams: function () {
+            return modalParams;
+          }
+        }
+      });
+      modalInstance.result.then(function (newProject) {
+        TimerService.updateProject(newProject);
+      }, function () {
+        console.info('Modal dismissed at: ' + new Date());
+      });
+    };
 
     // Create verification modal
     $scope.removeProject = function (project) {
@@ -215,14 +253,21 @@ angular.module('yoWorktajmApp')
         project.name = updatedProject.name;
         project.rate = updatedProject.rate;
       } else {
-        console.error('DashboardProjectsCtrl::onProjectUpdated - Failed to find matching project in controller, add it?');
+        $scope.projects.push(updatedProject);
       }
+    });
+    $scope.$on('onProjectDeleted', function (event, deletedProject) {
+      console.info('EVENT: onProjectDeleted([%d])', deletedProject.id);
+      var index = _.indexOf($scope.projects, deletedProject);
+      console.log('Removing project at index %d', index);
+      $scope.projects.splice(index, 1);
     });
     $scope.$on('onProjectsRefreshed', function (event, updatedProjectList) {
       console.log('EVENT: DashboardProjectsCtrl::onProjectsRefreshed(size [%d])', updatedProjectList.length);
       var activeProjectId = PersonService.getActiveProjectId();
-      $scope.projects = updatedProjectList;
-      _($scope.projects).each(function(p) {
+      _(updatedProjectList).each(function(p) {
+        // Cloning here, don't want to modify the internal cached entries
+        $scope.projects.push(_.clone(p));
         if (p.id === activeProjectId) {
           p.active = true;
         }

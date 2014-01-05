@@ -114,7 +114,7 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
       var index = _.indexOf(svc.projects, project);
       console.log('Removing project at index %d', index);
       svc.projects.splice(index, 1);
-      //svc.projects = _.without(svc.projects, project);
+      $rootScope.$broadcast('onProjectDeleted', project);      
     });
   };
 
@@ -180,7 +180,7 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
       restangularTimeEntry.comment = timeEntry.comment;
       restangularTimeEntry.put().then(function (result) {
         console.log('TimerService::updateTimeEntry - OK');
-        $rootScope.$broadcast('onTimeEntryUpdated', result);
+        $rootScope.$broadcast('onTimeEntryUpdated', restangularTimeEntry);
         deferred.resolve(result);
       }, function () {
         var errorMsg = 'Failed to update the time entry';

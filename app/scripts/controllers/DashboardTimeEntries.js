@@ -65,7 +65,7 @@ angular.module('yoWorktajmApp')
 
     // Utility function to display the end time nicely
     $scope.getEndTime = function (timeEntry) {
-      var result = 'In Progress';
+      var result = '...';
       if (timeEntry.endTime !== null) {
         result = $filter('date')(timeEntry.endTime, 'HH:mm:ss');
       }
@@ -96,8 +96,8 @@ angular.module('yoWorktajmApp')
       console.log('EVENT: DashboardTimeEntriesCtrl::onTimeEntriesRefreshed(count [%d])', newTimeEntries.length);
       $scope.timeEntries = newTimeEntries;
     });
-    $scope.$on('onTimeEntryUpdated', function (event, newTimeEntry) {
-      console.log('EVENT: DashboardTimeEntriesCtrl::onTimeEntryUpdated(id [%d])', newTimeEntry.id);
+    $scope.$on('onTimeEntryUpdated', function (event, updatedTimeEntry) {
+      console.log('EVENT: DashboardTimeEntriesCtrl::onTimeEntryUpdated(id [%d])', updatedTimeEntry.id);
     });
     $scope.$on('onTimeEntryRemoved', function (event, removedTimeEntry) {
       console.log('EVENT: DashboardTimeEntriesCtrl::onTimeEntryRemoved(id [%d])', removedTimeEntry.id);
