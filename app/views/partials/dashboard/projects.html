@@ -13,90 +13,88 @@
         <i class="glyphicon-plus"></i> Add new project</a>
     </p>
 
-    <div class="project" ng-repeat="project in projects">
-      <div collapse="isCollapsed">
+    <div class="projfect" ng-repeat="project in projects">
+    <table  class="table table-condensed" >
+      <tr class="timer_cell">
+        <th class="col-md-1">
           <a ng-click="isCollapsed = !isCollapsed">
-            <i class="glyphicon glyphicon-chevron-right"></i>
-          </a>
-          <span class="projectEdit" contenteditable="true">
+            <i class="pull-left glyphicon" ng-class="{'glyphicon-chevron-down': isCollapsed, 'glyphicon-chevron-right': !isCollapsed}"></i>
+          </a>                    
+        </th>
+        <th class="col-md-7">
             {{project.name}}
-          </span>
-          <div class="timer">
-            <a ng-click="stopTimer(project)" class="btn btn-xs btn-primary pull-right timer_button" role="button" ng-show="project.active" >  Stop
-            </a>                  
-            <a ng-click="startTimer(project)" class="btn btn-xs btn-primary pull-right timer_button" role="button" ng-hide="project.active">  Start
-            </a>            
-          </div>
+        </th>
+        <th class="col-md-4">
+          <a ng-click="stopTimer(project)" class="btn btn-xs btn-primary pull-right timeer_button" role="button" ng-show="project.active" >  Stop
+          </a>                  
+          <a ng-click="startTimer(project)" class="btn btn-xs btn-primary pull-right timeer_button" role="button" ng-hide="project.active">  Start
+          </a>            
+        </th>
+      </tr>
+    </table>
+
+  <form role="form" collapse="!isCollapsed">
+    <div class="form-group">
+      <label>Project Name</label>
+      <input class="form-control" type="text" placeholder="Project name" ng-model="project.name">
+    </div>
+    <div class="form-group">
+      <label>Customer Name</label>
+      <input type="text"
+             class="form-control"
+             placeholder="Customer name" 
+             ng-model="project.customerName" 
+             typeahead="customer.name for customer in getCustomers() | filter:$viewValue | limitTo:8">
+    </div>
+
+    <div class="form-group">
+      <label>Rate</label>
+      <input type="number" 
+             class="form-control"
+             placeholder="Hourly rate" 
+             ng-model="project.rate">
+    </div>
+
+    <div class="form-group">
+      <div class="controls">
+        <div class="btn-group">
+          <button type="button" 
+                  class="btn btn-primary btn-sm glyphicon glyphicon-ok" 
+                  ng-click="updateProject(project)"  
+                  data-toggle="collapse" 
+                  data-target=".project-{{project.id}}" 
+                  data-parent="#projects"
+                  popover="Save" 
+                  popover-placement="bottom"
+                  popover-trigger="mouseenter">
+          </button>
+          <button type="button" 
+                  class="btn btn-primary btn-sm glyphicon glyphicon-remove" 
+                  ng-click="restoreProject(project)" 
+                  data-toggle="collapse" 
+                  data-target=".project-{{project.id}}" 
+                  data-parent="#projects"
+                  popover="Undo" 
+                  popover-placement="bottom"
+                  popover-trigger="mouseenter">                              
+          </button>
+        </div>
+        <div class="btn-group">
+          <button type="button" 
+                  class="btn btn-danger btn-sm glyphicon glyphicon-trash" 
+                  ng-click="removeProject(project)" 
+                  data-toggle="collapse" 
+                  data-target=".project-{{project.id}}" 
+                  data-parent="#projects"
+                  popover="Delete" 
+                  popover-placement="bottom"
+                  popover-trigger="mouseenter">                              
+          </button>
+        </div>
       </div>
-      <div collapse="!isCollapsed">
-        <form>
-          <fieldset>
-            <a class="collapse-arrow" ng-click="isCollapsed = !isCollapsed">
-              <i class="glyphicon glyphicon-chevron-down"></i>
-            </a>
-            <div class="form-group">
-              <label>Project Name</label>
-              <input class="form-control" type="text" placeholder="Project name" ng-model="project.name">
-            </div>
-            <div class="form-group">
-              <label>Customer Name</label>
-              <input type="text"
-                     class="form-control"
-                     placeholder="Customer name" 
-                     ng-model="project.customerName" 
-                     typeahead="customer.name for customer in getCustomers() | filter:$viewValue | limitTo:8">
-            </div>
+    </div>
 
-            <div class="form-group">
-              <label>Rate</label>
-              <input type="number" 
-                     class="form-control"
-                     placeholder="Hourly rate" 
-                     ng-model="project.rate">
-            </div>
-
-            <div class="form-group">
-              <div class="controls">
-                <div class="btn-group">
-                  <button type="button" 
-                          class="btn btn-primary btn-sm glyphicon glyphicon-ok" 
-                          ng-click="updateProject(project)"  
-                          data-toggle="collapse" 
-                          data-target=".project-{{project.id}}" 
-                          data-parent="#projects"
-                          popover="Save" 
-                          popover-placement="bottom"
-                          popover-trigger="mouseenter">
-                  </button>
-                  <button type="button" 
-                          class="btn btn-primary btn-sm glyphicon glyphicon-remove" 
-                          ng-click="restoreProject(project)" 
-                          data-toggle="collapse" 
-                          data-target=".project-{{project.id}}" 
-                          data-parent="#projects"
-                          popover="Undo" 
-                          popover-placement="bottom"
-                          popover-trigger="mouseenter">                              
-                  </button>
-                </div>
-                <div class="btn-group">
-                  <button type="button" 
-                          class="btn btn-danger btn-sm glyphicon glyphicon-trash" 
-                          ng-click="removeProject(project)" 
-                          data-toggle="collapse" 
-                          data-target=".project-{{project.id}}" 
-                          data-parent="#projects"
-                          popover="Delete" 
-                          popover-placement="bottom"
-                          popover-trigger="mouseenter">                              
-                  </button>
-                </div>
-              </div>
-            </div>
-
-          </fieldset>
-        </form>                
-      </div>                  
+  </form>                
     </div>                  
   </div>
 </div>

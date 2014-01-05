@@ -26,9 +26,10 @@ footer {
   position: absolute;
 }
 .timer_button {
-  position: absolute; 
-  left:130px;
-  top:-20px;
+  vertical-align: top;
+}
+.timer_cell {
+  vertical-align: top;
 }
 .projects {
     padding: 10px;
@@ -49,20 +50,9 @@ footer {
 .project a:hover {
     text-decoration: none;
 }
-.project input {
-    width: 80%;
-}
 /* Thumbnails even height */
 .thumbnail .caption {
     height: 200px;
-}
-.projectToggle { 
-}
-.projectEdit {
-  margin-left: 0px;
-}
-.projectEdit br {
-  display: none;
 }
 
 // login.html
