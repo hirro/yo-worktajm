@@ -65,7 +65,7 @@ angular.module('yoWorktajmApp')
 
     // Utility function to display the end time nicely
     $scope.getEndTime = function (timeEntry) {
-      var result = '...';
+      var result = 'Running';
       if (timeEntry.endTime !== null) {
         result = $filter('date')(timeEntry.endTime, 'HH:mm:ss');
       }
