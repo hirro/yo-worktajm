@@ -22,34 +22,14 @@ footer {
 }
 
 // project
-.timer {
-  position: absolute;
-}
-.timer_button {
+.timer_row {
   vertical-align: top;
 }
-.timer_cell {
-  vertical-align: top;
+.timer_text {
+  text-decoration: none !important;
+  color: inherit;
 }
-.projects {
-    padding: 10px;
-}
-.projecs-header {
-    padding: 10px;
-}
-.project {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    padding-right: 5px;
-    margin: 0px;
-    border: 1px solid;
-}
-.project .controls {
-}
-.project a:hover {
-    text-decoration: none;
-}
+
 /* Thumbnails even height */
 .thumbnail .caption {
     height: 200px;

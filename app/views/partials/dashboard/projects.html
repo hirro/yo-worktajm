@@ -15,12 +15,14 @@
 
     <div class="projfect" ng-repeat="project in projects">
     <table  class="table table-condensed" >
-      <tr class="timer_cell">
+      <tr class="timer_row">
         <th class="col-md-8">
-          <a ng-click="isCollapsed = !isCollapsed">
+          <a class="timer_text" ng-click="isCollapsed = !isCollapsed">
             <i class="pull-left glyphicon" ng-class="{'glyphicon-chevron-down': isCollapsed, 'glyphicon-chevron-right': !isCollapsed}"></i>
-          </a>                    
-          &nbsp;{{project.name}}
+            <span>
+              &nbsp;{{project.name}}          
+            </span>                  
+          </a>  
         </th>
         <th class="col-md-4">
           <a ng-click="stopTimer(project)" class="btn btn-xs btn-primary pull-right timeer_button" role="button" ng-show="project.active" >  Stop

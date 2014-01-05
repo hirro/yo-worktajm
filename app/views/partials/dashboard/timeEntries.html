@@ -41,10 +41,10 @@
           <tbody ng-repeat="timeEntry in filteredTimeEntries = (timeEntries | dateFilter:selectedDate)">
             <tr>
               <td>
-                <div contentEditable="true" ng-model="timeEntry.project.name" title="Click to edit">{{timeEntry.project.name}}</div>
+                <div contentEditable="false" ng-model="timeEntry.project.name" title="Click to edit">{{timeEntry.project.name}}</div>
               </td>
-              <td contentEditable="true" >{{timeEntry.startTime | date: 'HH:mm:ss'}}</td>
-              <td contentEditable="true" >{{getEndTime(timeEntry)}}</td>
+              <td contentEditable="false" >{{timeEntry.startTime | date: 'HH:mm:ss'}}</td>
+              <td contentEditable="false" >{{getEndTime(timeEntry)}}</td>
               <td>
                 <div class="btn-group pull-right">
                   <button type="button" 

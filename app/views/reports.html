@@ -1,7 +1,57 @@
+<div>
+  <div ng-include src="'views/modals/confirmationModal.html'"></div>
+</div>
+<div>
+  <div ng-include src="'views/modals/customerModal.html'"></div>
+</div>
 <div ng-include src="'views/partials/navbar.html'" ></div>
 
-<div class="container">
-  <i class="glyphicon-camera-retro"></i> glyphicon-camera-retro
-  <i class="glyphicon-camera-retro"></i> glyphicon-camera-retro
-  <p>This is the reports view.</p>		
+<div class="container" ng-show="person" >
+
+  <div class="row">
+      <div ng-include src="'views/partials/loading.html'" >
+      </div>        
+  </div>
+
+  <!-- Projects -->
+  <div class="row">
+
+    <!-- Column 1 -->
+    <div class="col-md-2">
+    </div>
+
+    <!-- Center column -->
+    <div class="col-md-8">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">Reports</h4>
+        </div>
+        <div class="panel-body" ng-controller="ReportCtrl">
+
+<form class="form-horizontal" role="form">
+  <h3>Report Settings</h3>
+  <div class="form-group">
+    <label for="interval" class="col-sm-2 control-label">Date Range</label>
+    <div class="col-sm-10">
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary" ng-model="radioModel" btn-radio="'Left'">Today</button>
+        <button type="button" class="btn btn-primary" ng-model="radioModel" btn-radio="'Middle'">This Week</button>
+        <button type="button" class="btn btn-primary" ng-model="radioModel" btn-radio="'Right'">This month</button>
+        <button type="button" class="btn btn-primary" ng-model="radioModel" btn-radio="'LastWeek'">Last week</button>
+        <button type="button" class="btn btn-primary" ng-model="radioModel" btn-radio="'LastMonth'">Last month</button>
+      </div>
+    </div>
+  </div>  
+  <button type="submit" class="btn btn-default">Run Report</button>
+</form>
+
+        </div>
+    </div>
+
+    <!-- Column 3 -->
+    <div class="col-md-2">
+    </div>
+
+    </div>
+  </div>
 </div>
