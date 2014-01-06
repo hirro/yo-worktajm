@@ -104,14 +104,9 @@ angular.module('yoWorktajmApp')
     // @start CRUD operations
     //
     // create
-    $scope.createProjectFromScope = function () {
-      console.log('DashboardProjectsCtrl::createProjectFromScope(name: %s, id: %d)', $scope.project.name, $scope.project.id);
-      $scope.updateProject($scope.project);
-      $scope.project = {};
-    };
     // Update the provided project
     $scope.updateProject = function (project) {
-      console.log('DashboardProjectsCtrl::updatedProject. CustomerName: %s', project.customerName);
+      console.log('DashboardProjectsCtrl::updateProject - CustomerName: %s', project.customerName);
 
       // 1. If customer name is presented:
       // 1.1 Check if presented customer is new or existing.
@@ -151,7 +146,7 @@ angular.module('yoWorktajmApp')
     // Restore the provided project to the value of the database.
     // XXX unused
     $scope.restoreProject = function (project) {
-      console.log('createProjectFromScope:::restoreProject(id: %d, name: %s)', project.id, project.name);
+      console.log('DashboardProjectsCtrl::restoreProject(id: %d, name: %s)', project.id, project.name);
       var originalProject = TimerService.getProject(project.id);
       project.name = originalProject.name;
       project.description = originalProject.description;
@@ -160,7 +155,7 @@ angular.module('yoWorktajmApp')
     };
     // Read (cached)
     $scope.getById = function (list, id) {
-      console.log('createProjectFromScope::getById([%d])', id);
+      console.log('DashboardProjectsCtrl::getById([%d])', id);
       return _(list).find({
         'id': id
       });

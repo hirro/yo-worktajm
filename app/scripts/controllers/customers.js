@@ -2,7 +2,7 @@
 
 angular.module('yoWorktajmApp')
   .controller('CustomersCtrl', function ($scope, $modal, CustomerService) {
-    $scope.customers = CustomerService.list();
+    $scope.customers = new Array();
 
     var deleteConfirmationModal = function ($scope, $modalInstance, modalParams) {
       $scope.title = modalParams.title;

@@ -59,8 +59,11 @@ describe('Controller: DashboardProjectsCtrl', function () {
     refresh: function () {
       console.log('TimerServiceMock:refresh called');
     },
-    updateProject: function () {
+    updateProject: function (project) {
       console.log('TimerServiceMock:updateProject called');
+      var deferred = q.defer();
+      deferred.resolve(project);
+      return deferred.promise;
     },
     reloadProject: function () {
       console.log('TimerServiceMock::reloadProject called');
@@ -120,13 +123,12 @@ describe('Controller: DashboardProjectsCtrl', function () {
       PersonService: PersonServiceMock,
       CustomerService: CustomerServiceMock
     });
-    //var projects = [];
     DashboardProjectsCtrl.$inject = ['$scope',  '$route', 'ProjectServic', 'PersonService', 'TimerService'];
   }));
 
   it('should initialize with empty project list, etc.', function () {
     expect(scope.projects).toBeDefined();
-    expect(scope.projects.length).not.toBeDefined();
+    expect(scope.projects.length).toBe(0);
   });
 
   it('should use projects provided from service when receiving "onProjectsRefreshed" event', function () {
@@ -140,12 +142,12 @@ describe('Controller: DashboardProjectsCtrl', function () {
     expect(scope.getById(scope.projects, 2)).toEqual(projects[1]);
   });
 
-  it('should create a new project using the TimerService', function () {
+  it('should create a new project', function () {
     spyOn(TimerServiceMock, 'updateProject').andCallThrough();
     scope.project.name = 'New Project';
     scope.project.rate = 530;
     scope.project.comment = 'Hej';
-    scope.createProjectFromScope();
+    scope.updateProject(scope.project);
     expect(TimerServiceMock.updateProject).toHaveBeenCalled();
   });
 
@@ -264,15 +266,19 @@ describe('Controller: DashboardProjectsCtrl', function () {
 
   describe('test the events', function () {
     it('should handle onProjectUpdated event', function () {
+      scope.$broadcast('onLoggedOut');
+    });
+
+    it('should handle onProjectUpdated event', function () {
       scope.$broadcast('onProjectUpdated', projects[0]);
     });
 
     it('should handle the onProjectsRefreshed event', function () {
       var emptyList = {};
       scope.$broadcast('onProjectsRefreshed', emptyList);
-      expect(scope.projects).toBe(emptyList);
+      expect(scope.projects.length).toBe(0);
       scope.$broadcast('onProjectsRefreshed', projects);
-      expect(scope.projects).toBe(projects);
+      expect(scope.projects.length).toBe(projects.length);
     });
   });
 
