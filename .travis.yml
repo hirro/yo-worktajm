@@ -6,6 +6,7 @@ before_script:
   - sh -e /etc/init.d/xvfb start
   - gem update --system
   - gem install compass
+  - gem install sass
   - 'npm install -g bower grunt-cli'
   - 'bower install'
   - ./scripts/web-server.js > /dev/null &
