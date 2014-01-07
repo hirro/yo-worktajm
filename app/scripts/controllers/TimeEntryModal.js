@@ -27,54 +27,23 @@
 
 'use strict';
 
-angular.module('yoWorktajmApp').controller('TimeEntryModalCtrl', function ($scope, $modal, TimerService) {
+angular.module('yoWorktajmApp').controller('TimeEntryModalCtrl', function ($scope, $modalInstance, TimerService, timeEntry) {
 
-  var ModalInstanceCtrl = function ($scope, $modalInstance, TimerService, timeEntry) {
+  console.log('ModalInstanceCtrl::INIT ');
+  $scope.projectNames = _.pluck(TimerService.getProjects(), 'name');
+  $scope.timeEntry = timeEntry;
+  $scope.timeEntry.start = new Date(timeEntry.startTime);
+  $scope.timeEntry.end = new Date(timeEntry.endTime);
 
-    $scope.projectNames = _.pluck(TimerService.getProjects(), 'name');
-    $scope.timeEntry = timeEntry;
-    $scope.timeEntry.start = new Date(timeEntry.startTime);
-    $scope.timeEntry.end = new Date(timeEntry.endTime);
-
-    $scope.ok = function () {
-      console.log('startTime [], endTime []', $scope.startTime, $scope.endTime);
-      $scope.timeEntry.endTime = new Date($scope.timeEntry.end);
-      $scope.timeEntry.startTime = new Date($scope.timeEntry.start);
-      $modalInstance.close($scope.timeEntry);
-    };
-
-    $scope.cancel = function () {
-      $modalInstance.dismiss('cancel');
-    };
+  $scope.ok = function () {
+    console.log('startTime [], endTime []', $scope.startTime, $scope.endTime);
+    $scope.timeEntry.endTime = new Date($scope.timeEntry.end);
+    $scope.timeEntry.startTime = new Date($scope.timeEntry.start);
+    $modalInstance.close($scope.timeEntry);
   };
 
-  //
-  // Service events
-  //
-  $scope.$on('onEditTimeEntry', function (event, timeEntry) {
-    console.log('EVENT: TimeEntryModalCtrl::onEditTimeEntry');
-
-    var modalInstance = $modal.open({
-      templateUrl: 'timeEntryModal.html',
-      controller: ModalInstanceCtrl,
-      resolve: {
-        timeEntry: function () {
-          return timeEntry;
-        }
-      }
-    });
-
-    modalInstance.result.then(function (timeEntry) {
-      if (timeEntry) {
-        console.log('DashboardTimeEntriesCtrl::editTimeEntry - TimeEntry modified [%s] [%s]', timeEntry.startTime, timeEntry.endTime);
-        TimerService.updateTimeEntry(timeEntry);
-      } else {
-        console.log('DashboardTimeEntriesCtrl::editTimeEntry - TimeEntry unmodified');
-      }
-    }, function () {
-      console.info('Modal dismissed at: ' + new Date());
-    });
-
-  });
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
 
 });

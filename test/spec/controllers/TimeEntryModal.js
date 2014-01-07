@@ -20,9 +20,4 @@ describe('Controller: TimeEntryModalCtrl', function () {
     });
   }));
 
-  xit('should handle ', function () {
-    scope.$broadcast('onEditTimeEntry', timeEntry);
-    scope.ModalInstanceCtrl.cancel();
-  });
-
 });

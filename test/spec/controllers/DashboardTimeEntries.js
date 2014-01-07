@@ -30,7 +30,8 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
   // load the controller's module
   beforeEach(module('yoWorktajmApp'));
 
-  var DashboardTimeEntriesCtrl, scope, $rootScope;
+  var DashboardTimeEntriesCtrl, scope, $rootScope, $httpBackend;
+
   var projects = [
     {'id': 1, 'name': 'Project A', 'description': null, 'rate': null, 'new': false},
     {'id': 2, 'name': 'Project B', 'description': null, 'rate': null, 'new': false},
@@ -69,9 +70,10 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
   };
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, _$rootScope_) {
+  beforeEach(inject(function ($controller, _$rootScope_, _$httpBackend_) {
     $rootScope = _$rootScope_;
     scope = $rootScope.$new();
+    $httpBackend = _$httpBackend_;
     DashboardTimeEntriesCtrl = $controller('DashboardTimeEntriesCtrl', {
       $scope: scope,
       PersonService: PersonServiceMock,
@@ -131,11 +133,10 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
     });
 
     it('should send broadcast when editing a time entry', function () {
+      $httpBackend.whenGET('timeEntryModal.html').respond();
       spyOn($rootScope, '$broadcast');
       scope.editTimeEntry(timeEntries[1]);
       scope.$digest();
-      // Verify that broadcast has been sent
-      expect($rootScope.$broadcast).toHaveBeenCalledWith('onEditTimeEntry', timeEntries[1]);
     });
   });
 });
