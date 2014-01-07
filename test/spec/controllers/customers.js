@@ -154,12 +154,6 @@ describe('Controller: CustomersCtrl', function () {
   });
 
   it('should remove a customer', function () {
-    console.log('xxxxxxxxxxxxxx');
-    var data;
-    $.get('customers.js', function (data) {
-      console.log('-----------------> data: %s', data);
-    });
-    console.log('xxxxx: %s', data);
     $httpBackend.whenGET('confirmationModal.html').respond('<div>Modal2</div>');
     $scope.$digest();
     $scope.removeCustomer(CUSTOMER_A);

@@ -3,29 +3,6 @@
 angular.module('yoWorktajmApp')
   .controller('CustomersCtrl', function ($scope, $modal, CustomerService) {
     $scope.customers = new Array();
-
-    var deleteConfirmationModal = function ($scope, $modalInstance, modalParams) {
-      $scope.title = modalParams.title;
-      $scope.text = modalParams.text;
-      $scope.ok = function () {
-        $modalInstance.close();
-      };
-      $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-      };
-    };
-
-    var customerModal = function ($scope, $modalInstance, modalParams) {
-      $scope.title = modalParams.title;
-      $scope.text = modalParams.text;
-      $scope.customer = modalParams.customer;
-      $scope.ok = function () {
-        $modalInstance.close($scope.customer);
-      };
-      $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-      };
-    };    
     
     $scope.initialize = function() {
       console.log('Loading customers');
@@ -45,7 +22,7 @@ angular.module('yoWorktajmApp')
       };
       var modalInstance = $modal.open({
         templateUrl: 'confirmationModal.html',
-        controller: deleteConfirmationModal,
+        controller: 'ConfirmationModalCtrl',
         resolve: {
           modalParams: function () {
             return modalParams;
@@ -71,7 +48,7 @@ angular.module('yoWorktajmApp')
       };
       var modalInstance = $modal.open({
         templateUrl: 'customerModal.html',
-        controller: customerModal,
+        controller: 'CustomerModalCtrl',
         resolve: {
           modalParams: function () {
             return modalParams;

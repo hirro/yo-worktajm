@@ -1,15 +1,14 @@
 'use strict';
 
-describe('Controller: TimeEntryModalCtrl', function () {
+describe('Controller: ConfirmationModalCtrl', function () {
 
   // load the controller's module
   beforeEach(module('yoWorktajmApp'));
 
-  var TimeEntryModalCtrl, scope;
-  var timeEntry = {
-    id: 2,
-    startTime: 1385715694000,
-    endTime: 1385716500000
+  var ConfirmationModalCtrl, scope;
+  var modalParams = {
+    title: "Title",
+    project: {}
   };
   var $modalInstance = {
     close: function () {
@@ -28,23 +27,23 @@ describe('Controller: TimeEntryModalCtrl', function () {
   beforeEach(inject(function ($controller, $rootScope, _$q_) {
     $scope = $rootScope.$new();
     $q = _$q_;
-    TimeEntryModalCtrl = $controller('TimeEntryModalCtrl', {
+    ConfirmationModalCtrl = $controller('ConfirmationModalCtrl', {
       $scope: $scope,
       $modalInstance: $modalInstance,
-      timeEntry: timeEntry
+      modalParams: modalParams
     });
-    TimeEntryModalCtrl.$inject = ['$scope',  '$route', 'TimerService'];
+    ConfirmationModalCtrl.$inject = ['$scope',  '$route', 'TimerService'];
   }));
 
   it('should handle ok', function () {
-    $scope.timeEntry = timeEntry;
+    $scope.modalParams = modalParams;
     $scope.ok();
 
     // Validations
   });
 
   it('should handle cancel', function () {
-    $scope.timeEntry = timeEntry;
+    $scope.modalParams = modalParams;
     $scope.cancel();
   });
 

@@ -36,43 +36,6 @@ angular.module('yoWorktajmApp')
     $scope.customer = {};
     TimerService.reloadProject();
 
-    var projectModal = function ($scope, $modalInstance, modalParams) {
-      $scope.title = modalParams.title;
-      $scope.text = modalParams.text;
-      $scope.project = {
-        name: 'sfsf'
-      };
-      $scope.ok = function () {
-        $modalInstance.close($scope.project);
-      };
-      $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-      };
-    };
-
-    var deleteProjectModal = function ($scope, $modalInstance, modalParams) {
-      $scope.title = modalParams.title;
-      $scope.text = modalParams.text;
-      $scope.ok = function () {
-        $modalInstance.close();
-      };
-      $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-      };
-    };
-
-    var customerModal = function ($scope, $modalInstance, modalParams) {
-      $scope.title = modalParams.title;
-      $scope.text = modalParams.text;
-      $scope.customer = modalParams.customer;
-      $scope.ok = function () {
-        $modalInstance.close($scope.customer);
-      };
-      $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-      };
-    }; 
-
     $scope.createProject = function () {
       console.log('DashboardProjectsCtrl::updateProject(projectName: [%s])', $scope.project.name);
       TimerService.updateProject($scope.project).then(function () {
@@ -174,7 +137,7 @@ angular.module('yoWorktajmApp')
       };
       var modalInstance = $modal.open({
         templateUrl: 'projectModal.html',
-        controller: projectModal,
+        controller: 'ProjectModalCtrl',
         resolve: {
           modalParams: function () {
             return modalParams;
@@ -196,7 +159,7 @@ angular.module('yoWorktajmApp')
       };
       var modalInstance = $modal.open({
         templateUrl: 'confirmationModal.html',
-        controller: deleteProjectModal,
+        controller: 'ConfirmationModalCtrl',
         resolve: {
           modalParams: function () {
             return modalParams;
@@ -220,7 +183,7 @@ angular.module('yoWorktajmApp')
       };
       var modalInstance = $modal.open({
         templateUrl: 'customerModal.html',
-        controller: customerModal,
+        controller: 'CustomerModalCtrl',
         resolve: {
           modalParams: function () {
             return modalParams;
