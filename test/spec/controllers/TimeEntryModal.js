@@ -11,13 +11,37 @@ describe('Controller: TimeEntryModalCtrl', function () {
     startTime: 1385715694000,
     endTime: 1385716500000
   };
+  var $modalInstance = {
+    close: function () {
+
+    }
+  };
+
+  var TimerServiceMock = {
+    getProjects: function () {
+    }
+  };
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
+  var $scope, $q, $modalInstance;
+  beforeEach(inject(function ($controller, $rootScope, _$q_) {
+    $scope = $rootScope.$new();
+    $q = _$q_;
     TimeEntryModalCtrl = $controller('TimeEntryModalCtrl', {
-      $scope: scope
+      $scope: $scope,
+      $modalInstance: $modalInstance,
+      timeEntry: timeEntry
     });
+    TimeEntryModalCtrl.$inject = ['$scope',  '$route', 'TimerService'];
   }));
+
+  it('should handle ok', function () {
+    $scope.timeEntry = timeEntry;
+    $scope.ok();
+
+    // Verification of actions
+    // expect($scope.endTime).toBe('123');    
+    // expect($scope.startTime).toBe('123');    
+  });
 
 });
