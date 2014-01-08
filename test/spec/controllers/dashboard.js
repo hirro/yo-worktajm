@@ -23,56 +23,99 @@
           for the JavaScript code in this page.  
 */
 
-/*globals describe, beforeEach, inject, expect, it, projects */
+/*globals describe, beforeEach, inject, expect, it */
+/*jshint camelcase: false */
 
 'use strict';
 
 describe('Controller: DashboardCtrl', function () {
+
+  var DashboardCtrl;
+  var $q, $scope;
 
   // load the controller's module
   beforeEach(module('yoWorktajmApp'));
 
   // Setup the mocks
   var PersonServiceMock, PERSON_A;
-  beforeEach(function () {
-    PERSON_A = {
-      id:     1,
-      name:   'Person A'
-    };
-    PersonServiceMock = {
-      getPerson: function () {
-        console.log('PersonServiceMock:getPerson called');
-        var deferred = $q.defer();
-        deferred.resolve(PERSON_A);
-        return deferred.promise;
-      }
-    };
 
-    // Register spies that are called during controller initalization
-    spyOn(PersonServiceMock, 'getPerson').andCallThrough();    
-  });
+  describe('Initialize the controller and a mock scope', function () {
 
-  // Initialize the controller and a mock scope
-  var DashboardCtrl;
-  var $q, $scope;
-  beforeEach(inject(function ($controller, $rootScope, $injector, _$q_) {
+    beforeEach(function () {
+      PERSON_A = {
+        id:     1,
+        name:   'Person A'
+      };
+      PersonServiceMock = {
+        getPerson: function () {
+          console.log('PersonServiceMock:getPerson called');
+          var deferred = $q.defer();
+          deferred.resolve(PERSON_A);
+          return deferred.promise;
+        }
+      };
 
-    // The rest
-    $scope = $rootScope.$new();
-    $q = _$q_;
-    DashboardCtrl = $controller('DashboardCtrl', {
-      $scope: $scope,
-      PersonService: PersonServiceMock
+      // Register spies that are called during controller initalization
+      spyOn(PersonServiceMock, 'getPerson').andCallThrough();
     });
-    DashboardCtrl.$inject = ['$scope',  'PersonService'];
-  }));
 
-  it('should be initialized with a person after sync', function () {
-    // Not sure if this digest is required
-    $scope.$digest();
-    
-    // Verification
-    expect(PersonServiceMock.getPerson).toHaveBeenCalled();
+    beforeEach(inject(function ($controller, $rootScope, $injector, _$q_) {
+
+      // The rest
+      $scope = $rootScope.$new();
+      $q = _$q_;
+      DashboardCtrl = $controller('DashboardCtrl', {
+        $scope: $scope,
+        PersonService: PersonServiceMock
+      });
+      DashboardCtrl.$inject = ['$scope',  'PersonService'];
+    }));
+
+    it('should be initialized with a person after sync', function () {
+      // Not sure if this digest is required
+      $scope.$digest();
+      
+      // Verification
+      expect(PersonServiceMock.getPerson).toHaveBeenCalled();
+    });
   });
+
+  describe('Initialize the controller and a mock scope that fails with person lookup', function () {
+
+    beforeEach(function () {
+      PersonServiceMock = {
+        getPerson: function () {
+          console.log('PersonServiceMock:getPerson called');
+          var deferred = $q.defer();
+          deferred.reject(401);
+          return deferred.promise;
+        }
+      };
+
+      // Register spies that are called during controller initalization
+      spyOn(PersonServiceMock, 'getPerson').andCallThrough();
+    });
+
+    beforeEach(inject(function ($controller, $rootScope, $injector, _$q_) {
+
+      // The rest
+      $scope = $rootScope.$new();
+      $q = _$q_;
+      DashboardCtrl = $controller('DashboardCtrl', {
+        $scope: $scope,
+        PersonService: PersonServiceMock
+      });
+      DashboardCtrl.$inject = ['$scope',  'PersonService'];
+    }));
+
+    it('should be initialized with a person after sync', function () {
+      // Not sure if this digest is required
+      $scope.$digest();
+      
+      // Verification
+      expect(PersonServiceMock.getPerson).toHaveBeenCalled();
+    });
+  });
+
 });
 

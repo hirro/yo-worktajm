@@ -36,16 +36,6 @@ angular.module('yoWorktajmApp')
     $scope.customer = {};
     TimerService.reloadProject();
 
-    $scope.createProject = function () {
-      console.log('DashboardProjectsCtrl::updateProject(projectName: [%s])', $scope.project.name);
-      TimerService.updateProject($scope.project).then(function () {
-        console.log('DashboardProjectsCtrl::updateProject(projectName - Successfully created project');
-        $('#projectModal').modal('hide');
-      }, function (reason) {
-        console.error('DashboardProjectsCtrl::updateProject(projectName - Failed to create project: %s', reason);
-      });
-    };
-
     //
     // Start the project
     $scope.startTimer = function (project) {
@@ -107,7 +97,6 @@ angular.module('yoWorktajmApp')
     };
 
     // Restore the provided project to the value of the database.
-    // XXX unused
     $scope.restoreProject = function (project) {
       console.log('DashboardProjectsCtrl::restoreProject(id: %d, name: %s)', project.id, project.name);
       var originalProject = TimerService.getProject(project.id);
@@ -116,6 +105,7 @@ angular.module('yoWorktajmApp')
       project.rate = originalProject.rate;
       project.isOpen = false;
     };
+
     // Read (cached)
     $scope.getById = function (list, id) {
       console.log('DashboardProjectsCtrl::getById([%d])', id);

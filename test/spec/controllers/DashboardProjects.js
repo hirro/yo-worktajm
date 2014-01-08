@@ -67,6 +67,21 @@ describe('Controller: DashboardProjectsCtrl', function () {
     },
     reloadProject: function () {
       console.log('TimerServiceMock::reloadProject called');
+    },
+    restoreProject: function (project) {
+      console.log('TimerServiceMock:restoreProject called');
+      var deferred = q.defer();
+      if (project.id === 1) {
+        project.name = projects[0].name;
+        project.rate = projects[0].rate;
+        deferred.resolve(project);
+      } else {
+        deferred.reject();
+      }
+      return deferred.promise;
+    },
+    getProject: function (id) {
+      return projects[id];
     }
   };
 
@@ -151,19 +166,42 @@ describe('Controller: DashboardProjectsCtrl', function () {
     expect(TimerServiceMock.updateProject).toHaveBeenCalled();
   });
 
-  it('should call removeProject in TimerService', function () {
-    // Register spyes
-    spyOn(TimerServiceMock, 'removeProject').andCallThrough();
+  describe('open modals', function () {
+    it('should call removeProject in TimerService', function () {
+      // Register spyes
+      spyOn(TimerServiceMock, 'removeProject').andCallThrough();
 
-    // Test code
-    var project = projects[1];
-    scope.removeProject(project);
+      // Test code
+      var project = projects[1];
+      scope.removeProject(project);
 
-    // Must emulate a click of the ok button
-    $('#confirmationModalDeleteBtn').click();
+      // Must emulate a click of the ok button
+      $('#confirmationModalDeleteBtn').click();
 
-    // Check spyes
-    //expect(TimerServiceMock.removeProject).toHaveBeenCalled();
+      // Check spyes
+      //expect(TimerServiceMock.removeProject).toHaveBeenCalled();
+    });
+
+    it('should call openCreateProjectModal', function () {
+      scope.createProject(projects[1]);
+    });
+
+  });
+
+
+  it('should restore the provided project', function () {
+    spyOn(TimerServiceMock, 'getProject').andCallThrough();
+
+    var project = {
+      id:         1,
+      name:       'A'
+    };
+    scope.restoreProject(project);
+    scope.$digest();
+
+    // Validation
+    expect(TimerServiceMock.getProject).toHaveBeenCalledWith(1);
+    expect(project.name).toBe(projects[1].name);
   });
 
   describe('update tests', function () {
@@ -255,6 +293,20 @@ describe('Controller: DashboardProjectsCtrl', function () {
 
   });
 
+  it('should call stop timer of timer service', function () {
+    // Register spyes
+    spyOn(TimerServiceMock, 'stopTimer').andCallThrough();
+
+    // Test code
+    scope.stopTimer();
+
+    // Make the requests go though
+    scope.$digest();
+
+    // Project should no longer be active
+    expect(TimerServiceMock.stopTimer).toHaveBeenCalled();
+  });
+
 
   it('should create a new timer task and stop the running one when project is active', function () {
     // Setup test
@@ -279,6 +331,18 @@ describe('Controller: DashboardProjectsCtrl', function () {
       expect(scope.projects.length).toBe(0);
       scope.$broadcast('onProjectsRefreshed', projects);
       expect(scope.projects.length).toBe(projects.length);
+    });
+
+    it('should handle the onProjectDeleted event', function () {
+      // Setup
+      scope.projects = projects;
+      expect(scope.projects.length).toBe(3);
+
+      // Test
+      scope.$broadcast('onProjectDeleted', projects[0]);
+
+      // Project should be deleted in local cache
+      expect(scope.projects.length).toBe(2);
     });
   });
 
