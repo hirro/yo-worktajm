@@ -23,26 +23,34 @@
           for the JavaScript code in this page.  
 */
 
+'use strict';
+
+/* globals element, it, by */
+
+function login() {
+  browser.get('http://127.0.0.1:9000/');
+
+  // Enter the test user name, clear first to make sure suggested data is cleared
+  var usernameInput = element(by.model('username'));
+  usernameInput.clear();
+  usernameInput.sendKeys('jim@arnellconsulting.com');
+
+  // Enter the test user password, clear first to make sure suggested data is cleared
+  var passwordInput = element(by.model('password'));
+  passwordInput.clear();
+  passwordInput.sendKeys('password');
+
+  // Press the login
+  element(by.id('login')).click();
+
+  // We should now be logged in and transferred to the dashboard
+  // 
+  var firstName = element(by.binding('person.firstName'));
+  expect(firstName.getText()).toEqual('Jim Arnell');
+}
+
 describe('login from landing page', function() {
   it('should login successfully', function() {
-    browser.get('http://127.0.0.1:9000/');
-
-    // Enter the test user name, clear first to make sure suggested data is cleared
-    var usernameInput = element(by.model('username'));
-    usernameInput.clear();
-    usernameInput.sendKeys('jim@arnellconsulting.com');
-
-    // Enter the test user password, clear first to make sure suggested data is cleared
-    var passwordInput = element(by.model('password'));
-    passwordInput.clear();
-    passwordInput.sendKeys('password');
-
-    // Press the login
-    element(by.id('login')).click();
-
-    // We should now be logged in and transferred to the dashboard
-    // 
-    var firstName = element(by.binding('person.firstName'));
-    expect(firstName.getText()).toEqual('Jim Arnell');
+    login();
   });
 });
