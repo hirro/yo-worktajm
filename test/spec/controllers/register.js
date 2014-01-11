@@ -34,6 +34,15 @@ describe('Controller: RegisterCtrl', function () {
 
   var RegisterCtrl, scope, q, httpBackend;
 
+  var authenicationResponse = {
+    token:  'jim@arnellconsulting.com:1385447985128:632a4ef7344da65b43ca694090da2813',
+    roles:  {
+      ROLE_USER:  true
+    },
+    personId:   1
+  };
+  var personA = { id: 1, username: 'User A', activeTimeEntry: null };
+
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope, $q, $httpBackend) {
     scope = $rootScope;
@@ -45,7 +54,9 @@ describe('Controller: RegisterCtrl', function () {
     RegisterCtrl.$inject = ['$scope',  '$route'];
   }));
 
-  it('should register successfully', function () {
+  iit('should register successfully', function () {
+
+    // Prepare
     var success = false;
     var failure = false;
     scope.registration = {
@@ -53,6 +64,10 @@ describe('Controller: RegisterCtrl', function () {
       password:  'password'
     };
     httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/registration?email=email&password=password').respond(201);
+    httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/authenticate?password=password&username=email').respond(authenicationResponse);
+    httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/person/1').respond(personA);
+
+    // Test
     scope.register().then(function () {
       success = true;
     }, function () {
@@ -61,6 +76,7 @@ describe('Controller: RegisterCtrl', function () {
     scope.$digest();
     httpBackend.flush();
 
+    // Verify
     expect(success).toBe(true);
     expect(failure).toBe(false);
   });

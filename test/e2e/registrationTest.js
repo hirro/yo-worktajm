@@ -28,13 +28,13 @@
 /* globals element, it, by */
 
 describe('login from landing page', function () {
-  xit('should login successfully', function () {
+  it('should login successfully', function () {
     browser.get('http://127.0.0.1:9000/');
 
     // email
     var emailInput = element(by.model('registration.email'));
-    var userName = new Date().getTime().toString() + '@protractor.org';
-    emailInput.sendKeys(userName);
+    var email = new Date().getTime().toString() + '@protractor.org';
+    emailInput.sendKeys(email);
 
     // password
     var passwordInput = element(by.model('registration.password'));
@@ -50,6 +50,6 @@ describe('login from landing page', function () {
     // We should now be logged in and transferred to the dashboard
     // 
     var firstName = element(by.binding('person.firstName'));
-    expect(firstName.getText()).toEqual('Jim Arnell');
+    expect(firstName.getText()).toEqual('First name Last name');
   });
 });
