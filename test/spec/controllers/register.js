@@ -54,7 +54,7 @@ describe('Controller: RegisterCtrl', function () {
     RegisterCtrl.$inject = ['$scope',  '$route'];
   }));
 
-  iit('should register successfully', function () {
+  it('should register successfully', function () {
 
     // Prepare
     var success = false;
