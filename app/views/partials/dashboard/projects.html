@@ -63,14 +63,14 @@
           <div class="controls">
             <div class="btn-group">
               <button type="button" 
-                      class="btn btn-primary btn-sm glyphicon glyphicon-ok" 
+                      class="btn btn-primary btn-sm glyphicon glyphicon-ok save-project" 
                       ng-click="updateProject(project)"  
                       popover="Save" 
                       popover-placement="bottom"
                       popover-trigger="mouseenter">
               </button>
               <button type="button" 
-                      class="btn btn-primary btn-sm glyphicon glyphicon-remove" 
+                      class="btn btn-primary btn-sm glyphicon glyphicon-remove restore-project" 
                       ng-click="restoreProject(project)" 
                       popover="Undo" 
                       popover-placement="bottom"
@@ -79,8 +79,8 @@
             </div>
             <div class="btn-group">
               <button type="button" 
-                      class="btn btn-danger btn-sm glyphicon glyphicon-trash" 
-                      ng-click="removeProject(project)" 
+                      class="btn btn-danger btn-sm glyphicon glyphicon-trash delete-project" 
+                      ng-click="deleteProject(project)" 
                       popover="Delete" 
                       popover-placement="bottom"
                       popover-trigger="mouseenter">                              

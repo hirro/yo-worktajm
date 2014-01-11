@@ -142,7 +142,7 @@ angular.module('yoWorktajmApp')
     };
 
     // Create verification modal
-    $scope.removeProject = function (project) {
+    $scope.deleteProject = function (project) {
       var modalParams = {
         title: 'Remove project',
         text: 'Do you want to remove project?'
@@ -157,7 +157,7 @@ angular.module('yoWorktajmApp')
         }
       });
       modalInstance.result.then(function () {
-        TimerService.removeProject(project);
+        TimerService.deleteProject(project);
       }, function () {
         console.info('Modal dismissed at: ' + new Date());
       });

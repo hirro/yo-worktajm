@@ -52,8 +52,8 @@ describe('Controller: DashboardProjectsCtrl', function () {
       console.log('TimerServiceMock::stopTimer done');
       return deferred.promise;
     },
-    removeProject: function () {
-      console.log('TimerServiceMock:removeProject called');
+    deleteProject: function () {
+      console.log('TimerServiceMock:deleteProject called');
     },
     refresh: function () {
       console.log('TimerServiceMock:refresh called');
@@ -166,19 +166,19 @@ describe('Controller: DashboardProjectsCtrl', function () {
   });
 
   describe('open modals', function () {
-    it('should call removeProject in TimerService', function () {
+    it('should call deleteProject in TimerService', function () {
       // Register spyes
-      spyOn(TimerServiceMock, 'removeProject').andCallThrough();
+      spyOn(TimerServiceMock, 'deleteProject').andCallThrough();
 
       // Test code
       var project = projects[1];
-      scope.removeProject(project);
+      scope.deleteProject(project);
 
       // Must emulate a click of the ok button
       $('#confirmationModalDeleteBtn').click();
 
       // Check spyes
-      //expect(TimerServiceMock.removeProject).toHaveBeenCalled();
+      //expect(TimerServiceMock.deleteProject).toHaveBeenCalled();
     });
 
     it('should call openCreateProjectModal', function () {

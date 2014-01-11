@@ -130,7 +130,7 @@ describe('Service: TimerService, CRUD tests for Project', function () {
       expect(projectToBeRemoved.id).toBe(projectId);
       // Remove project
       httpBackend.whenDELETE('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/project/302').respond(201);
-      timerService.removeProject(projectToBeRemoved);
+      timerService.deleteProject(projectToBeRemoved);
       // Make the requests go though
       scope.$digest();
       httpBackend.flush();

@@ -107,7 +107,7 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
     return deferred.promise;
   };
 
-  svc.removeProject = function (project) {
+  svc.deleteProject = function (project) {
     console.log('TimerService::remove(name: [%s], id: [%d])', project.name, project.id);
     project.remove().then(function () {
       console.log('Project deleted from backend');

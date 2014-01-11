@@ -4,7 +4,7 @@ angular.module('yoWorktajmApp').controller('ProjectModalCtrl', function ($scope,
     $scope.title = modalParams.title;
     $scope.text = modalParams.text;
     $scope.project = {
-      name: 'sfsf'
+      name: ''
     };
     $scope.ok = function () {
       $modalInstance.close($scope.project);
