@@ -108,10 +108,8 @@ function deleteProject(project) {
 
     // Expand the project before pressing any buttons
     var expandButton = lastElement.findElement(by.css('[ng-click="project.isOpen = !project.isOpen"]'));
-    //var expandButton = lastElement.findElement(by.binding('project.name'));
     expandButton.click();
-    console.log('Waiting for the project detail animation to complete');
-    browser.sleep(1000);
+    browser.sleep(1000); // Allow browser to open project detail
 
     // Get hold of delete button and press it
     var deleteButton = lastElement.findElement(by.css('[ng-click="deleteProject(project)"]'));
@@ -120,6 +118,7 @@ function deleteProject(project) {
     // Now confirm the deletion
     var confirmButton = element(by.css('[ng-click="ok()"]'));
     confirmButton.click();
+    browser.sleep(1000); // It may take some time before the list is reloaded
   });
 
   // The project size should now be -1
