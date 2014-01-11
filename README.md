@@ -47,21 +47,21 @@ The backend is written mainly in Java using the bleeding edge components.
 * Maven 3
 * Jackson for the REST API ( [API version 1](https://github.com/hirro/be-worktajm/blob/master/api.md) )
 * Spring Framework 3 (soon 4)
-** [Spring](www.spring.org)  Spring Data (JPA)
-** [Spring](www.spring.org)  Spring  Security
+ * [Spring](www.spring.org)  Spring Data (JPA)
+ * [Spring](www.spring.org)  Spring Security
 * Liquibase for database change management.
 * Lombok (no longer used)
 
-## Front end:
+## Front end
 Git: [yo-worktajm](https://github.com/hirro/yo-worktajm)
 
 ### System requirements
 
 ### Stack
 * [Yeoman 1.0](http://yeoman.io/)
-** [Grunt.js](http://gruntjs.com/)
-** bower
-** angular generators
+ * [Grunt.js](http://gruntjs.com/)
+ * bower
+ * angular generators
 * [AngularJS 1.2.7](http://www.angularjs.org/) as foundation.
 * [Bootstrap 3](http://getbootstrap.com/) as default stylesheet.
 * [Restangular](https://github.com/mgonto/restangular) for communicating with backend using REST.

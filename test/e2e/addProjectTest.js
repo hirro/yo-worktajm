@@ -25,7 +25,13 @@
 
 'use strict';
 
-/* globals element, it, by */
+/* globals element, it, by, $ */
+
+function generateUniqueId() {
+  var id = new Date().getTime().toString();
+  var random = Math.floor((Math.random()*100)+1).toString();
+  return id + random;
+}
 
 function login() {
   browser.get('http://127.0.0.1:9000/');
@@ -49,8 +55,90 @@ function login() {
   expect(firstName.getText()).toEqual('Jim Arnell');
 }
 
-describe('login from landing page', function() {
+function addProject(project) {
+
+  // Get length before
+  var startLength;
+  element.all(by.repeater('project in projects')).then(function (arr) {
+    startLength = arr.length;
+  });
+
+  // Press create project
+  element(by.id('createProject')).click();
+
+  var projectNameInput = element(by.id('projectModalName'));
+  projectNameInput.clear();
+  projectNameInput.sendKeys(project.name);
+
+  var projectRateInput = element(by.id('projectModalRate'));
+  projectRateInput.clear();
+  projectRateInput.sendKeys(project.rate);
+
+  var projectDescriptionInput = element(by.id('projectModalDescription'));
+  projectDescriptionInput.clear();
+  projectDescriptionInput.sendKeys(project.description);
+
+  // Press create project
+  element(by.id('projectModalOk')).click();
+
+  // Get length after
+  element.all(by.repeater('project in projects')).then(function (arr) {
+    expect(arr.length).toBe(startLength + 1);
+  });
+}
+
+function deleteProject(project) {
+  // Get length before
+  var startLength;
+  element.all(by.repeater('project in projects')).then(function (arr) {
+    startLength = arr.length;
+  });
+
+  // Perform delete operation on last elements
+  element.all(by.repeater('project in projects')).then(function(arr) {
+    var lastElement = arr[arr.length-1];
+
+    // Verify project name
+    var projectText = lastElement.findElement(by.model('project.name')).getAttribute('value');
+    expect(projectText).toContain(project.name);
+
+    // Verify rate
+    var rateText = lastElement.findElement(by.model('project.rate')).getAttribute('value');
+    expect(rateText).toContain(project.rate);
+
+    // Expand the project before pressing any buttons
+    var expandButton = lastElement.findElement(by.css('[ng-click="project.isOpen = !project.isOpen"]'));
+    //var expandButton = lastElement.findElement(by.binding('project.name'));
+    expandButton.click();
+    console.log('Waiting for the project detail animation to complete');
+    browser.sleep(1000);
+
+    // Get hold of delete button and press it
+    var deleteButton = lastElement.findElement(by.css('[ng-click="deleteProject(project)"]'));
+    deleteButton.click();
+
+    // Now confirm the deletion
+    var confirmButton = element(by.css('[ng-click="ok()"]'));
+    confirmButton.click();
+  });
+
+  // The project size should now be -1
+  element.all(by.repeater('project in projects')).then(function (arr) {
+    expect(arr.length).toBe(startLength-1);
+  });
+
+}
+
+describe('should add a project and then delete it', function() {
   it('should login successfully', function() {
     login();
+
+    var project = {
+      name: 'Project ' + generateUniqueId(),
+      description: 'Description',
+      rate: generateUniqueId()
+    };
+    addProject(project);
+    deleteProject(project);
   });
 });

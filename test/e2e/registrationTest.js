@@ -28,7 +28,7 @@
 /* globals element, it, by */
 
 describe('login from landing page', function () {
-  it('should login successfully', function () {
+  xit('should login successfully', function () {
     browser.get('http://127.0.0.1:9000/');
 
     // email
