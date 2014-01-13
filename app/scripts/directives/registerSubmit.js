@@ -1,14 +1,10 @@
 'use strict';
 
 angular.module('yoWorktajmApp')
-  .directive('registerSubmit', function () {
+  .directive('registerSubmit', function ($parse) {
     return {
-      template: '<div></div>',
       restrict: 'A',
       require: ['registerSubmit', '?form'],
-      link: function postLink(scope, element, attrs) {
-        element.text('this is the registerSubmit directive');
-      },
       controller: ['$scope', function ($scope) {
         this.attempted = false;
         
@@ -46,7 +42,7 @@ angular.module('yoWorktajmApp')
           post: function(scope, formElement, attributes, controllers) {
             var submitController = controllers[0];
             var formController = (controllers.length > 1) ? controllers[1] : null;
-            var fn = $parse(attributes.rcSubmit);
+            var fn = $parse(attributes.registerSubmit);
             
             formElement.bind('submit', function () {
               submitController.setAttempted();
