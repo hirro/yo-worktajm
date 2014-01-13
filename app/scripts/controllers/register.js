@@ -63,6 +63,10 @@ angular.module('yoWorktajmApp').controller('RegisterCtrl', function ($scope, Res
     } else {
       toastr.error('Email address missing');
     }
+  },
+  $scope.validateEmail = function (email) {
+    console.log("Validating email [%s]", email);
+    return true;
   };
 });
 

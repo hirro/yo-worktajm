@@ -49,6 +49,9 @@ angular.module('yoWorktajmApp')
               if (!scope.$$phase) scope.$apply();
               
               if (!formController.$valid) return false;
+
+              // Validate user
+              formController.validateEmail('a@.sdf');
       
               scope.$apply(function() {
                 fn(scope, {$event:event});

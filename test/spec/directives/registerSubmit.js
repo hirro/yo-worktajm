@@ -13,7 +13,7 @@ describe('Directive: registerSubmit', function () {
   }));
 
   it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<register-submit></register-submit>');
+    element = angular.element('<form register-submit="hej()">this is the registerSubmit directive</form>');
     element = $compile(element)(scope);
     expect(element.text()).toBe('this is the registerSubmit directive');
   }));
