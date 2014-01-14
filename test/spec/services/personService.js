@@ -310,7 +310,7 @@ describe('Service: PersonService', function () {
       httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/authenticate?password=PasswordA&username=UserA').respond(authenicationResponse);
       httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/person/1').respond(401);
       scope.$digest();
-      httpBackend.flush();    
+      httpBackend.flush();
       
       // Validations
       expect(person).toBeNull();
@@ -318,6 +318,23 @@ describe('Service: PersonService', function () {
       expect(failed).toBe(true);
     });
 
+  });
+
+  describe('find tests', function () {
+    it('should successfully find the provider user', function () {
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/person?username=user').respond();
+      service.isUserNameAvailable('user').then(function (result) {
+        expect(result).toBe(true);
+      });
+      httpBackend.flush();
+    });
+    it('should not find the provider user', function () {
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/person?username=user').respond(404);
+      service.isUserNameAvailable('user').then(function (result) {
+        expect(result).toBe(false);
+      });
+      httpBackend.flush();
+    });
   });
   
 });

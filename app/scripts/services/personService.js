@@ -175,5 +175,24 @@ angular.module('yoWorktajmApp').service('PersonService', function PersonService(
     return result;
   };
 
+  /**
+   * Validates an email address to make sure it is available.
+   */
+  personService.isUserNameAvailable = function (username) {
+    console.log('PersonService::isUserNameAvailable');
+    var deferred = $q.defer();
+
+    personService.token = Restangular.one('person').get({
+      username: username
+    }).then(function () {
+      console.log('Username is not available');
+      deferred.resolve(true);
+    }, function () {
+      console.log('Username is available');
+      deferred.resolve(false);
+    });
+   return deferred.promise;
+  };
+
   return personService;
 });
