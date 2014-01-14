@@ -42,7 +42,7 @@ angular.module('yoWorktajmApp').controller('RegisterCtrl', function ($scope, Res
         $location.path( '/dashboard' );
         toastr.success('Registration succeeded, logging in.');
 
-        // Now login as the provided user
+        // Now l2ogin as the provided user
         PersonService.login($scope.registration.email, $scope.registration.password).then(function (user) {
           console.log('RegisterCtrl::reigster - Successfully authenticated, user: %s', $scope.username);
           $rootScope.user = user;
@@ -63,10 +63,6 @@ angular.module('yoWorktajmApp').controller('RegisterCtrl', function ($scope, Res
     } else {
       toastr.error('Email address missing');
     }
-  },
-  $scope.validateEmail = function (email) {
-    console.log("Validating email [%s]", email);
-    return true;
   };
 });
 

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('yoWorktajmApp')
-  .directive('registerSubmit', function ($parse) {
+  .directive('registerSubmit', function ($parse, PersonService) {
     return {
       restrict: 'A',
       require: ['registerSubmit', '?form'],
@@ -51,7 +51,8 @@ angular.module('yoWorktajmApp')
               if (!formController.$valid) return false;
 
               // Validate user
-              formController.validateEmail('a@.sdf');
+              console.log('Validating user: %s', scope.registration.email);
+              if (!PersonService.isUserNameAvailable(scope.registration.email)) return false;
       
               scope.$apply(function() {
                 fn(scope, {$event:event});
