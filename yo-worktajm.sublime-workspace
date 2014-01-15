@@ -4,6 +4,34 @@
 		"selected_items":
 		[
 			[
+				"ch",
+				"Chrome"
+			],
+			[
+				"time",
+				"timeEntry"
+			],
+			[
+				"mar",
+				"margin-bottom"
+			],
+			[
+				"open",
+				"openCalendar"
+			],
+			[
+				"auth",
+				"authenicationResponse"
+			],
+			[
+				"pers",
+				"personId"
+			],
+			[
+				"ret",
+				"returnedToken"
+			],
+			[
 				"P",
 				"PersonService"
 			],
@@ -88,10 +116,6 @@
 				"deferred"
 			],
 			[
-				"time",
-				"timeEntry"
-			],
-			[
 				"em",
 				"emptyList"
 			],
@@ -110,10 +134,6 @@
 			[
 				"der",
 				"deferred"
-			],
-			[
-				"pers",
-				"person"
 			],
 			[
 				"timeE",
@@ -247,22 +267,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "app/scripts/controllers/register.js",
-			"settings":
-			{
-				"buffer_size": 1900,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": ".tmp/styles/main.css",
-			"settings":
-			{
-				"buffer_size": 396215,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -272,15 +276,15 @@
 		[
 			[
 				"packa",
-				"Package Control: Remove Package"
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
 			],
 			[
 				"swap",
 				"BracketHighlighter: Swap Quotes"
-			],
-			[
-				"package",
-				"Package Control: Remove Package"
 			],
 			[
 				"insta",
@@ -435,11 +439,14 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 561.0
+		"width": 633.0
 	},
 	"console":
 	{
-		"height": 125.0
+		"height": 125.0,
+		"history":
+		[
+		]
 	},
 	"distraction_free":
 	{
@@ -452,21 +459,38 @@
 	},
 	"file_history":
 	[
-		"/Users/jiar/git/yo-worktajm/app/styles/main.scss",
-		"/Users/jiar/git/yo-worktajm/app/scripts/controllers/dashboard.js",
-		"/Users/jiar/git/yo-worktajm/app/views/dashboard.html",
+		"/Users/jiar/git/yo-worktajm/app/views/partials/dashboard/projects.html",
 		"/Users/jiar/git/yo-worktajm/app/views/partials/dashboard/company.html",
-		"/Users/jiar/git/yo-worktajm/app/index.html",
-		"/Users/jiar/git/yo-worktajm/.sass-cache/717119ad097a9d561e1de4ea2542261a0714292f/main.scssc",
-		"/Users/jiar/git/yo-worktajm/app/scripts/services/personService.js",
-		"/Users/jiar/git/yo-worktajm/app/scripts/app.js",
+		"/Users/jiar/git/yo-worktajm/app/scripts/controllers/login.js",
+		"/Users/jiar/git/yo-worktajm/app/views/partials/dashboard/timeEntries.html",
+		"/Users/jiar/git/yo-worktajm/app/views/partials/dashboard/confirmationModal.html",
 		"/Users/jiar/git/yo-worktajm/test/spec/controllers/DashboardProjects.js",
-		"/Users/jiar/git/yo-worktajm/app/views/partials/registrationForm.html",
+		"/Users/jiar/git/yo-worktajm/app/scripts/controllers/DashboardProjects.js",
+		"/Users/jiar/git/yo-worktajm/app/scripts/controllers/TimeEntryModal.js",
+		"/Users/jiar/git/yo-worktajm/app/scripts/controllers/ConfirmationModal.js",
+		"/Users/jiar/git/yo-worktajm/app/scripts/services/timerService.js",
+		"/Users/jiar/git/yo-worktajm/app/scripts/services/personService.js",
+		"/Users/jiar/git/yo-worktajm/app/views/partials/dashboard/timeEntryModal.html",
+		"/Users/jiar/git/yo-worktajm/app/index.html",
+		"/Users/jiar/git/yo-worktajm/bower.json",
+		"/Users/jiar/git/yo-worktajm/Gruntfile.js",
+		"/Users/jiar/git/yo-worktajm/package.json",
+		"/Users/jiar/git/yo-worktajm/app/views/partials/dashboard/deleteConfirmationModal.html",
+		"/Users/jiar/git/yo-worktajm/app/views/partials/modals/confirm.html",
+		"/Users/jiar/git/be-worktajm/api.md",
+		"/Users/jiar/git/yo-worktajm/.jshintrc",
+		"/Users/jiar/git/yo-worktajm/README.md",
+		"/Users/jiar/git/yo-worktajm/app/views/partials/projectModal.html",
+		"/Users/jiar/git/yo-worktajm/app/scripts/controllers/DashboardTimeEntries.js",
+		"/Users/jiar/git/yo-worktajm/app/scripts/app.js",
+		"/Users/jiar/git/yo-worktajm/karma.conf.js",
+		"/Users/jiar/git/yo-worktajm/test/spec/controllers/DashboardTimeEntries.js",
+		"/Users/jiar/git/yo-worktajm/app/views/login.html",
 		"/Users/jiar/git/yo-worktajm/test/spec/controllers/about.js",
 		"/Users/jiar/git/yo-worktajm/test/spec/controllers/dashboard.js",
-		"/Users/jiar/git/yo-worktajm/test/spec/controllers/DashboardTimeEntries.js",
 		"/Users/jiar/git/yo-worktajm/test/spec/controllers/login.js",
 		"/Users/jiar/git/yo-worktajm/test/spec/controllers/Main.js",
+		"/Users/jiar/git/yo-worktajm/test/spec/controllers/register.js",
 		"/Users/jiar/git/yo-worktajm/test/spec/controllers/reports.js",
 		"/Users/jiar/git/yo-worktajm/test/spec/filters/dateFilter.js",
 		"/Users/jiar/git/yo-worktajm/test/spec/services/personService.js",
@@ -474,16 +498,37 @@
 		"/Users/jiar/git/yo-worktajm/test/spec/services/timerServiceProjectCrud.js",
 		"/Users/jiar/git/yo-worktajm/test/spec/services/timerServiceTimeEntryCrud.js",
 		"/Users/jiar/git/yo-worktajm/test/spec/services/TpsConstants.js",
+		"/Users/jiar/git/yo-worktajm/app/styles/main.scss",
+		"/Users/jiar/git/yo-worktajm/app/bower_components/angular-ui-bootstrap3/ui-bootstrap-tpls.js",
+		"/Users/jiar/git/yo-worktajm/app/bower_components/jquery-ui/ui/jquery-ui.js",
+		"/Users/jiar/git/yo-worktajm/app/bower_components/angular-ui-calendar/src/calendar.js",
+		"/Users/jiar/git/yo-worktajm/app/bower_components/angular-ui-bootstrap3/ui-bootstrap.js",
+		"/Users/jiar/git/yo-worktajm/app/bower_components/fullcalendar/readme.md",
+		"/Users/jiar/git/yo-worktajm/app/bower_components/angular-resource/angular-resource.js",
+		"/Users/jiar/git/yo-worktajm/app/bower_components/angular-route/angular-route.js",
+		"/Users/jiar/git/yo-worktajm/app/bower_components/angular-ui-bootstrap3/.bower.json",
+		"/Users/jiar/git/yo-worktajm/readme.txt",
+		"/Users/jiar/git/yo-worktajm/app/bower_components/angular-ui-bootstrap3/README.md",
+		"/Users/jiar/git/yo-worktajm/app/bower_components/jquery-timepicker/jquery.ui.timepicker.js",
+		"/Users/jiar/git/yo-worktajm/test/spec/services/notificationService.js",
 		"/Users/jiar/git/yo-worktajm/app/scripts/controllers/register.js",
-		"/Users/jiar/git/yo-worktajm/test/spec/controllers/register.js",
-		"/Users/jiar/git/yo-worktajm/app/views/partials/projectModal.html",
-		"/Users/jiar/git/yo-worktajm/app/scripts/controllers/DashboardProjects.js",
-		"/Users/jiar/git/yo-worktajm/karma.conf.js",
-		"/Users/jiar/git/yo-worktajm/package.json",
 		"/Users/jiar/git/yo-worktajm/app/views/main.html",
-		"/Users/jiar/git/yo-worktajm/.travis.yml",
+		"/Users/jiar/git/yo-worktajm/app/views/dashboard.html",
+		"/Users/jiar/git/yo-worktajm/app/scripts/services/notificationService.js",
+		"/Users/jiar/git/yo-worktajm/app/scripts/controllers/notification.js",
+		"/Users/jiar/git/yo-worktajm/test/spec/controllers/notification.js",
+		"/Users/jiar/git/yo-worktajm/test/spec/services/notification.js",
+		"/Users/jiar/git/yo-worktajm/app/scripts/services/notification.js",
+		"/Users/jiar/git/yo-worktajm/app/bower_components/AngularJS-Toaster/README.md",
+		"/Users/jiar/git/yo-worktajm/app/bower_components/AngularJS-Toaster/bower.json",
 		"/Users/jiar/git/yo-worktajm/app/views/about.html",
 		"/Users/jiar/git/yo-worktajm/app/views/reports.html",
+		"/Users/jiar/git/yo-worktajm/.tmp/styles/main.css",
+		"/Users/jiar/git/yo-worktajm/yo-worktajm.sublime-project",
+		"/Users/jiar/git/yo-worktajm/app/scripts/controllers/dashboard.js",
+		"/Users/jiar/git/yo-worktajm/.sass-cache/717119ad097a9d561e1de4ea2542261a0714292f/main.scssc",
+		"/Users/jiar/git/yo-worktajm/app/views/partials/registrationForm.html",
+		"/Users/jiar/git/yo-worktajm/.travis.yml",
 		"/Users/jiar/Downloads/iOS-7-Omnigraffle-Stencil-Freebie-master/README.md",
 		"/Users/jiar/git/tps/yo/app/views/dashboard.html",
 		"/Users/jiar/git/tps/yo/app/views/main.html",
@@ -541,45 +586,7 @@
 		"/Users/jiar/git/tps/yo/test/spec/services/timerService.js",
 		"/Users/jiar/git/tps/yo/test/spec/services/timerServiceTimeEntryCrud.js",
 		"/Users/jiar/git/tps/yo/app/views/partials/login.html",
-		"/Users/jiar/git/tps/yo/app/scripts/filters/dateFilter.js",
-		"/Users/jiar/git/tps/yo/karma.conf.js",
-		"/Users/jiar/git/tps/yo/app/bower_components/datejs/TODO.txt",
-		"/Users/jiar/git/tps/yo/app/bower_components/datejs/src/date.js",
-		"/Users/jiar/git/tps/yo/app/bower_components/datejs/.bower.json",
-		"/Users/jiar/git/tps/yo/test-results.xml",
-		"/Users/jiar/git/tps/yo/app/favicon.ico",
-		"/Users/jiar/git/tps/yo/test/spec/services/timerServiceProjectCrud",
-		"/Users/jiar/git/tps/yo/test/spec/services/projectCrud",
-		"/Users/jiar/git/tps/yo/test/spec/services/timeEntryCrud.js",
-		"/Users/jiar/git/tps/yo/test/spec/services/timeEntryService.js",
-		"/Users/jiar/git/tps/yo/app/scripts/services/projectService.js",
-		"/Users/jiar/git/tps/yo/coverage/PhantomJS 1.9.2 (Mac OS X)/scripts/services/projectService.js.html",
-		"/Users/jiar/git/tps/yo/app/scripts/services/timeEntryService.js",
-		"/Users/jiar/git/tps/yo/test/spec/services/projectService.js",
-		"/Users/jiar/Library/Application Support/Sublime Text 2/Packages/User/SublimeLinter.sublime-settings",
-		"/Users/jiar/git/tps/yo/tps.yo.sublime-project",
-		"/Users/jiar/git/tps/yo/coverage/Chrome 32.0.1662 (Mac OS X 10.8.5)/index.html",
-		"/Users/jiar/git/tps/yo/test/mock/services/ProjectService.js",
-		"/Users/jiar/git/tps/yo/test/spec/services/SampleTest1.js",
-		"/Users/jiar/git/tps/yo/app/scripts/services/testIt.js",
-		"/Users/jiar/git/tps/yo/test/spec/services/testIt.js",
-		"/Users/jiar/git/tps/yo/app/scripts/services/SampleTest1.js",
-		"/Users/jiar/git/tps/yo/app/scripts/controllers/SampleTest1.js",
-		"/Users/jiar/git/tps/yo/test/spec/controllers/SampleTest1.js",
-		"/Users/jiar/git/tps/yo/package.json",
-		"/Users/jiar/SALC_SERVICEDEFINITION.out",
-		"/Users/jiar/git/tps/yo/tps.yo.sublime-workspace",
-		"/Users/jiar/git/tps/yo/test/spec/directives/ensureUserNameUnique.js",
-		"/Users/jiar/git/tps/yo/app/scripts/directives/ensureUserNameUnique.js",
-		"/Users/jiar/git/tps/yo/app/views/register.html",
-		"/Users/jiar/git/samples/angular-rest-springsecurity/src/main/webapp/partials/login.html",
-		"/Users/jiar/git/samples/angular-rest-springsecurity/src/main/resources/context.xml",
-		"/Users/jiar/git/samples/angular-rest-springsecurity/src/main/java/net/dontdrinkandroot/example/angularrestspringsecurity/transfer/UserTransfer.java",
-		"/Users/jiar/git/tps/yo/app/bower_components/angular-tokenauth/README.md",
-		"/Users/jiar/git/tps/yo/app/bower_components/angular-tokenauth/test/spec/auth.js",
-		"/Users/jiar/git/tps/yo/app/bower_components/angular-tokenauth/angular-tokenauth.js",
-		"/Users/jiar/git/tps/yo/app/bower_components/angular-webstorage/.bower.json",
-		"/Users/jiar/git/tps/yo/app/bower_components/angular-tokenauth/src/authProvider.js"
+		"/Users/jiar/git/tps/yo/app/scripts/filters/dateFilter.js"
 	],
 	"find":
 	{
@@ -587,7 +594,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 95.0,
+		"height": 0.0,
 		"where_history":
 		[
 			"-*/coverage/*,-*/app/bower_components/*,*.js,-*/node_modules/*,*.html,*.scss",
@@ -636,6 +643,118 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"devMode",
+			"Project A",
+			"First name",
+			"first name",
+			"primary",
+			"btn-group",
+			"modal",
+			"should call removeProject",
+			"ConfirmationModalCtrl",
+			"delete",
+			"    \n",
+			"onShowConfirmationModal",
+			"removeProject",
+			"broadcast",
+			"broad",
+			"removeProject",
+			"delete",
+			"ConfirmationModalCtrl",
+			"timeEntryModal",
+			"myModalContent.html",
+			"TimeEntryModal",
+			"devMode",
+			"TimeEntryModal.js",
+			"phan",
+			"coverall",
+			"cover",
+			"2.6.0",
+			"timeEntryModal",
+			"devMode",
+			"more",
+			"worktaj,",
+			"https://api.no.de/",
+			"https://worktaj,arnellconsulting.dyndns.org:8080/api",
+			"jill:secret",
+			"jill",
+			"Jill",
+			"jill",
+			"loadNpm",
+			"onTimeEntryUpdated",
+			"tomcat",
+			"manager",
+			"managar",
+			"artifactory",
+			"devMode",
+			"Create new project",
+			"description",
+			"timeEntry.description",
+			"timeEntry.",
+			"dropdown2",
+			"startTime",
+			"timeEntryModal",
+			"glyph",
+			"data.dateDropDownInput",
+			"ng-model",
+			"cover",
+			"requi",
+			"xdescribe(",
+			"startDate",
+			"modal",
+			"describe(",
+			"$scope",
+			"editTimeEntry",
+			"start",
+			"devMode",
+			"h1",
+			"icon",
+			"timeEntries.html",
+			"Time Entries",
+			"jquery-ui",
+			"\"></script>",
+			"restangular",
+			"icon-",
+			"timepicker",
+			"endTime",
+			"timeEntries.html",
+			"timeEntries",
+			"timeEntryModal",
+			"devMode",
+			"devModel",
+			"event that authentication suceed",
+			"hould login successfully",
+			"should login successfully",
+			"tests should login successfully",
+			" for person gracefully",
+			"projects and time entries loaded should handle null value for person gracefully",
+			"should get the currenly logged in person",
+			"1",
+			"userId",
+			"password",
+			"ng-controller",
+			"password",
+			"\"",
+			"right",
+			"spy",
+			"$on",
+			"describe(",
+			"spy",
+			"broadcast",
+			"r.module('tps')",
+			"yoWorktajmApp",
+			"Notification",
+			"notification",
+			"broadcast",
+			"\"",
+			"toaster",
+			"toast-top-right",
+			"success",
+			"toastr",
+			"1.2.1",
+			"toastr",
+			"glyphicon-bar",
+			"glyphicon",
 			"footer",
 			"company",
 			"Name missing",
@@ -651,119 +770,7 @@
 			"Simple",
 			"inside.",
 			"outside.",
-			"$scope.",
-			"register()",
-			"controller",
-			"register",
-			"alert",
-			"alertify",
-			"Auth-Token",
-			"devMode",
-			"onLoggedOut",
-			"more",
-			"updateProject",
-			" ng-include",
-			"devMode",
-			"before",
-			"devMode",
-			"showNewProject",
-			"holder.js",
-			"jsholder",
-			"devMode",
-			"holder",
-			"removeTimeEntry",
-			"myModal",
-			"getDuration",
-			"getAllProjectNames",
-			"getDuration",
-			"get",
-			"removeTimeEntry",
-			"saveNewProject",
-			"updateProject",
-			"saveNewProject",
-			"Description",
-			"description",
-			"projectRate",
-			"projectName",
-			"project.",
-			"getDuration",
-			"deferred",
-			"updateProject",
-			"saveNewProject",
-			"save",
-			"showNewProject",
-			"modal",
-			"newProjectModal",
-			"modal",
-			"in",
-			"project.name",
-			"\"0\"",
-			"sec_num",
-			"Date",
-			"2",
-			"bsHolder",
-			"bs-holder",
-			"end",
-			"getEndTime",
-			"getDuration",
-			"<th",
-			"<small>",
-			"/small>",
-			"devMode",
-			"foot",
-			"img",
-			"worktajm",
-			"glyphicon",
-			"About",
-			"navbar",
-			"data-src",
-			"holder.js",
-			"holder",
-			"navbar-wrapper",
-			"glyphicon",
-			"glyphicons",
-			"halflings",
-			"ns-halflings-regular",
-			"ns-halflings-regular.woff",
-			"placeholder",
-			"placehold",
-			"holder.js",
-			"holder",
-			"ugli",
-			"ugly",
-			"holder",
-			"sass-bootstrap",
-			"dist",
-			"gly",
-			"featurette",
-			"DashboardCtrl",
-			"ugly",
-			"user",
-			"Login",
-			"Received authentication token for user",
-			"xdescribe(",
-			"Spy",
-			"describe(",
-			"xdescribe(",
-			"describe(",
-			"broadcast",
-			"startDate",
-			"devMode",
-			"xdescribe(",
-			"devMode",
-			"httpBackend",
-			"$q",
-			"PersonMock",
-			"$q",
-			"PersonMock",
-			"describe(",
-			"xdescribe(",
-			"ugly",
-			"single",
-			"describe(",
-			"date.js",
-			"datejs",
-			"));"
+			"$scope."
 		],
 		"highlight": false,
 		"in_selection": false,
@@ -771,6 +778,10 @@
 		"regex": false,
 		"replace_history":
 		[
+			"timeEntryModal.html",
+			"describe(",
+			"xdescribe(",
+			"icon-bar",
 			"describe(",
 			"xdescribe(",
 			"describe(",
@@ -809,331 +820,8 @@
 	"groups":
 	[
 		{
-			"selected": 1,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "app/scripts/controllers/register.js",
-					"settings":
-					{
-						"buffer_size": 1900,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								642,
-								642
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"annotations":
-							[
-								"TODO",
-								"README",
-								"FIXME"
-							],
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"csslint_options":
-							{
-								"adjoining-classes": "warning",
-								"box-model": true,
-								"box-sizing": "warning",
-								"compatible-vendor-prefixes": "warning",
-								"display-property-grouping": true,
-								"duplicate-background-images": "warning",
-								"duplicate-properties": true,
-								"empty-rules": true,
-								"errors": true,
-								"fallback-colors": "warning",
-								"floats": "warning",
-								"font-faces": "warning",
-								"font-sizes": "warning",
-								"gradients": "warning",
-								"ids": "warning",
-								"import": "warning",
-								"important": "warning",
-								"known-properties": true,
-								"outline-none": "warning",
-								"overqualified-elements": "warning",
-								"qualified-headings": "warning",
-								"regex-selectors": "warning",
-								"rules-count": "warning",
-								"shorthand": "warning",
-								"star-property-hack": "warning",
-								"text-indent": "warning",
-								"underscore-property-hack": "warning",
-								"unique-headings": "warning",
-								"universal-selector": "warning",
-								"vendor-prefix": true,
-								"zero-units": "warning"
-							},
-							"gjslint_ignore":
-							[
-								110.0
-							],
-							"gjslint_options":
-							[
-							],
-							"javascript_linter": "jshint",
-							"jshint_options":
-							{
-								"browser": true,
-								"evil": true,
-								"regexdash": true,
-								"sub": true,
-								"trailing": true,
-								"wsh": true
-							},
-							"pep8": true,
-							"pep8_ignore":
-							[
-								"E501"
-							],
-							"perl_linter": "perlcritic",
-							"pyflakes_ignore":
-							[
-							],
-							"pyflakes_ignore_import_*": true,
-							"sublimelinter": true,
-							"sublimelinter_delay": 2.0,
-							"sublimelinter_disable":
-							[
-							],
-							"sublimelinter_executable_map":
-							{
-							},
-							"sublimelinter_fill_outlines": false,
-							"sublimelinter_gutter_marks": true,
-							"sublimelinter_gutter_marks_theme": "simple",
-							"sublimelinter_mark_style": "none",
-							"sublimelinter_notes": false,
-							"sublimelinter_objj_check_ascii": false,
-							"sublimelinter_popup_errors_on_save": false,
-							"sublimelinter_syntax_map":
-							{
-								"C++": "c",
-								"Python Django": "python",
-								"Ruby on Rails": "ruby"
-							},
-							"sublimelinter_wrap_find": true,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": ".tmp/styles/main.css",
-					"settings":
-					{
-						"buffer_size": 396215,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"annotations":
-							[
-								"TODO",
-								"README",
-								"FIXME"
-							],
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"csslint_options":
-							{
-								"adjoining-classes": "warning",
-								"box-model": true,
-								"box-sizing": "warning",
-								"compatible-vendor-prefixes": "warning",
-								"display-property-grouping": true,
-								"duplicate-background-images": "warning",
-								"duplicate-properties": true,
-								"empty-rules": true,
-								"errors": true,
-								"fallback-colors": "warning",
-								"floats": "warning",
-								"font-faces": "warning",
-								"font-sizes": "warning",
-								"gradients": "warning",
-								"ids": "warning",
-								"import": "warning",
-								"important": "warning",
-								"known-properties": true,
-								"outline-none": "warning",
-								"overqualified-elements": "warning",
-								"qualified-headings": "warning",
-								"regex-selectors": "warning",
-								"rules-count": "warning",
-								"shorthand": "warning",
-								"star-property-hack": "warning",
-								"text-indent": "warning",
-								"underscore-property-hack": "warning",
-								"unique-headings": "warning",
-								"universal-selector": "warning",
-								"vendor-prefix": true,
-								"zero-units": "warning"
-							},
-							"gjslint_ignore":
-							[
-								110.0
-							],
-							"gjslint_options":
-							[
-							],
-							"javascript_linter": "jshint",
-							"jshint_options":
-							{
-								"browser": true,
-								"evil": true,
-								"regexdash": true,
-								"sub": true,
-								"trailing": true,
-								"wsh": true
-							},
-							"pep8": true,
-							"pep8_ignore":
-							[
-								"E501"
-							],
-							"perl_linter": "perlcritic",
-							"pyflakes_ignore":
-							[
-							],
-							"pyflakes_ignore_import_*": true,
-							"sublimelinter": true,
-							"sublimelinter_delay": 2.0,
-							"sublimelinter_disable":
-							[
-							],
-							"sublimelinter_executable_map":
-							{
-							},
-							"sublimelinter_fill_outlines": false,
-							"sublimelinter_gutter_marks": true,
-							"sublimelinter_gutter_marks_theme": "simple",
-							"sublimelinter_mark_style": "none",
-							"sublimelinter_notes": false,
-							"sublimelinter_objj_check_ascii": false,
-							"sublimelinter_popup_errors_on_save": false,
-							"sublimelinter_syntax_map":
-							{
-								"C++": "c",
-								"Python Django": "python",
-								"Ruby on Rails": "ruby"
-							},
-							"sublimelinter_wrap_find": true,
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -1176,6 +864,11 @@
 	{
 		"height": 102.0
 	},
+	"output.markdown":
+	{
+		"height": 96.0
+	},
+	"project": "yo-worktajm.sublime-project",
 	"replace":
 	{
 		"height": 66.0
@@ -1187,24 +880,152 @@
 		"selected_items":
 		[
 			[
-				"main",
-				".tmp/styles/main.css"
+				"timers",
+				"app/scripts/services/timerService.js"
 			],
 			[
-				"person",
-				"app/scripts/services/personService.js"
+				"confirm",
+				"app/views/partials/dashboard/confirmationModal.html"
 			],
 			[
-				"dashboard",
-				"app/scripts/controllers/dashboard.js"
+				"timerservice",
+				"app/scripts/services/timerService.js"
+			],
+			[
+				"confirmation",
+				"app/scripts/controllers/ConfirmationModal.js"
+			],
+			[
+				"package",
+				"package.json"
+			],
+			[
+				"pack",
+				"package.json"
+			],
+			[
+				"bow",
+				"bower.json"
+			],
+			[
+				"grunt",
+				"Gruntfile.js"
+			],
+			[
+				"bower",
+				"bower.json"
+			],
+			[
+				"index",
+				"app/index.html"
+			],
+			[
+				"karma",
+				"karma.conf.js"
 			],
 			[
 				"app",
 				"app/scripts/app.js"
 			],
 			[
+				"inde",
+				"app/index.html"
+			],
+			[
+				"time",
+				"app/views/partials/dashboard/timeEntryModal.html"
+			],
+			[
+				"dashb",
+				"app/scripts/controllers/DashboardTimeEntries.js"
+			],
+			[
+				"timeentr",
+				"app/views/partials/dashboard/timeEntryModal.html"
+			],
+			[
+				"dashboard",
+				"test/spec/controllers/DashboardTimeEntries.js"
+			],
+			[
+				"karm",
+				"karma.conf.js"
+			],
+			[
+				"main",
+				"app/styles/main.scss"
+			],
+			[
+				"dashboardtimeentries",
+				"app/scripts/controllers/DashboardTimeEntries.js"
+			],
+			[
+				"app.js",
+				"app/scripts/app.js"
+			],
+			[
+				"dashboardtimeentrie",
+				"app/scripts/controllers/DashboardTimeEntries.js"
+			],
+			[
+				"dasboardt",
+				"test/spec/controllers/DashboardTimeEntries.js"
+			],
+			[
+				"timer",
+				"app/scripts/services/timerService.js"
+			],
+			[
+				"timee",
+				"app/views/partials/dashboard/timeEntryModal.html"
+			],
+			[
+				"person",
+				"app/scripts/services/personService.js"
+			],
+			[
+				"login",
+				"app/scripts/controllers/login.js"
+			],
+			[
+				"log",
+				"app/views/login.html"
+			],
+			[
+				"ap",
+				"app/scripts/app.js"
+			],
+			[
+				"regis",
+				"app/scripts/controllers/register.js"
+			],
+			[
+				"logn",
+				"app/scripts/controllers/login.js"
+			],
+			[
 				"regi",
 				"app/scripts/controllers/register.js"
+			],
+			[
+				"dashbo",
+				"app/scripts/controllers/DashboardProjects.js"
+			],
+			[
+				"index.html",
+				"app/index.html"
+			],
+			[
+				"ine",
+				"app/index.html"
+			],
+			[
+				"",
+				"app/scripts/services/personService.js"
+			],
+			[
+				"pers",
+				"app/scripts/services/personService.js"
 			],
 			[
 				"proj",
@@ -1213,14 +1034,6 @@
 			[
 				"reg",
 				"test/spec/controllers/register.js"
-			],
-			[
-				"karma",
-				"karma.conf.js"
-			],
-			[
-				"inde",
-				"app/index.html"
 			],
 			[
 				"register",
@@ -1235,20 +1048,8 @@
 				"test/spec/controllers/DashboardProjects.js"
 			],
 			[
-				"bower",
-				"bower.json"
-			],
-			[
 				"bowr",
 				"bower.json"
-			],
-			[
-				"index",
-				"app/index.html"
-			],
-			[
-				"dashb",
-				"test/spec/controllers/dashboard.js"
 			],
 			[
 				"dashboardpro",
@@ -1267,20 +1068,12 @@
 				"coverage/Chrome 30.0.1599 (Mac OS X 10.9.0)/scripts/controllers/DashboardProjects.js.html"
 			],
 			[
-				"timer",
-				"app/scripts/services/timerService.js"
-			],
-			[
 				"projects",
 				"app/views/partials/dashboard/projects.html"
 			],
 			[
 				"dash",
 				"app/views/dashboard.html"
-			],
-			[
-				"ap",
-				"app/scripts/app.js"
 			],
 			[
 				"bower.",
@@ -1300,10 +1093,6 @@
 			],
 			[
 				"timeen",
-				"app/views/partials/dashboard/timeEntries.html"
-			],
-			[
-				"time",
 				"app/views/partials/dashboard/timeEntries.html"
 			],
 			[
@@ -1335,36 +1124,12 @@
 				"app/scripts/directives/bsHolder.js"
 			],
 			[
-				"app.js",
-				"app/scripts/app.js"
-			],
-			[
 				"main.sc",
 				"app/styles/main.scss"
 			],
 			[
-				"grunt",
-				"Gruntfile.js"
-			],
-			[
-				"index.html",
-				"app/index.html"
-			],
-			[
-				"login",
-				"app/scripts/controllers/login.js"
-			],
-			[
 				"logi",
 				"test/spec/controllers/login.js"
-			],
-			[
-				"log",
-				"app/scripts/controllers/login.js"
-			],
-			[
-				"logn",
-				"app/views/partials/login.html"
 			],
 			[
 				"date",
@@ -1389,14 +1154,6 @@
 			[
 				"das",
 				"test/spec/controllers/DashboardProjects.js"
-			],
-			[
-				"pers",
-				"app/scripts/services/personService.js"
-			],
-			[
-				"",
-				"app/scripts/services/timerService.js"
 			],
 			[
 				"persone",
@@ -1439,19 +1196,7 @@
 				"app/scripts/controllers/DashboardProjects.js"
 			],
 			[
-				"karm",
-				"karma.conf.js"
-			],
-			[
 				"da",
-				"app/scripts/controllers/dashboard.js"
-			],
-			[
-				"regis",
-				"app/scripts/controllers/register.js"
-			],
-			[
-				"dashbo",
 				"app/scripts/controllers/dashboard.js"
 			],
 			[
@@ -1461,10 +1206,6 @@
 			[
 				"compass",
 				"node_modules/grunt-contrib-compass/tasks/lib/compass.js"
-			],
-			[
-				"bow",
-				"bower.json"
 			],
 			[
 				"dasj",
@@ -1569,10 +1310,24 @@
 		],
 		"width": 380.0
 	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
 	"show_minimap": false,
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 314.0,
-	"status_bar_visible": true
+	"side_bar_width": 272.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
 }
