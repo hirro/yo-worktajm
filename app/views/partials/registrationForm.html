@@ -19,7 +19,7 @@
                ng-model="registration.email" />
         <span class="help-block" ng-show="registrationForm.email.$error.required">Required</span>               
         <span class="help-block" ng-show="registrationForm.email.$error.email">Enter a valid email.</span>
-        <span class="help-block" ng-show="registrationForm.email.$error.userExists">Email is already registered</span>
+        <span class="help-block" ng-show="registrationForm.email.$error.uniqueEmail">Email is already registered</span>
       </div>
       
       <!-- Password input-->
