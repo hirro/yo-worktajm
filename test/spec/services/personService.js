@@ -320,21 +320,4 @@ describe('Service: PersonService', function () {
 
   });
 
-  describe('find tests', function () {
-    it('should successfully find the provider user', function () {
-      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/person?username=user').respond();
-      service.isUserNameAvailable('user').then(function (result) {
-        expect(result).toBe(true);
-      });
-      httpBackend.flush();
-    });
-    it('should not find the provider user', function () {
-      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/person?username=user').respond(404);
-      service.isUserNameAvailable('user').then(function (result) {
-        expect(result).toBe(false);
-      });
-      httpBackend.flush();
-    });
-  });
-  
 });

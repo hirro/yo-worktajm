@@ -1,17 +1,22 @@
 'use strict';
 
 angular.module('yoWorktajmApp')
-  .directive('registerSubmit', function ($parse, PersonService) {
+  .directive('registerSubmit', function ($parse, RegistrationService) {
     return {
       restrict: 'A',
       require: ['registerSubmit', '?form'],
       controller: ['$scope', function ($scope) {
         this.attempted = false;
+        this.userExists = false;
         
         var formController = null;
         
         this.setAttempted = function() {
             this.attempted = true;
+        };
+
+        this.setUserExists = function () {
+          this.userExists = true;
         };
         
         this.setFormController = function(controller) {
@@ -52,11 +57,23 @@ angular.module('yoWorktajmApp')
 
               // Validate user
               console.log('Validating user: %s', scope.registration.email);
-              if (!PersonService.isUserNameAvailable(scope.registration.email)) return false;
-      
-              scope.$apply(function() {
-                fn(scope, {$event:event});
-              });
+              RegistrationService.isEmailAvailable(scope.registration.email).then(function (available) {
+                if (available) {
+                  console.log('The provided email is available, proceeding with registration');
+                  _.defer(function () {
+                    scope.$apply(function() {
+                      fn(scope, {$event:event});
+                    });
+                  });                 
+                } else {
+                  // Assign error status to email
+                  console.log('The provided email is already registered');
+                  formController.password.$error.userExists = true;
+                  return false;                  
+                }
+              }, function () {
+                return false;
+              });      
             });
           }
         };
