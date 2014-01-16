@@ -10,7 +10,8 @@
 				"coverage",
 				"dist"
 			],
-			"path": "/Users/jiar/git/yo-worktajm"
+			"follow_symlinks": true,
+			"path": "."
 		}
 	],
 	"settings":

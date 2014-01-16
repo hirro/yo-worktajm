@@ -5,29 +5,40 @@
     <h4>{{header}}</h4>
   </div>
   <div class="modal-body">
-    <form role="form">
+    <form role="form" name="projectForm">
 
-      // Project
       <div class="form-group">
         <label for="projectName">Project name</label>
-
-        <div class="input-group input-group-sm">
-          <span class="input-group-addon">@</span>
-          <input type="text" 
-                 class="form-control" 
-                 id="projectModalName" 
-                 placeholder="Enter project name" 
-                 ng-model="project.name" 
-                 autofocus="autofocus"
-                 required/>
+        <input type="text" 
+               class="form-control" 
+               name="name"
+               id="projectModalName" 
+               placeholder="Enter project name" 
+               ng-model="project.name" 
+               autofocus="autofocus"
+               required/>
+        <span class="help-block" ng-show="projectForm.name.$error.required">Required</span>
+        <span class="help-block" ng-show="projectForm.name.$error.uniqueProjectPerUser">Project name is already defined</span>
       </div>
       <div class="form-group">
         <label for="projectRate">Rate</label>
-        <input type="name" class="form-control" id="projectModalRate" placeholder="Enter rate" ng-model="project.rate"/>
+        <input type="name" 
+               class="form-control" 
+               name="rate"
+               id="projectModalRate" 
+               placeholder="Enter rate" 
+               ng-model="project.rate"/>
+        <span class="help-block">Optional</span>               
       </div>
       <div class="form-group">
         <label for="description">Description</label>
-        <input type="name" class="form-control" id="projectModalDescription" placeholder="Enter project description" ng-model="project.description"/>
+        <input type="name" 
+               class="form-control" 
+               name="description"
+               id="projectModalDescription" 
+               placeholder="Enter project description" 
+               ng-model="project.description"/>
+        <span class="help-block">Optional</span>               
       </div>
     </form>
   </div>
