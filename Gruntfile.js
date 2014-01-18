@@ -348,26 +348,8 @@ module.exports = function (grunt) {
           async: true
         }
       },
-      protractor_install: {
-        command: 'node ./node_modules/protractor/bin/webdriver-manager update'
-      },
       npm_install: {
         command: 'npm install'
-      }
-    },
-    protractor: {
-      options: {
-        keepAlive: true,
-        configFile: "protractor-e2e.conf.js"
-      },
-      singlerun: {},
-      auto: {
-        keepAlive: true,
-        options: {
-          args: {
-            seleniumPort: 4444
-          }
-        }
       }
     }
   });
@@ -424,13 +406,8 @@ module.exports = function (grunt) {
     'build'
   ]);
 
-  //autotest and watch tests
-  //grunt.registerTask('autotest', ['karma:unit_auto']);
-  // grunt.registerTask('autotest:unit', ['karma:unit_auto']);
-  // grunt.registerTask('autotest:e2e', ['connect:testserver','shell:selenium','watch:protractor']);
-
   //installation-related
-  grunt.registerTask('install', ['update','shell:protractor_install']);
+  grunt.registerTask('install', ['update']);
   grunt.registerTask('update', ['shell:npm_install']);
 
 };

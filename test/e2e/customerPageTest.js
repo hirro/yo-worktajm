@@ -23,17 +23,11 @@
           for the JavaScript code in this page.  
 */
 
-'use strict';
-
 /* globals element, it, by, $ */
 
-//require 'utilities.js'
+'use strict';
 
-function generateUniqueId() {
-  var id = new Date().getTime().toString();
-  var random = Math.floor((Math.random()*100)+1).toString();
-  return id + random;
-}
+require('./utilities.js');
 
 function login() {
   // email

@@ -23,9 +23,11 @@
           for the JavaScript code in this page.  
 */
 
+/* globals element, it, by, $ */
+
 'use strict';
 
-/* globals element, it, by, $ */
+require('./utilities.js');
 
 function generateUniqueId() {
   var id = new Date().getTime().toString();
