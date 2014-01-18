@@ -104,7 +104,7 @@ function deleteProject(project) {
 
 describe('should add a project and then delete it', function() {
   it('should login successfully', function() {
-    Utilities.login();
+    Utilities.login('jim@arnellconsulting.com', 'password');
 
     var project = {
       name: 'Project ' + Utilities.generateUniqueId(),

@@ -27,31 +27,11 @@
 
 /* globals element, it, by */
 
-require('./utilities.js');
+var Utilities = require('./utilities.js');
 
 describe('login from landing page', function () {
   it('should login successfully', function () {
-    browser.get('http://127.0.0.1:9000/');
-
-    // email
-    var emailInput = element(by.model('registration.email'));
-    var email = new Date().getTime().toString() + '@protractor.org';
-    emailInput.sendKeys(email);
-
-    // password
-    var passwordInput = element(by.model('registration.password'));
-    passwordInput.sendKeys('password');
-
-    // company
-    var companyInput = element(by.model('registration.company'));
-    companyInput.sendKeys('Test company');
-
-    // Press the login
-    element(by.id('register')).click();
-
-    // We should now be logged in and transferred to the dashboard
-    // 
-    var firstName = element(by.binding('person.firstName'));
-    expect(firstName.getText()).toEqual('First name Last name');
+    var username = Utilities.generateUsername();
+    Utilities.register(username, 'password');
   });
 });
