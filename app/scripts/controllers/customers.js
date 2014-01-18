@@ -65,6 +65,7 @@ angular.module('yoWorktajmApp')
     $scope.createCustomer = function () {
       var customer = {};
       $scope.editCustomer(customer);
+      $scope.customers.push(customer);
     };
 
     $scope.initialize();
