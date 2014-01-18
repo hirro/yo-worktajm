@@ -100,7 +100,7 @@ describe('Service: CustomerService', function () {
   describe('create / update tests', function () {
     it('should create a new customer', function () {
       // Setup
-      httpBackend.whenPOST('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer').respond(_.clone(customerA));
+      httpBackend.whenPOST('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer').respond(_.clone(customerA));
       spyOn(customerService, 'save').andCallThrough();
       spyOn(customerService, 'create').andCallThrough();
       spyOn(customerService, 'update').andCallThrough();
@@ -125,7 +125,7 @@ describe('Service: CustomerService', function () {
 
     it('should try to create a new customer but get an error from backend', function () {
       // Setup
-      httpBackend.whenPOST('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer').respond(401);
+      httpBackend.whenPOST('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer').respond(401);
       spyOn(customerService, 'save').andCallThrough();
       spyOn(customerService, 'create').andCallThrough();
       spyOn(customerService, 'update').andCallThrough();
@@ -150,7 +150,7 @@ describe('Service: CustomerService', function () {
 
     it('should update a customer', function () {
       // Setup
-      httpBackend.whenPUT('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer/1').respond(_.clone(customerA));
+      httpBackend.whenPUT('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer/1').respond(_.clone(customerA));
       spyOn(customerService, 'save').andCallThrough();
       spyOn(customerService, 'create').andCallThrough();
       spyOn(customerService, 'update').andCallThrough();
@@ -175,7 +175,7 @@ describe('Service: CustomerService', function () {
 
     it('should try to update a customer but get an error from backend', function () {
       // Setup
-      httpBackend.whenPUT('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer/1').respond(401);
+      httpBackend.whenPUT('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer/1').respond(401);
       spyOn(customerService, 'save').andCallThrough();
       spyOn(customerService, 'create').andCallThrough();
       spyOn(customerService, 'update').andCallThrough();
@@ -202,7 +202,7 @@ describe('Service: CustomerService', function () {
   describe('read tests', function () {
     it('should get the customer with the provided id', function () {
       // Setup
-      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer/1').respond(_.clone(customerA));
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer/1').respond(_.clone(customerA));
       spyOn(customerService, 'get').andCallThrough();
 
       // Test
@@ -223,7 +223,7 @@ describe('Service: CustomerService', function () {
     });
     it('should handle get with invalid id gracefully', function () {
       // Setup
-      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer/1').respond(401);
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer/1').respond(401);
       spyOn(customerService, 'get').andCallThrough();
 
       // Test
@@ -248,7 +248,7 @@ describe('Service: CustomerService', function () {
   describe('list tests', function () {
     it('should successfully retrieve a list of all customers', function () {
       // Setup
-      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer').respond(_.clone(customers));
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer').respond(_.clone(customers));
       spyOn(customerService, 'list').andCallThrough();
 
       // Test
@@ -271,7 +271,7 @@ describe('Service: CustomerService', function () {
 
     it('should gracefully handle error from backend', function () {
       // Setup
-      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer').respond(401);
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer').respond(401);
       spyOn(customerService, 'list').andCallThrough();
 
       // Test
@@ -295,7 +295,7 @@ describe('Service: CustomerService', function () {
   describe('delete tests', function () {
     it('should delete the customer with the provider id (unless it is associated with a project)', function () {
       // Setup
-      httpBackend.whenDELETE('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer/1').respond(200);
+      httpBackend.whenDELETE('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer/1').respond(200);
       spyOn(customerService, 'delete').andCallThrough();
 
       // Test
@@ -317,7 +317,7 @@ describe('Service: CustomerService', function () {
 
     it('should handle error from backend', function () {
       // Setup
-      httpBackend.whenDELETE('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer/1').respond(401);
+      httpBackend.whenDELETE('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer/1').respond(401);
       spyOn(customerService, 'delete').andCallThrough();
 
       // Test
@@ -341,7 +341,7 @@ describe('Service: CustomerService', function () {
   describe('findCustomerByName', function() {
     it('should find customer with provided name', function () {
       // Setup
-      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer').respond(customers);
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer').respond(customers);
       spyOn(customerService, 'list').andCallThrough();
       spyOn(customerService, 'findCustomerByName').andCallThrough();
 
@@ -365,7 +365,7 @@ describe('Service: CustomerService', function () {
 
     it('should not find customer with undefined name', function () {
       // Setup
-      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer').respond(customers);
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer').respond(customers);
       spyOn(customerService, 'list').andCallThrough();
       spyOn(customerService, 'findCustomerByName').andCallThrough();
 

@@ -93,7 +93,7 @@ describe('Service: TimerService', function () {
     beforeEach(function () {
       // Prereq 1 = Person must be loaded
       var person = null;
-      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/person/1').respond(persons[0]);
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/person/1').respond(persons[0]);
       personService.getPerson().then(function (result) {
         person = result;
       });
@@ -102,8 +102,8 @@ describe('Service: TimerService', function () {
       expect(person.username).toBe('User A');
 
       // Prereq 2 = Projects must be loaded
-      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/project').respond(_.clone(projects));
-      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer/1066').respond(customers[0]);
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/project').respond(_.clone(projects));
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer/1066').respond(customers[0]);
       spyOn(scope, '$broadcast').andCallThrough();
       timerService.reloadProject();
       scope.$digest();
@@ -114,7 +114,7 @@ describe('Service: TimerService', function () {
       timerService.getTimeEntries().then(function (result) {
         timeEntries = result;
       });
-      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/timeEntry').respond([
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/timeEntry').respond([
         { id: '1', startTime: '0', endTime: '1' }
       ]);
       scope.$digest();
@@ -137,11 +137,11 @@ describe('Service: TimerService', function () {
       });
 
       // Create time entry
-      httpBackend.whenPOST('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/timeEntry').respond(timeEntries[0]);
+      httpBackend.whenPOST('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/timeEntry').respond(timeEntries[0]);
       // Person is updated with active time entry
-      httpBackend.whenPUT('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/person/1').respond(person[0]);
+      httpBackend.whenPUT('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/person/1').respond(person[0]);
       // Customer
-      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/customer/1066').respond(customers[0]);
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer/1066').respond(customers[0]);
       scope.$digest();
       httpBackend.flush();
 
@@ -159,7 +159,7 @@ describe('Service: TimerService', function () {
       });
 
       // Verify it is stopped
-      httpBackend.whenPUT('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/timeEntry/201').respond(timeEntries[0]);
+      httpBackend.whenPUT('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/timeEntry/201').respond(timeEntries[0]);
       scope.$digest();
       httpBackend.flush();
       expect(timerStoppedSuccessfully).toBe(true);

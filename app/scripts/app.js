@@ -37,7 +37,7 @@ angular.module('yoWorktajmApp', [
     }
   )
   .config(function (RestangularProvider) {
-    RestangularProvider.setBaseUrl('http://worktajm.arnellconsulting.dyndns.org:8080/api/api');
+    RestangularProvider.setBaseUrl('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api');
   });
 
 // Configure toastr

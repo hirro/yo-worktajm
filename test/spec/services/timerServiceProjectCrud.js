@@ -93,7 +93,7 @@ describe('Service: TimerService, CRUD tests for Project', function () {
 
   describe('CRUD tests with an initialized project list', function() {
     beforeEach(function () {
-      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/project').respond(_.clone(projects));
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/project').respond(_.clone(projects));
       spyOn(timerService, 'getProjects').andCallThrough();
       spyOn(timerService, 'reloadProject').andCallThrough();
       spyOn(scope, '$broadcast').andCallThrough();
@@ -129,7 +129,7 @@ describe('Service: TimerService, CRUD tests for Project', function () {
       var projectToBeRemoved = timerService.getProject(projectId);
       expect(projectToBeRemoved.id).toBe(projectId);
       // Remove project
-      httpBackend.whenDELETE('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/project/302').respond(201);
+      httpBackend.whenDELETE('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/project/302').respond(201);
       timerService.deleteProject(projectToBeRemoved);
       // Make the requests go though
       scope.$digest();
@@ -147,7 +147,7 @@ describe('Service: TimerService, CRUD tests for Project', function () {
       var project = timerService.getProject(projectId);
       expect(project.id).toBe(projectId);
       // Update it
-      httpBackend.whenPUT('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/project/302').respond();
+      httpBackend.whenPUT('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/project/302').respond();
       timerService.updateProject(project).then(function () {
         successful = true;
       });
@@ -165,7 +165,7 @@ describe('Service: TimerService, CRUD tests for Project', function () {
 
       // Create the proejct
       spyOn(timerService, 'updateProject').andCallThrough();
-      httpBackend.whenPOST('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/project').respond(projects[1]);
+      httpBackend.whenPOST('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/project').respond(projects[1]);
       timerService.updateProject(project).then(function (r) {
         result = r;
       }, function (m) {

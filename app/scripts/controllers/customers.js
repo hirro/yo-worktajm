@@ -60,7 +60,12 @@ angular.module('yoWorktajmApp')
       }, function () {
         console.info('Modal dismissed at: ' + new Date());
       });
-    };    
+    };
+
+    $scope.createCustomer = function () {
+      var customer = {};
+      $scope.editCustomer(customer);
+    };
 
     $scope.initialize();
 

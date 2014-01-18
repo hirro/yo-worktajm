@@ -27,6 +27,11 @@
           <h4 class="panel-title">Customers</h4>
         </div>
         <div class="panel-body customers" ng-controller="CustomersCtrl">
+          <p>
+            <a class="btn btn-primary btn-sm" 
+               ng-click="createCustomer()">
+              <i class="glyphicon-plus"></i> Add new customer</a>
+          </p>
           <table  class="table table-condensed table-hover" >
             <thead>
               <tr>

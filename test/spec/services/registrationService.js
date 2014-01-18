@@ -53,14 +53,14 @@ describe('Service: RegistrationService', function () {
 
   describe('find tests', function () {
     it('should successfully find the provider user', function () {
-      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/registration/isEmailAvailable?email=user').respond('false');
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/registration/isEmailAvailable?email=user').respond('false');
       service.isEmailAvailable('user').then(function (result) {
         expect(result).toBe(false);
       });
       httpBackend.flush();
     });
     it('should not find the provider user', function () {
-      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/api/api/registration/isEmailAvailable?email=user').respond('true');
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/registration/isEmailAvailable?email=user').respond('true');
       service.isEmailAvailable('user').then(function (result) {
         expect(result).toBe(true);
       });
