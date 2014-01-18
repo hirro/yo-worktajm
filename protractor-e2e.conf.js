@@ -1,7 +1,7 @@
 exports.config = {
   // Do not start a Selenium Standalone sever - only run this using chrome.
   chromeOnly: true,
-  chromeDriver: './node_modules/protractor/selenium/chromedriver',
+  chromeDriver: '../../Dropbox/Development/chromedriver',
   
   // Capabilities to be passed to the webdriver instance.
   capabilities: {
