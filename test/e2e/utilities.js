@@ -60,4 +60,7 @@ this.register = function (username, password) {
 };
 
 this.logout = function () {
+  element(by.id('nav_user')).click();
+  element(by.id('nav_logout')).click();
+  expect(browser.getCurrentUrl()).toBe('http://127.0.0.1:9000/#/login');
 };

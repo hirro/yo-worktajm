@@ -14,10 +14,10 @@
         <li ng-class="{active: isActive('/reports')}"><a href="#/reports">Reports</a></li>
         <li ng-class="{active: isActive('/customers')}"><a href="#/customers">Customers</a></li>
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
+          <a id="nav_user" class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a ng-click="showUserProfile()">Profile</a></li>
-            <li><a ng-click="logout()">Logout</a></li>
+            <li><a id="nav_profile" ng-click="showUserProfile()">Profile</a></li>
+            <li><a id="nav_logout" ng-click="logout()">Logout</a></li>
           </ul>
         </li>
       </ul>

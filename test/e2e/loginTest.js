@@ -26,7 +26,8 @@
 var Utilities = require('./utilities.js');
 
 describe('login from landing page', function() {
-  it('should login successfully', function() {
+  it('should login successfully and then logout', function() {
     Utilities.login('jim@arnellconsulting.com', 'password');
+    Utilities.logout();
   });
 });

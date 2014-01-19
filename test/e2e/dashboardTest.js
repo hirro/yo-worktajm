@@ -31,8 +31,6 @@ var Utilities = require('./utilities.js');
 var Constants = require('./constants.js');
 
 describe('project operations', function() {
-  var projectA = Constants.createProject();
-  var projectB = Constants.createProject();
   var username, password;
 
   var addProject = function (project) {
@@ -114,14 +112,43 @@ describe('project operations', function() {
   });
 
   it('should add and delete a project', function() {
-
-    // This needs some flattening
+    var projectA = Constants.createProject();
+  
+    // Add the projects
     expect(getProjectCount()).toBe(0);
     addProject(projectA);
     expect(getProjectCount()).toBe(1);
+
+    // Delete projects
     deleteProject(projectA);
     expect(getProjectCount()).toBe(0);
   });
 
+  it('should add two projects, then start and stop timers in a different sequences.', function() {
+    var projectA = Constants.createProject();
+    var projectB = Constants.createProject();
+
+    // Add the projects
+    expect(getProjectCount()).toBe(0);
+    addProject(projectB);
+    expect(getProjectCount()).toBe(1);
+    addProject(projectA);
+    expect(getProjectCount()).toBe(2);
+
+    // Start A - Stop A - Delete Time Entries
+
+    // Start A - Start B - Stop B - Delete Time Entries
+
+    // 
+
+    // Delete projects
+    // deleteProject(projectB);
+    // expect(getProjectCount()).toBe(1);
+    // deleteProject(projectA);
+    // expect(getProjectCount()).toBe(0);
+  });
+
+  it('should add one project, start a timer, logout, login and finally verify that the timer is still active', function() {
+  });
 
 });
