@@ -1,16 +1,17 @@
 'use strict';
 
+/*globals this, element, by, expect */
 
 this.generateUniqueId = function () {
   var id = new Date().getTime().toString();
   var random = Math.floor((Math.random()*100)+1).toString();
   return id + random;
-}
+};
 
 this.generateUsername = function () {
   var email = new Date().getTime().toString() + '@protractor.org';
   return email;
-}
+};
 
 this.login = function (username, password) {
   browser.get('http://127.0.0.1:9000/');
@@ -32,7 +33,7 @@ this.login = function (username, password) {
   // 
   var firstName = element(by.binding('person.firstName'));
   expect(firstName.getText()).toEqual('Jim Arnell');
-}
+};
 
 this.register = function (username, password) {
   browser.get('http://127.0.0.1:9000/');
@@ -55,8 +56,8 @@ this.register = function (username, password) {
   // We should now be logged in and transferred to the dashboard
   // 
   var firstName = element(by.binding('person.firstName'));
-  expect(firstName.getText()).toEqual('First name Last name');  
-}
+  expect(firstName.getText()).toEqual('First name Last name');
+};
 
 this.logout = function () {
-}
+};
