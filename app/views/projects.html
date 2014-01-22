@@ -1,0 +1,77 @@
+<div>
+  <div ng-include src="'views/modals/confirmationModal.html'"></div>
+</div>
+<div>
+  <div ng-include src="'views/modals/projectModal.html'"></div>
+</div>
+<div ng-include src="'views/partials/navbar.html'" ></div>
+
+<div class="container" ng-show="person" >
+
+  <div class="row">
+      <div ng-include src="'views/partials/loading.html'" >
+      </div>        
+  </div>
+
+  <!-- Projects -->
+  <div class="row">
+
+    <!-- Column 1 -->
+    <div class="col-md-2">
+    </div>
+
+    <!-- Center column -->
+    <div class="col-md-8">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">Project</h4>
+        </div>
+        <div class="panel-body projects" ng-controller="ProjectsCtrl">
+          <p>
+            <a class="btn btn-primary btn-sm" 
+               ng-click="createProject()">
+              <i class="glyphicon-plus"></i> Add new project</a>
+          </p>
+          <table  class="table table-condensed table-hover" >
+            <thead>
+              <tr>
+                <th class="col-md-5" >Name</th>
+                <th class="col-md-3">&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody ng-repeat="project in projects">
+              <tr>
+                <td>
+                  <div ng-model="project.name" title="Click to edit">{{project.name}}</div>
+                </td>
+                <td>
+                  <div class="btn-group pull-right">
+                    <button type="button" 
+                            class="btn btn-default btn-sm glyphicon glyphicon-edit" 
+                            ng-click="editProject(project)"
+                            popover="Edit"
+                            popover-placement="left" 
+                            popover-trigger="mouseenter">                          
+                    </button>
+                    <button type="button" 
+                            class="btn btn-default btn-sm glyphicon glyphicon-trash" 
+                            ng-click="removeProject(project)"
+                            popover="Remove" 
+                            popover-placement="right" 
+                            popover-trigger="mouseenter">
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+
+    <!-- Column 3 -->
+    <div class="col-md-2">
+    </div>
+
+    </div>
+  </div>
+</div>

@@ -1,13 +1,13 @@
 <script type="text/ng-template" id="confirmationModal.html">
 
   <div class="modal-header">
-    <h4>{{title}}</h4>
+    <h4>{{titleText}}</h4>
   </div>
   <div class="modal-body">
-  {{text}} 
+  {{messageText}} 
   </div>
   <div class="modal-footer">
-    <button id="confirmationModalDeleteBtn" type="button" class="btn btn-default" ng-click="ok()">Delete</button>
-    <button type="button" class="btn btn-primary" ng-click="cancel()">Cancel</button>
+    <button id="confirmationModalDeleteBtn" type="button" class="btn btn-default" ng-click="ok()">{{okText}}</button>
+    <button type="button" class="btn btn-primary" ng-click="cancel()">{{cancelText}}</button>
   </div>
 </script>

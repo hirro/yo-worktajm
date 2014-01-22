@@ -122,8 +122,10 @@ angular.module('yoWorktajmApp')
     // Create verification modal
     $scope.createProject = function (project) {
       var modalParams = {
-        title: 'Create project',
-        text: ''
+        titleText: 'Create project',
+        messageText: '',
+        okText: 'Create',
+        cancelText: 'Cancel'
       };
       var modalInstance = $modal.open({
         templateUrl: 'projectModal.html',
@@ -144,8 +146,10 @@ angular.module('yoWorktajmApp')
     // Create verification modal
     $scope.deleteProject = function (project) {
       var modalParams = {
-        title: 'Remove project',
-        text: 'Do you want to remove project?'
+        titleText: 'Remove project',
+        messageText: 'Do you want to remove project?',
+        okText: 'Remove',
+        cancelText: 'Cancel'
       };
       var modalInstance = $modal.open({
         templateUrl: 'confirmationModal.html',
@@ -167,8 +171,10 @@ angular.module('yoWorktajmApp')
     $scope.showCustomerModal = function (customer) {
       console.log('DashboardProjectsCtrl::showCustomerModalModal, customerName: %s', customer.name);
       var modalParams = {
-        title: 'Create customer',
-        text: 'Do you want to create a new customer?',
+        titleText: 'Create customer',
+        messageText: 'Do you want to create a new customer?',
+        okText: 'Create',
+        cancelText: 'Cancel',
         customer: customer
       };
       var modalInstance = $modal.open({

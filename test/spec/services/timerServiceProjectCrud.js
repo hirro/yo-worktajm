@@ -180,7 +180,7 @@ describe('Service: TimerService, CRUD tests for Project', function () {
       expect(timerService.updateProject).toHaveBeenCalledWith(project);
       expect(error).toBeUndefined();
       expect(result.id).toBe(projects[1].id);
-      expect(scope.$broadcast).toHaveBeenCalledWith('onProjectUpdated', result);
+      expect(scope.$broadcast).toHaveBeenCalledWith('onProjectCreated', result);
     });
 
     it('should mark the project as active', function () {

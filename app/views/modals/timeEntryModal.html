@@ -2,7 +2,7 @@
 
   <!-- Modal -->
   <div class="modal-header">
-    <h4>Edit Time Entry</h4>
+    <h4>{{titleText}}</h4>
   </div>
   <div class="modal-body">
     <form role="form">
@@ -46,7 +46,7 @@
     </form>               
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-default" ng-click="cancel()">Close</button>
-    <button type="button" class="btn btn-primary" ng-click="ok()">Save changes</button>
+    <button type="button" class="btn btn-default" ng-click="cancel()">{{cancelText}}</button>
+    <button type="button" class="btn btn-primary" ng-click="ok()">{{okText}}</button>
   </div>
 </script>

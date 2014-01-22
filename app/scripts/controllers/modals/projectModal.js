@@ -1,10 +1,14 @@
 'use strict';
 
 angular.module('yoWorktajmApp').controller('ProjectModalCtrl', function ($scope, $modalInstance, modalParams) {
-    $scope.title = modalParams.title;
-    $scope.text = modalParams.text;
+    $scope.titleText = modalParams.titleText;
+    $scope.messageText = modalParams.messageText;
+    $scope.okText = modalParams.okText;
+    $scope.cancelText = modalParams.cancelText;
     $scope.project = {
-      name: ''
+      name: modalParams.project.name,
+      rate: modalParams.project.rate,
+      description: modalParams.project.description
     };
     $scope.ok = function () {
       // FIXME

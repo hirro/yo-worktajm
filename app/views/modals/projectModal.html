@@ -2,7 +2,7 @@
 
   <!-- Modal -->
   <div class="modal-header">
-    <h4>{{header}}</h4>
+    <h4>{{titleText}}</h4>
   </div>
   <div class="modal-body">
     <form role="form" name="projectForm">
@@ -43,7 +43,7 @@
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-default" id="projectModalCancel" ng-click="cancel()">Close</button>
-    <button type="button" class="btn btn-primary" id="projectModalOk" ng-click="ok()">Create Project</button>
+    <button type="button" class="btn btn-default" id="projectModalCancel" ng-click="cancel()">{{cancelText}}</button>
+    <button type="button" class="btn btn-primary" id="projectModalOk" ng-click="ok()">{{okText}}</button>
   </div>
 </script>

@@ -2,8 +2,10 @@
 
 angular.module('yoWorktajmApp')
   .controller('ConfirmationModalCtrl', function ($scope, $modalInstance, modalParams) {
-    $scope.title = modalParams.title;
-    $scope.text = modalParams.text;
+    $scope.titleText = modalParams.titleText;
+    $scope.messageText = modalParams.messageText;
+    $scope.okText = modalParams.okText;
+    $scope.cancelText = modalParams.cancelText;
     $scope.ok = function () {
       $modalInstance.close();
     };
