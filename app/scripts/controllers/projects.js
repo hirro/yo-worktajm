@@ -75,8 +75,10 @@ angular.module('yoWorktajmApp')
         }
       });
       modalInstance.result.then(function (result) {
-        result.id = project.id;
-        TimerService.updateProject(result);
+        project.rate = result.rate;
+        project.description = result.description;
+        project.name = result.name;
+        TimerService.updateProject(project);
       }, function () {
         console.info('Modal dismissed at: ' + new Date());
       });

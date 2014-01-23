@@ -125,7 +125,8 @@ angular.module('yoWorktajmApp')
         titleText: 'Create project',
         messageText: '',
         okText: 'Create',
-        cancelText: 'Cancel'
+        cancelText: 'Cancel',
+        project: {}
       };
       var modalInstance = $modal.open({
         templateUrl: 'projectModal.html',

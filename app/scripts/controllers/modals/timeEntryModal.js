@@ -27,13 +27,13 @@
 
 'use strict';
 
-angular.module('yoWorktajmApp').controller('TimeEntryModalCtrl', function ($scope, $modalInstance, TimerService, timeEntry) {
+angular.module('yoWorktajmApp').controller('TimeEntryModalCtrl', function ($scope, $modalInstance, TimerService, modalParams) {
 
   console.log('ModalInstanceCtrl::INIT ');
   $scope.projectNames = _.pluck(TimerService.getProjects(), 'name');
-  $scope.timeEntry = timeEntry;
-  $scope.timeEntry.start = new Date(timeEntry.startTime);
-  $scope.timeEntry.end = new Date(timeEntry.endTime);
+  $scope.timeEntry = modalParams.timeEntry;
+  $scope.timeEntry.start = new Date(modalParams.timeEntry.startTime);
+  $scope.timeEntry.end = new Date(modalParams.timeEntry.endTime);
 
   $scope.ok = function () {
     console.log('startTime [], endTime []', $scope.startTime, $scope.endTime);

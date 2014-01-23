@@ -56,7 +56,7 @@ describe('Controller: TimeEntryModalCtrl', function () {
     TimeEntryModalCtrl = $controller('TimeEntryModalCtrl', {
       $scope: $scope,
       $modalInstance: $modalInstance,
-      timeEntry: timeEntry
+      modalParams: { timeEntry: timeEntry }
     });
     TimeEntryModalCtrl.$inject = ['$scope',  '$route', 'TimerService'];
   }));

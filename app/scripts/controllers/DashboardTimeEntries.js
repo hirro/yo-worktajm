@@ -54,12 +54,19 @@ angular.module('yoWorktajmApp')
 
     $scope.editTimeEntry = function (timeEntry) {
       console.log('DashboardTimeEntriesCtrl::editTimeEntry - timeEntry.id %d', timeEntry.id);
+      var modalParams = {
+        titleText: 'Create customer',
+        messageText: 'Do you want to create a new customer?',
+        okText: 'Create',
+        cancelText: 'Cancel',
+        timeEntry: timeEntry
+      };      
       var modalInstance = $modal.open({
         templateUrl: 'timeEntryModal.html',
         controller: 'TimeEntryModalCtrl',
         resolve: {
-          timeEntry: function () {
-            return timeEntry;
+          modalParams: function () {
+            return modalParams;
           }
         }
       });
