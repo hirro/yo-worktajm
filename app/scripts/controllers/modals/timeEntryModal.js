@@ -34,6 +34,8 @@ angular.module('yoWorktajmApp').controller('TimeEntryModalCtrl', function ($scop
   $scope.timeEntry = modalParams.timeEntry;
   $scope.timeEntry.start = new Date(modalParams.timeEntry.startTime);
   $scope.timeEntry.end = new Date(modalParams.timeEntry.endTime);
+  $scope.okText = modalParams.okText;
+  $scope.cancelText = modalParams.cancelText;
 
   $scope.ok = function () {
     console.log('startTime [], endTime []', $scope.startTime, $scope.endTime);
