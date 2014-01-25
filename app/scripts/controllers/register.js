@@ -27,7 +27,8 @@
 
 'use strict';
 
-angular.module('yoWorktajmApp').controller('RegisterCtrl', function ($scope, Restangular, $location, $rootScope, PersonService) {
+angular.module('yoWorktajmApp').controller('RegisterCtrl', function ($scope, Restangular, $location, $rootScope, PersonService, CustomerService) {
+
   $scope.register = function () {
     if ($scope.registration && $scope.registration.email) {
       console.log('RegisterCtrl::register -  email: [%s]', $scope.registration.email);
