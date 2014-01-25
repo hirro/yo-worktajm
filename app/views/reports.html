@@ -51,7 +51,8 @@
                 class="btn btn-primary"
                 ng-model="selectedCustomer.id"
                 ng-change="changedCustomer()"
-                btn-radio="customer.id">
+                btn-radio="customer.id"
+                >
           {{customer.name}}
         </button>
       </div>
@@ -66,17 +67,20 @@
         <button ng-repeat="project in projects" 
                 type="button" 
                 class="btn btn-primary" 
-                ng-model="selectedProjects.id" 
-                btn-radio="project.id">
+                ng-model="project.enabled" 
+                btn-radio="project.id"
+                btn-checkbox>
           {{project.name}}
         </button>
       </div>
     </div>    
   </div>  
 
-  <pre>{{selectedTime}}</pre>
-  <pre>{{selectedCustomer}}</pre>
-  <pre>{{selectedProjects}}</pre>
+  <pre>
+    {{selectedTime}}
+    {{selectedCustomer}}
+    {{enabledProjects()}}
+  </pre>
 
   <button type="submit" class="btn btn-default">Run Report</button>
 </form>
