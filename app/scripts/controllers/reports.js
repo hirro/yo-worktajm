@@ -12,16 +12,14 @@ angular.module('yoWorktajmApp')
     ];
     $scope.customers = [];
     $scope.projects = TimerService.getProjects();
+    $scope.selectedTime = {};
     $scope.selectedCustomer = {};
-    $scope.selectedTimePeriod = {};
     $scope.selectedProjects = [];
 
     // Load the available customers
     CustomerService.list().then(function (result) {
       console.log('ReportsCtrl - Loaded customers from service');
       $scope.customers = result;
-      $scope.selectedCustomerId = result[0].id;
-      $scope.selectedDate = 'today';
     });
 
     $scope.generateReport = function () {
