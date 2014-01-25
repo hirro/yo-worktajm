@@ -4,7 +4,7 @@
 [![Dependency Status](https://gemnasium.com/hirro/yo-worktajm.png)](https://gemnasium.com/hirro/yo-worktajm)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/hirro/yo-worktajm/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
-
+[![Views in the last 24 hours](https://sourcegraph.com/api/repos/github.com/hirro/yo-worktajm/counters/views-24h.png)](https://sourcegraph.com/github.com/hirro/yo-worktajm)
 [ ![Codeship Status for hirro/yo-worktajm](https://www.codeship.io/projects/295e56d0-3115-0131-77a2-4ab24c68f59c/status?branch=master)](https://www.codeship.io/projects/9576)
 
 # WorkTajm
