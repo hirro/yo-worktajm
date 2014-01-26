@@ -59,7 +59,7 @@ angular.module('yoWorktajmApp')
     // create
     // Update the provided project
     $scope.updateProject = function (project) {
-      console.log('DashboardProjectsCtrl::updateProject - CustomerName: %s', project.customerName);
+      console.log('DashboardProjectsCtrl::updateProject - name: %s', project.name);
 
       // 1. If customer name is presented:
       // 1.1 Check if presented customer is new or existing.

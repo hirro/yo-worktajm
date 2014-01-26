@@ -84,8 +84,10 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
   svc.updateProject = function (project) {
     var deferred = $q.defer();
     if (project.id) {
-      console.log('TimerService::updateProject');
-      project.put().then(function (updatedProject) {
+      console.log('TimerService::updateProject with id []%d', project.id);
+      var originalProject = svc.getProject(project.id);
+      _.extend(originalProject, _.pick(project, 'id', 'name', 'rate', 'description'));
+      originalProject.put().then(function (updatedProject) {
         console.log('TimerService::updateProject - Backend updated successfully');
         console.log('BROADCAST: - onProjectUpdated (%d)', project.id);
         $rootScope.$broadcast('onProjectUpdated', project);

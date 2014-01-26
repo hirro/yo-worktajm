@@ -124,11 +124,13 @@ angular.module('yoWorktajmApp')
       console.log('EVENT: DashboardTimeEntriesCtrl::onTimeEntriesRefreshed(count [%d])', newTimeEntries.length);
       $scope.timeEntries = newTimeEntries;
     });
-    $scope.$on('onTimeEntryUpdated', function (event, updatedTimeEntry) {
-      console.log('EVENT: DashboardTimeEntriesCtrl::onTimeEntryUpdated(id [%d])', updatedTimeEntry.id);
-    });
-    $scope.$on('onTimeEntryRemoved', function (event, removedTimeEntry) {
-      console.log('EVENT: DashboardTimeEntriesCtrl::onTimeEntryRemoved(id [%d])', removedTimeEntry.id);
+    $scope.$on('onProjectUpdated', function (event, updatedProject) {
+      console.log('EVENT: DashboardTimeEntriesCtrl::onProjectUpdated(id [%d])', updatedProject.id);
+      _.each($scope.timeEntries, function (entry) {
+        if (entry.project.id === updatedProject.id) {
+          _.extend(entry.project, _.pick(updatedProject, 'name'));
+        }
+      });
     });
     $scope.$on('onLoggedOut', function () {
       console.info('EVENT: DashboardTimeEntriesCtrl::onLoggedOut()');
