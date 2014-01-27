@@ -8,15 +8,24 @@
 // 'test/spec/**/*.js'
 
 module.exports = function (grunt) {
+
+  // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
+  
+  // Time how long tasks take. Can help when optimizing build times  
   require('time-grunt')(grunt);
 
+  // Define the configuration for all the tasks
   grunt.initConfig({
+
+    // Project settings
     yeoman: {
       // configurable paths
       app: require('./bower.json').appPath || 'app',
       dist: 'dist'
     },
+
+    // Watches files for changes and runs tasks based on the changed files
     watch: {
       coffee: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.coffee'],
@@ -34,6 +43,9 @@ module.exports = function (grunt) {
         files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
         tasks: ['copy:styles', 'autoprefixer']
       },
+      gruntfile: {
+        files: ['Gruntfile.js']
+      },      
       livereload: {
         options: {
           livereload: '<%= connect.options.livereload %>'
@@ -50,17 +62,8 @@ module.exports = function (grunt) {
         tasks: ['protractor:auto']
       }      
     },
-    autoprefixer: {
-      options: ['last 1 version'],
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '.tmp/styles/',
-          src: '{,*/}*.css',
-          dest: '.tmp/styles/'
-        }]
-      }
-    },
+
+    // The actual grunt server settings
     connect: {
       options: {
         port: 9000,
@@ -98,6 +101,18 @@ module.exports = function (grunt) {
         }
       }      
     },
+    jshint: {
+      options: {
+        jshintrc: '.jshintrc',
+        reporter: require('jshint-stylish')
+      },
+      all: [
+        'Gruntfile.js',
+        '<%= yeoman.app %>/scripts/{,*/}*.js'
+      ]
+    },
+        
+    // Empties folders to start fresh    
     clean: {
       dist: {
         files: [{
@@ -111,16 +126,22 @@ module.exports = function (grunt) {
       },
       server: '.tmp'
     },
-    jshint: {
+    
+    // Add vendor prefixed styles
+    autoprefixer: {
       options: {
-        jshintrc: '.jshintrc',
-        reporter: require('jshint-stylish')
+        browsers: ['last 1 version']
       },
-      all: [
-        'Gruntfile.js',
-        '<%= yeoman.app %>/scripts/{,*/}*.js'
-      ]
+      dist: {
+        files: [{
+          expand: true,
+          cwd: '.tmp/styles/',
+          src: '{,*/}*.css',
+          dest: '.tmp/styles/'
+        }]
+      }
     },
+    
     coffee: {
       options: {
         sourceMap: true,
@@ -145,6 +166,19 @@ module.exports = function (grunt) {
         }]
       }
     },
+    
+    // Automatically inject Bower components into the app
+    'bower-install': {
+      app: {
+        html: '<%= yeoman.app %>/index.html',
+        ignorePath: '<%= yeoman.app %>/'
+      }
+    },
+
+
+
+
+    // Compiles Sass to CSS and generates necessary files if requested    
     compass: {
       options: {
         sassDir: '<%= yeoman.app %>/styles',
@@ -171,6 +205,8 @@ module.exports = function (grunt) {
     /*concat: {
       dist: {}
     },*/
+    
+    // Renames files for browser caching purposes    
     rev: {
       dist: {
         files: {
@@ -183,12 +219,18 @@ module.exports = function (grunt) {
         }
       }
     },
+
+    // Reads HTML for usemin blocks to enable smart builds that automatically
+    // concat, minify and revision files. Creates configurations in memory so
+    // additional tasks can operate on them
     useminPrepare: {
       html: '<%= yeoman.app %>/index.html',
       options: {
         dest: '<%= yeoman.dist %>'
       }
     },
+
+    // Performs rewrites based on rev and the useminPrepare configuration
     usemin: {
       html: ['<%= yeoman.dist %>/{,*/}*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
@@ -196,6 +238,8 @@ module.exports = function (grunt) {
         assetsDirs: ['<%= yeoman.dist %>']
       }
     },
+
+    // The following *-min tasks produce minified files in the dist folder
     imagemin: {
       dist: {
         files: [{
@@ -215,19 +259,6 @@ module.exports = function (grunt) {
           dest: '<%= yeoman.dist %>/images'
         }]
       }
-    },
-    cssmin: {
-      // By default, your `index.html` <!-- Usemin Block --> will take care of
-      // minification. This option is pre-configured if you do not wish to use
-      // Usemin blocks.
-      // dist: {
-      //   files: {
-      //     '<%= yeoman.dist %>/styles/main.css': [
-      //       '.tmp/styles/{,*/}*.css',
-      //       '<%= yeoman.app %>/styles/{,*/}*.css'
-      //     ]
-      //   }
-      // }
     },
     htmlmin: {
       dist: {
@@ -250,7 +281,7 @@ module.exports = function (grunt) {
         }]
       }
     },
-    // Put files not handled in other tasks here
+    // Copies remaining files to places other tasks can use
     copy: {
       dist: {
         files: [{
@@ -269,9 +300,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '.tmp/images',
           dest: '<%= yeoman.dist %>/images',
-          src: [
-            'generated/*'
-          ]
+          src: ['generated/*']
         }]
       },
       styles: {
@@ -281,6 +310,8 @@ module.exports = function (grunt) {
         src: '{,*/}*.css'
       }
     },
+
+    // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
         'coffee:dist',
@@ -301,6 +332,8 @@ module.exports = function (grunt) {
         'htmlmin'
       ]
     },
+    
+    // Test settings    
     karma: {
       unit: {
         configFile: 'karma.conf.js',
@@ -354,18 +387,24 @@ module.exports = function (grunt) {
     }
   });
 
-  grunt.registerTask('server', function (target) {
+  grunt.registerTask('serve', function (target) {
     if (target === 'dist') {
       return grunt.task.run(['build', 'connect:dist:keepalive']);
     }
 
     grunt.task.run([
       'clean:server',
+      'bower-install',
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',
       'watch'
     ]);
+  });
+
+  grunt.registerTask('server', function () {
+    grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
+    grunt.task.run(['serve']);
   });
 
   grunt.registerTask('test', [
@@ -378,6 +417,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'bower-install',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
