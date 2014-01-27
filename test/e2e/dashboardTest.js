@@ -115,28 +115,38 @@ describe('project operations', function() {
     return element.all(by.repeater('timeEntry in filteredTimeEntries = (timeEntries | dateFilter:selectedDate)'));
   };
 
-  var toggleProject = function (projectName) {
+  var toggleProject = function (projectName, start) {
     console.log('toggleProject [%s]', projectName);
     // Perform delete operation on last elements
     getProjects().then(function(arr) {
-      var entryElement = _.find(arr, function(e) {
+      _.each(arr, function(e) {
         e.findElement(by.binding('project.name')).getText().then(function (name) {
-          console.log('log: %s', name);
-          return e.name === projectName;
+          if (name === projectName) {
+            console.log('Found matching project [%s]', name);
+
+            if (start) {
+              e.findElement(by.css('[ng-click="startTimer(project)"]')).then(function (button) {
+                console.log('Clicking on start timer');
+                button.click();
+              });
+            } else {
+              e.findElement(by.css('[ng-click="stopTimer(project)"]')).then(function (button) {
+                console.log('Clicking on stop timer');
+                button.click();
+              });
+            }
+          }
         });
       });
-      expect(entryElement).toBeDefined();
-      if (entryElement) {
-        entryElement.findElement(by.css('[stopTimer(project)]')).then(function (button) {
-          console.log('Clicking on stop timer');
-          button.click();
-        });
-        entryElement.findElement(by.css('[startTimer(project)]')).then(function (button) {
-          console.log('Clicking on start timer');
-          button.click();
-        });
-      }
     });
+  };
+
+  var startProject = function (projectName) {
+    toggleProject(projectName, true);
+  };
+  
+  var stopProject = function (projectName) {
+    toggleProject(projectName, false);
   };
 
   beforeEach(function () {
@@ -170,8 +180,8 @@ describe('project operations', function() {
     expect(getProjectCount()).toBe(2);
 
     // Start A - Stop A - Delete Time Entries
-    toggleProject(projectA.name);
-    toggleProject(projectA.name);
+    startProject(projectA.name);
+    stopProject(projectA.name);
 
     // Start A - Start B - Stop B - Delete Time Entries
 
