@@ -17,8 +17,7 @@
     "restangular": "~1.2.2",
     "sass-bootstrap": "~3.0.2",
     "string-format": "~1.0.2",
-    "toastr": "~2.0.1",
-    "underscore.string": "~2.3.3"
+    "toastr": "~2.0.1"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.10",

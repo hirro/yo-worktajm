@@ -29,6 +29,10 @@
 
 var Utilities = require('./utilities.js');
 var Constants = require('./constants.js');
+var _ = require('lodash');
+var util = require('util');
+// var _ = require('../../app/bower_components/lodash/lodash.js');
+var protractor = require('protractor');
 
 describe('project operations', function() {
   var username, password;
@@ -67,7 +71,7 @@ describe('project operations', function() {
   };
 
   var getProjectCount = function () {
-    return element.all(by.repeater('project in projects')).then(function (arr) {
+    return getProjects().then(function (arr) {
       return arr.length;
     }, function () {
       return -1;
@@ -81,6 +85,7 @@ describe('project operations', function() {
     // Perform delete operation on last elements
     element.all(by.repeater('project in projects')).then(function(arr) {
       var lastElement = arr[arr.length-1];
+      console.log('There are %d projects', arr.length);
 
       // Verify project name
       var projectText = lastElement.findElement(by.model('project.name')).getAttribute('value');
@@ -102,6 +107,35 @@ describe('project operations', function() {
       // Now confirm the deletion
       var confirmButton = element(by.css('[ng-click="ok()"]'));
       confirmButton.click();
+      browser.sleep(1000); // Allow browser to reload project list
+    });
+  };
+
+  var getTimeEntries = function () {
+    return element.all(by.repeater('timeEntry in filteredTimeEntries = (timeEntries | dateFilter:selectedDate)'));
+  };
+
+  var toggleProject = function (projectName) {
+    console.log('toggleProject [%s]', projectName);
+    // Perform delete operation on last elements
+    getProjects().then(function(arr) {
+      var entryElement = _.find(arr, function(e) {
+        e.findElement(by.binding('project.name')).getText().then(function (name) {
+          console.log('log: %s', name);
+          return e.name === projectName;
+        });
+      });
+      expect(entryElement).toBeDefined();
+      if (entryElement) {
+        entryElement.findElement(by.css('[stopTimer(project)]')).then(function (button) {
+          console.log('Clicking on stop timer');
+          button.click();
+        });
+        entryElement.findElement(by.css('[startTimer(project)]')).then(function (button) {
+          console.log('Clicking on start timer');
+          button.click();
+        });
+      }
     });
   };
 
@@ -124,7 +158,7 @@ describe('project operations', function() {
     expect(getProjectCount()).toBe(0);
   });
 
-  it('should add two projects, then start and stop timers in a different sequences.', function() {
+  iit('should add two projects, then start and stop timers in a different sequences.', function() {
     var projectA = Constants.createProject();
     var projectB = Constants.createProject();
 
@@ -136,6 +170,8 @@ describe('project operations', function() {
     expect(getProjectCount()).toBe(2);
 
     // Start A - Stop A - Delete Time Entries
+    toggleProject(projectA.name);
+    toggleProject(projectA.name);
 
     // Start A - Start B - Stop B - Delete Time Entries
 
