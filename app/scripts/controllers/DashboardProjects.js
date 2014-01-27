@@ -217,6 +217,10 @@ angular.module('yoWorktajmApp')
       console.log('Removing project at index %d', index);
       $scope.projects.splice(index, 1);
     });
+    $scope.$on('onProjectCreated', function (event, project) {
+      console.log('EVENT: DashboardProjectsCtrl::onProjectCreated');
+      $scope.projects.push(_.clone(project));
+    });
     $scope.$on('onProjectsRefreshed', function (event, updatedProjectList) {
       console.log('EVENT: DashboardProjectsCtrl::onProjectsRefreshed(size [%d])', updatedProjectList.length);
       var activeProjectId = PersonService.getActiveProjectId();
