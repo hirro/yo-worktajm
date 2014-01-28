@@ -234,4 +234,13 @@ describe('project operations', function() {
   it('should add one project, start a timer, logout, login and finally verify that the timer is still active', function() {
   });
 
+  it('should update project name when editing it in sidebar and pressing save. Project name in time entries should also change', function () {
+  });
+
+  it('should restore project name to original content when canceling an update in project', function () {
+  });
+
+  it('should update the start time and stop time of a time entry', function () {
+  });
+
 });
