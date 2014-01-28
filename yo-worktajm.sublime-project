@@ -2,16 +2,8 @@
 	"folders":
 	[
 		{
-			"folder_exclude_patterns":
-			[
-				"node_modules",
-				".sass-cache",
-				".tmp",
-				"coverage",
-				"dist"
-			],
 			"follow_symlinks": true,
-			"path": "."
+			"path": "/Users/jiar/git/be-worktajm"
 		}
 	],
 	"settings":

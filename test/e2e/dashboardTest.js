@@ -36,6 +36,8 @@ var protractor = require('protractor');
 
 describe('project operations', function() {
   var username, password;
+  var projectA = Constants.createProject();
+  var projectB = Constants.createProject();
 
   var addProject = function (project) {
 
@@ -78,6 +80,18 @@ describe('project operations', function() {
     });
   };
 
+  var getTimeEntries = function () {
+    return element.all(by.repeater('timeEntry in filteredTimeEntries = (timeEntries | dateFilter:selectedDate)'));
+  };
+
+  var getTimeEntryCount = function () {
+    return getTimeEntries().then(function (arr) {
+      return arr.length;
+    }, function () {
+      this.fail('Expected a positive result');
+    });
+  };
+
   var deleteProject = function (project) {
 
     console.log('Deleting project');
@@ -111,12 +125,8 @@ describe('project operations', function() {
     });
   };
 
-  var getTimeEntries = function () {
-    return element.all(by.repeater('timeEntry in filteredTimeEntries = (timeEntries | dateFilter:selectedDate)'));
-  };
-
   var toggleProject = function (projectName, start) {
-    console.log('toggleProject [%s]', projectName);
+    console.log('toggleProject [%s] [%d]', projectName, start);
     // Perform delete operation on last elements
     getProjects().then(function(arr) {
       _.each(arr, function(e) {
@@ -136,7 +146,23 @@ describe('project operations', function() {
               });
             }
           }
+        }, function() {
+          this.fail('sdf');
         });
+      });
+    });
+  };
+
+  var deleteLastTimeEntry = function () {
+    console.log('deleteing last time entry');
+    getTimeEntries().then(function (arr) {
+      var element = arr[0];
+      element.findElement(by.css('[ng-click="removeTimeEntry(timeEntry)"]')).then(function (button) {
+        console.log('Pressing remove time entry');
+        button.click();
+      //   // There is no verification at the moment        
+      // }, function () {
+      //   this.fail('Failed to find delete button');
       });
     });
   };
@@ -168,10 +194,7 @@ describe('project operations', function() {
     expect(getProjectCount()).toBe(0);
   });
 
-  iit('should add two projects, then start and stop timers in a different sequences.', function() {
-    var projectA = Constants.createProject();
-    var projectB = Constants.createProject();
-
+  it('should add two projects, then start and stop timers in a different sequences.', function() {
     // Add the projects
     expect(getProjectCount()).toBe(0);
     addProject(projectB);
@@ -180,18 +203,32 @@ describe('project operations', function() {
     expect(getProjectCount()).toBe(2);
 
     // Start A - Stop A - Delete Time Entries
+    expect(getTimeEntryCount()).toBe(0);
     startProject(projectA.name);
+    expect(getTimeEntryCount()).toBe(1);
     stopProject(projectA.name);
+    expect(getTimeEntryCount()).toBe(1);
+    deleteLastTimeEntry();
+    expect(getTimeEntryCount()).toBe(0);
+  });
 
+  it('should add two projects, then start and stop timers in a different sequences.', function() {
+    // Add the projects
+    expect(getProjectCount()).toBe(0);
+    addProject(projectB);
+    expect(getProjectCount()).toBe(1);
+    addProject(projectA);
+    expect(getProjectCount()).toBe(2);
+  
     // Start A - Start B - Stop B - Delete Time Entries
-
-    // 
-
-    // Delete projects
-    // deleteProject(projectB);
-    // expect(getProjectCount()).toBe(1);
-    // deleteProject(projectA);
-    // expect(getProjectCount()).toBe(0);
+    startProject(projectA.name);
+    expect(getTimeEntryCount()).toBe(1);
+    startProject(projectB.name);
+    expect(getTimeEntryCount()).toBe(2);
+    stopProject(projectB.name);
+    expect(getTimeEntryCount()).toBe(2);
+    deleteLastTimeEntry();
+    deleteLastTimeEntry();
   });
 
   it('should add one project, start a timer, logout, login and finally verify that the timer is still active', function() {
