@@ -9,7 +9,16 @@
 
       <div class="form-group">
         <label for="project">Project</label>
-        <input type="text" class="form-control" ng-model="timeEntry.project.name" typeahead="project for project in projectNames | filter:$viewValue | limitTo:8">
+        <input type="text" 
+               class="form-control" 
+               ng-model="timeEntry.project.name" 
+               ng-change="change()"
+               typeahead="project for project in projectNames | filter:$viewValue | limitTo:8">
+        <p>
+          <div class="alert alert-info" ng-hide="projectExists">
+            Project name does not exist, new project will be created
+          </div>
+        </p>
       </div>      
       <div class="form-group">
         <label for="startDate">Start time</label>

@@ -39,7 +39,7 @@ describe('Controller: TimeEntryModalCtrl', function () {
   var $modalInstance = {
     close: function () {
     },
-    dismiss: function () {      
+    dismiss: function () {
     }
   };
 

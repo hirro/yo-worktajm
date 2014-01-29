@@ -17,7 +17,9 @@
         <tr class="timer_row">
           <th class="col-md-8">
             <a class="timer_text" ng-click="project.isOpen = !project.isOpen">
-              <i class="pull-left glyphicon" ng-class="{'glyphicon-chevron-down': project.isOpen, 'glyphicon-chevron-right': !project.isOpen}"></i>
+              <small class="pull-left glyphicon left-margin-5" 
+                 ng-class="{'glyphicon-chevron-down': project.isOpen, 'glyphicon-chevron-right': !project.isOpen}">
+              </small>
               <span>
                 {{project.name}}          
               </span>                  

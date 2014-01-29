@@ -34,6 +34,7 @@ angular.module('yoWorktajmApp').controller('TimeEntryModalCtrl', function ($scop
   $scope.timeEntry = modalParams.timeEntry;
   $scope.timeEntry.start = new Date(modalParams.timeEntry.startTime);
   $scope.timeEntry.end = new Date(modalParams.timeEntry.endTime);
+  $scope.projectExists = true;
   _.extend($scope, modalParams);
   $scope.ok = function () {
     console.log('startTime [], endTime []', $scope.startTime, $scope.endTime);
@@ -44,6 +45,17 @@ angular.module('yoWorktajmApp').controller('TimeEntryModalCtrl', function ($scop
 
   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
+  };
+
+  $scope.change = function () {
+    console.log('change');
+    if (TimerService.findProjectByName($scope.timeEntry.project.name)) {
+      console.log('Project name is valid');
+      $scope.projectExists = true;
+    } else {
+      console.log('Project name is invalid');
+      $scope.projectExists = false;
+    }
   };
 
 });
