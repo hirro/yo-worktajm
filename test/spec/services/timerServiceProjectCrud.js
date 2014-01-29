@@ -192,5 +192,18 @@ describe('Service: TimerService, CRUD tests for Project', function () {
       timerService.setActive(project, true);
       expect(project.active).toBe(true);
     });
+
+    describe('findProjectByName', function () {
+      it('should find a project with existing name', function () {
+        var project = timerService.findProjectByName(projects[0].name);
+        expect(project.name).toBe(projects[0].name);
+      });
+
+      it('should not find a project that doesnt exist', function () {
+        var project = timerService.findProjectByName('projects[0].name');
+        expect(project).toBeUndefined();
+      });
+    });
+
   });
 });

@@ -132,6 +132,14 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
     return svc.projects;
   };
 
+  svc.findProjectByName = function (name) {
+    console.log('TimerService::findProjectByName(%s)', name);
+    return _.find(svc.projects, function (p) {
+      console.log('%s === %s', name, p.name);
+      return p.name === name;
+    });
+  };
+
   //
   // Set project status
   // Only one project may be active at the time.
