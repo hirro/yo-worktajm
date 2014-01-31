@@ -15,7 +15,7 @@
                ng-change="change()"
                typeahead="project for project in projectNames | filter:$viewValue | limitTo:8">
         <p>
-          <div class="alert alert-info" ng-hide="projectExists">
+          <div class="alert alert-info" ng-hide="timeEntry.projectExists">
             Project name does not exist, new project will be created
           </div>
         </p>

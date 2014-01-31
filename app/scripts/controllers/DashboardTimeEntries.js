@@ -73,16 +73,26 @@ angular.module('yoWorktajmApp')
 
       modalInstance.result.then(function (timeEntry) {
         if (timeEntry) {
-          console.log('DashboardTimeEntriesCtrl::editTimeEntry - TimeEntry modified [%s] [%s]', timeEntry.startTime, timeEntry.endTime);
-          TimerService.updateTimeEntry(timeEntry);
+          console.log('DashboardTimeEntriesCtrl::editTimeEntry - TimeEntry modified [%s] [%s] [%d]', 
+                      timeEntry.startTime, 
+                      timeEntry.endTime,
+                      timeEntry.project.id);
+          if (timeEntry.projectExists) {
+            TimerService.updateTimeEntry(timeEntry);
+          } else {
+            // New projects must be created first
+            console.log('xx');
+            TimerService.updateProject(_.omit(timeEntry.project, 'id')).then(function (project) {
+              timeEntry.project = project;
+              return TimerService.updateTimeEntry(timeEntry);
+            });
+          }
         } else {
           console.log('DashboardTimeEntriesCtrl::editTimeEntry - TimeEntry unmodified');
         }
       }, function () {
         console.info('Modal dismissed at: ' + new Date());
       });      
-
-      //$rootScope.$broadcast('onEditTimeEntry', timeEntry);
     };
 
     // Utility function to find the object being displayed in the controller

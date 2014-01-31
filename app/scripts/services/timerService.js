@@ -133,11 +133,11 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
   };
 
   svc.findProjectByName = function (name) {
-    console.log('TimerService::findProjectByName(%s)', name);
-    return _.find(svc.projects, function (p) {
-      console.log('%s === %s', name, p.name);
+    var found = _.find(svc.projects, function (p) {
       return p.name === name;
     });
+    console.log('TimerService::findProjectByName(%s) => []', name, _.isNaN(found));
+    return found;
   };
 
   //
