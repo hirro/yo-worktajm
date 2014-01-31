@@ -32,7 +32,7 @@ The backend server is written in Java and distributed as a war file.
 
 The front end is a AngularJS single page application.
 
-	
+  
 ## Backend
 Git: [be-worktajm](https://github.com/hirro/be-worktajm)
 
@@ -44,8 +44,8 @@ The backend is written mainly in Java using the bleeding edge components.
 * Mysql/MariaDB
 
 ### Stack
-* Java 7/8, servlet 3.0.1
-* Spring Framework 4
+* Java 8, servlet 3.1.0
+* Spring Framework 4.x
  * [Spring](www.spring.org)  Spring Data (JPA)
  * [Spring](www.spring.org)  Spring Security
 * Jackson for the REST API ( [API version 1](https://github.com/hirro/be-worktajm/blob/master/api.md) )
@@ -63,7 +63,7 @@ Git: [yo-worktajm](https://github.com/hirro/yo-worktajm)
  * [Grunt.js](http://gruntjs.com/)
  * bower
  * angular generators
-* [AngularJS 1.2.7](http://www.angularjs.org/) as foundation.
+* [AngularJS 1.2.11](http://www.angularjs.org/) as foundation.
 * [Bootstrap 3](http://getbootstrap.com/) as default stylesheet.
 * [Restangular](https://github.com/mgonto/restangular) for communicating with backend using REST.
 * [toastr](https://github.com/CodeSeven/toastr) to send the user notifications in Growl like fashion.
@@ -73,6 +73,8 @@ Git: [yo-worktajm](https://github.com/hirro/yo-worktajm)
 ### Continious Integration
 
 * [Travis-CI](https://travis-ci.org/) 
+
+
 
 
 
