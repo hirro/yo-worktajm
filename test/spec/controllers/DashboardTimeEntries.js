@@ -22,7 +22,8 @@
   @licend The above is the entire license notice
           for the JavaScript code in this page.  
 */
-/*globals describe, $, it, beforeEach, inject, expect, spyOn, spyOnEvent */
+/*globals describe, $, it, beforeEach, inject, expect, spyOn, spyOnEvent, _ */
+/*jshint camelcase: false */
 
 'use strict';
 
@@ -30,7 +31,7 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
   // load the controller's module
   beforeEach(module('yoWorktajmApp'));
 
-  var DashboardTimeEntriesCtrl, scope, $rootScope, $httpBackend;
+  var DashboardTimeEntriesCtrl, scope, $rootScope, $httpBackend, $q;
 
   var projects = [
     {'id': 1, 'name': 'Project A', 'description': null, 'rate': null, 'new': false},
@@ -38,8 +39,8 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
     {'id': 3, 'name': 'Project C', 'description': null, 'rate': null, 'new': false}
   ];
   var timeEntries = [
-    {id: 1, startTime: 2, endTime: 3},
-    {id: 2, startTime: 1385715694000, endTime: 1385716500000}
+    {id: 1, startTime: 2, endTime: 3, project: projects[0]},
+    {id: 2, startTime: 1385715694000, endTime: 1385716500000, project: projects[1]}
   ];
 
   // Initialize the TimerServiceMock
@@ -58,6 +59,20 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
     },
     getProjects: function () {
       return projects;
+    },
+    updateTimeEntry: function (timeEntry) {
+      var deferred = $q.defer();
+      deferred.resolve(timeEntry);
+      console.log('TimerServiceMock::updateTimeEntry done');
+      return deferred.promise;
+    },
+    updateProject: function (project) {
+      var deferred = $q.defer();
+      var result = _.clone(project);
+      result.id = 33;
+      deferred.resolve(result);
+      console.log('TimerServiceMock::updateProject done');
+      return deferred.promise;
     }
   };
 
@@ -70,10 +85,11 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
   };
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, _$rootScope_, _$httpBackend_) {
+  beforeEach(inject(function ($controller, _$rootScope_, _$httpBackend_, _$q_) {
     $rootScope = _$rootScope_;
     scope = $rootScope.$new();
     $httpBackend = _$httpBackend_;
+    $q = _$q_;
     DashboardTimeEntriesCtrl = $controller('DashboardTimeEntriesCtrl', {
       $scope: scope,
       PersonService: PersonServiceMock,
@@ -138,5 +154,78 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
       scope.editTimeEntry(timeEntries[1]);
       scope.$digest();
     });
+
+    it('should update a time entry with unmodified project name', function () {
+      spyOn(TimerServiceMock, 'updateTimeEntry').andCallThrough();
+      spyOn(TimerServiceMock, 'updateProject').andCallThrough();
+      var timeEntry = {
+        id: 1,
+        startTime: 1,
+        endTime: 2,
+        project: {
+          id: 1,
+          name: 'Hej'
+        }
+      };
+      scope.updateTimeEntryOnOk(timeEntry);
+      scope.$digest();
+
+      // Validations
+      expect(TimerServiceMock.updateTimeEntry).toHaveBeenCalledWith(timeEntry);
+      expect(TimerServiceMock.updateProject).not.toHaveBeenCalledWith(timeEntry);
+    });
+
+    it('should create a project and update a time entry when project id is null', function () {
+      spyOn(TimerServiceMock, 'updateTimeEntry').andCallThrough();
+      spyOn(TimerServiceMock, 'updateProject').andCallThrough();
+      var project = {
+        name: 'Hej'
+      };
+      var timeEntry = {
+        id: 1,
+        startTime: 1,
+        endTime: 2,
+        project: project
+      };
+      scope.updateTimeEntryOnOk(timeEntry);
+      scope.$digest();
+
+      // Validations
+      expect(TimerServiceMock.updateTimeEntry).toHaveBeenCalledWith(timeEntry);
+      expect(TimerServiceMock.updateProject).toHaveBeenCalledWith(project);
+    });
+
+    it('should return the time entry with the provider id', function () {
+      // Prepare
+      scope.$broadcast('onTimeEntriesRefreshed', timeEntries);
+      scope.$digest();
+      var timeEntry = scope.findTimeEntryById(1);
+      expect(timeEntry.project.name).toBe('Project A');
+
+      // Test 
+      var updatedProject = {
+        id: 1,
+        name: 'A'
+      };
+      scope.$broadcast('onProjectUpdated', updatedProject);
+      scope.$digest();
+
+      // Verify
+      expect(timeEntry.project.name).toBe('A');
+    });
+
+    it('should make sure that a logout event clears the time entries', function () {
+      // Prepare
+      scope.$broadcast('onTimeEntriesRefreshed', timeEntries);
+      scope.$digest();
+      expect(scope.findTimeEntryById(1)).toBeDefined();
+
+      scope.$broadcast('onLoggedOut');
+      scope.$digest();
+
+      // Verify
+      expect(scope.findTimeEntryById(1)).not.toBeDefined();
+    });
+
   });
 });

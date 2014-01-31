@@ -52,6 +52,36 @@ angular.module('yoWorktajmApp')
       TimerService.removeTimeEntry(timeEntry);
     };
 
+    // User clicks the add new time entry button    
+    $scope.createTimeEntry = function (timeEntry) {
+      console.log('DashboardTimeEntriesCtrl::createTimeEntry(%d)', timeEntry.id);
+
+      TimerService.createTimeEntry(timeEntry);
+    };
+
+    // This is called after user has modefied the time entry.
+    $scope.updateTimeEntryOnOk = function (timeEntry) {
+      console.log('DashboardTimeEntriesCtrl::updateTimeEntryOnOk');
+      if (timeEntry) {
+        console.log('DashboardTimeEntriesCtrl::updateTimeEntryOnOk - TimeEntry modified [%s] [%s] [%d]', 
+                    timeEntry.startTime, 
+                    timeEntry.endTime,
+                    timeEntry.project.id);
+        if (timeEntry.projectExists) {
+          TimerService.updateTimeEntry(timeEntry);
+        } else {
+          // New projects must be created first
+          console.log('xx');
+          TimerService.updateProject(_.omit(timeEntry.project, 'id')).then(function (project) {
+            timeEntry.project = project;
+            return TimerService.updateTimeEntry(timeEntry);
+          });
+        }
+      } else {
+        console.log('DashboardTimeEntriesCtrl::updateTimeEntryOnOk - TimeEntry unmodified');
+      }
+    };
+
     $scope.editTimeEntry = function (timeEntry) {
       console.log('DashboardTimeEntriesCtrl::editTimeEntry - timeEntry.id %d', timeEntry.id);
       var modalParams = {
@@ -71,33 +101,19 @@ angular.module('yoWorktajmApp')
         }
       });
 
-      modalInstance.result.then(function (timeEntry) {
-        if (timeEntry) {
-          console.log('DashboardTimeEntriesCtrl::editTimeEntry - TimeEntry modified [%s] [%s] [%d]', 
-                      timeEntry.startTime, 
-                      timeEntry.endTime,
-                      timeEntry.project.id);
-          if (timeEntry.projectExists) {
-            TimerService.updateTimeEntry(timeEntry);
-          } else {
-            // New projects must be created first
-            console.log('xx');
-            TimerService.updateProject(_.omit(timeEntry.project, 'id')).then(function (project) {
-              timeEntry.project = project;
-              return TimerService.updateTimeEntry(timeEntry);
-            });
-          }
-        } else {
-          console.log('DashboardTimeEntriesCtrl::editTimeEntry - TimeEntry unmodified');
-        }
-      }, function () {
-        console.info('Modal dismissed at: ' + new Date());
-      });      
+      modalInstance.result.then(
+        $scope.updateTimeEntryOnOk, 
+        function () {
+          console.info('Modal dismissed at: ' + new Date());
+        });      
     };
 
     // Utility function to find the object being displayed in the controller
     $scope.findTimeEntryById = function (id) {
-      var item = $.grep($scope.timeEntries, function (e) { return e.id === id; })[0];
+      var item;
+      if ($scope.timeEntries) {
+        item = $.grep($scope.timeEntries, function (e) { return e.id === id; })[0];
+      }
       return item;
     };
 

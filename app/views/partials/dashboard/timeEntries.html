@@ -12,9 +12,20 @@
   <div class="col-sm-12">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h4 class="panel-title">Time Entries</h4>
+        <div class="panel-title">
+          <h4>Time Entries</h4>
+        </div>
       </div>
-      <div class="panel-body projects">
+      <div class="panel-body timeentries">
+        <p>
+          <a class="btn btn-primary btn-sm" 
+             id="createTimeEntry"
+             ng-click="createTimeEntry()">
+             <i class="glyphicon-plus"></i>
+            Add new time entry
+          </a>          
+        </p>
+            
         <div class="input-group" id="dateSelectionPanel">
           <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
           <input type="text" 
@@ -29,6 +40,7 @@
                  ng-required="true" 
                  close-text="Close" />
         </div>
+
         <table  class="table table-condensed table-hover" >
           <thead>
             <tr>
