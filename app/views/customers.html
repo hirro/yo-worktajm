@@ -23,7 +23,7 @@
         <div class="panel-body customers" ng-controller="CustomersCtrl">
           <p>
             <a class="btn btn-primary btn-sm" 
-               ng-click="createCustomer()">
+               ng-click="openCreateCustomerModal()">
               <i class="glyphicon-plus"></i> Add new customer</a>
           </p>
           <table  class="table table-condensed table-hover" >
@@ -42,14 +42,14 @@
                   <div class="btn-group pull-right">
                     <button type="button" 
                             class="btn btn-default btn-sm glyphicon glyphicon-edit" 
-                            ng-click="editCustomer(customer)"
+                            ng-click="openEditCustomerModal(customer)"
                             popover="Edit"
                             popover-placement="left" 
                             popover-trigger="mouseenter">                          
                     </button>
                     <button type="button" 
                             class="btn btn-default btn-sm glyphicon glyphicon-trash" 
-                            ng-click="removeCustomer(customer)"
+                            ng-click="openRemoveCustomerModal(customer)"
                             popover="Remove" 
                             popover-placement="right" 
                             popover-trigger="mouseenter">

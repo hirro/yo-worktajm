@@ -27,15 +27,29 @@
 
 'use strict';
 
-angular.module('yoWorktajmApp').controller('TimeEntryModalCtrl', function ($scope, $modalInstance, TimerService, modalParams) {
+angular.module('yoWorktajmApp').controller('TimeEntryModalCtrl', function ($scope, $modalInstance, TimerService, modalParams) {  
 
-  console.log('ModalInstanceCtrl::INIT ');
-  $scope.projectNames = _.pluck(TimerService.getProjects(), 'name');
-  $scope.timeEntry = modalParams.timeEntry;
-  $scope.timeEntry.start = new Date(modalParams.timeEntry.startTime);
-  $scope.timeEntry.end = new Date(modalParams.timeEntry.endTime);
-  $scope.timeEntry.projectExists = true;
-  _.extend($scope, modalParams);
+  $scope.init = function (modalParams) {
+    console.log('ModalInstanceCtrl::INIT ');
+    $scope.projectNames = _.pluck(TimerService.getProjects(), 'name');
+    $scope.timeEntry = modalParams.timeEntry;
+
+    if (modalParams.timeEntry.startTime) {
+      $scope.timeEntry.start = new Date(modalParams.timeEntry.startTime);
+    } else {
+      $scope.timeEntry.start = new Date();
+    }
+
+    if (modalParams.timeEntry.endTime) {
+      $scope.timeEntry.end = new Date(modalParams.timeEntry.endTime);
+    } else {
+      $scope.timeEntry.end = new Date();
+    }
+
+    $scope.timeEntry.projectExists = true;
+    _.extend($scope, modalParams);
+  };
+
   $scope.ok = function () {
     console.log('startTime [], endTime []', $scope.startTime, $scope.endTime);
     $scope.timeEntry.endTime = new Date($scope.timeEntry.end);
@@ -55,5 +69,7 @@ angular.module('yoWorktajmApp').controller('TimeEntryModalCtrl', function ($scop
       $scope.timeEntry.projectExists = false;
     }
   };
+
+  $scope.init(modalParams);
 
 });

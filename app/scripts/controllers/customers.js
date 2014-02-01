@@ -34,8 +34,8 @@ angular.module('yoWorktajmApp')
       $scope.customers = result;
     });
     
-    $scope.removeCustomer = function(customer) {
-      console.log('CustomerController:removeCustomer');
+    $scope.openRemoveCustomerModal = function(customer) {
+      console.log('CustomerController:openRemoveCustomerModal');
       var modalParams = {
         titleText: 'Remove customer',
         messageText: 'Do you want to remove customer?',
@@ -59,8 +59,8 @@ angular.module('yoWorktajmApp')
     };
 
 
-    $scope.openModal = function (customer, titleText, messageText, okText, cancelText) {
-      console.log('CustomersCtrl::editCustomer, customerName: %s', customer.name);
+    $scope.openCustomerModal = function (customer, titleText, messageText, okText, cancelText) {
+      console.log('CustomersCtrl::openEditCustomerModal, customerName: %s', customer.name);
       var modalParams = {
         customer: customer,
         titleText: titleText,
@@ -89,14 +89,14 @@ angular.module('yoWorktajmApp')
       });
     };
 
-    $scope.editCustomer = function (customer) {
-      console.log('CustomersCtrl::editCustomer, customerName: %s', customer.name);
-      $scope.openModal(customer, 'Update Customer', '', 'Update', 'Cancel');
+    $scope.openEditCustomerModal = function (customer) {
+      console.log('CustomersCtrl::openEditCustomerModal, customerName: %s', customer.name);
+      $scope.openCustomerModal(customer, 'Update Customer', '', 'Update', 'Cancel');
     };
 
-    $scope.createCustomer = function () {
+    $scope.openCreateCustomerModal = function () {
       var customer = {};
-      $scope.openModal(customer, 'Create Customer', '', 'Create', 'Cancel');
+      $scope.openCustomerModal(customer, 'Create Customer', '', 'Create', 'Cancel');
     };
 
     //

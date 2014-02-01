@@ -44,17 +44,15 @@ angular.module('yoWorktajmApp').service('PersonService', function PersonService(
    * @return promise to Person.
    */
   personService.getPerson = function () {
-    console.log('PersonService:getPerson');
-
     var deferred = $q.defer();
 
     if (personService.person) {
-      console.log('PersonService:getPerson - OK (local)');
+      console.log('PersonService:getPerson - OK (cached)');
       deferred.resolve(personService.person);
     } else {
       var qPerson = Restangular.one('person', personService.personId).get();
       qPerson.then(function (p) {
-        console.log('PersonService:getPerson - OK (backend)');
+        console.log('PersonService:getPerson - OK (remote)');
         personService.person = p;
         return deferred.resolve(p);
       }, function () {
@@ -67,9 +65,8 @@ angular.module('yoWorktajmApp').service('PersonService', function PersonService(
   };
 
   personService.login = function (username, password) {
-    console.log('PersonService::login');
-
     var deferred = $q.defer();
+    console.log('PersonService::login - Contacting backend');
     personService.token = Restangular.one('authenticate').get({
         username: username,
         password: password

@@ -23,6 +23,8 @@
           for the JavaScript code in this page.  
 */
 
+/*jshint camelcase: false */
+
 'use strict';
 
 describe('Controller: CustomersCtrl', function () {
@@ -37,14 +39,14 @@ describe('Controller: CustomersCtrl', function () {
   
   // Initialize the controller and a mock scope
   beforeEach(module('ui.bootstrap.modal'));
-  beforeEach(module('template/modal/backdrop.html'));  
+  beforeEach(module('template/modal/backdrop.html'));
   beforeEach(module('template/modal/window.html'));
-  beforeEach(module(function(_$modalProvider_){
+  beforeEach(module(function(_$modalProvider_) {
     $modalProvider = _$modalProvider_;
   }));
 
   beforeEach(function() {
-   CUSTOMER_A = {
+    CUSTOMER_A = {
       id: 1,
       name: 'Company A'
     };
@@ -181,7 +183,7 @@ describe('Controller: CustomersCtrl', function () {
   it('should remove a customer', function () {
     $httpBackend.whenGET('confirmationModal.html').respond('<div>Modal2</div>');
     $scope.$digest();
-    $scope.removeCustomer(CUSTOMER_A);
+    $scope.openRemoveCustomerModal(CUSTOMER_A);
     $scope.$digest();
     $httpBackend.flush();
     // expect($document).toHaveModalOpenWithContent('Modal1', 'div');
@@ -192,7 +194,7 @@ describe('Controller: CustomersCtrl', function () {
   it('should edit a customer', function () {
     $httpBackend.whenGET('customerModal.html').respond();
     $scope.$digest();
-    $scope.editCustomer(CUSTOMER_A);
+    $scope.openEditCustomerModal(CUSTOMER_A);
     $scope.$digest();
     $httpBackend.flush();
   });

@@ -202,6 +202,7 @@ describe('Service: CustomerService', function () {
   describe('read tests', function () {
     it('should get the customer with the provided id', function () {
       // Setup
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer').respond(_.clone(customers));
       httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer/1').respond(_.clone(customerA));
       spyOn(customerService, 'get').andCallThrough();
 
@@ -221,15 +222,16 @@ describe('Service: CustomerService', function () {
       expect(result.id).toBe(customerA.id);
       expect(failMessage).toBeUndefined();
     });
+
     it('should handle get with invalid id gracefully', function () {
       // Setup
-      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer/1').respond(401);
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer').respond(_.clone(customers));
       spyOn(customerService, 'get').andCallThrough();
 
       // Test
       var result;
       var failMessage;
-      customerService.get(customerA.id).then(function (r) {
+      customerService.get(666).then(function (r) {
         result = r;
       }, function (msg) {
         failMessage = msg;
@@ -238,15 +240,14 @@ describe('Service: CustomerService', function () {
       httpBackend.flush();
       
       // Validation
-      expect(customerService.get).toHaveBeenCalledWith(1);
+      expect(customerService.get).toHaveBeenCalledWith(666);
       expect(result).toBeUndefined();
-      expect(failMessage.status).toBe(401);
     });
   });
 
 
   describe('list tests', function () {
-    it('should successfully retrieve a list of all customers', function () {
+    iit('should successfully retrieve a list of all customers', function () {
       // Setup
       httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer').respond(_.clone(customers));
       spyOn(customerService, 'list').andCallThrough();
@@ -257,6 +258,7 @@ describe('Service: CustomerService', function () {
       customerService.list().then(function (r) {
         result = r;
       }, function (msg) {
+        console.error('should not fail');
         failMessage = msg;
       });
       scope.$digest();

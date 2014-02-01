@@ -30,24 +30,29 @@
 angular.module('yoWorktajmApp')
   .service('CustomerService', function CustomerService(Restangular, $rootScope, $location, $q) {
     var svc = {
-      restangularCustomers: Restangular.all('customer')
+      restangularCustomers: Restangular.all('customer'),
+      customers: {
+        loaded: false,
+        list: []
+      }
     };
 
-    svc.update = function (customer) {
-      console.log('CustomerService::update %d', customer.id);
-      var deferred = $q.defer();
-      Restangular.one('customer', customer.id).put().then(function (existingCustomer) {
-          existingCustomer.put().then(function () {
-          deferred.resolve(existingCustomer);
-        }, function (reason) {
-          deferred.reject(reason);
+    // Updates a customer
+    // Returns a proimise to the updated customer.
+    svc.update = function (updatedCustomer) {
+      console.log('CustomerService::update %d', updatedCustomer.id);
+      // Find the customer in the cache
+      return svc.get(updatedCustomer.id)
+        .then(function (customer) {
+         return _.extend(customer, updatedCustomer);
+        })
+        .then(function (customer) {
+          return customer.put();
         });
-      }, function (reason) {
-        deferred.reject(reason);
-      });
-      return deferred.promise;
     };
 
+    // Creates a customer.
+    // Returns a promise to the created customer.
     svc.create = function (customer) {
       console.log('CustomerService::create');
       var deferred = $q.defer();
@@ -60,6 +65,8 @@ angular.module('yoWorktajmApp')
       return deferred.promise;
     };
     
+    // Saves the customer
+    // Returns a promise to the updated customer.
     svc.save = function (customer) {
       if (customer.id) {
         return svc.update(customer);
@@ -68,33 +75,46 @@ angular.module('yoWorktajmApp')
       }
     };
 
+    // Returns a promise to customer with the provided id.
     svc.get = function (id) {
       console.log('CustomerService::get');
       var deferred = $q.defer();
-      Restangular.one('customer', id).get().then(function (existingCustomer) {
-        console.log('Retrieved customer successfully from backend. Id is: %s', existingCustomer.id);
-        deferred.resolve(existingCustomer);
+      svc.list().then(function () {
+        var item = _.find(svc.customers.list, function (iter) {
+          return iter.id === id;
+        });
+        deferred.resolve(item);
       }, function (reason) {
+        console.log('Failed to get customer');
         deferred.reject(reason);
       });
       return deferred.promise;
     };
 
+    // Returns a promise to a list of all customers.
     svc.list = function () {
       console.log('CustomerService::list');
       var deferred = $q.defer();
-      svc.restangularCustomers.getList().then(function (existingCustomers) {
-        console.log('Retrieved customer successfully from backend. ');
-        deferred.resolve(existingCustomers);
-      }, function (reason) {
-        deferred.reject(reason);
-        if (reason.status === 401) {
-          $location.path( '/login' );
-        }
-      });
+      if (svc.customers.loaded) {
+        deferred.resolve(svc.customers.list);
+      } else {
+        svc.restangularCustomers.getList().then(function (existingCustomers) {
+          console.log('Retrieved customer successfully from backend. ');
+          svc.customers.list = existingCustomers;
+          svc.customers.loaded = true;
+          deferred.resolve(svc.customers);
+        }, function (reason) {
+          deferred.reject(reason);
+          if (reason.status === 401) {
+            $location.path( '/login' );
+          }
+        });        
+      }
       return deferred.promise;
     };
 
+    // Deletes the customer with the provided id.
+    // Returns a promise to the delete operation.
     svc.delete = function (id) {
       console.log('CustomerService::delete(%d)', id);
       var deferred = $q.defer();
@@ -107,6 +127,8 @@ angular.module('yoWorktajmApp')
       return deferred.promise;
     };
 
+    // Find the customer with the provided name.
+    // Returns a promise to a customer.
     svc.findCustomerByName = function(name) {
       console.log('CustomerService::findCustomerByName(%s)', name);
       var deferred = $q.defer();

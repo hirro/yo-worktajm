@@ -52,12 +52,6 @@ angular.module('yoWorktajmApp')
       TimerService.removeTimeEntry(timeEntry);
     };
 
-    // User clicks the add new time entry button    
-    $scope.createTimeEntry = function (timeEntry) {
-      console.log('DashboardTimeEntriesCtrl::createTimeEntry(%d)', timeEntry.id);
-
-      TimerService.createTimeEntry(timeEntry);
-    };
 
     // This is called after user has modefied the time entry.
     $scope.updateTimeEntryOnOk = function (timeEntry) {
@@ -82,15 +76,41 @@ angular.module('yoWorktajmApp')
       }
     };
 
+    $scope.updateTimeEntryOnCancel = function (reason) {
+      console.log('Pressed cancel %s', reason);
+    };
+
+    // User clicks the add new time entry button    
+    $scope.createTimeEntry = function () {
+      console.log('DashboardTimeEntriesCtrl::createTimeEntry');
+      var timeEntry = {
+        startTime: null,
+        endTime: null,
+        project: null
+      };
+      $scope.openTimeEntryModal({
+        titleText: 'Create Time Entry',
+        okText: 'Create'
+      }, timeEntry);
+    };
+
     $scope.editTimeEntry = function (timeEntry) {
       console.log('DashboardTimeEntriesCtrl::editTimeEntry - timeEntry.id %d', timeEntry.id);
+      $scope.openTimeEntryModal({
+        titleText: 'Edit  Time Entry',
+        okText: 'Update'
+      }, timeEntry);
+    };
+
+    $scope.openTimeEntryModal = function (params, timeEntry) {
       var modalParams = {
         titleText: 'Edit Time Entry',
         messageText: 'dsfsdf',
         okText: 'Update',
         cancelText: 'Cancel',
         timeEntry: timeEntry
-      };      
+      };
+      _.extend(modalParams, params);
       var modalInstance = $modal.open({
         templateUrl: 'timeEntryModal.html',
         controller: 'TimeEntryModalCtrl',
@@ -102,10 +122,8 @@ angular.module('yoWorktajmApp')
       });
 
       modalInstance.result.then(
-        $scope.updateTimeEntryOnOk, 
-        function () {
-          console.info('Modal dismissed at: ' + new Date());
-        });      
+        $scope.updateTimeEntryOnOk,
+        $scope.updateTimeEntryOnCancel);      
     };
 
     // Utility function to find the object being displayed in the controller
