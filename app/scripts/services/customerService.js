@@ -96,14 +96,16 @@ angular.module('yoWorktajmApp')
       console.log('CustomerService::list');
       var deferred = $q.defer();
       if (svc.customers.loaded) {
+        console.log('CustomerService::list - Returning cached list');
         deferred.resolve(svc.customers.list);
       } else {
         svc.restangularCustomers.getList().then(function (existingCustomers) {
-          console.log('Retrieved customer successfully from backend. ');
+          console.log('Retrieved customer successfully from backend, count [%d]', _.size(existingCustomers));
           svc.customers.list = existingCustomers;
           svc.customers.loaded = true;
-          deferred.resolve(svc.customers);
+          deferred.resolve(svc.customers.list);
         }, function (reason) {
+          console.error('Failed to retrieve customer list from backend');
           deferred.reject(reason);
           if (reason.status === 401) {
             $location.path( '/login' );

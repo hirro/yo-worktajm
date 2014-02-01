@@ -35,7 +35,7 @@ describe('Service: TimerService', function () {
 
   // API
   var httpBackend;
-  var timerService, personService;
+  var timerService, personService, customerService;
   var scope;
 
   // Test constants
@@ -45,10 +45,11 @@ describe('Service: TimerService', function () {
   var customers;
 
   // Inject the required services
-  beforeEach(inject(function (TimerService, PersonService, $httpBackend, $rootScope) {
+  beforeEach(inject(function (TimerService, PersonService, CustomerService, $httpBackend, $rootScope) {
     timerService = TimerService;
     personService = PersonService;
     httpBackend = $httpBackend;
+    customerService = CustomerService;
     scope = $rootScope;
 
     // Assume we are logged in as user id 1
@@ -101,7 +102,17 @@ describe('Service: TimerService', function () {
       httpBackend.flush();
       expect(person.username).toBe('User A');
 
-      // Prereq 2 = Projects must be loaded
+      // Prereq 2 = Customers must be loaded
+      var customerEntries = null;
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer').respond(_.clone(customers));
+      customerService.list().then(function (result) {
+        customerEntries = result;
+      });
+      scope.$digest();
+      httpBackend.flush();
+      expect(customerEntries.length).toBe(1);
+
+      // Prereq 3 = Projects must be loaded
       httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/project').respond(_.clone(projects));
       httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer/1066').respond(customers[0]);
       spyOn(scope, '$broadcast').andCallThrough();
@@ -109,7 +120,7 @@ describe('Service: TimerService', function () {
       scope.$digest();
       httpBackend.flush();
 
-       // Prereq 3 = TimeEntries must be loaded
+       // Prereq 4 = TimeEntries must be loaded
       var timeEntries = null;
       timerService.getTimeEntries().then(function (result) {
         timeEntries = result;
@@ -120,6 +131,7 @@ describe('Service: TimerService', function () {
       scope.$digest();
       httpBackend.flush();
       expect(timeEntries.length).toBe(1);
+
     });
 
     it('should start and stop the timer successfully', function () {
