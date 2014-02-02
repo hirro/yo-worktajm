@@ -9,7 +9,6 @@
     "angular-resource": "~1.2.10",
     "angular-route": "~1.2.10",
     "angular-sanitize": "~1.2.10",
-    "datejs": "*",
     "es5-shim": "~2.1.0",
     "jquery": "~1.10.2",
     "json3": "~3.2.6",
@@ -17,7 +16,8 @@
     "restangular": "~1.2.2",
     "sass-bootstrap": "~3.0.2",
     "string-format": "~1.0.2",
-    "toastr": "~2.0.1"
+    "toastr": "~2.0.1",
+    "xdate": "~0.8.1"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.10",

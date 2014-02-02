@@ -23,12 +23,19 @@
           for the JavaScript code in this page.  
 */
 
-/*globals angular */
+/*globals angular, XDate */
 
 'use strict';
 
-angular.module('yoWorktajmApp')
-  .controller('DashboardCtrl', function ($scope, PersonService, $location) {
+angular.module('yoWorktajmApp').controller('DashboardCtrl', function ($scope, PersonService, $location) {
+
+  $scope.cleanTime = new XDate().addDays(1)
+                                  .setHours(0)
+                                  .setMinutes(0)
+                                  .setSeconds(0)
+                                  .setMilliseconds(0)
+                                  .toDate();
+  $scope.currentTime = new XDate().toDate();
 
   PersonService.getPerson().then(function (person) {
     $scope.person = person;

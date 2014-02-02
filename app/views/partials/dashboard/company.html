@@ -30,19 +30,17 @@
       </div>
       <div class="panel-body">
         <p>
-          <div class="alert alert-success">
-            <small>2014-01-24 00:00</small><br/>
-            System will be restarted soon.
+          <div class="alert alert-info">
+            <small>{{currentTime | date:'yyyy-MM-dd HH:mm'}}</small><br/>
+            Welcome to Worktajm 0.1
+          </div>
+        </p>                                                
+        <p>
+          <div class="alert alert-warning">
+            <small>{{cleanTime | date:'yyyy-MM-dd HH:mm'}}</small><br/>
+            All users are cleaned on a daily basis until system goes live.
           </div>
         </p>
-        <p>
-          <small>2014-01-24 00:00</small><br/>
-          This is not gone public yet.
-        </p>
-        <p>
-          <small>2014-01-24 00:00</small><br/>
-          Welcome to Worktajm 0.1
-        </p>                                                
       </div>
     </div>
   </div>

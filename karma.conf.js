@@ -24,7 +24,7 @@ module.exports = function(config) {
       'app/bower_components/angular-bootstrap/ui-bootstrap.js',
       'app/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'app/bower_components/jasmine-jquery/lib/jasmine-jquery.js',
-      'app/bower_components/moment/moment.js',
+      'app/bower_components/xdate/src/xdate.js',
       'app/bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js',
       'app/scripts/*.js',
       'app/scripts/**/*.js',
