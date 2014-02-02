@@ -33,14 +33,22 @@ angular.module('yoWorktajmApp')
     CustomerService.list().then(function (result) {
       $scope.customers = result;
     });
-    
-    $scope.openRemoveCustomerModal = function(customer) {
-      console.log('CustomerController:openRemoveCustomerModal');
+
+    $scope.onRemoveCustomerModalOk = function (id) {
+      return CustomerService.delete(id);
+    };
+
+    $scope.onRemoveCustomerModalCancel = function () {
+    };   
+
+    $scope.openRemoveCustomerModal = function (customer) {
+      console.log('CustomerController:openRemoveCustomerModal for customer [%d]', customer.id);
       var modalParams = {
         titleText: 'Remove customer',
         messageText: 'Do you want to remove customer?',
         okText: 'Remove',
-        cancelText: 'Cancel'
+        cancelText: 'Cancel',
+        id: customer.id
       };
       var modalInstance = $modal.open({
         templateUrl: 'confirmationModal.html',
@@ -51,16 +59,12 @@ angular.module('yoWorktajmApp')
           }
         }
       });
-      modalInstance.result.then(function () {
-        CustomerService.delete(customer);
-      }, function () {
-        console.info('Modal dismissed at: ' + new Date());
-      });
+      modalInstance.result.then($scope.onRemoveCustomerModalOk, $scope.onRemoveCustomerModalCancel);
     };
 
 
     $scope.openCustomerModal = function (customer, titleText, messageText, okText, cancelText) {
-      console.log('CustomersCtrl::openEditCustomerModal, customerName: %s', customer.name);
+      console.log('CustomersCtrl::openCustomerModal, customerName: %s', customer.name);
       var modalParams = {
         customer: customer,
         titleText: titleText,

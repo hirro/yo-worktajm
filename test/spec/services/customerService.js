@@ -170,8 +170,8 @@ describe('Service: CustomerService', function () {
       // Validation
       expect(customerService.save).toHaveBeenCalledWith(customerA);
       expect(customerService.update).toHaveBeenCalledWith(customerA);
-      expect(result.id).toBe(customerA.id);
       expect(failMessage).toBeUndefined();
+      expect(result.id).toBe(customerA.id);
     });
 
     it('should try to update a customer but get an error from backend', function () {
@@ -299,6 +299,8 @@ describe('Service: CustomerService', function () {
   describe('delete tests', function () {
     it('should delete the customer with the provider id (unless it is associated with a project)', function () {
       // Setup
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer').respond(customers);
+      spyOn(customerService, 'list').andCallThrough();           
       httpBackend.whenDELETE('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer/1').respond(200);
       spyOn(customerService, 'delete').andCallThrough();
 
@@ -314,6 +316,7 @@ describe('Service: CustomerService', function () {
       httpBackend.flush();
       
       // Validation
+      expect(customerService.list).toHaveBeenCalled();
       expect(customerService.delete).toHaveBeenCalledWith(1);
       expect(result).toBe('ok');
       expect(failMessage).toBeUndefined();
@@ -321,6 +324,8 @@ describe('Service: CustomerService', function () {
 
     it('should handle error from backend', function () {
       // Setup
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer').respond(customers);
+      spyOn(customerService, 'list').andCallThrough();      
       httpBackend.whenDELETE('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer/1').respond(401);
       spyOn(customerService, 'delete').andCallThrough();
 
@@ -336,6 +341,7 @@ describe('Service: CustomerService', function () {
       httpBackend.flush();
       
       // Validation
+      expect(customerService.list).toHaveBeenCalled();
       expect(customerService.delete).toHaveBeenCalledWith(1);
       expect(result).toBeUndefined();
       expect(failMessage.status).toBe(401);
