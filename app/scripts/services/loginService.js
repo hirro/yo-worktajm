@@ -3,7 +3,7 @@
 
 'use strict';
 
-angular.module('yoWorktajmApp').service('LoginService', function LoginService(Restangular, $cookieStore) {
+angular.module('yoWorktajmApp').service('LoginService', function LoginService(Restangular, $cookieStore, $q) {
   var svc = {
     person: null,
     token:  null,
@@ -13,13 +13,21 @@ angular.module('yoWorktajmApp').service('LoginService', function LoginService(Re
 
   svc.login = function (username, password) {
     console.log('LoginService::login(%s, *****)', username);
+    var deferred = $q.defer();
     svc.setCredentials(username, password);
-    Restangular.one('authenticate/basicHttp').get().then(function (result) {
+    Restangular.setDefaultHeaders({
+      'Authorization': 'Basic YUBiLmM6cGFzc3dvcmQ',
+      'Jim': 'sdfsdfdf'
+    });
+    Restangular.one('person').get().then(function (result) {
       console.log('Successfully logged in user [%s]', username);
       svc.personId = result;
+      return deferred.resolve(result);
     }, function (reason) {
       console.log('Failed to login used [%s], reason: [%s]', username, reason);
+      return deferred.reject(reason);      
     });
+    return deferred.promise;    
   };
 
   svc.logout = function () {
@@ -33,15 +41,17 @@ angular.module('yoWorktajmApp').service('LoginService', function LoginService(Re
 
     // Use the token to set the authentication token, once done the person can be fetched.
     Restangular.setDefaultHeaders({
-      Authorization: 'Basic ' + svc.credentials
-    });    
+      'Authorization': 'Basic ' + svc.credentials
+    });
+
+    console.log('LoginService::setCredentials(%s)', svc.credentials);
   };
 
   svc.clearCredentials = function () {
     document.execCommand('ClearAuthenticationCache');
     $cookieStore.remove('authentication');
     Restangular.setDefaultHeaders({
-      Authorization: ''
+      'Authorization': ''
     });
     svc.credentials = undefined;
   };

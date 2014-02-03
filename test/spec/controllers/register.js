@@ -35,7 +35,7 @@ describe('Controller: RegisterCtrl', function () {
   var RegisterCtrl, scope, q, httpBackend;
 
   var authenicationResponse = {
-    token:  'jim@arnellconsulting.com:1385447985128:632a4ef7344da65b43ca694090da2813',
+    token:  'demo@worktajm.com:1385447985128:632a4ef7344da65b43ca694090da2813',
     roles:  {
       ROLE_USER:  true
     },
@@ -54,7 +54,7 @@ describe('Controller: RegisterCtrl', function () {
     RegisterCtrl.$inject = ['$scope',  '$route'];
   }));
 
-  it('should register successfully', function () {
+  xit('should register successfully', function () {
 
     // Prepare
     var success = false;

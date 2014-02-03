@@ -35,7 +35,7 @@ describe('Controller: LoginCtrl', function ($q) {
 
   var LoginCtrl, scope, q, httpBackend;
 
-  // Initialize the PersonServiceMock
+  // Initialize the LoginServiceMock
   var activeProjectId = -1;
   var usernameA = 'usernameA';
   var passwordA = 'passwordA';
@@ -43,7 +43,7 @@ describe('Controller: LoginCtrl', function ($q) {
   var passwordB = 'passwordB';
 
   var person = { id: 123, username: usernameA};
-  var PersonServiceMock = {
+  var LoginServiceMock = {
     getActiveProjectId: function () {
       return activeProjectId;
     },
@@ -73,14 +73,14 @@ describe('Controller: LoginCtrl', function ($q) {
     httpBackend = $httpBackend;
     LoginCtrl = $controller('LoginCtrl', {
       $scope: scope,
-      PersonService: PersonServiceMock
+      LoginService: LoginServiceMock
     });
     LoginCtrl.$inject = ['$scope',  '$route', 'PersonService'];
   }));
 
   it('should login successfully', function () {
     // Setup
-    spyOn(PersonServiceMock, 'login').andCallThrough();
+    spyOn(LoginServiceMock, 'login').andCallThrough();
 
     // Preconditions
     expect(scope.user).toBeUndefined();
@@ -93,13 +93,13 @@ describe('Controller: LoginCtrl', function ($q) {
     scope.$digest();
 
     // Verify
-    expect(PersonServiceMock.login).toHaveBeenCalled();
+    expect(LoginServiceMock.login).toHaveBeenCalled();
     expect(scope.user.username).toBe('usernameA');
   });
 
   it('should fail login', function () {
     // Setup
-    spyOn(PersonServiceMock, 'login').andCallThrough();
+    spyOn(LoginServiceMock, 'login').andCallThrough();
 
     // Preconditions
     expect(scope.user).toBeUndefined();
@@ -112,15 +112,15 @@ describe('Controller: LoginCtrl', function ($q) {
     scope.$digest();
 
     // Verify
-    expect(PersonServiceMock.login).toHaveBeenCalled();
+    expect(LoginServiceMock.login).toHaveBeenCalled();
     expect(scope.user).toBeNull();
   });
 
   it('should logout', function () {
-    spyOn(PersonServiceMock, 'logout').andCallThrough();
+    spyOn(LoginServiceMock, 'logout').andCallThrough();
     scope.logout();
     scope.$digest();
-    expect(PersonServiceMock.logout).toHaveBeenCalled();
+    expect(LoginServiceMock.logout).toHaveBeenCalled();
   });
 
 

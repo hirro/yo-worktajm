@@ -64,52 +64,6 @@ angular.module('yoWorktajmApp').service('PersonService', function PersonService(
     return deferred.promise;        
   };
 
-  personService.login = function (username, password) {
-    var deferred = $q.defer();
-    console.log('PersonService::login - Contacting backend');
-    personService.token = Restangular.one('authenticate').get({
-        username: username,
-        password: password
-    }).then(function(returnedToken) {
-      console.log('PersonService::login - Received authentication token for user: %s', returnedToken.token);
-      personService.token = returnedToken.token;
-      personService.personId = returnedToken.personId;
-
-      // Use the token to set the authentication token, once done the person can be fetched.
-      Restangular.setDefaultHeaders({
-        'Auth-Token': personService.token
-      });
-
-      personService.getPerson().then(function (returnedPerson) {
-        personService.person = returnedPerson;
-        deferred.resolve(personService.person);
-        console.log('BROADCAST: onLoggedIn (id [%d])', personService.person.id);
-        $rootScope.$broadcast('onLoggedIn', personService.person);
-        $rootScope.token = personService.token;
-        $rootScope.person = personService.person;
-      }, function (reason) {
-        return deferred.reject(reason);
-      });
-
-    }, function (reason) {
-      console.error('PersonService::login - Login failed');
-      personService.erson = null;
-      personService.token = null;
-      return deferred.reject(reason);
-    });
-    return deferred.promise;
-  };
-
-  personService.logout = function () {
-    console.log('Logging out user [%s]', personService.person.username);
-    personService.person = null;
-    personService.token = null;
-    Restangular.setDefaultHeaders({
-    });
-    console.log('BROADCAST: onLoggedOut ()');
-    $rootScope.$broadcast('onLoggedOut');
-  };
-
   /**
    * Sets the logged in person as actively running the provided time entry.
    * @return promise to the person.
