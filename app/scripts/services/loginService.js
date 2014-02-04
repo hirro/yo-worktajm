@@ -15,11 +15,11 @@ angular.module('yoWorktajmApp').service('LoginService', function LoginService(Re
     console.log('LoginService::login(%s, *****)', username);
     var deferred = $q.defer();
     svc.setCredentials(username, password);
-    Restangular.setDefaultHeaders({
-      'Authorization': 'Basic YUBiLmM6cGFzc3dvcmQ',
-      'Jim': 'sdfsdfdf'
-    });
-    Restangular.one('person').get().then(function (result) {
+    // Restangular.setDefaultHeaders({
+    //   'Authorization': 'Basic ZGVtb0B3b3JrdGFqbS5jb206cGFzc3dvcmQ=',
+    //   'Jim': 'sdfsdfdf'
+    // });
+    Restangular.one('authenticate').get().then(function (result) {
       console.log('Successfully logged in user [%s]', username);
       svc.personId = result;
       return deferred.resolve(result);
