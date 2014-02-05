@@ -23,7 +23,7 @@
           for the JavaScript code in this page.  
 */
 
-/*globals describe, beforeEach, inject, expect, it, spyOn */
+/*globals describe, beforeEach, inject, expect, it, spyOn, _ */
 
 
 'use strict';
@@ -48,9 +48,7 @@ describe('Controller: LoginCtrl', function ($q) {
       return activeProjectId;
     },
     getPerson: function () {
-      var deferred = q.defer();
-      deferred.resolve(person);
-      return deferred.promise;
+      return person;
     },
     login: function (username, password) {
       var deferred = q.defer();
@@ -67,24 +65,23 @@ describe('Controller: LoginCtrl', function ($q) {
   };
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope, $q, $httpBackend) {
+  beforeEach(inject(function ($controller, $rootScope, $httpBackend, $q) {
     scope = $rootScope;
-    q = $q;
     httpBackend = $httpBackend;
+    q = $q;
     LoginCtrl = $controller('LoginCtrl', {
       $scope: scope,
-      LoginService: LoginServiceMock
+      PersonService: LoginServiceMock
     });
     LoginCtrl.$inject = ['$scope',  '$route', 'PersonService'];
   }));
 
   it('should login successfully', function () {
     // Setup
+    httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/authenticate').respond(person);
     spyOn(LoginServiceMock, 'login').andCallThrough();
 
-    // Preconditions
-    expect(scope.user).toBeUndefined();
-
+    // Test
     scope.username = usernameA;
     scope.password = passwordA;
     scope.login();
@@ -94,22 +91,22 @@ describe('Controller: LoginCtrl', function ($q) {
 
     // Verify
     expect(LoginServiceMock.login).toHaveBeenCalled();
-    expect(scope.user.username).toBe('usernameA');
+    expect(_.pick(scope.user, 'id', 'username')).toEqual(person);
   });
 
   it('should fail login', function () {
     // Setup
+    httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/authenticate').respond(401);
     spyOn(LoginServiceMock, 'login').andCallThrough();
 
-    // Preconditions
-    expect(scope.user).toBeUndefined();
-
+    // Test
     scope.username = usernameB;
     scope.password = passwordB;
     scope.login();
 
     // Make the requests go though
     scope.$digest();
+    //httpBackend.flush();
 
     // Verify
     expect(LoginServiceMock.login).toHaveBeenCalled();

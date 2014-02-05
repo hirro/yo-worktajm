@@ -2,7 +2,7 @@
 
 'use strict';
 
-describe('Service: LoginService', function () {
+describe('Service: PersonService', function () {
 
   // load the service's module
   beforeEach(module('yoWorktajmApp'));
@@ -12,7 +12,7 @@ describe('Service: LoginService', function () {
   var $rootScope;
 
   // instantiate service
-  var LoginService;
+  var PersonService;
 
   // Constants
   var username = 'a@b.c';
@@ -24,8 +24,8 @@ describe('Service: LoginService', function () {
     activeTimeEntry: null
   };
 
-  beforeEach(inject(function (_LoginService_, _$rootScope_, _$httpBackend_) {
-    LoginService = _LoginService_;
+  beforeEach(inject(function (_PersonService_, _$rootScope_, _$httpBackend_) {
+    PersonService = _PersonService_;
     $httpBackend = _$httpBackend_;
     $rootScope = _$rootScope_;
   }));
@@ -36,29 +36,29 @@ describe('Service: LoginService', function () {
   });
 
   it('should set and clear the credentials', function () {
-    LoginService.setCredentials(username, password);
-    expect(LoginService.credentials).toBe(encoded);
-    LoginService.clearCredentials();
-    expect(LoginService.credentials).toBeUndefined();
+    PersonService.setCredentials(username, password);
+    expect(PersonService.credentials).toBe(encoded);
+    PersonService.clearCredentials();
+    expect(PersonService.credentials).toBeUndefined();
   });
 
   it('should login', function () {
     $httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/authenticate').respond(person);
-    spyOn(LoginService, 'setCredentials').andCallThrough();
-    spyOn(LoginService, 'clearCredentials').andCallThrough();
+    spyOn(PersonService, 'setCredentials').andCallThrough();
+    spyOn(PersonService, 'clearCredentials').andCallThrough();
 
     // Login
-    LoginService.login(username, password);
-    expect(LoginService.credentials).toBe(encoded);
+    PersonService.login(username, password);
+    expect(PersonService.credentials).toBe(encoded);
 
     $rootScope.$digest();
     $httpBackend.flush();
 
-    expect(LoginService.setCredentials).toHaveBeenCalled();
+    expect(PersonService.setCredentials).toHaveBeenCalled();
 
     // Logout
-    LoginService.logout();
-    expect(LoginService.credentials).toBeUndefined();
+    PersonService.logout();
+    expect(PersonService.credentials).toBeUndefined();
   });
 
 });

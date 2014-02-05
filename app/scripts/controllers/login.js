@@ -27,7 +27,7 @@
 'use strict';
 
 angular.module('yoWorktajmApp')
-  .controller('LoginCtrl', function ($scope, $rootScope, Restangular, $location, LoginService) {
+  .controller('LoginCtrl', function ($scope, $rootScope, Restangular, $location, PersonService) {
 
   var devMode = true;
   if (devMode) {
@@ -37,7 +37,7 @@ angular.module('yoWorktajmApp')
 
   $scope.login = function () {
     console.log('login(username [%s], password [%s])', $scope.username, $scope.password);
-    LoginService.login($scope.username, $scope.password).then(function (user) {
+    PersonService.login($scope.username, $scope.password).then(function (user) {
       console.log('LoginCtrl::login - Successfully authenticated, user: %s', $scope.username);
       $rootScope.user = user;
       $location.path( '/dashboard' );
@@ -51,7 +51,7 @@ angular.module('yoWorktajmApp')
   };
 
   $scope.logout = function () {
-    LoginService.logout();
+    PersonService.logout();
     $scope.user = null;
   };
 
