@@ -43,7 +43,7 @@ describe('Service: PersonService', function () {
   });
 
   it('should login', function () {
-    $httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/authenticate').respond(person);
+    $httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/person').respond(person);
     spyOn(PersonService, 'setCredentials').andCallThrough();
     spyOn(PersonService, 'clearCredentials').andCallThrough();
 

@@ -78,7 +78,7 @@ describe('Controller: LoginCtrl', function ($q) {
 
   it('should login successfully', function () {
     // Setup
-    httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/authenticate').respond(person);
+    httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/person').respond(person);
     spyOn(LoginServiceMock, 'login').andCallThrough();
 
     // Test
@@ -96,7 +96,7 @@ describe('Controller: LoginCtrl', function ($q) {
 
   it('should fail login', function () {
     // Setup
-    httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/authenticate').respond(401);
+    httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/person').respond(401);
     spyOn(LoginServiceMock, 'login').andCallThrough();
 
     // Test

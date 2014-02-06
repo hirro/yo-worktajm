@@ -132,7 +132,7 @@ angular.module('yoWorktajmApp').service('PersonService', function PersonService(
     console.log('PersonService::login(%s, *****)', username);
     var deferred = $q.defer();
     personService.setCredentials(username, password);
-    Restangular.one('authenticate').get().then(function (result) {
+    Restangular.one('person').get().then(function (result) {
       console.log('Successfully logged in user [%s]', username);
       personService.person = result;
       return deferred.resolve(result);

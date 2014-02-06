@@ -64,8 +64,7 @@ describe('Controller: RegisterCtrl', function () {
       password:  'password'
     };
     httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/registration?email=email&password=password').respond(201);
-    httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/authenticate?password=password&username=email').respond(authenicationResponse);
-    httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/person/1').respond(personA);
+    httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/person').respond(personA);
 
     // Test
     scope.register().then(function () {

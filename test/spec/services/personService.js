@@ -257,8 +257,7 @@ describe('Service: PersonService', function () {
       expect(person).toBeNull();
 
       // Make the requiest go through
-      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/authenticate?password=PasswordA&username=UserA').respond(authenicationResponse);
-      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/person/1').respond(persons[0]);
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/person').respond(persons[0]);
       scope.$digest();
       httpBackend.flush();
       
@@ -282,8 +281,7 @@ describe('Service: PersonService', function () {
 
       // Make the requiest go through
       // XXX I dont like host and path hard coded...
-      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/authenticate?password=PasswordA&username=UserA').respond(401);
-      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/person/1').respond(persons[0]);
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/person').respond(401);
       scope.$digest();
       httpBackend.flush();
       
@@ -307,8 +305,7 @@ describe('Service: PersonService', function () {
       expect(person).toBeNull();
 
       // Make the requiest go through
-      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/authenticate?password=PasswordA&username=UserA').respond(authenicationResponse);
-      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/person/1').respond(401);
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/person').respond(401);
       scope.$digest();
       httpBackend.flush();
       
