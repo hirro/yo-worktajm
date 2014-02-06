@@ -33,7 +33,7 @@
  * @tbdEvent onLoggedOut()
  * @tbdEvent onLoggedIn()
  */
-angular.module('yoWorktajmApp').service('PersonService', function PersonService($rootScope, $cookieStore, $q, Restangular) {
+angular.module('yoWorktajmApp').service('PersonService', function PersonService($rootScope, $cookieStore, $q, Restangular, $location) {
   var personService = {
     person: null,
     token:  null,
@@ -146,6 +146,7 @@ angular.module('yoWorktajmApp').service('PersonService', function PersonService(
   personService.logout = function () {
     console.log('PersonService::logout()');
     personService.clearCredentials();
+    $location.path('/main');
   };
 
   personService.setCredentials = function (username, password) {
