@@ -46,7 +46,6 @@ angular.module('yoWorktajmApp').controller('RegisterCtrl', function ($scope, Res
         // Now l2ogin as the provided user
         PersonService.login($scope.registration.email, $scope.registration.password).then(function (user) {
           console.log('RegisterCtrl::reigster - Successfully authenticated, user: %s', $scope.username);
-          $rootScope.user = user;
           $location.path( '/dashboard' );
           toastr.success('Successfully logged in as ' + $scope.username);
         }, function (reason) {

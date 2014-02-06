@@ -39,13 +39,12 @@ angular.module('yoWorktajmApp')
     console.log('login(username [%s], password [%s])', $scope.username, $scope.password);
     PersonService.login($scope.username, $scope.password).then(function (user) {
       console.log('LoginCtrl::login - Successfully authenticated, user: %s', $scope.username);
-      $rootScope.user = user;
       $location.path( '/dashboard' );
       toastr.success('Successfully logged in as ' + $scope.username);
     }, function (reason) {
       toastr.error('Authentication failed');
       console.error(reason);
-      $rootScope.user = null;
+      $rootScope.principal = null;
       $location.path( '/login' );
     });
   };
@@ -69,7 +68,6 @@ angular.module('yoWorktajmApp')
   //
   $scope.$on('onLoggedOut', function () {
     console.info('EVENT: LoginCtrl::onLoggedOut()');
-    $rootScope.user = null;
     $location.path( '/login' );
   });
 

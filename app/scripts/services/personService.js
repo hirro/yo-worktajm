@@ -135,6 +135,7 @@ angular.module('yoWorktajmApp').service('PersonService', function PersonService(
     Restangular.one('person').get().then(function (result) {
       console.log('Successfully logged in user [%s]', username);
       personService.person = result;
+      $rootScope.principal = result;
       return deferred.resolve(result);
     }, function (reason) {
       console.log('Failed to login used [%s], reason: [%s]', username, reason);
@@ -145,6 +146,7 @@ angular.module('yoWorktajmApp').service('PersonService', function PersonService(
 
   personService.logout = function () {
     console.log('PersonService::logout()');
+    $rootScope.principal = undefined;
     personService.clearCredentials();
     $location.path('/main');
   };
