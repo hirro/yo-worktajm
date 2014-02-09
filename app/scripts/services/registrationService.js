@@ -54,19 +54,17 @@ angular.module('yoWorktajmApp').service('RegistrationService', function Registra
       console.log('Email is not registered');
       deferred.reject(reason);
     });
-   return deferred.promise;
+    return deferred.promise;
   };
 
   /**
    * Register new user.
    */
-   registrationService.register = function (email, password) {
-      console.log('RegistrationService::register -  email: [%s]', email);
-      var promise = Restangular.one('registration').get({
-        'email': email, 
-        'password': password
-      });
-      return promise;
+  registrationService.register = function (person) {
+    var p = _.pick(person, 'email', 'password');
+    console.log('RegistrationService::register -  email: [%s]', p.email);
+    var promise = Restangular.one('registration').put(p);
+    return promise;
     };
 
   return registrationService;
