@@ -27,7 +27,7 @@
 
 'use strict';
 
-ddescribe('Controller: CustomersCtrl', function () {
+describe('Controller: CustomersCtrl', function () {
 
   // load the controller's module
   beforeEach(module('yoWorktajmApp'));
