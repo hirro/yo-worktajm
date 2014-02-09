@@ -58,13 +58,13 @@ describe('Controller: RegisterCtrl', function () {
   };
 
   var RegistrationServiceMock = {
-    register: function (email, password) {
+    register: function (params) {
       var deferred = q.defer();
-      if (email === 'ok') {
+      if (params.email === 'ok') {
         console.log('RegistrationServiceMock ok ');
         deferred.resolve(authenicationResponse);
       } else {
-        console.log('RegistrationServiceMock failed email[%s]', email);        
+        console.log('RegistrationServiceMock failed email[%s]', params.email);        
         deferred.reject();
       }
       return deferred.promise;
@@ -96,8 +96,8 @@ describe('Controller: RegisterCtrl', function () {
     scope.$digest();
     scope.$digest();
 
-    expect(RegistrationServiceMock.register).toHaveBeenCalledWith('ok', 'ok');
-    expect(LoginServiceMock.login).toHaveBeenCalledWith('ok', 'ok');
+    expect(RegistrationServiceMock.register).toHaveBeenCalled();
+    expect(LoginServiceMock.login).toHaveBeenCalled();
   });
 
   it('should handle registration failure gracefully when registration fails', function () {
@@ -111,7 +111,7 @@ describe('Controller: RegisterCtrl', function () {
     scope.register();
     scope.$digest();
 
-    expect(RegistrationServiceMock.register).toHaveBeenCalledWith('nok', 'nok');
+    expect(RegistrationServiceMock.register).toHaveBeenCalled();
     expect(LoginServiceMock.login).not.toHaveBeenCalled();
   });
 
@@ -126,7 +126,7 @@ describe('Controller: RegisterCtrl', function () {
     scope.register();
     scope.$digest();
 
-    expect(RegistrationServiceMock.register).toHaveBeenCalledWith('ok', 'nok');
+    expect(RegistrationServiceMock.register).toHaveBeenCalled();
     expect(LoginServiceMock.login).toHaveBeenCalled();
   });
 

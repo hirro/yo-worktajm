@@ -29,10 +29,7 @@ angular.module('yoWorktajmApp').controller('RegisterCtrl', function ($scope, Res
 
   $scope.register = function () {
     console.log('RegisterCtrl::register - email [%s]', $scope.registration.email);
-    return RegistrationService.register(
-      $scope.registration.email, 
-      $scope.registration.password
-    ).then(function () {
+    return RegistrationService.register($scope.registration).then(function () {
       return LoginService.login($scope.registration.email, $scope.registration.password); 
     }, function(reason) {
       console.log('RegisterCtrl::register - failed [%s]', reason);

@@ -31,8 +31,8 @@ this.login = function (username, password) {
 
   // We should now be logged in and transferred to the dashboard
   // 
-  var firstName = element(by.binding('person.firstName'));
-  expect(firstName.getText()).toEqual('Jim Arnell');
+  var firstName = element(by.binding('principal.firstName'));
+  expect(firstName.getText()).toEqual('Demo User');
 };
 
 this.register = function (username, password) {
@@ -55,12 +55,12 @@ this.register = function (username, password) {
 
   // We should now be logged in and transferred to the dashboard
   // 
-  var firstName = element(by.binding('person.firstName'));
+  var firstName = element(by.binding('principal.firstName'));
   expect(firstName.getText()).toEqual('First name Last name');
 };
 
 this.logout = function () {
   element(by.id('nav_user')).click();
   element(by.id('nav_logout')).click();
-  expect(browser.getCurrentUrl()).toBe('http://127.0.0.1:9000/#/login');
+  expect(browser.getCurrentUrl()).toBe('http://127.0.0.1:9000/#/main');
 };

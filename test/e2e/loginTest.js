@@ -23,6 +23,8 @@
           for the JavaScript code in this page.  
 */
 
+'use strict';
+
 var Utilities = require('./utilities.js');
 
 describe('login from landing page', function() {

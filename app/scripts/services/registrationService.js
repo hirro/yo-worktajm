@@ -23,6 +23,8 @@
           for the JavaScript code in this page.  
 */
 
+/* globals _ */
+
 'use strict';
 
 /**
@@ -31,7 +33,7 @@
  * @tbdEvent onLoggedOut()
  * @tbdEvent onLoggedIn()
  */
-angular.module('yoWorktajmApp').service('RegistrationService', function RegistrationService($rootScope, $q, Restangular) {
+angular.module('yoWorktajmApp').service('RegistrationService', function RegistrationService($rootScope, $q,  $http, Restangular) {
   var registrationService = {
     person: null,
     token:  null,
@@ -61,11 +63,19 @@ angular.module('yoWorktajmApp').service('RegistrationService', function Registra
    * Register new user.
    */
   registrationService.register = function (person) {
-    var p = _.pick(person, 'email', 'password');
+    var deferred = $q.defer();
+    var p = _.pick(person, 'email', 'password', 'firstName', 'lastName');
     console.log('RegistrationService::register -  email: [%s]', p.email);
-    var promise = Restangular.one('registration').put(p);
-    return promise;
-    };
+    // $http.post('/registration', p)
+    // .success(function(data, status, headers, config) {
+    //   deferred.resolve();
+    // })
+    // .error(function(data, status, headers, config) {
+    //   deferred.reject(status);
+    // });
+    //return deferred.promise;
+    return Restangular.all('registration').post(person);
+  };
 
   return registrationService;
 });
