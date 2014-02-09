@@ -73,6 +73,16 @@ describe('Controller: ProjectsCtrl', function () {
           deferred.resolve();
         }
         return deferred.promise;
+      },
+      deleteProject: function (project) {
+        var deferred = $q.defer();
+        deferred.resolve(project);
+        return deferred.promise;
+      },
+      updateProject: function (project) {
+        var deferred = $q.defer();
+        deferred.resolve(project);
+        return deferred.promise;
       }
     };
   });
@@ -86,7 +96,7 @@ describe('Controller: ProjectsCtrl', function () {
     $httpBackend = _$httpBackend_;
     ProjectsCtrl = $controller('ProjectsCtrl', {
       $scope: $scope,
-      CustomerService: TimerServiceMock
+      TimerService: TimerServiceMock
     });
     ProjectsCtrl.$inject = ['$scope',  '$route', 'CustomerService'];
   }));
@@ -96,20 +106,51 @@ describe('Controller: ProjectsCtrl', function () {
     $httpBackend.verifyNoOutstandingRequest();
   });
 
-  it('should remove a project', function () {
-    $httpBackend.whenGET('confirmationModal.html').respond('<div>Modal2</div>');
-    $scope.$digest();
-    $scope.removeProject(PROJECT_A);
-    $scope.$digest();
-    $httpBackend.flush();
+  describe('open modal dialogs', function () {
+    it('should open remove project modal', function () {
+      $httpBackend.whenGET('confirmationModal.html').respond('<div>Modal2</div>');
+      $scope.$digest();
+      $scope.removeProject(PROJECT_A);
+      $scope.$digest();
+      $httpBackend.flush();
+    });
+
+    it('should open edit project modal', function () {
+      $httpBackend.whenGET('projectModal.html').respond();
+      $scope.$digest();
+      $scope.editProject(PROJECT_A);
+      $scope.$digest();
+      $httpBackend.flush();
+    });
+
+    it('should open create project modal', function () {
+      $httpBackend.whenGET('projectModal.html').respond();
+      $scope.$digest();
+      $scope.createProject();
+      $scope.$digest();
+      $httpBackend.flush();
+    });
   });
 
-  it('should edit a project', function () {
-    $httpBackend.whenGET('projectModal.html').respond();
-    $scope.$digest();
-    $scope.editProject(PROJECT_A);
-    $scope.$digest();
-    $httpBackend.flush();
+  it('should clear all time entries when receiving onLoggedOut event', function () {
+    $scope.projects = [ 1, 2 ,3 ];
+    expect($scope.projects).not.toBeNull();
+    $scope.$broadcast('onLoggedOut');
+    expect($scope.projects).toBeNull();
+  });
+
+  it('should verify that onRemoveProject just propagates the patameter to TimeService', function () {
+    var object = PROJECT_A;
+    spyOn(TimerServiceMock, 'deleteProject').andCallThrough();
+    $scope.onRemoveProject(object);
+    expect(TimerServiceMock.deleteProject).toHaveBeenCalledWith(object);
+  });
+
+  it('should verify that onUpdateProject just propagates the patameter to TimeService', function () {
+    var object = PROJECT_A;
+    spyOn(TimerServiceMock, 'updateProject').andCallThrough();
+    $scope.onUpdateProject(object);
+    expect(TimerServiceMock.updateProject).toHaveBeenCalledWith(object);
   });
 
 });

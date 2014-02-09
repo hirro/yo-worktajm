@@ -31,13 +31,18 @@ angular.module('yoWorktajmApp')
   .controller('ProjectsCtrl', function ($scope, $modal, TimerService) {
     $scope.projects = TimerService.getProjects();
     
+    $scope.onRemoveProject = function (project) {
+        TimerService.deleteProject(project);      
+    };
+
     $scope.removeProject = function(project) {
       console.log('ProjectController:removeProject');
       var modalParams = {
         titleText: 'Remove project',
         messageText: 'Do you want to remove project?',
         okText: 'Remove',
-        cancelText: 'Cancel'
+        cancelText: 'Cancel',
+        subject: project
       };
       var modalInstance = $modal.open({
         templateUrl: 'confirmationModal.html',
@@ -48,14 +53,12 @@ angular.module('yoWorktajmApp')
           }
         }
       });
-      modalInstance.result.then(function () {
-        TimerService.deleteProject(project);
-      }, function () {
-        console.info('Modal dismissed at: ' + new Date());
-      });
+      modalInstance.result.then($scope.onRemoveProject);
     };
 
-
+    $scope.onUpdateProject = function (project) {
+      return TimerService.updateProject(project);
+    };
     $scope.openModal = function (project, titleText, messageText, okText, cancelText) {
       console.log('ProjectsCtrl::editProject, projectName: %s', project.name);
       var modalParams = {
@@ -63,7 +66,8 @@ angular.module('yoWorktajmApp')
         titleText: titleText,
         messageText: messageText,
         okText: okText,
-        cancelText: cancelText
+        cancelText: cancelText,
+        subject: _.clone(project)
       };
       var modalInstance = $modal.open({
         templateUrl: 'projectModal.html',
@@ -74,12 +78,7 @@ angular.module('yoWorktajmApp')
           }
         }
       });
-      modalInstance.result.then(function (result) {
-        _.extend(project, result);
-        TimerService.updateProject(project);
-      }, function () {
-        console.info('Modal dismissed at: ' + new Date());
-      });
+      modalInstance.result.then($scope.onUpdateProject);
     };
 
     $scope.editProject = function (project) {
@@ -95,18 +94,9 @@ angular.module('yoWorktajmApp')
     //
     // Service events
     //
-    $scope.$on('onProjectCreated', function (event, project) {
-      console.log('EVENT: ProjectsCtrl::onProjectCreated(id [%d])', project.id);
-    });
-    $scope.$on('onProjectDeleted', function (event, project) {
-      console.log('EVENT: ProjectsCtrl::onProjectDeleted(id [%d])', project.id);
-    });
-    $scope.$on('onProjectUpdated', function (event, project) {
-      console.log('EVENT: ProjectsCtrl::onProjectUpdated(id [%d])', project.id);
-    });
     $scope.$on('onLoggedOut', function () {
       console.info('EVENT: ProjectsCtrl::onLoggedOut()');
-      $scope.timeEntries = null;
+      $scope.projects = null;
     });    
 
   });

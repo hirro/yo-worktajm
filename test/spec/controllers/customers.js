@@ -239,8 +239,8 @@ describe('Controller: CustomersCtrl', function () {
 
   it('should call delete on onRemoveCustomerModalOk', function () {
     spyOn(CustomerServiceMock, 'delete').andCallThrough();
-    $scope.onRemoveCustomerModalOk(1);
-    expect(CustomerServiceMock.delete).toHaveBeenCalledWith(1);
+    $scope.onRemoveCustomerModalOk(CUSTOMER_A);
+    expect(CustomerServiceMock.delete).toHaveBeenCalledWith(CUSTOMER_A.id);
   });
 
   it('should call update on onOpenCustomerModalOk when customer id is defined', function () {

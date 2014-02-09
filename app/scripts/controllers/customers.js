@@ -34,8 +34,8 @@ angular.module('yoWorktajmApp')
       $scope.customers = result;
     });
 
-    $scope.onRemoveCustomerModalOk = function (id) {
-      return CustomerService.delete(id);
+    $scope.onRemoveCustomerModalOk = function (customer) {
+      return CustomerService.delete(customer.id);
     };
 
     $scope.openRemoveCustomerModal = function (customer) {
@@ -45,7 +45,7 @@ angular.module('yoWorktajmApp')
         messageText: 'Do you want to remove customer?',
         okText: 'Remove',
         cancelText: 'Cancel',
-        id: customer.id
+        subject: customer
       };
       var modalInstance = $modal.open({
         templateUrl: 'confirmationModal.html',
@@ -74,7 +74,8 @@ angular.module('yoWorktajmApp')
         titleText: titleText,
         messageText: messageText,
         okText: okText,
-        cancelText: cancelText
+        cancelText: cancelText,
+        subject: customer
       };
       var modalInstance = $modal.open({
         templateUrl: 'customerModal.html',

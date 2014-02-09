@@ -31,7 +31,7 @@ angular.module('yoWorktajmApp')
   .controller('ConfirmationModalCtrl', function ($scope, $modalInstance, modalParams) {
     _.extend($scope, modalParams);
     $scope.ok = function () {
-      $modalInstance.close($scope.id);
+      $modalInstance.close(modalParams.subject);
     };
     $scope.cancel = function () {
       $modalInstance.dismiss('cancel');
