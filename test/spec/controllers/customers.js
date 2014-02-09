@@ -27,7 +27,7 @@
 
 'use strict';
 
-describe('Controller: CustomersCtrl', function () {
+ddescribe('Controller: CustomersCtrl', function () {
 
   // load the controller's module
   beforeEach(module('yoWorktajmApp'));
@@ -74,6 +74,21 @@ describe('Controller: CustomersCtrl', function () {
           console.log('Customer NOT found in mock');
           deferred.resolve();
         }
+        return deferred.promise;
+      },
+      delete: function (id) {
+        var deferred = $q.defer();
+        deferred.resolve();
+        return deferred.promise;
+      },
+      update: function (customer) {
+        var deferred = $q.defer();
+        deferred.resolve(customer);
+        return deferred.promise;
+      },
+      create: function (customer) {
+        var deferred = $q.defer();
+        deferred.resolve(customer);
         return deferred.promise;
       }
     };
@@ -197,6 +212,51 @@ describe('Controller: CustomersCtrl', function () {
     $scope.openEditCustomerModal(CUSTOMER_A);
     $scope.$digest();
     $httpBackend.flush();
+  });
+
+  describe('modal openers, quite useless except for coverage XXX', function () {
+    it('should open the customer modal dialog', function () {
+      $httpBackend.whenGET('customerModal.html').respond();
+      $scope.openCustomerModal(CUSTOMER_A, 'TITLE', 'MESSAGE', 'OK', 'CANCEL');
+      $scope.$digest();
+      $httpBackend.flush();
+    });
+    it('should open the create customer modal dialog', function () {
+      $httpBackend.whenGET('customerModal.html').respond();
+      $scope.openCreateCustomerModal();
+      $scope.$digest();
+      $httpBackend.flush();
+    });
+  });
+
+  it('should clear all time entries when receiving onLoggedOut event', function () {
+    $scope.timeEntries = [ 1, 2 ,3 ];
+
+    expect($scope.timeEntries).not.toBeNull();
+    $scope.$broadcast('onLoggedOut');
+    expect($scope.timeEntries).toBeNull();
+  });
+
+  it('should call delete on onRemoveCustomerModalOk', function () {
+    spyOn(CustomerServiceMock, 'delete').andCallThrough();
+    $scope.onRemoveCustomerModalOk(1);
+    expect(CustomerServiceMock.delete).toHaveBeenCalledWith(1);
+  });
+
+  it('should call update on onOpenCustomerModalOk when customer id is defined', function () {
+    spyOn(CustomerServiceMock, 'update').andCallThrough();
+    spyOn(CustomerServiceMock, 'create').andCallThrough();
+    $scope.onOpenCustomerModalOk({id: 1});
+    expect(CustomerServiceMock.update).toHaveBeenCalled();
+    expect(CustomerServiceMock.create).not.toHaveBeenCalled();
+  });
+
+  it('should call update on onOpenCustomerModalOk when customer id is NOT defined', function () {
+    spyOn(CustomerServiceMock, 'update').andCallThrough();
+    spyOn(CustomerServiceMock, 'create').andCallThrough();
+    $scope.onOpenCustomerModalOk({});
+    expect(CustomerServiceMock.update).not.toHaveBeenCalled();
+    expect(CustomerServiceMock.create).toHaveBeenCalled();
   });
 
 });

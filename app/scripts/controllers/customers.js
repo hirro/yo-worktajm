@@ -38,9 +38,6 @@ angular.module('yoWorktajmApp')
       return CustomerService.delete(id);
     };
 
-    $scope.onRemoveCustomerModalCancel = function () {
-    };   
-
     $scope.openRemoveCustomerModal = function (customer) {
       console.log('CustomerController:openRemoveCustomerModal for customer [%d]', customer.id);
       var modalParams = {
@@ -59,9 +56,16 @@ angular.module('yoWorktajmApp')
           }
         }
       });
-      modalInstance.result.then($scope.onRemoveCustomerModalOk, $scope.onRemoveCustomerModalCancel);
+      modalInstance.result.then($scope.onRemoveCustomerModalOk);
     };
 
+    $scope.onOpenCustomerModalOk = function (customer) {
+      if (customer.id) {
+        CustomerService.update(customer);
+      } else {
+        CustomerService.create(customer);          
+      }
+    };
 
     $scope.openCustomerModal = function (customer, titleText, messageText, okText, cancelText) {
       console.log('CustomersCtrl::openCustomerModal, customerName: %s', customer.name);
@@ -81,16 +85,7 @@ angular.module('yoWorktajmApp')
           }
         }
       });
-      modalInstance.result.then(function (result) {
-        if (customer.id) {
-          result.id = customer.id;
-          CustomerService.update(result);
-        } else {
-          CustomerService.create(result);          
-        }
-      }, function () {
-        console.info('Modal dismissed at: ' + new Date());
-      });
+      modalInstance.result.then($scope.onOpenCustomerModalOk);
     };
 
     $scope.openEditCustomerModal = function (customer) {
@@ -106,15 +101,6 @@ angular.module('yoWorktajmApp')
     //
     // Service events
     //
-    $scope.$on('onCustomerCreated', function (event, customer) {
-      console.log('EVENT: CustomersCtrl::onCustomerCreated(id [%d])', customer.id);
-    });
-    $scope.$on('onCustomerDeleted', function (event, customer) {
-      console.log('EVENT: CustomersCtrl::onCustomerDeleted(id [%d])', customer.id);
-    });
-    $scope.$on('onCustomerUpdated', function (event, customer) {
-      console.log('EVENT: CustomersCtrl::onCustomerUpdated(id [%d])', customer.id);
-    });
     $scope.$on('onLoggedOut', function () {
       console.info('EVENT: CustomersCtrl::onLoggedOut()');
       $scope.timeEntries = null;
