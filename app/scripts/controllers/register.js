@@ -28,11 +28,15 @@
 angular.module('yoWorktajmApp').controller('RegisterCtrl', function ($scope, Restangular, $location, $rootScope, RegistrationService, LoginService) {
 
   $scope.register = function () {
-    return RegistrationService.register({
-      'email': $scope.registration.email, 
-      'password': $scope.registration.password
-    })
-    .then(LoginService.login($scope.registration.email, $scope.registration.password));
+    console.log('RegisterCtrl::register - email [%s]', $scope.registration.email);
+    return RegistrationService.register(
+      $scope.registration.email, 
+      $scope.registration.password
+    ).then(function () {
+      return LoginService.login($scope.registration.email, $scope.registration.password); 
+    }, function(reason) {
+      console.log('RegisterCtrl::register - failed [%s]', reason);
+    });
   };
 });
 

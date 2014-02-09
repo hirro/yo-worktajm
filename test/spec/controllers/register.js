@@ -27,7 +27,7 @@
 
 'use strict';
 
-xdescribe('Controller: RegisterCtrl', function () {
+describe('Controller: RegisterCtrl', function () {
 
   // load the controller's module
   beforeEach(module('yoWorktajmApp'));
@@ -47,8 +47,10 @@ xdescribe('Controller: RegisterCtrl', function () {
     login: function (username, password) {
       var deferred = q.defer();
       if (password === 'ok') {
+        console.log('LoginServiceMock ok %s', password);
         deferred.resolve();
       } else {
+        console.log('LoginServiceMock failed %s', password);
         deferred.reject();
       }
       return deferred.promise;
@@ -56,11 +58,13 @@ xdescribe('Controller: RegisterCtrl', function () {
   };
 
   var RegistrationServiceMock = {
-    register: function (params) {
+    register: function (email, password) {
       var deferred = q.defer();
-      if (params.email === 'ok') {
+      if (email === 'ok') {
+        console.log('RegistrationServiceMock ok ');
         deferred.resolve(authenicationResponse);
       } else {
+        console.log('RegistrationServiceMock failed email[%s]', email);        
         deferred.reject();
       }
       return deferred.promise;
@@ -81,44 +85,49 @@ xdescribe('Controller: RegisterCtrl', function () {
   }));
 
   it('should register successfully', function () {
+    spyOn(RegistrationServiceMock, 'register').andCallThrough();
+    spyOn(LoginServiceMock, 'login').andCallThrough();
 
-    // Prepare
-    var success = false;
-    var failure = false;
     scope.registration = {
       email: 'ok',
       password:  'ok'
     };
-
-    // Test
-    scope.register().then(function () {
-      success = true;
-    }, function () {
-      failure = true;
-    });
+    scope.register();
+    scope.$digest();
     scope.$digest();
 
-    // Verify
-    expect(success).toBe(true);
-    expect(failure).toBe(false);
+    expect(RegistrationServiceMock.register).toHaveBeenCalledWith('ok', 'ok');
+    expect(LoginServiceMock.login).toHaveBeenCalledWith('ok', 'ok');
   });
 
-  iit('should handle registration failure gracefully', function () {
+  it('should handle registration failure gracefully when registration fails', function () {
+    spyOn(RegistrationServiceMock, 'register').andCallThrough();
+    spyOn(LoginServiceMock, 'login').andCallThrough();
 
-    var success = false;
-    var failure = false;
     scope.registration = {
-      email: 'email',
-      password:  'password'
+      email: 'nok',
+      password:  'nok'
     };
-    scope.register().then(function () {
-      success = true;
-    }, function () {
-      success = true;
-    });
+    scope.register();
     scope.$digest();
-    expect(success).toBe(false);
-    expect(failure).toBe(true);
+
+    expect(RegistrationServiceMock.register).toHaveBeenCalledWith('nok', 'nok');
+    expect(LoginServiceMock.login).not.toHaveBeenCalled();
+  });
+
+  it('should handle registration failure gracefully when login fails', function () {
+    spyOn(RegistrationServiceMock, 'register').andCallThrough();
+    spyOn(LoginServiceMock, 'login').andCallThrough();
+
+    scope.registration = {
+      email: 'ok',
+      password:  'nok'
+    };
+    scope.register();
+    scope.$digest();
+
+    expect(RegistrationServiceMock.register).toHaveBeenCalledWith('ok', 'nok');
+    expect(LoginServiceMock.login).toHaveBeenCalled();
   });
 
 });

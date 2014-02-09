@@ -27,7 +27,7 @@
 
 'use strict';
 
-ddescribe('Service: RegistrationService', function () {
+describe('Service: RegistrationService', function () {
 
   // load the service's module
   beforeEach(module('yoWorktajmApp'));
