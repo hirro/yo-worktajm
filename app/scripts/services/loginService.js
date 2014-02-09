@@ -62,6 +62,7 @@ angular.module('yoWorktajmApp').service('LoginService', function LoginService($r
       return PersonService.getPerson().then(function (person) {
         console.log('LoginService::login - Principal resolved, email %d', person.email);
         $rootScope.principal = person;
+        $location.path('/dashboard');
         return person;
       });
     };
