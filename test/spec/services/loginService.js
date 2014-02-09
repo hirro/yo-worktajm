@@ -2,7 +2,7 @@
 
 'use strict';
 
-describe('Service: PersonService', function () {
+describe('Service: LoginService', function () {
 
   // load the service's module
   beforeEach(module('yoWorktajmApp'));
@@ -12,7 +12,7 @@ describe('Service: PersonService', function () {
   var $rootScope;
 
   // instantiate service
-  var PersonService;
+  var LoginService;
 
   // Constants
   var username = 'a@b.c';
@@ -24,8 +24,8 @@ describe('Service: PersonService', function () {
     activeTimeEntry: null
   };
 
-  beforeEach(inject(function (_PersonService_, _$rootScope_, _$httpBackend_) {
-    PersonService = _PersonService_;
+  beforeEach(inject(function (_LoginService_, _$rootScope_, _$httpBackend_) {
+    LoginService = _LoginService_;
     $httpBackend = _$httpBackend_;
     $rootScope = _$rootScope_;
   }));
@@ -36,29 +36,30 @@ describe('Service: PersonService', function () {
   });
 
   it('should set and clear the credentials', function () {
-    PersonService.setCredentials(username, password);
-    expect(PersonService.credentials).toBe(encoded);
-    PersonService.clearCredentials();
-    expect(PersonService.credentials).toBeUndefined();
+    LoginService.setCredentials(username, password);
+    expect(LoginService.credentials).toBe(encoded);
+    LoginService.clearCredentials();
+    expect(LoginService.credentials).toBeUndefined();
   });
 
   it('should login', function () {
+    $httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/authenticate').respond(person);
     $httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/person').respond(person);
-    spyOn(PersonService, 'setCredentials').andCallThrough();
-    spyOn(PersonService, 'clearCredentials').andCallThrough();
+    spyOn(LoginService, 'setCredentials').andCallThrough();
+    spyOn(LoginService, 'clearCredentials').andCallThrough();
 
     // Login
-    PersonService.login(username, password);
-    expect(PersonService.credentials).toBe(encoded);
+    LoginService.login(username, password);
+    expect(LoginService.credentials).toBe(encoded);
 
     $rootScope.$digest();
     $httpBackend.flush();
 
-    expect(PersonService.setCredentials).toHaveBeenCalled();
+    expect(LoginService.setCredentials).toHaveBeenCalled();
 
     // Logout
-    PersonService.logout();
-    expect(PersonService.credentials).toBeUndefined();
+    LoginService.logout();
+    expect(LoginService.credentials).toBeUndefined();
   });
 
 });

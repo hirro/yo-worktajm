@@ -67,5 +67,15 @@ describe('Service: RegistrationService', function () {
       httpBackend.flush();
     });
   });
+
+  describe('registration tests', function () {
+    it('should register successfully', function () {
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/registration?email=a&password=b').respond('true');
+
+      service.register('a', 'b');
+      httpBackend.flush();
+
+    });
+  });
   
 });

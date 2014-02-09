@@ -23,46 +23,16 @@
           for the JavaScript code in this page.  
 */
 
-/* globals toastr */
-
 'use strict';
 
-angular.module('yoWorktajmApp').controller('RegisterCtrl', function ($scope, Restangular, $location, $rootScope, PersonService, CustomerService) {
+angular.module('yoWorktajmApp').controller('RegisterCtrl', function ($scope, Restangular, $location, $rootScope, RegistrationService, LoginService) {
 
   $scope.register = function () {
-    if ($scope.registration && $scope.registration.email) {
-      console.log('RegisterCtrl::register -  email: [%s]', $scope.registration.email);
-      var promise = Restangular.one('registration').get({
-        'email': $scope.registration.email, 
-        'password': $scope.registration.password
-      });
-
-      promise.then(function (token) {
-        console.log('RegisterCtrl::register - Successfully registered user');
-        $scope.token = token;
-        $location.path( '/dashboard' );
-        toastr.success('Registration succeeded, logging in.');
-
-        // Now l2ogin as the provided user
-        PersonService.login($scope.registration.email, $scope.registration.password).then(function (user) {
-          console.log('RegisterCtrl::reigster - Successfully authenticated, user: %s', $scope.username);
-          $location.path( '/dashboard' );
-          toastr.success('Successfully logged in as ' + $scope.username);
-        }, function (reason) {
-          toastr.error('Authentication failed');
-          console.error(reason);
-          $rootScope.user = null;
-          $location.path( '/main' );
-        });
-
-      }, function (reason) {
-        console.error('RegisterCtrl::register - Failed to register user, error: %s', reason);
-        toastr.error('Registration failed');
-      });
-      return promise;
-    } else {
-      toastr.error('Email address missing');
-    }
+    return RegistrationService.register({
+      'email': $scope.registration.email, 
+      'password': $scope.registration.password
+    })
+    .then(LoginService.login($scope.registration.email, $scope.registration.password));
   };
 });
 

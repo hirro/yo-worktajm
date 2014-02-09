@@ -23,17 +23,19 @@
           for the JavaScript code in this page.  
 */
 
+/*jshint camelcase: false */
+
 /*globals describe, beforeEach, inject, expect, it, spyOn, _ */
 
 
 'use strict';
 
-describe('Controller: LoginCtrl', function ($q) {
+describe('Controller: LoginCtrl', function () {
 
   // load the controller's module
   beforeEach(module('yoWorktajmApp'));
 
-  var LoginCtrl, scope, q, httpBackend;
+  var LoginCtrl, $scope, $q, $httpBackend, $location;
 
   // Initialize the LoginServiceMock
   var activeProjectId = -1;
@@ -51,7 +53,7 @@ describe('Controller: LoginCtrl', function ($q) {
       return person;
     },
     login: function (username, password) {
-      var deferred = q.defer();
+      var deferred = $q.defer();
       if (username === usernameA) {
         deferred.resolve(person);
       } else {
@@ -60,65 +62,73 @@ describe('Controller: LoginCtrl', function ($q) {
       return deferred.promise;
     },
     logout: function () {
-      scope.$broadcast('onLoggedOut');
+      $scope.$broadcast('onLoggedOut');
     }
   };
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope, $httpBackend, $q) {
-    scope = $rootScope;
-    httpBackend = $httpBackend;
-    q = $q;
+  beforeEach(inject(function ($controller, $rootScope, _$httpBackend_, _$q_, _$location_) {
+    $scope = $rootScope.$new();
+    $httpBackend = _$httpBackend_;
+    $q = _$q_;
+    $location = _$location_;
     LoginCtrl = $controller('LoginCtrl', {
-      $scope: scope,
-      PersonService: LoginServiceMock
+      $scope: $scope,
+      LoginService: LoginServiceMock
     });
     LoginCtrl.$inject = ['$scope',  '$route', 'PersonService'];
   }));
 
-  xit('should login successfully', function () {
+  afterEach(function() {
+    $httpBackend.verifyNoOutstandingExpectation();
+    $httpBackend.verifyNoOutstandingRequest();
+  });
+
+  it('should login successfully', function () {
     // Setup
-    httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/person').respond(person);
     spyOn(LoginServiceMock, 'login').andCallThrough();
 
     // Test
-    scope.username = usernameA;
-    scope.password = passwordA;
-    scope.login();
+    $scope.username = usernameA;
+    $scope.password = passwordA;
+    $scope.login();
 
     // Make the requests go though
-    scope.$digest();
+    //$scope.$digest();
 
     // Verify
-    expect(LoginServiceMock.login).toHaveBeenCalled();
-    expect(_.pick(scope.principal, 'id', 'username')).toEqual(person);
+    expect(LoginServiceMock.login).toHaveBeenCalledWith(usernameA, passwordA);
   });
 
   it('should fail login', function () {
     // Setup
-    httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/person').respond(401);
+    $httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/authenticate').respond(401);
     spyOn(LoginServiceMock, 'login').andCallThrough();
 
     // Test
-    scope.username = usernameB;
-    scope.password = passwordB;
-    scope.login();
+    $scope.username = usernameB;
+    $scope.password = passwordB;
+    $scope.login();
 
     // Make the requests go though
-    scope.$digest();
-    //httpBackend.flush();
+    $scope.$digest();
 
     // Verify
     expect(LoginServiceMock.login).toHaveBeenCalled();
-    expect(scope.principal).toBeNull();
+    expect($scope.principal).toBeFalsy();
   });
 
   it('should logout', function () {
     spyOn(LoginServiceMock, 'logout').andCallThrough();
-    scope.logout();
-    scope.$digest();
+    $scope.logout();
+    $scope.$digest();
     expect(LoginServiceMock.logout).toHaveBeenCalled();
   });
 
+  it('should check if current location is active', function () {
+    spyOn($location, 'path').andReturn('/a');
+    expect($scope.isActive('/')).toBe(false);
+    expect($scope.isActive('/a')).toBe(true);
+  });
 
 });

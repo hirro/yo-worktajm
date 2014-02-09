@@ -57,5 +57,17 @@ angular.module('yoWorktajmApp').service('RegistrationService', function Registra
    return deferred.promise;
   };
 
+  /**
+   * Register new user.
+   */
+   registrationService.register = function (email, password) {
+      console.log('RegistrationService::register -  email: [%s]', email);
+      var promise = Restangular.one('registration').get({
+        'email': email, 
+        'password': password
+      });
+      return promise;
+    };
+
   return registrationService;
 });

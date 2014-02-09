@@ -23,8 +23,6 @@
           for the JavaScript code in this page.  
 */
 
-/* globals Base64 */
-
 'use strict';
 
 /**
@@ -33,11 +31,9 @@
  * @tbdEvent onLoggedOut()
  * @tbdEvent onLoggedIn()
  */
-angular.module('yoWorktajmApp').service('PersonService', function PersonService($rootScope, $cookieStore, $q, Restangular, $location) {
+angular.module('yoWorktajmApp').service('PersonService', function PersonService($rootScope, $cookieStore, $q, Restangular) {
   var personService = {
-    person: null,
-    token:  null,
-    personId: 0
+    person: null
   };
 
   /**
@@ -127,54 +123,6 @@ angular.module('yoWorktajmApp').service('PersonService', function PersonService(
     }
     return result;
   };
-
-  personService.login = function (username, password) {
-    console.log('PersonService::login(%s, *****)', username);
-    var deferred = $q.defer();
-    personService.setCredentials(username, password);
-    Restangular.one('person').get().then(function (result) {
-      console.log('Successfully logged in user [%s]', username);
-      personService.person = result;
-      $rootScope.principal = result;
-      return deferred.resolve(result);
-    }, function (reason) {
-      console.log('Failed to login used [%s], reason: [%s]', username, reason);
-      return deferred.reject(reason);      
-    });
-    return deferred.promise;    
-  };
-
-  personService.logout = function () {
-    console.log('PersonService::logout()');
-    $rootScope.principal = undefined;
-    personService.clearCredentials();
-    $location.path('/main');
-  };
-
-  personService.setCredentials = function (username, password) {
-    personService.credentials = Base64.encode(username + ':' + password);
-    $cookieStore.put('authentication', personService.credentials);
-
-    // Use the token to set the authentication token, once done the person can be fetched.
-    Restangular.setDefaultHeaders({
-      'Authorization': 'Basic ' + personService.credentials
-    });
-
-    console.log('PersonService::setCredentials(%s)', personService.credentials);
-  };
-
-  personService.clearCredentials = function () {
-    document.execCommand('ClearAuthenticationCache');
-    $cookieStore.remove('authentication');
-    Restangular.setDefaultHeaders({
-      'Authorization': ''
-    });
-    personService.credentials = undefined;
-  };
-
-  personService.getPrincipal = function () {
-    return personService.person;
-  };  
 
   return personService;
 });
