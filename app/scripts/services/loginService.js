@@ -45,26 +45,34 @@ angular.module('yoWorktajmApp').service('LoginService', function LoginService($r
 
     // Step 1: Authenticate and get authentation token
     var authenticate = function (username, password) {
+      var deferred = $q.defer();
       // The the basic HTTP authentication
       personService.setCredentials(username, password);
 
       // Call authenticate
-      return Restangular.one('authenticate').get().then(function (token) {
+      Restangular.one('authenticate').get().then(function (token) {
         console.log('LoginService::login - Successfully authenticated, token.id: [%s]', token.id);
-        return token;
+        deferred.resolve(token);
       }, function (reason) {
         console.error('Failed to authenticate user, reason : [%s]', reason);
+        deferred.reject(reason);
       });
+      return deferred.promise;
     };
 
-    // Step 2: Resolve the principal
+    // Step 2: Assign the principal
     var loadPerson = function (token) {
-      return PersonService.getPerson().then(function (person) {
+      var deferred = $q.defer();
+      
+      PersonService.getPerson().then(function (person) {
         console.log('LoginService::login - Principal resolved, email %d', person.email);
         $rootScope.principal = person;
         $location.path('/dashboard');
-        return person;
+        deferred.resolve(person);
+      }, function (reason) {
+        deferred.reject(reason);
       });
+      return deferred.promise;
     };
 
     return authenticate( username,password )
