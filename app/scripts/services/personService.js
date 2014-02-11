@@ -124,5 +124,10 @@ angular.module('yoWorktajmApp').service('PersonService', function PersonService(
     return result;
   };
 
+  personService.clear = function () {
+    console.info('EVENT: PersonService::clear()');
+    personService.person = null;
+  };
+
   return personService;
 });

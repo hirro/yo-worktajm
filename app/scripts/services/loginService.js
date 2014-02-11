@@ -34,20 +34,20 @@
  * @tbdEvent onLoggedIn()
  */
 angular.module('yoWorktajmApp').service('LoginService', function LoginService($rootScope, $cookieStore, $q, Restangular, $location, PersonService) {
-  var personService = {
+  var loginService = {
     person: null,
     token:  null,
     personId: 0
   };
 
-  personService.login = function (username, password) {
+  loginService.login = function (username, password) {
     console.log('LoginService::login(%s, *****)', username);
 
     // Step 1: Authenticate and get authentation token
     var authenticate = function (username, password) {
       var deferred = $q.defer();
       // The the basic HTTP authentication
-      personService.setCredentials(username, password);
+      loginService.setCredentials(username, password);
 
       // Call authenticate
       Restangular.one('authenticate').get().then(function (token) {
@@ -79,37 +79,39 @@ angular.module('yoWorktajmApp').service('LoginService', function LoginService($r
       .then( loadPerson );
   };
 
-  personService.logout = function () {
+  loginService.logout = function () {
     console.log('LoginService::logout()');
     $rootScope.principal = undefined;
-    personService.clearCredentials();
+    loginService.clearCredentials();
+    PersonService.clear();
+
     $location.path('/main');
   };
 
-  personService.setCredentials = function (username, password) {
-    personService.credentials = Base64.encode(username + ':' + password);
-    $cookieStore.put('authentication', personService.credentials);
+  loginService.setCredentials = function (username, password) {
+    loginService.credentials = Base64.encode(username + ':' + password);
+    $cookieStore.put('authentication', loginService.credentials);
 
     // Use the token to set the authentication token, once done the person can be fetched.
     Restangular.setDefaultHeaders({
-      'Authorization': 'Basic ' + personService.credentials
+      'Authorization': 'Basic ' + loginService.credentials
     });
 
-    console.log('LoginService::setCredentials(%s)', personService.credentials);
+    console.log('LoginService::setCredentials(%s)', loginService.credentials);
   };
 
-  personService.clearCredentials = function () {
+  loginService.clearCredentials = function () {
     document.execCommand('ClearAuthenticationCache');
     $cookieStore.remove('authentication');
     Restangular.setDefaultHeaders({
       'Authorization': ''
     });
-    personService.credentials = undefined;
+    loginService.credentials = undefined;
   };
 
-  personService.getPrincipal = function () {
-    return personService.person;
+  loginService.getPrincipal = function () {
+    return loginService.person;
   };  
 
-  return personService;
+  return loginService;
 });

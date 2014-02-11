@@ -29,7 +29,7 @@
 angular.module('yoWorktajmApp')
   .controller('LoginCtrl', function ($scope, $rootScope, Restangular, $location, LoginService) {
 
-  var devMode = true;
+  var devMode = false;
   if (devMode) {
     $scope.username = 'demo@worktajm.com';
     $scope.password = 'password';
@@ -69,6 +69,7 @@ angular.module('yoWorktajmApp')
   //
   $scope.$on('onLoggedOut', function () {
     console.info('EVENT: LoginCtrl::onLoggedOut()');
+    PersonService.logout();
     $location.path( '/login' );
   });
 
