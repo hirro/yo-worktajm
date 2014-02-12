@@ -63,7 +63,8 @@ describe('Controller: LoginCtrl', function () {
     },
     logout: function () {
       $scope.$broadcast('onLoggedOut');
-    }
+    },
+    clear: function () {}
   };
 
   // Initialize the controller and a mock scope
@@ -74,9 +75,10 @@ describe('Controller: LoginCtrl', function () {
     $location = _$location_;
     LoginCtrl = $controller('LoginCtrl', {
       $scope: $scope,
-      LoginService: LoginServiceMock
+      LoginService: LoginServiceMock,
+      PersonService: LoginServiceMock
     });
-    LoginCtrl.$inject = ['$scope',  '$route', 'PersonService'];
+    LoginCtrl.$inject = ['$scope',  '$route', 'LoginService'];
   }));
 
   afterEach(function() {
@@ -120,9 +122,11 @@ describe('Controller: LoginCtrl', function () {
 
   it('should logout', function () {
     spyOn(LoginServiceMock, 'logout').andCallThrough();
+    spyOn(LoginServiceMock, 'clear').andCallThrough();
     $scope.logout();
     $scope.$digest();
     expect(LoginServiceMock.logout).toHaveBeenCalled();
+    expect(LoginServiceMock.clear).toHaveBeenCalled();
   });
 
   it('should check if current location is active', function () {

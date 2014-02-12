@@ -27,7 +27,7 @@
 'use strict';
 
 angular.module('yoWorktajmApp')
-  .controller('LoginCtrl', function ($scope, $rootScope, Restangular, $location, LoginService) {
+  .controller('LoginCtrl', function ($scope, $rootScope, Restangular, $location, LoginService, PersonService) {
 
   var devMode = false;
   if (devMode) {
@@ -69,7 +69,7 @@ angular.module('yoWorktajmApp')
   //
   $scope.$on('onLoggedOut', function () {
     console.info('EVENT: LoginCtrl::onLoggedOut()');
-    PersonService.logout();
+    PersonService.clear();
     $location.path( '/login' );
   });
 
