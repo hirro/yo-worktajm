@@ -22,17 +22,20 @@ this.login = function (username, password) {
   usernameInput.sendKeys(username);
 
   // Enter the test user password, clear first to make sure suggested data is cleared
-  var passwordInput = element(by.model(password));
+  var passwordInput = element(by.model('password'));
   passwordInput.clear();
-  passwordInput.sendKeys('password');
+  passwordInput.sendKeys(password);
 
   // Press the login
   element(by.id('login')).click();
 
+  // location should now be dashboard
+  expect(browser.getCurrentUrl()).toBe('http://127.0.0.1:9000/#/dashboard');
+
   // We should now be logged in and transferred to the dashboard
   // 
   var firstName = element(by.binding('principal.firstName'));
-  expect(firstName.getText()).toEqual('Demo User');
+  expect(firstName.getText()).toEqual('First name Last name');
 };
 
 this.register = function (username, password) {
@@ -46,9 +49,13 @@ this.register = function (username, password) {
   var passwordInput = element(by.model('registration.password'));
   passwordInput.sendKeys(password);
 
-  // company
-  var companyInput = element(by.model('registration.company'));
-  companyInput.sendKeys('Test company');
+  // first name
+  var firstName = element(by.model('registration.firstName'));
+  firstName.sendKeys('First name');
+
+  // last name
+  var lastName = element(by.model('registration.lastName'));
+  lastName.sendKeys('Last name');
 
   // Press the login
   element(by.id('register')).click();
@@ -63,4 +70,16 @@ this.logout = function () {
   element(by.id('nav_user')).click();
   element(by.id('nav_logout')).click();
   expect(browser.getCurrentUrl()).toBe('http://127.0.0.1:9000/#/main');
+};
+
+this.gotoCustomers = function (path) {
+  element(by.id('nav_customers')).click();
+  //browser.get('http://127.0.0.1:9000/#/customers');
+  expect(browser.getCurrentUrl()).toBe('http://127.0.0.1:9000/#/customers');
+};
+
+this.gotoProjects = function (path) {
+  element(by.id('nav_projects')).click();
+  // browser.get('http://127.0.0.1:9000/#/projects');
+  expect(browser.getCurrentUrl()).toBe('http://127.0.0.1:9000/#/projects');
 };

@@ -29,35 +29,15 @@
 
 var Utilities = require('./utilities.js');
 
-var customerUtil = {
-  addCustomer: function (customer) {
-    // Press the add customer button
-    element(by.css('[ng-click="openCreateCustomerModal()"]')).click();
+function addProject(project) {
 
-    // Fill in the form and submit
-    var companyNameInput = element(by.model('customer.name'));
-    companyNameInput.clear();
-    companyNameInput.sendKeys(customer.name);
+}
 
-    // Press create project
-    element(by.css('[ng-click="ok()"')).click();
-  },
+function deleteProject(project) {
 
-  deleteCustomer: function (customer) {
-  },
+}
 
-  countCustomers: function () {
-    var count = 0;
-    element.all(by.repeater('customer in customers')).then(function (arr) {
-      count = arr.length;
-    });
-
-    return count;
-  }
-};
-
-ddescribe('should add a customer and then delete it', function() {
-
+describe('should add a project and then delete it', function() {
   beforeEach(function () {
     var username = Utilities.generateUsername();
     var password = Utilities.generateUniqueId();
@@ -69,15 +49,7 @@ ddescribe('should add a customer and then delete it', function() {
     // Utilities.logout();
   });
 
-  it('should add a customer and then remove it', function() {
-    Utilities.gotoCustomers();
-    expect(customerUtil.countCustomers()).toBe(0);
-
-    // Add new entry
-    var customer = {
-      name: 'Customer A'
-    };
-    customerUtil.addCustomer(customer);
-    expect(customerUtil.countCustomers()).toBe(1);
+  it('should login successfully', function() {
+    Utilities.gotoProjects();
   });
 });

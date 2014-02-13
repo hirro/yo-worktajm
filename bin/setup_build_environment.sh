@@ -31,29 +31,29 @@ function install() {
 
   # Install latest npm from brew
   echo "brew update"
-  brew update &>/dev/null
+  brew update
 
   echo "brew install node"
-  brew install node &>/dev/null
+  brew install node
 
   echo "brew link node"
-  brew link node &>/dev/null
+  brew link node
 
   # Install yeoman
   echo "Installing yeoman"
-  npm install -g yo generator-angular &>/dev/null
+  npm install -g yo generator-angular
 
   # Install karma
   echo "Installing karma-cli"
-  npm install -g karma-cli &>/dev/null
+  npm install -g karma-cli
 
   # Install local npm modules
   echo "Installing local npm modules"
-  npm install &>/dev/null
+  npm install
 
   # Install bower packages
   echo "Installing local bower packages"
-  bower install &>/dev/null
+  bower install
 }
 
 function verify() {
