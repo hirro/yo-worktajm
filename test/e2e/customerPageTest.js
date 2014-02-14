@@ -41,22 +41,58 @@ var customerUtil = {
 
     // Press create project
     element(by.css('[ng-click="ok()"')).click();
+
+    // browser.sleep(10000); // Allow browser to open project detail
+
   },
 
-  deleteCustomer: function (customer) {
-  },
 
-  countCustomers: function () {
-    var count = 0;
-    element.all(by.repeater('customer in customers')).then(function (arr) {
-      count = arr.length;
+  deleteCustomer: function (customer, index) {
+    console.log('Deleting project');
+    // browser.debugger();
+    return this.getCustomers().then(function (arr) {
+
+      var element = arr[index];
+      console.log('There are %d projects', arr.length);
+
+      // Verify project name
+      var customerName = element.findElement(by.model('customer.name')).getAttribute('value');
+      expect(customerName).toContain(customer.name);
+      console.log('ok 1, customerName %s', customerName);
+
+      // Get hold of delete button and press it
+      var deleteButton = element.findElement(by.css('[ng-click="openRemoveCustomerModal(customer)"]'));
+      deleteButton.click();
+      console.log('ok 2');
+
+      // Now confirm the deletion
+      var confirmButton = element(by.css('[ng-click="ok()"]'));
+      console.log('ok 3');
+
+      confirmButton.click();
+      console.log('ok 4');
+      browser.sleep(1000); // Allow browser to reload project list
+      console.log('ok 5');
+    }, function (reason) {
+      console.log('Failed to get list %s', reason);
     });
+  },
 
-    return count;
+  getCustomers: function () {
+    return element.all(by.repeater('customer in customers'));
+  },
+
+  getCustomersCount: function () {
+    return this.getCustomers().then(function (arr) {
+      return arr.length;
+    }, function () {
+      return -1;
+    });
   }
+
 };
 
-ddescribe('should add a customer and then delete it', function() {
+describe('should add a customer and then delete it', function() {
 
   beforeEach(function () {
     var username = Utilities.generateUsername();
@@ -71,13 +107,18 @@ ddescribe('should add a customer and then delete it', function() {
 
   it('should add a customer and then remove it', function() {
     Utilities.gotoCustomers();
-    expect(customerUtil.countCustomers()).toBe(0);
+    expect(customerUtil.getCustomersCount()).toBe(0);
 
     // Add new entry
     var customer = {
       name: 'Customer A'
     };
     customerUtil.addCustomer(customer);
-    expect(customerUtil.countCustomers()).toBe(1);
+    expect(customerUtil.getCustomersCount()).toBe(1);
+
+    // Delete it
+    //customerUtil.deleteCustomer(customer, 0);
+
+    //expect(customerUtil.getCustomersCount()).toBe(0);
   });
 });
