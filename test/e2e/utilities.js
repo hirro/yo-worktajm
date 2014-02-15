@@ -35,7 +35,7 @@ this.login = function (username, password) {
   // We should now be logged in and transferred to the dashboard
   // 
   var firstName = element(by.binding('principal.firstName'));
-  expect(firstName.getText()).toEqual('First name Last name');
+  expect(firstName.getText()).toEqual('John Doe');
 };
 
 this.register = function (username, password) {
@@ -51,11 +51,11 @@ this.register = function (username, password) {
 
   // first name
   var firstName = element(by.model('registration.firstName'));
-  firstName.sendKeys('First name');
+  firstName.sendKeys('John');
 
   // last name
   var lastName = element(by.model('registration.lastName'));
-  lastName.sendKeys('Last name');
+  lastName.sendKeys('Doe');
 
   // Press the login
   element(by.id('register')).click();
@@ -63,7 +63,7 @@ this.register = function (username, password) {
   // We should now be logged in and transferred to the dashboard
   // 
   var firstName = element(by.binding('principal.firstName'));
-  expect(firstName.getText()).toEqual('First name Last name');
+  expect(firstName.getText()).toEqual('John Doe');
 };
 
 this.logout = function () {

@@ -37,7 +37,7 @@ function deleteProject(project) {
 
 }
 
-describe('should add a project and then delete it', function() {
+xdescribe('should add a project and then delete it', function() {
   beforeEach(function () {
     var username = Utilities.generateUsername();
     var password = Utilities.generateUniqueId();

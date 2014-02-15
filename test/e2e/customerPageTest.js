@@ -92,7 +92,7 @@ var customerUtil = {
 
 };
 
-describe('should add a customer and then delete it', function() {
+xdescribe('should add a customer and then delete it', function() {
 
   beforeEach(function () {
     var username = Utilities.generateUsername();
