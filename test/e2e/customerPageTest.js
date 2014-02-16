@@ -52,27 +52,22 @@ var customerUtil = {
     // browser.debugger();
     return this.getCustomers().then(function (arr) {
 
-      var element = arr[index];
+      var customerElement = arr[index];
       console.log('There are %d projects', arr.length);
 
       // Verify project name
-      var customerName = element.findElement(by.model('customer.name')).getAttribute('value');
-      expect(customerName).toContain(customer.name);
-      console.log('ok 1, customerName %s', customerName);
+      customerElement.findElement(by.model('customer.name')).getText().then(function (customerName) {
+        expect(customerName).toContain(customer.name);
+      });
 
-      // Get hold of delete button and press it
-      var deleteButton = element.findElement(by.css('[ng-click="openRemoveCustomerModal(customer)"]'));
+      // Get the delete button and press it
+      var deleteButton = customerElement.findElement(by.css('[ng-click="openRemoveCustomerModal(customer)"]'));
       deleteButton.click();
-      console.log('ok 2');
 
-      // Now confirm the deletion
+      // Get the confirm button and press it
       var confirmButton = element(by.css('[ng-click="ok()"]'));
-      console.log('ok 3');
-
       confirmButton.click();
-      console.log('ok 4');
-      browser.sleep(1000); // Allow browser to reload project list
-      console.log('ok 5');
+
     }, function (reason) {
       console.log('Failed to get list %s', reason);
     });
@@ -84,15 +79,17 @@ var customerUtil = {
 
   getCustomersCount: function () {
     return this.getCustomers().then(function (arr) {
+      console.log('Customer count : %d', arr.length);
       return arr.length;
     }, function () {
+      console.log('Customer count failed');
       return -1;
     });
   }
 
 };
 
-xdescribe('should add a customer and then delete it', function() {
+describe('should add a customer and then delete it', function() {
 
   beforeEach(function () {
     var username = Utilities.generateUsername();
@@ -117,8 +114,8 @@ xdescribe('should add a customer and then delete it', function() {
     expect(customerUtil.getCustomersCount()).toBe(1);
 
     // Delete it
-    //customerUtil.deleteCustomer(customer, 0);
-
-    //expect(customerUtil.getCustomersCount()).toBe(0);
+    customerUtil.deleteCustomer(customer, 0).then(function () {
+      expect(customerUtil.getCustomersCount()).toBe(0);
+    });
   });
 });
