@@ -41,24 +41,18 @@ var customerUtil = {
 
     // Press create project
     element(by.css('[ng-click="ok()"')).click();
-
-    // browser.sleep(10000); // Allow browser to open project detail
-
   },
 
 
   deleteCustomer: function (customer, index) {
     console.log('Deleting project');
-    // browser.debugger();
     return this.getCustomers().then(function (arr) {
 
       var customerElement = arr[index];
       console.log('There are %d projects', arr.length);
 
       // Verify project name
-      customerElement.findElement(by.model('customer.name')).getText().then(function (customerName) {
-        expect(customerName).toContain(customer.name);
-      });
+      expect(customerElement.findElement(by.model('customer.name')).getText()).toContain(customer.name);
 
       // Get the delete button and press it
       var deleteButton = customerElement.findElement(by.css('[ng-click="openRemoveCustomerModal(customer)"]'));
@@ -99,7 +93,7 @@ describe('should add a customer and then delete it', function() {
   });
 
   afterEach(function () {
-    // Utilities.logout();
+    Utilities.logout();
   });
 
   it('should add a customer and then remove it', function() {

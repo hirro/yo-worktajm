@@ -29,15 +29,62 @@
 
 var Utilities = require('./utilities.js');
 
-function addProject(project) {
+var projectUtil = {
+  addProject: function (project) {
+    // Press the add project button
+    element(by.css('[ng-click="createProject()"]')).click();
 
-}
+    // Fill in the form and submit
+    var companyNameInput = element(by.model('project.name'));
+    companyNameInput.clear();
+    companyNameInput.sendKeys(project.name);
 
-function deleteProject(project) {
+    // Press create project
+    element(by.css('[ng-click="ok()"')).click();
+  },
 
-}
 
-xdescribe('should add a project and then delete it', function() {
+  deleteProject: function (project, index) {
+    console.log('Deleting project');
+    return this.getProjects().then(function (arr) {
+
+      var projectElement = arr[index];
+      console.log('There are %d projects', arr.length);
+
+      // Verify project name
+      expect(projectElement.findElement(by.model('project.name')).getText()).toContain(project.name);
+
+      // Get the delete button and press it
+      var deleteButton = projectElement.findElement(by.css('[ng-click="removeProject(project)"]'));
+      deleteButton.click();
+
+      // Get the confirm button and press it
+      var confirmButton = element(by.css('[ng-click="ok()"]'));
+      confirmButton.click();
+
+    }, function (reason) {
+      console.log('Failed to get list %s', reason);
+    });
+  },
+
+  getProjects: function () {
+    return element.all(by.repeater('project in projects'));
+  },
+
+  getProjectsCount: function () {
+    return this.getProjects().then(function (arr) {
+      console.log('Project count : %d', arr.length);
+      return arr.length;
+    }, function () {
+      console.log('Project count failed');
+      return -1;
+    });
+  }
+
+};
+
+describe('should add a project and then delete it', function() {
+
   beforeEach(function () {
     var username = Utilities.generateUsername();
     var password = Utilities.generateUniqueId();
@@ -46,10 +93,23 @@ xdescribe('should add a project and then delete it', function() {
   });
 
   afterEach(function () {
-    // Utilities.logout();
+    Utilities.logout();
   });
 
-  it('should login successfully', function() {
+  it('should add a project and then remove it', function() {
     Utilities.gotoProjects();
+    expect(projectUtil.getProjectsCount()).toBe(0);
+
+    // Add new entry
+    var project = {
+      name: 'Project A'
+    };
+    projectUtil.addProject(project);
+    expect(projectUtil.getProjectsCount()).toBe(1);
+
+    // Delete it
+    projectUtil.deleteProject(project, 0).then(function () {
+      expect(projectUtil.getProjectsCount()).toBe(0);
+    });
   });
 });
