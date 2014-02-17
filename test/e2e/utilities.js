@@ -74,7 +74,6 @@ this.logout = function () {
 
 this.gotoCustomers = function (path) {
   element(by.id('nav_customers')).click();
-  //browser.get('http://127.0.0.1:9000/#/customers');
   expect(browser.getCurrentUrl()).toBe('http://127.0.0.1:9000/#/customers');
 };
 

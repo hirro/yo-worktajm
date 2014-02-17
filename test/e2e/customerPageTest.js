@@ -40,7 +40,13 @@ var customerUtil = {
     companyNameInput.sendKeys(customer.name);
 
     // Press create project
-    element(by.css('[ng-click="ok()"')).click();
+    var x = element(by.css('[ng-click="ok()"')).click();
+
+    // Wait for angular to complete
+    x.then(function () {
+      expect(true).toBe(true);
+    });
+
   },
 
 

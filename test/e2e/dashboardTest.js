@@ -137,12 +137,18 @@ describe('project operations', function() {
             if (start) {
               e.findElement(by.css('[ng-click="startTimer(project)"]')).then(function (button) {
                 console.log('Clicking on start timer');
-                button.click();
+                button.click().then(function () {
+                  // Wait for page to reload
+                  expect(true).toBe(true);
+                });
               });
             } else {
               e.findElement(by.css('[ng-click="stopTimer(project)"]')).then(function (button) {
                 console.log('Clicking on stop timer');
-                button.click();
+                button.click().then(function () {
+                  // Wait for page to reload
+                  expect(true).toBe(true);
+                });
               });
             }
           }
@@ -159,10 +165,10 @@ describe('project operations', function() {
       var element = arr[0];
       element.findElement(by.css('[ng-click="removeTimeEntry(timeEntry)"]')).then(function (button) {
         console.log('Pressing remove time entry');
-        button.click();
-      //   // There is no verification at the moment        
-      // }, function () {
-      //   this.fail('Failed to find delete button');
+        button.click().then(function () {
+          // Wait for page to reload
+          expect(true).toBe(true);
+        });
       });
     });
   };
