@@ -29,7 +29,7 @@
 angular.module('yoWorktajmApp')
   .controller('LoginCtrl', function ($scope, $rootScope, Restangular, $location, LoginService, PersonService) {
 
-  var devMode = false;
+  var devMode = true;
   if (devMode) {
     $scope.username = 'demo@worktajm.com';
     $scope.password = 'password';

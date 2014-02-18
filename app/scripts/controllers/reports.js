@@ -37,24 +37,35 @@ angular.module('yoWorktajmApp')
       { id: 'thisMonth',  name: 'This month' },
       { id: 'lastMonth',  name: 'Last month' }
     ];
+    $scope.reportTypes = [
+      { id: 'pivot',      name: 'Pivot' },
+      { id: 'invoice',    name: 'Invoice' },
+      { id: 'timesheet',  name: 'Timesheet' }
+    ];
+    $scope.allCustomers ={
+      id: 0, 
+      name: 'All'
+    };
     $scope.customers = [];
     $scope.projects = _.each(TimerService.getProjects(), function (e) {
       e.enabled = true;
     });
-    $scope.selectedTime = {};
-    $scope.selectedCustomer = {};
+    $scope.selectedTime = $scope.timeChoices[0];
+    $scope.selectedReportType = $scope.reportTypes[0];
+    $scope.selectedCustomers = $scope.allCustomers;
     $scope.selectedProjects = {};
 
     // Load the available customers
     CustomerService.list().then(function (result) {
       console.log('ReportsCtrl - Loaded customers from service');
+      console.log(result);
       var all = [{ id: 0, name: 'All'}];
       $scope.customers = _.union(all, result);
     });
 
     $scope.generateReport = function () {
       console.log('Generating report over interval [%s]', $scope.selectedDate);
-      console.log('Generating report for customer [%s]', $scope.selectedCustomer);
+      console.log('Generating report for customer [%s]', $scope.selectedCustomers);
     };
 
     $scope.changedCustomer = function () {

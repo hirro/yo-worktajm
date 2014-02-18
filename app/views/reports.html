@@ -36,6 +36,22 @@
     </div>    
   </div>  
 
+  <!-- List the available report types -->
+  <div class="form-group">
+    <label for="period" class="col-sm-2 control-label">Report Type</label>
+    <div class="col-sm-10">
+      <div class="btn-group">
+        <button ng-repeat="type in reportTypes" 
+                type="button" 
+                class="btn btn-primary" 
+                ng-model="selectedReportType.id" 
+                btn-radio="type.id">
+          {{type.name}}
+        </button>
+      </div>
+    </div>    
+  </div>  
+
   <!-- List the available customers -->
   <div class="form-group">
     <label for="customer" class="col-sm-2 control-label">Company</label>
@@ -44,8 +60,7 @@
         <button ng-repeat="customer in customers" 
                 type="button"
                 class="btn btn-primary"
-                ng-model="selectedCustomer.id"
-                ng-change="changedCustomer()"
+                ng-model="selectedCustomers.id"
                 btn-radio="customer.id"
                 >
           {{customer.name}}
@@ -59,7 +74,7 @@
     <label for="project" class="col-sm-2 control-label">Projects</label>
     <div class="col-sm-10">
       <div class="btn-group">
-        <button ng-repeat="project in projects" 
+        <button ng-repeat="project in filteredProjects = (projects | projectFilter:selectedCustomers)" 
                 type="button" 
                 class="btn btn-primary" 
                 ng-model="project.enabled" 
@@ -72,9 +87,11 @@
   </div>  
 
   <pre>
-    {{selectedTime}}
-    {{selectedCustomer}}
-    {{enabledProjects()}}
+    selectedTime: {{selectedTime}}
+    selectedReportType: {{selectedReportType}}
+    selectedProjects: {{selectedProjects}}
+    selectedCustomers: {{selectedCustomers}}
+    enabledProjects: {{enabledProjects()}}
   </pre>
 
   <button type="submit" class="btn btn-default">Run Report</button>
