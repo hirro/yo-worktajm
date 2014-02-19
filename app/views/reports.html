@@ -28,7 +28,7 @@
         <button ng-repeat="period in timeChoices" 
                 type="button" 
                 class="btn btn-primary" 
-                ng-model="selectedTime.id" 
+                ng-model="selection.timePeriod" 
                 btn-radio="period.id">
           {{period.name}}
         </button>
@@ -44,7 +44,7 @@
         <button ng-repeat="type in reportTypes" 
                 type="button" 
                 class="btn btn-primary" 
-                ng-model="selectedReportType.id" 
+                ng-model="selection.reportType" 
                 btn-radio="type.id">
           {{type.name}}
         </button>
@@ -60,7 +60,7 @@
         <button ng-repeat="customer in customers" 
                 type="button"
                 class="btn btn-primary"
-                ng-model="selectedCustomers.id"
+                ng-model="customer.enabled"
                 btn-radio="customer.id"
                 >
           {{customer.name}}
@@ -87,10 +87,9 @@
   </div>  
 
   <pre>
-    selectedTime: {{selectedTime}}
+    selection: {{selection}}
     selectedReportType: {{selectedReportType}}
-    selectedProjects: {{selectedProjects}}
-    selectedCustomers: {{selectedCustomers}}
+    enabledCustomers: {{enabledCustomers}}
     enabledProjects: {{enabledProjects()}}
   </pre>
 

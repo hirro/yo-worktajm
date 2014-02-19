@@ -29,6 +29,8 @@
 
 angular.module('yoWorktajmApp')
   .controller('ReportsCtrl', function ($scope, CustomerService, TimerService) {
+
+    // Constants
     $scope.timeChoices = [
       { id: 'today',      name: 'Today' },
       { id: 'yesterday',  name: 'Yesterday' },
@@ -46,22 +48,33 @@ angular.module('yoWorktajmApp')
       id: 0, 
       name: 'All'
     };
+
+    // Variables
     $scope.customers = [];
-    $scope.projects = _.each(TimerService.getProjects(), function (e) {
-      e.enabled = true;
-    });
-    $scope.selectedTime = $scope.timeChoices[0];
-    $scope.selectedReportType = $scope.reportTypes[0];
-    $scope.selectedCustomers = $scope.allCustomers;
+    $scope.projects = {};
+    $scope.selection = {
+      timePeriod: $scope.timeChoices[0].id,
+      reportType: $scope.reportTypes[0].id
+    };
+    $scope.selectedCustomers = $scope.allCustomers.id;
     $scope.selectedProjects = {};
 
+    // Load the available projects
+    $scope.loadProjects = function () {
+      $scope.projects = _.each(TimerService.getProjects(), function (e) {
+        e.enabled = true;
+      });
+    };
+
     // Load the available customers
-    CustomerService.list().then(function (result) {
-      console.log('ReportsCtrl - Loaded customers from service');
-      console.log(result);
-      var all = [{ id: 0, name: 'All'}];
-      $scope.customers = _.union(all, result);
-    });
+    $scope.loadCustomers = function () {
+      CustomerService.list().then(function (result) {
+        console.log('ReportsCtrl - Loaded customers from service');
+        console.log(result);
+        var all = [{ id: 0, name: 'All'}];
+        $scope.customers = _.union(all, result);
+      });
+    };
 
     $scope.generateReport = function () {
       console.log('Generating report over interval [%s]', $scope.selectedDate);
@@ -72,7 +85,14 @@ angular.module('yoWorktajmApp')
       console.log('Changed customer - updating filter?');
     };
 
+    $scope.enabledCustomers = function () {
+      return _.pluck(_.where($scope.customers, { enabled: true }), 'name');
+    };
+
     $scope.enabledProjects = function () {
       return _.pluck(_.where($scope.projects, { enabled: true }), 'name');
     };
+
+    $scope.loadProjects();
+    $scope.loadCustomers();
   });
