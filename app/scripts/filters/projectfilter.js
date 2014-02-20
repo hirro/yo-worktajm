@@ -28,9 +28,20 @@
 
 angular.module('yoWorktajmApp')
   .filter('projectFilter', function () {
-    return function (projects, selectedCustomers) {
+    return function (projects, selection) {
       console.log('projectFilter::function');
-      console.log(selectedCustomers);
-      return projects;
+      console.log('Projects: ', projects);
+      console.log('Selection: ', selection);
+      if (selection.customer === 0) {
+        console.log('No selection');
+        return projects;
+      } else {
+        return _.filter(projects, function (project) {
+          console.log('>>>>>');
+          console.log(project);
+          console.log('Comparing %d, %d', project.customerId, selection.customer);
+          return project.customerId === selection.customer;
+        });
+      }
     };
   });

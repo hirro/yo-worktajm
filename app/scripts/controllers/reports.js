@@ -52,9 +52,11 @@ angular.module('yoWorktajmApp')
     // Variables
     $scope.customers = [];
     $scope.projects = {};
+    $scope.timeEntries = {};
     $scope.selection = {
       timePeriod: $scope.timeChoices[0].id,
-      reportType: $scope.reportTypes[0].id
+      reportType: $scope.reportTypes[0].id,
+      customer: 0
     };
     $scope.selectedCustomers = $scope.allCustomers.id;
     $scope.selectedProjects = {};
@@ -72,8 +74,18 @@ angular.module('yoWorktajmApp')
         console.log('ReportsCtrl - Loaded customers from service');
         console.log(result);
         var all = [{ id: 0, name: 'All'}];
-        $scope.customers = _.union(all, result);
+        var customers = _.union(all, result);
+        $scope.customers = _.each(customers, function (e) {
+          e.enabled = true;
+        });
       });
+    };
+
+    // Load the time entries
+    $scope.loadTimeEntries = function () {
+       TimerService.getTimeEntries().then(function (result) {
+        $scope.timeEntries = result;
+       });
     };
 
     $scope.generateReport = function () {
@@ -95,4 +107,5 @@ angular.module('yoWorktajmApp')
 
     $scope.loadProjects();
     $scope.loadCustomers();
+    $scope.loadTimeEntries();
   });
