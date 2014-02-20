@@ -6,11 +6,11 @@
   <div class="row">
 
     <!-- Column 1 -->
-    <div class="col-md-2">
+    <div class="col-md-1">
     </div>
 
     <!-- Center column -->
-    <div class="col-md-8">
+    <div class="col-md-10">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">Reports</h4>
@@ -99,26 +99,31 @@
           <table  class="table table-condensed table-hover" >
             <thead>
               <tr>
-                <th class="col-md-5" >Project</th>
-                <th class="col-md-2">Start</th>
-                <th class="col-md-2">End</th>
+                <th class="col-md-4" >Project</th>
+                <th class="col-md-2">Date</th>
+                <th class="col-md-2">Start Time</th>
+                <th class="col-md-2">End Time</th>
+                <th class="col-md-2">Duration</th>
               </tr>
             </thead>
-            <tbody ng-repeat="timeEntry in timeEntries">
+            <tbody ng-repeat="timeEntry in filteredTimeEntries = (timeEntries | timeEntryFilter:selection) ">
               <tr>
                 <td>
                   Hej
                   {{timeEntry.project.name}}
                 </td>
+                <td>{{timeEntry.startTime | date: 'yyyy-MM-dd'}}</td>
                 <td>{{timeEntry.startTime | date: 'HH:mm:ss'}}</td>
-                <td>{{getEndTime(timeEntry)}}</td>
+                <td>{{timeEntry.endTime | date: 'HH:mm:ss'}}</td>
+                <td>{{timeEntry.endTime - timeEntry.startTime | date: 'HH:mm:ss'}}</td>
               </tr>
             </tbody>
             <tfooter>
               <tr>
-                <th class="col-md-5" >Project</th>
-                <th class="col-md-2">Start</th>
-                <th class="col-md-2">End</th>
+                <th>Sum</th>
+                <th></th>
+                <th></th>
+                <th></th>
               </tr>
             </tfooter>
           </table>
@@ -128,7 +133,7 @@
     </div>
 
     <!-- Column 3 -->
-    <div class="col-md-2">
+    <div class="col-md-1">
     </div>
 
     </div>

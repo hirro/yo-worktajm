@@ -24,17 +24,20 @@
 */
 
 /*globals _ */
+
 'use strict';
 
 angular.module('yoWorktajmApp')
-  .filter('projectFilter', function () {
-    return function (projects, selection) {
-      if (selection.customer === 0) {
-        return projects;
-      } else {
-        return _.filter(projects, function (project) {
-          return project.customerId === selection.customer;
-        });
-      }
+  .filter('timeEntryFilter', function () {
+    return function (timeEntries, selection) {
+
+      // Filter by date
+
+      // Filter by customer
+
+      // Filter by projects
+
+      return timeEntries;
+
     };
   });
