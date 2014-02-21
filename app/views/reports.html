@@ -1,6 +1,6 @@
 <div ng-include src="'views/partials/navbar.html'" ></div>
 
-<div class="container" ng-show="principal" >
+<div class="container" ng-show="principal" ng-controller="ReportsCtrl">
 
   <!-- Projects -->
   <div class="row">
@@ -15,10 +15,9 @@
         <div class="panel-heading">
           <h4 class="panel-title">Reports</h4>
         </div>
-        <div class="panel-body" ng-controller="ReportsCtrl">
+        <div class="panel-body">
 
           <form class="form-horizontal" role="form" ng-submit="generateReport()">
-            <h3>Report Settings</h3>
 
             <!-- List the available reporting periods -->
             <div class="form-group">
@@ -86,15 +85,22 @@
               </div>    
             </div>  
 
-            <pre>
+<!--             <pre>
               selection: {{selection}}
               enabledCustomers: {{enabledCustomers()}}
               enabledProjects: {{enabledProjects()}}
             </pre>
-
             <button type="submit" class="btn btn-default">Run Report</button>
+ -->
           </form>
 
+        </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">Reports</h4>
+        </div>
+        <div class="panel-body">
           <!-- Iterator for time entries -->
           <table  class="table table-condensed table-hover" >
             <thead>
@@ -127,9 +133,8 @@
               </tr>
             </tfooter>
           </table>
-
-
         </div>
+
     </div>
 
     <!-- Column 3 -->
