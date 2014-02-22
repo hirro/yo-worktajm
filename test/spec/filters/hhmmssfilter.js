@@ -11,7 +11,7 @@ describe('Filter: hhmmssFilter', function () {
     hhmmssFilter = $filter('hhmmssFilter');
   }));
 
-  iit('should return the input formatted in duration format', function () {
+  it('should return the input formatted in duration format', function () {
     var time = 10 + 20*60 + 30*3600;
     expect(hhmmssFilter(time)).toBe('30h 20m 10s');
   });

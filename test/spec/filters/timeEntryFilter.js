@@ -27,41 +27,46 @@
 
 'use strict';
 
-ddescribe('Filter: timeEntryFilter', function () {
+describe('Filter: timeEntryFilter', function () {
 
   // load the filter's module
   beforeEach(module('yoWorktajmApp'));
 
   // Constants
   var referenceDay = new XDate(2014, 1, 10, 13, 23, 13);
+  var project0  = { id: 1, name: 'Project 0' };
+  var projectA1 = { id: 2, name: 'Project A.1',  customerId: 1 };
+  var projectA2 = { id: 3, name: 'Project A.2',  customerId: 1 };
+  var projectB  = { id: 4, name: 'Project B',    customerId: 2 };
+
   var timeEntries = [
     // T-0 (today, thisWeek, thisMonth), two projects with 3, 1 entries
-    { id:   1, startTime: new XDate(2014,  1, 10,  0,  0,  0), endTime: new XDate(2014,  1, 10, 0,  30,  0), projectId: 1 },
-    { id:   2, startTime: new XDate(2014,  1, 10, 12,  0,  0), endTime: new XDate(2014,  1, 10, 12, 30,  0), projectId: 1 },
-    { id:   3, startTime: new XDate(2014,  1, 10, 23, 59,  0), endTime: new XDate(2014,  1, 10, 23, 59,  0), projectId: 1 },
-    { id:   4, startTime: new XDate(2014,  1, 10, 12, 12,  0), endTime: new XDate(2014,  1, 10, 13, 12,  0), projectId: 2 },
-    { id:   5, startTime: new XDate(2014,  1, 10, 14, 34,  0), endTime: new XDate(2014,  1, 10, 15, 34,  0), projectId: 2 },
+    { id:   1, startTime: new XDate(2014,  1, 10,  0,  0,  0), endTime: new XDate(2014,  1, 10, 0,  30,  0), project: project0 },
+    { id:   2, startTime: new XDate(2014,  1, 10, 12,  0,  0), endTime: new XDate(2014,  1, 10, 12, 30,  0), project: projectA1 },
+    { id:   3, startTime: new XDate(2014,  1, 10, 23, 59,  0), endTime: new XDate(2014,  1, 10, 23, 59,  0), project: projectA2 },
+    { id:   4, startTime: new XDate(2014,  1, 10, 12, 12,  0), endTime: new XDate(2014,  1, 10, 13, 12,  0), project: projectB },
+    { id:   5, startTime: new XDate(2014,  1, 10, 14, 34,  0), endTime: new XDate(2014,  1, 10, 15, 34,  0), project: projectB },
 
     // T-1 (yesterday, lastWeek, thisMonth) one project with 2 entries
-    { id:   6, startTime: new XDate(2014,  1,  9,  0,  0,  0), endTime: new XDate(2014,  1,  9,  1,  0,  0), projectId: 1 },
-    { id:   7, startTime: new XDate(2014,  1,  9,  0,  0,  0), endTime: new XDate(2014,  1,  9,  1,  0,  0), projectId: 1 },
+    { id:   6, startTime: new XDate(2014,  1,  9,  0,  0,  0), endTime: new XDate(2014,  1,  9,  1,  0,  0), project: projectA1 },
+    { id:   7, startTime: new XDate(2014,  1,  9,  0,  0,  0), endTime: new XDate(2014,  1,  9,  1,  0,  0), project: projectA1 },
 
     // T-2..9 (lastWeek, thisMonth) , one project, one entry
-    { id:   8, startTime: new XDate(2014,  1,  8,  0,  0,  0), endTime: new XDate(2014,  1,  8,  1,  0,  0), projectId: 1 },
-    { id:   9, startTime: new XDate(2014,  1,  7,  0,  0,  0), endTime: new XDate(2014,  1,  7,  1,  0,  0), projectId: 1 },
-    { id:  10, startTime: new XDate(2014,  1,  6,  0,  0,  0), endTime: new XDate(2014,  1,  6,  1,  0,  0), projectId: 2 },
-    { id:  11, startTime: new XDate(2014,  1,  5,  0,  0,  0), endTime: new XDate(2014,  1,  5,  1,  0,  0), projectId: 2 },
-    { id:  12, startTime: new XDate(2014,  1,  4,  0,  0,  0), endTime: new XDate(2014,  1,  4,  1,  0,  0), projectId: 2 },
-    { id:  13, startTime: new XDate(2014,  1,  3,  0,  0,  0), endTime: new XDate(2014,  1,  3,  1,  0,  0), projectId: 2 },
+    { id:   8, startTime: new XDate(2014,  1,  8,  0,  0,  0), endTime: new XDate(2014,  1,  8,  1,  0,  0), project: projectA1 },
+    { id:   9, startTime: new XDate(2014,  1,  7,  0,  0,  0), endTime: new XDate(2014,  1,  7,  1,  0,  0), project: projectA2 },
+    { id:  10, startTime: new XDate(2014,  1,  6,  0,  0,  0), endTime: new XDate(2014,  1,  6,  1,  0,  0), project: projectB },
+    { id:  11, startTime: new XDate(2014,  1,  5,  0,  0,  0), endTime: new XDate(2014,  1,  5,  1,  0,  0), project: projectB },
+    { id:  12, startTime: new XDate(2014,  1,  4,  0,  0,  0), endTime: new XDate(2014,  1,  4,  1,  0,  0), project: projectB },
+    { id:  13, startTime: new XDate(2014,  1,  3,  0,  0,  0), endTime: new XDate(2014,  1,  3,  1,  0,  0), project: projectB },
     // T-14..15 (thisMonth) , one project, one entry
-    { id:  14, startTime: new XDate(2014,  1,  2,  0,  0,  0), endTime: new XDate(2014,  1,  2,  1,  0,  0), projectId: 2 },
-    { id:  15, startTime: new XDate(2014,  1,  1,  0,  0,  0), endTime: new XDate(2014,  1,  1,  1,  0,  0), projectId: 2 },
+    { id:  14, startTime: new XDate(2014,  1,  2,  0,  0,  0), endTime: new XDate(2014,  1,  2,  1,  0,  0), project: projectB },
+    { id:  15, startTime: new XDate(2014,  1,  1,  0,  0,  0), endTime: new XDate(2014,  1,  1,  1,  0,  0), project: projectB },
 
     // T-16.. (lastMonth) , one project, one entry
-    { id:  16, startTime: new XDate(2014,  0, 30,  0,  0,  0), endTime: new XDate(2014,  0, 30,  1,  0,  0), projectId: 2 },
-    { id:  17, startTime: new XDate(2014,  0, 29,  0,  0,  0), endTime: new XDate(2014,  0, 29,  1,  0,  0), projectId: 2 },
-    { id:  18, startTime: new XDate(2014,  0, 28,  0,  0,  0), endTime: new XDate(2014,  0, 28,  1,  0,  0), projectId: 2 },
-    { id:  19, startTime: new XDate(2014,  0, 27,  0,  0,  0), endTime: new XDate(2014,  0, 27,  1,  0,  0), projectId: 2 },
+    { id:  16, startTime: new XDate(2014,  0, 30,  0,  0,  0), endTime: new XDate(2014,  0, 30,  1,  0,  0), project: projectB },
+    { id:  17, startTime: new XDate(2014,  0, 29,  0,  0,  0), endTime: new XDate(2014,  0, 29,  1,  0,  0), project: projectB },
+    { id:  18, startTime: new XDate(2014,  0, 28,  0,  0,  0), endTime: new XDate(2014,  0, 28,  1,  0,  0), project: projectB },
+    { id:  19, startTime: new XDate(2014,  0, 27,  0,  0,  0), endTime: new XDate(2014,  0, 27,  1,  0,  0), project: projectB },
   ];
 
   // initialize a new instance of the filter before each test
@@ -74,18 +79,18 @@ ddescribe('Filter: timeEntryFilter', function () {
     var selection = {
       timePeriod: 'today',
       reportType: 'timesheet',
-      customer: 1
+      customer: 0
     };
     var filtered = timeEntryFilter(timeEntries, selection, referenceDay);
     expect(_.pluck(filtered, 'id')).toEqual([1, 2, 3, 4, 5]);
-    expect(selection.sum).toEqual(180);    
+    expect(selection.sum).toEqual(10800);    
   });
 
   it('should return all time entries yesterday for all customers', function () {
     var selection = {
       timePeriod: 'yesterday',
       reportType: 'timesheet',
-      customer: 1
+      customer: 0
     };
     var filtered = timeEntryFilter(timeEntries, selection, referenceDay);
     expect(_.pluck(filtered, 'id')).toEqual([6, 7]);
@@ -95,7 +100,7 @@ ddescribe('Filter: timeEntryFilter', function () {
     var selection = {
       timePeriod: 'thisWeek',
       reportType: 'timesheet',
-      customer: 1
+      customer: 0
     };
     var filtered = timeEntryFilter(timeEntries, selection, referenceDay);
     expect(_.pluck(filtered, 'id')).toEqual([1, 2, 3, 4, 5]);
@@ -105,7 +110,7 @@ ddescribe('Filter: timeEntryFilter', function () {
     var selection = {
       timePeriod: 'lastWeek',
       reportType: 'timesheet',
-      customer: 1
+      customer: 0
     };
     var filtered = timeEntryFilter(timeEntries, selection, referenceDay);
     expect(_.pluck(filtered, 'id')).toEqual([6, 7, 8, 9, 10, 11, 12, 13]);
@@ -115,7 +120,7 @@ ddescribe('Filter: timeEntryFilter', function () {
     var selection = {
       timePeriod: 'thisMonth',
       reportType: 'timesheet',
-      customer: 1
+      customer: 0
     };
     var filtered = timeEntryFilter(timeEntries, selection, referenceDay);
     expect(_.pluck(filtered, 'id')).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
@@ -125,7 +130,7 @@ ddescribe('Filter: timeEntryFilter', function () {
     var selection = {
       timePeriod: 'lastMonth',
       reportType: 'timesheet',
-      customer: 1
+      customer: 0
     };
     var filtered = timeEntryFilter(timeEntries, selection, referenceDay);
     expect(_.pluck(filtered, 'id')).toEqual([16, 17, 18, 19]);
@@ -138,7 +143,7 @@ ddescribe('Filter: timeEntryFilter', function () {
       customer: 1
     };
     var filtered = timeEntryFilter(timeEntries, selection, referenceDay);
-    expect(_.pluck(filtered, 'id')).toEqual([1, 2, 3, 4, 5]);
+    expect(_.pluck(filtered, 'id')).toEqual([2, 3]);
   });
 
 

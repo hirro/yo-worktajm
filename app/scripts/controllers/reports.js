@@ -87,21 +87,8 @@ angular.module('yoWorktajmApp')
        });
     };
 
-    $scope.generateReport = function () {
-      console.log('Generating report over interval [%s]', $scope.selectedDate);
-      console.log('Generating report for customer [%s]', $scope.selectedCustomers);
-    };
-
-    $scope.changedCustomer = function () {
-      console.log('Changed customer - updating filter?');
-    };
-
     $scope.enabledCustomers = function () {
       return _.pluck(_.where($scope.customers, { enabled: true }), 'name');
-    };
-
-    $scope.enabledProjects = function () {
-      return _.pluck(_.where($scope.projects, { enabled: true }), 'name');
     };
 
     $scope.loadProjects();

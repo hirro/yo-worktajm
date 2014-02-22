@@ -90,7 +90,7 @@ angular.module('yoWorktajmApp')
       var filteredByCustomer = filteredByTime;
       if (selection.customer != 0) {
         filteredByCustomer = _.filter(filteredByTime, function (timeEntry) {
-          return true;
+          return timeEntry.project.customerId === selection.customer;
         });
       }
       
