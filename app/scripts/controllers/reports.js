@@ -40,9 +40,8 @@ angular.module('yoWorktajmApp')
       { id: 'lastMonth',  name: 'Last month' }
     ];
     $scope.reportTypes = [
-      { id: 'pivot',      name: 'Pivot' },
-      { id: 'invoice',    name: 'Invoice' },
-      { id: 'timesheet',  name: 'Timesheet' }
+      { id: 'timesheet',  name: 'Timesheet' },
+      { id: 'pivot',      name: 'Pivot' }
     ];
     $scope.allCustomers ={
       id: 0, 

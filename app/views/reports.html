@@ -13,7 +13,7 @@
     <div class="col-md-10">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h4 class="panel-title">Reports</h4>
+          <h4 class="panel-title">Report settings</h4>
         </div>
         <div class="panel-body">
 
@@ -84,56 +84,15 @@
                 </div>
               </div>    
             </div>  
-
-<!--             <pre>
-              selection: {{selection}}
-              enabledCustomers: {{enabledCustomers()}}
-              enabledProjects: {{enabledProjects()}}
-            </pre>
-            <button type="submit" class="btn btn-default">Run Report</button>
- -->
           </form>
+        </div>
+      </div>
 
-        </div>
+      <div class="panel panel-default" ng-show="selection.reportType==='pivot'" ng-include="'views/partials/reports/pivot.html'">
+      </div>
 
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">Reports</h4>
-        </div>
-        <div class="panel-body">
-          <!-- Iterator for time entries -->
-          <table  class="table table-condensed table-hover" >
-            <thead>
-              <tr>
-                <th class="col-md-4" >Project</th>
-                <th class="col-md-2">Date</th>
-                <th class="col-md-2">Start Time</th>
-                <th class="col-md-2">End Time</th>
-                <th class="col-md-2">Duration</th>
-              </tr>
-            </thead>
-            <tbody ng-repeat="timeEntry in filteredTimeEntries = (timeEntries | timeEntryFilter:selection) ">
-              <tr>
-                <td>
-                  Hej
-                  {{timeEntry.project.name}}
-                </td>
-                <td>{{timeEntry.startTime | date: 'yyyy-MM-dd'}}</td>
-                <td>{{timeEntry.startTime | date: 'HH:mm:ss'}}</td>
-                <td>{{timeEntry.endTime | date: 'HH:mm:ss'}}</td>
-                <td>{{timeEntry.endTime - timeEntry.startTime | date: 'HH:mm:ss'}}</td>
-              </tr>
-            </tbody>
-            <tfooter>
-              <tr>
-                <th>Sum</th>
-                <th></th>
-                <th></th>
-                <th></th>
-              </tr>
-            </tfooter>
-          </table>
-        </div>
+      <div class="panel panel-default" ng-show="selection.reportType==='timesheet'" ng-include="'views/partials/reports/timesheet.html'">
+      </div>
 
     </div>
 

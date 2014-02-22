@@ -23,21 +23,85 @@
           for the JavaScript code in this page.  
 */
 
-/*globals _ */
+/*globals _, XDate */
 
 'use strict';
 
 angular.module('yoWorktajmApp')
   .filter('timeEntryFilter', function () {
-    return function (timeEntries, selection) {
+    return function (timeEntries, selection, referenceDay) {
 
       // Filter by date
+      if (_.isUndefined(referenceDay)) {
+        referenceDay = new XDate();
+      }
+      var startOfToday = referenceDay.clone().setHours(0).setMinutes(0).setSeconds(0).setMilliseconds(0);
+      var endOfToday = referenceDay.clone().setHours(23).setMinutes(59).setSeconds(59).setMilliseconds(999);
+      var from, to, diff;
+      switch (selection.timePeriod) {
+        case 'today':
+          to = startOfToday;
+          from = endOfToday;
+          diff = 1;
+          break;
+        case 'yesterday':
+          to = startOfToday.addDays(-1);
+          from = endOfToday.addDays(-1);
+          diff = 1;
+          break;
+        case 'thisWeek':
+          console.log('thisWeek');
+          to = startOfToday;
+          from = endOfToday;
+          var week = to.clone().setWeek(referenceDay.getWeek(), referenceDay.getFullYear());
+          from.setFullYear(week.getFullYear()).setDate(week.getDate()).setMonth(week.getMonth()).setHours(0).setMinutes(0).setSeconds(0).setMilliseconds(0);
+          to.setFullYear(week.getFullYear()).setDate(week.getDate()+6).setMonth(week.getMonth()).setHours(23).setMinutes(59).setSeconds(59).setMilliseconds(999);
+          diff = 7;
+          break;
+        case 'lastWeek':
+          to = startOfToday;
+          from = endOfToday;
+          var week = to.clone().setWeek(referenceDay.getWeek()-1, referenceDay.getFullYear());
+          from.setFullYear(week.getFullYear()).setDate(week.getDate()).setMonth(week.getMonth()).setHours(0).setMinutes(0).setSeconds(0).setMilliseconds(0);
+          to.setFullYear(week.getFullYear()).setDate(week.getDate()+6).setMonth(week.getMonth()).setHours(23).setMinutes(59).setSeconds(59).setMilliseconds(999);
+          diff = 7;
+          break;
+        case 'thisMonth':
+          from = startOfToday.clone().setDate(1);
+          to = startOfToday.clone().setDate(1).addMonths(1);
+          diff = 30;
+          break;
+        case 'lastMonth':
+          from = startOfToday.clone().setDate(1);
+          to = startOfToday.clone().setDate(1).addMonths(1);
+          from.addMonths(-1);
+          to.addMonths(-1);
+          diff = 30;
+          break;
+      }
+      console.log('Time period: %s, from: %s, to: %s', selection.timePeriod, from, to);
+      var filteredByTime = _.filter(timeEntries, function (timeEntry) {
+        var diff1 = Math.floor(Math.abs(from.diffDays(timeEntry.startTime)));
+        var diff2 = Math.floor(Math.abs(to.diffDays(timeEntry.startTime)));
+        // console.log('Start: [%s], diff1: [%i], diff2: [%i]', timeEntry.startTime, diff1, diff2);
+        return (diff1 < diff) && (diff2 < diff);
+      });
 
       // Filter by customer
-
+      var filteredByCustomer = filteredByTime;
+      if (selection.customer != 0) {
+        filteredByCustomer = _.filter(filteredByTime, function (timeEntry) {
+          return true;
+        });
+      }
+      
       // Filter by projects
+      var filteredByProjects = filteredByCustomer;
+      filteredByCustomer = _.filter(filteredByTime, function (timeEntry) {
+        return true;
+      });
 
-      return timeEntries;
+      return filteredByProjects;
 
     };
   });
