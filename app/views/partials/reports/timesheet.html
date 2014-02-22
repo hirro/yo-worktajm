@@ -16,13 +16,12 @@
     <tbody ng-repeat="timeEntry in filteredTimeEntries = (timeEntries | timeEntryFilter:selection) ">
       <tr>
         <td>
-          Hej
           {{timeEntry.project.name}}
         </td>
         <td>{{timeEntry.startTime | date: 'yyyy-MM-dd'}}</td>
         <td>{{timeEntry.startTime | date: 'HH:mm:ss'}}</td>
         <td>{{timeEntry.endTime | date: 'HH:mm:ss'}}</td>
-        <td>{{timeEntry.endTime - timeEntry.startTime | date: 'HH:mm:ss'}}</td>
+        <td>{{timeEntry.duration | hhmmssFilter}}</td>
       </tr>
     </tbody>
     <tfooter>
@@ -31,7 +30,7 @@
         <th></th>
         <th></th>
         <th></th>
-        <th></th>
+        <th>{{selection.sum | hhmmssFilter}}</th>
       </tr>
     </tfooter>
   </table>

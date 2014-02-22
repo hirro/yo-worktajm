@@ -83,7 +83,6 @@ angular.module('yoWorktajmApp')
       var filteredByTime = _.filter(timeEntries, function (timeEntry) {
         var diff1 = Math.floor(Math.abs(from.diffDays(timeEntry.startTime)));
         var diff2 = Math.floor(Math.abs(to.diffDays(timeEntry.startTime)));
-        // console.log('Start: [%s], diff1: [%i], diff2: [%i]', timeEntry.startTime, diff1, diff2);
         return (diff1 < diff) && (diff2 < diff);
       });
 
@@ -100,6 +99,18 @@ angular.module('yoWorktajmApp')
       filteredByCustomer = _.filter(filteredByTime, function (timeEntry) {
         return true;
       });
+
+      // Calculate the duration
+      _.each(filteredByProjects, function (entry) {
+        var startTime = new XDate(entry.startTime);
+        var endTime = new XDate(entry.endTime);
+        entry.duration = startTime.diffSeconds(endTime);
+      });
+
+      var sum = _.reduce(filteredByProjects, function (memo, entry) {
+         return memo + entry.duration;
+       }, 0);
+      selection.sum = sum;
 
       return filteredByProjects;
 
