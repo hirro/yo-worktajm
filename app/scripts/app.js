@@ -34,6 +34,10 @@ angular.module('yoWorktajmApp', [
         templateUrl: 'views/customers.html',
         controller: 'CustomersCtrl'
       })
+      .when('/profile', {
+        templateUrl: 'views/profile.html',
+        controller: 'DashboardCtrl'
+      })
       .otherwise({
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
