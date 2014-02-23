@@ -62,8 +62,10 @@ angular.module('yoWorktajmApp')
 
     // Load the available projects
     $scope.loadProjects = function () {
+      $scope.selection.projects = [];
       $scope.projects = _.each(TimerService.getProjects(), function (e) {
         e.enabled = true;
+        $scope.selection.projects.push(_.pick(e, 'id', 'name', 'enabled', 'customerId'));
       });
     };
 
@@ -85,10 +87,6 @@ angular.module('yoWorktajmApp')
        TimerService.getTimeEntries().then(function (result) {
         $scope.timeEntries = result;
        });
-    };
-
-    $scope.enabledCustomers = function () {
-      return _.pluck(_.where($scope.customers, { enabled: true }), 'name');
     };
 
     $scope.loadProjects();

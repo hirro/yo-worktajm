@@ -95,9 +95,14 @@ angular.module('yoWorktajmApp')
       }
       
       // Filter by projects
-      var filteredByProjects = filteredByCustomer;
-      filteredByCustomer = _.filter(filteredByTime, function (timeEntry) {
-        return true;
+      var enabledProjectsIds = _.pluck(
+        _.filter(selection.projects, function (p) {
+          return p.enabled;
+        }),
+        'id');
+      console.log(enabledProjectsIds);
+      var filteredByProjects = _.filter(filteredByCustomer, function (timeEntry) {        
+        return _.contains(enabledProjectsIds, timeEntry.project.id);
       });
 
       // Calculate the duration

@@ -34,10 +34,10 @@ describe('Filter: timeEntryFilter', function () {
 
   // Constants
   var referenceDay = new XDate(2014, 1, 10, 13, 23, 13);
-  var project0  = { id: 1, name: 'Project 0' };
-  var projectA1 = { id: 2, name: 'Project A.1',  customerId: 1 };
-  var projectA2 = { id: 3, name: 'Project A.2',  customerId: 1 };
-  var projectB  = { id: 4, name: 'Project B',    customerId: 2 };
+  var project0  = { id: 1, name: 'Project 0',                   enabled: true };
+  var projectA1 = { id: 2, name: 'Project A.1',  customerId: 1, enabled: true };
+  var projectA2 = { id: 3, name: 'Project A.2',  customerId: 1, enabled: true };
+  var projectB  = { id: 4, name: 'Project B',    customerId: 2, enabled: true };
 
   var timeEntries = [
     // T-0 (today, thisWeek, thisMonth), two projects with 3, 1 entries
@@ -79,7 +79,13 @@ describe('Filter: timeEntryFilter', function () {
     var selection = {
       timePeriod: 'today',
       reportType: 'timesheet',
-      customer: 0
+      customer: 0, 
+      projects: [
+        project0,
+        projectA1,
+        projectA2,
+        projectB
+      ]
     };
     var filtered = timeEntryFilter(timeEntries, selection, referenceDay);
     expect(_.pluck(filtered, 'id')).toEqual([1, 2, 3, 4, 5]);
@@ -90,7 +96,13 @@ describe('Filter: timeEntryFilter', function () {
     var selection = {
       timePeriod: 'yesterday',
       reportType: 'timesheet',
-      customer: 0
+      customer: 0,
+      projects: [
+        project0,
+        projectA1,
+        projectA2,
+        projectB
+      ]      
     };
     var filtered = timeEntryFilter(timeEntries, selection, referenceDay);
     expect(_.pluck(filtered, 'id')).toEqual([6, 7]);
@@ -100,7 +112,13 @@ describe('Filter: timeEntryFilter', function () {
     var selection = {
       timePeriod: 'thisWeek',
       reportType: 'timesheet',
-      customer: 0
+      customer: 0, 
+      projects: [
+        project0,
+        projectA1,
+        projectA2,
+        projectB
+      ]
     };
     var filtered = timeEntryFilter(timeEntries, selection, referenceDay);
     expect(_.pluck(filtered, 'id')).toEqual([1, 2, 3, 4, 5]);
@@ -110,7 +128,13 @@ describe('Filter: timeEntryFilter', function () {
     var selection = {
       timePeriod: 'lastWeek',
       reportType: 'timesheet',
-      customer: 0
+      customer: 0, 
+      projects: [
+        project0,
+        projectA1,
+        projectA2,
+        projectB
+      ]
     };
     var filtered = timeEntryFilter(timeEntries, selection, referenceDay);
     expect(_.pluck(filtered, 'id')).toEqual([6, 7, 8, 9, 10, 11, 12, 13]);
@@ -120,7 +144,13 @@ describe('Filter: timeEntryFilter', function () {
     var selection = {
       timePeriod: 'thisMonth',
       reportType: 'timesheet',
-      customer: 0
+      customer: 0, 
+      projects: [
+        project0,
+        projectA1,
+        projectA2,
+        projectB
+      ]
     };
     var filtered = timeEntryFilter(timeEntries, selection, referenceDay);
     expect(_.pluck(filtered, 'id')).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
@@ -130,7 +160,13 @@ describe('Filter: timeEntryFilter', function () {
     var selection = {
       timePeriod: 'lastMonth',
       reportType: 'timesheet',
-      customer: 0
+      customer: 0,
+      projects: [
+        project0,
+        projectA1,
+        projectA2,
+        projectB
+      ]
     };
     var filtered = timeEntryFilter(timeEntries, selection, referenceDay);
     expect(_.pluck(filtered, 'id')).toEqual([16, 17, 18, 19]);
@@ -140,11 +176,34 @@ describe('Filter: timeEntryFilter', function () {
     var selection = {
       timePeriod: 'today',
       reportType: 'timesheet',
-      customer: 1
+      customer: 1, 
+      projects: [
+        project0,
+        projectA1,
+        projectA2,
+        projectB
+      ]
     };
     var filtered = timeEntryFilter(timeEntries, selection, referenceDay);
     expect(_.pluck(filtered, 'id')).toEqual([2, 3]);
   });
 
+  it('should return all time entries today for customer with specific id and selected projects', function () {
+    var projectA2Modified = _.clone(projectA2);
+    projectA2Modified.enabled = false;
+    var selection = {
+      timePeriod: 'today',
+      reportType: 'timesheet',
+      customer: 1,
+      projects: [
+        project0,
+        projectA1,
+        projectA2Modified,
+        projectB
+      ]
+    };
+    var filtered = timeEntryFilter(timeEntries, selection, referenceDay);
+    expect(_.pluck(filtered, 'id')).toEqual([2]);
+  });
 
 });
