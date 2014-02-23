@@ -79,7 +79,7 @@ describe('Filter: timeEntryFilter', function () {
     var selection = {
       timePeriod: 'today',
       reportType: 'timesheet',
-      customer: 0, 
+      customer: 0,
       projects: [
         project0,
         projectA1,

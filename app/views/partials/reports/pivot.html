@@ -1,6 +1,28 @@
 <div class="panel-heading">
-  <h4 class="panel-title">By projects</h4>
+  <h4 class="panel-title">Timesheet</h4>
 </div>
 <div class="panel-body">
-  Not yet supported.
+  <!-- Iterator for time entries -->
+  <table  class="table table-condensed table-hover" >
+    <thead>
+      <tr>
+        <th class="col-md-10" >Project</th>
+        <th class="col-md-2">Duration</th>
+      </tr>
+    </thead>
+    <tbody ng-repeat="timeEntry in filteredTimeEntries = (timeEntries | timeEntryFilter:selection | groupByProjectsFilter) ">
+      <tr>
+        <td>
+          {{timeEntry.name}}
+        </td>
+        <td>{{timeEntry.duration | hhmmssFilter}}</td>
+      </tr>
+    </tbody>
+    <tfooter>
+      <tr>
+        <th>Sum</th>
+        <th>{{selection.sum | hhmmssFilter}}</th>
+      </tr>
+    </tfooter>
+  </table>
 </div>
