@@ -28,7 +28,7 @@
         <li id="nav_customers" ng-class="{active: isActive('/customers')}"><a href="#/customers">Customers</a></li>
         <li id="nav_projects" ng-class="{active: isActive('/projects')}"><a href="#/projects">Projects</a></li>
         <li class="dropdown">
-          <a id="nav_user" class="dropdown-toggle" ng-class="dropdown-toggle {active: isActive('/profile')}" data-toggle="dropdown">User <b class="caret"></b></a>
+          <a id="nav_user" class="dropdown-toggle" ng-class="{active: isActive('/profile')}" data-toggle="dropdown">User <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a id="nav_profile" href="#/profile">Profile</a></li>
             <li><a id="nav_logout" ng-click="logout()">Logout</a></li>

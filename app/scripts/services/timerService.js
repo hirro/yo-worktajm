@@ -136,7 +136,6 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
     var found = _.find(svc.projects, function (p) {
       return p.name === name;
     });
-    console.log('TimerService::findProjectByName(%s) => []', name, _.isNaN(found));
     return found;
   };
 
@@ -177,7 +176,10 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
     return q;
   };
   svc.createTimeEntry = function (timeEntry) {
-    return svc.baseTimeEntries.post(timeEntry);
+    return svc.baseTimeEntries.post(timeEntry).then(function (newTimeEntry) {
+      $rootScope.$broadcast('onTimeEntryCreated', newTimeEntry);
+      return newTimeEntry;
+    });
   };
   svc.updateTimeEntry = function (timeEntry) {
     console.log('TimerService::updateTimeEntry(id: [%d])', timeEntry.id);

@@ -12,10 +12,10 @@
         <input type="text" 
                class="form-control" 
                ng-model="timeEntry.project.name" 
-               ng-change="change()"
-               typeahead="project for project in projectNames | filter:$viewValue | limitTo:8">
+               typeahead="project for project in projectNames | filter:$viewValue | limitTo:8"
+               required>
         <p>
-          <div class="alert alert-info" ng-hide="timeEntry.projectExists">
+          <div class="alert alert-info" ng-hide="timeEntry.project.id">
             Project name does not exist, new project will be created
           </div>
         </p>
@@ -46,7 +46,7 @@
           <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
             <datetimepicker data-ng-model="timeEntry.end" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"/>
           </ul>
-        </div>        
+        </div>
       </div>
       <div class="form-group">
         <label for="comment">Comment</label>

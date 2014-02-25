@@ -61,14 +61,19 @@ angular.module('yoWorktajmApp')
                     timeEntry.startTime, 
                     timeEntry.endTime,
                     timeEntry.project.id);
-        if (timeEntry.projectExists) {
-          TimerService.updateTimeEntry(timeEntry);
+        if (timeEntry.project.id) {
+          TimerService.createTimeEntry(timeEntry).then(function (newTimeEntry) {
+            $scope.timeEntries.push(newTimeEntry);
+          });
         } else {
           // New projects must be created first
-          console.log('xx');
+          console.log('New project defined, creating project first');
           TimerService.updateProject(_.omit(timeEntry.project, 'id')).then(function (project) {
+            console.log('Project created at backend, now creating the time entry');
             timeEntry.project = project;
-            return TimerService.updateTimeEntry(timeEntry);
+            TimerService.createTimeEntry(timeEntry).then(function (newTimeEntry) {
+              $scope.timeEntries.push(newTimeEntry);
+            });
           });
         }
       } else {
