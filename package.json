@@ -19,9 +19,7 @@
     "type": "git",
     "url": "https://github.com/hirro/yo-worktajm.git"
   },
-  "dependencies": {
-    "protractor": "~0.18.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "chromedriver": "~2.8.1",
     "coveralls": "~2.7.1",
@@ -37,7 +35,7 @@
     "grunt-contrib-copy": "~0.5.0",
     "grunt-contrib-cssmin": "~0.7.0",
     "grunt-contrib-htmlmin": "~0.2.0",
-    "grunt-contrib-imagemin": "~0.5.0",
+    "grunt-contrib-imagemin": "~0.3.0",
     "grunt-contrib-jshint": "~0.8.0",
     "grunt-contrib-uglify": "~0.3.2",
     "grunt-contrib-watch": "~0.5.3",
@@ -68,9 +66,9 @@
     "load-grunt-tasks": "~0.2.0",
     "nodeunit": "~0.8.4",
     "protractor": "~0.18.1",
-    "time-grunt": "~0.2.9",
-    "lodash": "~2.4.1"
-  },
+    "requirejs": "^2.1.11",
+    "time-grunt": "~0.2.9"
+      },
   "engines": {
     "node": ">=0.10.24"
   },
