@@ -115,7 +115,7 @@ angular.module('yoWorktajmApp')
       var sum = _.reduce(filteredByProjects, function (memo, entry) {
          return memo + entry.duration;
        }, 0);
-      selection.sum = sum;
+      // selection.sum = sum;
 
       return filteredByProjects;
 

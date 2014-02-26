@@ -15,7 +15,6 @@ angular.module('yoWorktajmApp')
         var groupSum = _.reduce(projectValue, function(memo, item) {
           return item.duration + memo;
         }, 0);
-        console.log('Project name %s', projectKey);
         var resultElement = {
           name: projectKey,
           duration: groupSum
