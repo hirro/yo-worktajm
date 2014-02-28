@@ -73,6 +73,12 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
       deferred.resolve(result);
       console.log('TimerServiceMock::updateProject done');
       return deferred.promise;
+    },
+    createTimeEntry: function (timeEntry) {
+      var deferred = $q.defer();
+      deferred.resolve(timeEntry);
+      timeEntry.id = 2;
+      return deferred.promise;
     }
   };
 
@@ -158,6 +164,7 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
     it('should update a time entry with unmodified project name', function () {
       spyOn(TimerServiceMock, 'updateTimeEntry').andCallThrough();
       spyOn(TimerServiceMock, 'updateProject').andCallThrough();
+      spyOn(TimerServiceMock, 'createTimeEntry').andCallThrough();
       var timeEntry = {
         id: 1,
         startTime: 1,
@@ -167,16 +174,18 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
           name: 'Hej'
         }
       };
+      scope.timeEntries = [];
       scope.updateTimeEntryOnOk(timeEntry);
       scope.$digest();
 
       // Validations
       expect(TimerServiceMock.updateTimeEntry).toHaveBeenCalledWith(timeEntry);
+      expect(TimerServiceMock.createTimeEntry).not.toHaveBeenCalledWith(timeEntry);
       expect(TimerServiceMock.updateProject).not.toHaveBeenCalledWith(timeEntry);
     });
 
     it('should create a project and update a time entry when project id is null', function () {
-      spyOn(TimerServiceMock, 'updateTimeEntry').andCallThrough();
+      spyOn(TimerServiceMock, 'createTimeEntry').andCallThrough();
       spyOn(TimerServiceMock, 'updateProject').andCallThrough();
       var project = {
         name: 'Hej'
@@ -187,11 +196,12 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
         endTime: 2,
         project: project
       };
+      scope.timeEntries = [];
       scope.updateTimeEntryOnOk(timeEntry);
       scope.$digest();
 
       // Validations
-      expect(TimerServiceMock.updateTimeEntry).toHaveBeenCalledWith(timeEntry);
+      expect(TimerServiceMock.createTimeEntry).toHaveBeenCalledWith(timeEntry);
       expect(TimerServiceMock.updateProject).toHaveBeenCalledWith(project);
     });
 

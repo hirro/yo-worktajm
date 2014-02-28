@@ -57,14 +57,22 @@ angular.module('yoWorktajmApp')
     $scope.updateTimeEntryOnOk = function (timeEntry) {
       console.log('DashboardTimeEntriesCtrl::updateTimeEntryOnOk');
       if (timeEntry) {
-        console.log('DashboardTimeEntriesCtrl::updateTimeEntryOnOk - TimeEntry modified [%s] [%s] [%d]', 
+        console.log('DashboardTimeEntriesCtrl::updateTimeEntryOnOk - [%s] [%s] [%d]', 
                     timeEntry.startTime, 
                     timeEntry.endTime,
                     timeEntry.project.id);
         if (timeEntry.project.id) {
-          TimerService.createTimeEntry(timeEntry).then(function (newTimeEntry) {
-            $scope.timeEntries.push(newTimeEntry);
-          });
+          console.log('Project exists for time entry');
+          if (timeEntry.id) {
+            TimerService.updateTimeEntry(timeEntry).then(function (newTimeEntry) {
+              console.log('TimeEntry updated');
+            });            
+          } else {
+            TimerService.createTimeEntry(timeEntry).then(function (newTimeEntry) {
+              console.log('TimeEntry created');
+              $scope.timeEntries.push(newTimeEntry);
+            });            
+          }
         } else {
           // New projects must be created first
           console.log('New project defined, creating project first');
@@ -77,7 +85,7 @@ angular.module('yoWorktajmApp')
           });
         }
       } else {
-        console.log('DashboardTimeEntriesCtrl::updateTimeEntryOnOk - TimeEntry unmodified');
+        console.log('DashboardTimeEntriesCtrl::updateTimeEntryOnOk - TimeEntry null');
       }
     };
 

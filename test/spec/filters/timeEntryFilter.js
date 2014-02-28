@@ -89,7 +89,6 @@ describe('Filter: timeEntryFilter', function () {
     };
     var filtered = timeEntryFilter(timeEntries, selection, referenceDay);
     expect(_.pluck(filtered, 'id')).toEqual([1, 2, 3, 4, 5]);
-    expect(selection.sum).toEqual(10800);    
   });
 
   it('should return all time entries yesterday for all customers', function () {
