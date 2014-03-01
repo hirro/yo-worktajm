@@ -23,7 +23,7 @@
           for the JavaScript code in this page.  
 */
 
-/*globals  _ */
+/*globals  _, XDate */
 
 'use strict';
 
@@ -87,6 +87,48 @@ angular.module('yoWorktajmApp')
        TimerService.getTimeEntries().then(function (result) {
         $scope.timeEntries = result;
        });
+    };
+
+    $scope.changedTimePeriod = function (id, referenceDay) {
+      console.log('Time period changed');
+      // Filter by date
+      if (_.isUndefined(referenceDay)) {
+        referenceDay = new XDate();
+      }
+      var startOfToday = referenceDay.clone().setHours(0).setMinutes(0).setSeconds(0).setMilliseconds(0);
+      var endOfToday = referenceDay.clone().setHours(23).setMinutes(59).setSeconds(59).setMilliseconds(999);
+      var from, to;
+      switch (id) {
+        case 'today':
+          from = startOfToday;
+          to = endOfToday;
+          break;
+        case 'yesterday':
+          to = startOfToday.addDays(-1);
+          from = endOfToday.addDays(-1);
+          break;
+        case 'thisWeek':
+          from = new XDate();
+          from.setUTCWeek(referenceDay.getWeek(), referenceDay.getFullYear());
+          to = new XDate(from).addWeeks(1).addMilliseconds(-1);
+          break;
+        case 'lastWeek':
+          from = new XDate();
+          from.setUTCWeek(referenceDay.getWeek()-1, referenceDay.getFullYear());
+          to = new XDate(from).addWeeks(1).addMilliseconds(-1);
+          break;
+        case 'thisMonth':
+          from = startOfToday.clone().setDate(1);
+          to = from.clone().addMonths(1).addMilliseconds(-1);
+          break;
+        case 'lastMonth':
+          from = startOfToday.clone().setDate(1).addMonths(-1);
+          to = from.clone().addMonths(1).addMilliseconds(-1);
+          break;
+      }      
+      $scope.selection.to = to;
+      $scope.selection.from = from;
+      console.log('changeTimePeriod: from[%s], to[%s]', from.toISOString(), to.toISOString());
     };
 
     $scope.loadProjects();

@@ -23,6 +23,8 @@
           for the JavaScript code in this page.  
 */
 
+/*globals  XDate */
+
 'use strict';
 
 describe('Controller: ReportsCtrl', function () {
@@ -41,6 +43,46 @@ describe('Controller: ReportsCtrl', function () {
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
+  it('should calculate correct values for today', function () {
+    var date = new XDate(2013, 5, 10, 13,  30,  0, true);
+    scope.changedTimePeriod('today', date);
+    expect(scope.selection.from.toISOString()).toBe('2013-06-10T00:00:00Z');
+    expect(scope.selection.to.toISOString()).toBe('2013-06-10T23:59:59.999Z');
   });
+
+  it('should calculate correct values for yesterday', function () {
+    var date = new XDate(2013, 5, 10, 13,  30,  0, true);
+    scope.changedTimePeriod('yesterday', date);
+    expect(scope.selection.from.toISOString()).toBe('2013-06-09T23:59:59.999Z');
+    expect(scope.selection.to.toISOString()).toBe('2013-06-09T00:00:00Z');
+  });
+
+  it('should calculate correct values for thisWeek', function () {
+    var date = new XDate(2013, 5, 10, 13,  30,  0, true);
+    scope.changedTimePeriod('thisWeek', date);
+    expect(scope.selection.from.toISOString()).toBe('2013-06-10T00:00:00Z');
+    expect(scope.selection.to.toISOString()).toBe('2013-06-16T23:59:59.999Z');
+  });
+
+  it('should calculate correct values for lastWeek', function () {
+    var date = new XDate(2013, 5, 10, 13,  30,  0, true);
+    scope.changedTimePeriod('lastWeek', date);
+    expect(scope.selection.from.toISOString()).toBe('2013-06-03T00:00:00Z');
+    expect(scope.selection.to.toISOString()).toBe('2013-06-09T23:59:59.999Z');
+  });
+
+  it('should calculate correct values for thisMonth', function () {
+    var date = new XDate(2013, 5, 10, 13,  30,  0, true);
+    scope.changedTimePeriod('thisMonth', date);
+    expect(scope.selection.from.toISOString()).toBe('2013-06-01T00:00:00Z');
+    expect(scope.selection.to.toISOString()).toBe('2013-06-30T23:59:59.999Z');
+  });
+
+  it('should calculate correct values for lastMonth', function () {
+    var date = new XDate(2013, 5, 10, 13,  30,  0, true);
+    scope.changedTimePeriod('lastMonth', date);
+    expect(scope.selection.from.toISOString()).toBe('2013-05-01T00:00:00Z');
+    expect(scope.selection.to.toISOString()).toBe('2013-05-31T23:59:59.999Z');
+  });
+
 });

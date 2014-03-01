@@ -44,6 +44,7 @@
                           type="button" 
                           class="btn btn-sm btn-primary" 
                           ng-model="selection.timePeriod" 
+                          ng-change="changedTimePeriod(period.id)"
                           btn-radio="period.id">
                     {{period.name}}
                   </button>
@@ -85,7 +86,7 @@
               </div>    
             </div>  
           </form>
-          
+          {{selection}}
         </div>
       </div>
 

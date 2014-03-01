@@ -75,9 +75,10 @@ describe('Filter: timeEntryFilter', function () {
     timeEntryFilter = $filter('timeEntryFilter');
   }));
 
-  it('should return all time entries today for all customers', function () {
+  it('should return entries for specified period and all customers', function () {
     var selection = {
-      timePeriod: 'today',
+      from:       new XDate(2014,  1, 10,  0,  0,  0),
+      to:         new XDate(2014,  1, 11,  0,  0,  0),
       reportType: 'timesheet',
       customer: 0,
       projects: [
@@ -87,95 +88,16 @@ describe('Filter: timeEntryFilter', function () {
         projectB
       ]
     };
-    var filtered = timeEntryFilter(timeEntries, selection, referenceDay);
+    var filtered = timeEntryFilter(timeEntries, selection);
     expect(_.pluck(filtered, 'id')).toEqual([1, 2, 3, 4, 5]);
   });
 
-  it('should return all time entries yesterday for all customers', function () {
+  it('should return entries for specified period and customers 1', function () {
     var selection = {
-      timePeriod: 'yesterday',
+      from:       new XDate(2014,  1, 10,  0,  0,  0),
+      to:         new XDate(2014,  1, 11,  0,  0,  0),
       reportType: 'timesheet',
-      customer: 0,
-      projects: [
-        project0,
-        projectA1,
-        projectA2,
-        projectB
-      ]      
-    };
-    var filtered = timeEntryFilter(timeEntries, selection, referenceDay);
-    expect(_.pluck(filtered, 'id')).toEqual([6, 7]);
-  });
-
-  it('should return all time entries this week for all customers', function () {
-    var selection = {
-      timePeriod: 'thisWeek',
-      reportType: 'timesheet',
-      customer: 0, 
-      projects: [
-        project0,
-        projectA1,
-        projectA2,
-        projectB
-      ]
-    };
-    var filtered = timeEntryFilter(timeEntries, selection, referenceDay);
-    expect(_.pluck(filtered, 'id')).toEqual([1, 2, 3, 4, 5]);
-  });
-
-  it('should return all time entries last week for all customers', function () {
-    var selection = {
-      timePeriod: 'lastWeek',
-      reportType: 'timesheet',
-      customer: 0, 
-      projects: [
-        project0,
-        projectA1,
-        projectA2,
-        projectB
-      ]
-    };
-    var filtered = timeEntryFilter(timeEntries, selection, referenceDay);
-    expect(_.pluck(filtered, 'id')).toEqual([6, 7, 8, 9, 10, 11, 12, 13]);
-  });
-
-  it('should return all time entries this month for all customers', function () {
-    var selection = {
-      timePeriod: 'thisMonth',
-      reportType: 'timesheet',
-      customer: 0, 
-      projects: [
-        project0,
-        projectA1,
-        projectA2,
-        projectB
-      ]
-    };
-    var filtered = timeEntryFilter(timeEntries, selection, referenceDay);
-    expect(_.pluck(filtered, 'id')).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
-  });
-
-  it('should return all time entries last month for all customers', function () {
-    var selection = {
-      timePeriod: 'lastMonth',
-      reportType: 'timesheet',
-      customer: 0,
-      projects: [
-        project0,
-        projectA1,
-        projectA2,
-        projectB
-      ]
-    };
-    var filtered = timeEntryFilter(timeEntries, selection, referenceDay);
-    expect(_.pluck(filtered, 'id')).toEqual([16, 17, 18, 19]);
-  });
-
-  it('should return all time entries today for customer with specific id', function () {
-    var selection = {
-      timePeriod: 'today',
-      reportType: 'timesheet',
-      customer: 1, 
+      customer: 1,
       projects: [
         project0,
         projectA1,
@@ -187,22 +109,19 @@ describe('Filter: timeEntryFilter', function () {
     expect(_.pluck(filtered, 'id')).toEqual([2, 3]);
   });
 
-  it('should return all time entries today for customer with specific id and selected projects', function () {
-    var projectA2Modified = _.clone(projectA2);
-    projectA2Modified.enabled = false;
+  it('should return entries for specified period and customers 1', function () {
     var selection = {
-      timePeriod: 'today',
+      from:       new XDate(2014,  1, 10,  0,  0,  0),
+      to:         new XDate(2014,  1, 11,  0,  0,  0),
       reportType: 'timesheet',
-      customer: 1,
+      customer: 0, 
       projects: [
-        project0,
         projectA1,
-        projectA2Modified,
-        projectB
+        projectA2,
       ]
     };
     var filtered = timeEntryFilter(timeEntries, selection, referenceDay);
-    expect(_.pluck(filtered, 'id')).toEqual([2]);
+    expect(_.pluck(filtered, 'id')).toEqual([2, 3]);
   });
 
 });
