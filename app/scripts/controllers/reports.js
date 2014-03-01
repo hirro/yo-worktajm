@@ -134,4 +134,5 @@ angular.module('yoWorktajmApp')
     $scope.loadProjects();
     $scope.loadCustomers();
     $scope.loadTimeEntries();
+    $scope.changedTimePeriod($scope.selection.timePeriod);
   });

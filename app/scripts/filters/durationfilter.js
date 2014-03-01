@@ -23,14 +23,15 @@
           for the JavaScript code in this page.  
 */
 
+/*globals XDate */
+
 'use strict';
 
 angular.module('yoWorktajmApp')
-  .filter('hhmmssFilter', function () {
-    return function (inputInSeconds) {
-      var seconds = inputInSeconds % 60;
-      var minutes = (inputInSeconds - seconds) / 60 % 60;
-      var hours = (inputInSeconds - seconds - minutes * 60) / 3600 % 60;      
-      return hours + 'h ' + minutes + 'm ' + seconds + 's';
+  .filter('durationFilter', function () {
+    return function (entry) {
+      var startTime = new XDate(entry.startTime);
+      var endTime = new XDate(entry.endTime);
+      return startTime.diffSeconds(endTime);      
     };
   });

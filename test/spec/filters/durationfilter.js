@@ -23,14 +23,29 @@
           for the JavaScript code in this page.  
 */
 
+/*globals XDate */
+
 'use strict';
 
-angular.module('yoWorktajmApp')
-  .filter('hhmmssFilter', function () {
-    return function (inputInSeconds) {
-      var seconds = inputInSeconds % 60;
-      var minutes = (inputInSeconds - seconds) / 60 % 60;
-      var hours = (inputInSeconds - seconds - minutes * 60) / 3600 % 60;      
-      return hours + 'h ' + minutes + 'm ' + seconds + 's';
+describe('Filter: durationFilter', function () {
+
+  // load the filter's module
+  beforeEach(module('yoWorktajmApp'));
+
+  // initialize a new instance of the filter before each test
+  var durationFilter;
+  beforeEach(inject(function ($filter) {
+    durationFilter = $filter('durationFilter');
+  }));
+
+  it('should return the input prefixed with "durationFilter filter:"', function () {
+    var start = new XDate();
+    var end = start.clone().addHours(2);
+    var timeEntry = {
+      startTime: start,
+      endTime: end
     };
+    expect(durationFilter(timeEntry)).toBe(7200);
   });
+
+});

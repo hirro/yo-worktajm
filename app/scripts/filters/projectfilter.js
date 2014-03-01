@@ -29,6 +29,7 @@
 angular.module('yoWorktajmApp')
   .filter('projectFilter', function () {
     return function (projects, selection) {
+      console.log('projectFilter');
       if (selection.customer === 0) {
         return projects;
       } else {

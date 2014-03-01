@@ -86,14 +86,15 @@
               </div>    
             </div>  
           </form>
-          {{selection}}
         </div>
       </div>
 
-      <div class="panel panel-default" ng-show="selection.reportType==='pivot'" ng-include="'views/reports/pivot.html'">
+      <div ng-if="selection.reportType==='pivot'">
+        <div class="panel panel-default" ng-include="'views/reports/pivot.html'"/>
       </div>
 
-      <div class="panel panel-default" ng-show="selection.reportType==='timesheet'" ng-include="'views/reports/timesheet.html'">
+      <div ng-if="selection.reportType==='timesheet'">
+        <div class="panel panel-default" ng-include="'views/reports/timesheet.html'"/>
       </div>
 
     </div>

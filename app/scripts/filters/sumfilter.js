@@ -23,14 +23,18 @@
           for the JavaScript code in this page.  
 */
 
+/*globals _, XDate */
 'use strict';
 
 angular.module('yoWorktajmApp')
-  .filter('hhmmssFilter', function () {
-    return function (inputInSeconds) {
-      var seconds = inputInSeconds % 60;
-      var minutes = (inputInSeconds - seconds) / 60 % 60;
-      var hours = (inputInSeconds - seconds - minutes * 60) / 3600 % 60;      
-      return hours + 'h ' + minutes + 'm ' + seconds + 's';
+  .filter('sumFilter', function () {
+    return function (array) {
+      var sum = _.reduce(array, function (memo, entry) {
+        console.log('timeEntrySumFilter')
+        var startTime = new XDate(entry.startTime);
+        var endTime = new XDate(entry.endTime);
+        return memo + startTime.diffSeconds(endTime);              
+       }, 0);
+      return sum;
     };
   });

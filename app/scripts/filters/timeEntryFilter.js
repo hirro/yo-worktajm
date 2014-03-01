@@ -23,7 +23,7 @@
           for the JavaScript code in this page.  
 */
 
-/*globals _, XDate */
+/*globals _ */
 
 'use strict';
 
@@ -31,8 +31,9 @@ angular.module('yoWorktajmApp')
   .filter('timeEntryFilter', function () {
     return function (timeEntries, selection) {
 
+      console.log('timeEntryFilter');
+
       // Filter by date
-      console.log('Time period: %s, from: %s, to: %s', selection.timePeriod, selection.from, selection.to);
       var filteredByTime = _.filter(timeEntries, function (timeEntry) {
         return (timeEntry.startTime >= selection.from) && (timeEntry.startTime <= selection.to);
       });
@@ -51,22 +52,9 @@ angular.module('yoWorktajmApp')
           return p.enabled;
         }),
         'id');
-      console.log(enabledProjectsIds);
       var filteredByProjects = _.filter(filteredByCustomer, function (timeEntry) {        
         return _.contains(enabledProjectsIds, timeEntry.project.id);
       });
-
-      // // Calculate the duration
-      // _.each(filteredByProjects, function (entry) {
-      //   var startTime = new XDate(entry.startTime);
-      //   var endTime = new XDate(entry.endTime);
-      //   entry.duration = startTime.diffSeconds(endTime);
-      // });
-
-      // var sum = _.reduce(filteredByProjects, function (memo, entry) {
-      //    return memo + entry.duration;
-      //  }, 0);
-      // selection.sum = sum;
 
       return filteredByProjects;
 
