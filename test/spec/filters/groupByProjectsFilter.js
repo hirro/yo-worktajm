@@ -39,9 +39,20 @@ describe('Filter: groupByProjectsFilter', function () {
   var projectB  = { id: 4, name: 'Project B',    customerId: 2, enabled: true };
 
   var timeEntries = [
+    // Project 0
+    // Duration: 30*60 = 1800
     { id:   1, startTime: new XDate(2014,  1, 10,  0,  0,  0), endTime: new XDate(2014,  1, 10, 0,  30,  0), project: project0 },
+    //
+    // Project A1
+    // Duration: 30*60 = 1800
     { id:   2, startTime: new XDate(2014,  1, 10, 12,  0,  0), endTime: new XDate(2014,  1, 10, 12, 30,  0), project: projectA1 },
+    //
+    // Project A2
+    // Duration: 0
     { id:   3, startTime: new XDate(2014,  1, 10, 23, 59,  0), endTime: new XDate(2014,  1, 10, 23, 59,  0), project: projectA2 },
+    //
+    // Project B
+    // Duration: 2h = 7200
     { id:   4, startTime: new XDate(2014,  1, 10, 12, 12,  0), endTime: new XDate(2014,  1, 10, 13, 12,  0), project: projectB },
     { id:   5, startTime: new XDate(2014,  1, 10, 14, 34,  0), endTime: new XDate(2014,  1, 10, 15, 34,  0), project: projectB }
   ];
@@ -52,11 +63,11 @@ describe('Filter: groupByProjectsFilter', function () {
     groupByProjectsFilter = $filter('groupByProjectsFilter');
   }));
 
-  iit('should return time entries grouped by projecs with updated duration', function () {
+  it('should return time entries grouped by projecs with updated duration', function () {
     expect(groupByProjectsFilter(timeEntries)).toEqual([
-      { name: project0.name,  duration: 3600 },
-      { name: projectA1.name, duration: 3600 },
-      { name: projectA2.name, duration: 3600 },
+      { name: project0.name,  duration: 1800 },
+      { name: projectA1.name, duration: 1800 },
+      { name: projectA2.name, duration: 0 },
       { name: projectB.name,  duration: 7200 },
     ]);
   });

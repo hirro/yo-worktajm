@@ -30,10 +30,14 @@ angular.module('yoWorktajmApp')
   .filter('sumFilter', function () {
     return function (array) {
       var sum = _.reduce(array, function (memo, entry) {
-        console.log('timeEntrySumFilter')
-        var startTime = new XDate(entry.startTime);
-        var endTime = new XDate(entry.endTime);
-        return memo + startTime.diffSeconds(endTime);              
+        console.log('timeEntrySumFilter');
+        if (entry.duration) {
+          return memo + entry.duration;
+        } else {
+          var startTime = new XDate(entry.startTime);
+          var endTime = new XDate(entry.endTime);
+          return memo + startTime.diffSeconds(endTime);          
+        }
        }, 0);
       return sum;
     };

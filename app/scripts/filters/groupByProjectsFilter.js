@@ -49,8 +49,7 @@ angular.module('yoWorktajmApp')
         }, 0);
         var resultElement = {
           name: projectKey,
-          startTime: new XDate(0),
-          endTime: new XDate(0).addSeconds(groupSum)
+          duration: groupSum
         };
         result.push(resultElement);
       });

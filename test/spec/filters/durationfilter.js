@@ -38,7 +38,7 @@ describe('Filter: durationFilter', function () {
     durationFilter = $filter('durationFilter');
   }));
 
-  it('should return the input prefixed with "durationFilter filter:"', function () {
+  it('should return duration calculated using starTime and endTime', function () {
     var start = new XDate();
     var end = start.clone().addHours(2);
     var timeEntry = {
@@ -46,6 +46,30 @@ describe('Filter: durationFilter', function () {
       endTime: end
     };
     expect(durationFilter(timeEntry)).toBe(7200);
+  });
+
+  it('should return duration calculated using duration', function () {
+    var timeEntry = {
+      duration: 7200
+    };
+    expect(durationFilter(timeEntry)).toBe(7200);
+  });
+
+  it('should return duration calculated using duration if both duration and startTime, endTime are provided', function () {
+    var start = new XDate();
+    var end = start.clone().addHours(2);
+    var timeEntry = {
+      duration: 7200,
+      startTime: start,
+      endTime: end
+    };
+    expect(durationFilter(timeEntry)).toBe(7200);
+  });
+
+  it('should return duration 0 if no attributes are present', function () {
+    var timeEntry = {
+    };
+    expect(durationFilter(timeEntry)).toBe(0);
   });
 
 });

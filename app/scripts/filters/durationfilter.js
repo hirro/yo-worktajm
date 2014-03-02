@@ -30,8 +30,16 @@
 angular.module('yoWorktajmApp')
   .filter('durationFilter', function () {
     return function (entry) {
-      var startTime = new XDate(entry.startTime);
-      var endTime = new XDate(entry.endTime);
-      return startTime.diffSeconds(endTime);      
+      var result = 0;
+      if (entry.duration) {
+        result = entry.duration;
+      } else if (entry.startTime && entry.endTime) {
+        var startTime = new XDate(entry.startTime);
+        var endTime = new XDate(entry.endTime);
+        result = startTime.diffSeconds(endTime);
+      } else {
+        console.error('Failed to calculate duration for time entry', entry);
+      }
+      return result;
     };
   });
