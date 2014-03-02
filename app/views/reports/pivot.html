@@ -18,13 +18,13 @@
         <td>
           {{timeEntry.name}}
         </td>
-        <td>{{timeEntry.duration | hhmmssFilter}}</td>
+        <td>{{timeEntry | durationFilter | hhmmssFilter}}</td>
       </tr>
     </tbody>
     <tfooter>
       <tr>
         <th>Sum</th>
-        <th>{{selection.sum | hhmmssFilter}}</th>
+        <th>{{filteredTimeEntries | sumFilter | hhmmssFilter}}</th>
       </tr>
     </tfooter>
   </table>

@@ -23,7 +23,7 @@
           for the JavaScript code in this page.  
 */
 
-/*globals _ */
+/*globals _, XDate */
 
 'use strict';
 
@@ -42,11 +42,15 @@ angular.module('yoWorktajmApp')
       // Calculate total duration
       _.each(groupedByProjectName, function (projectValue, projectKey) {
         var groupSum = _.reduce(projectValue, function(memo, item) {
-          return item.duration + memo;
+          var startTime = new XDate(item.startTime);
+          var endTime = new XDate(item.endTime);
+          var duration = startTime.diffSeconds(endTime);      
+          return memo + duration;
         }, 0);
         var resultElement = {
           name: projectKey,
-          duration: groupSum
+          startTime: new XDate(0),
+          endTime: new XDate(0).addSeconds(groupSum)
         };
         result.push(resultElement);
       });
