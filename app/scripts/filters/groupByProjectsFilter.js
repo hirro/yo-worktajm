@@ -42,10 +42,14 @@ angular.module('yoWorktajmApp')
       // Calculate total duration
       _.each(groupedByProjectName, function (projectValue, projectKey) {
         var groupSum = _.reduce(projectValue, function(memo, item) {
-          var startTime = new XDate(item.startTime);
-          var endTime = new XDate(item.endTime);
-          var duration = startTime.diffSeconds(endTime);      
-          return memo + duration;
+          var durationSum = memo;
+          if (item.startTime && item.endTime) {
+            var startTime = new XDate(item.startTime);
+            var endTime = new XDate(item.endTime);
+            var duration = startTime.diffSeconds(endTime);
+            durationSum = memo + duration;
+          }
+          return durationSum;
         }, 0);
         var resultElement = {
           name: projectKey,

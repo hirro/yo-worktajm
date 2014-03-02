@@ -33,13 +33,17 @@ angular.module('yoWorktajmApp')
       var result = 0;
       if (entry.duration) {
         result = entry.duration;
-      } else if (entry.startTime && entry.endTime) {
+      } else if (entry.startTime) {
         var startTime = new XDate(entry.startTime);
-        var endTime = new XDate(entry.endTime);
+        var endTime;
+        if (entry.endTime) {
+          endTime = new XDate(entry.endTime);
+        } else {
+          endTime = new XDate();
+        }
         result = startTime.diffSeconds(endTime);
       } else {
-        console.error('Failed to calculate duration for time entry', entry);
       }
-      return result;
+      return Math.round(result);
     };
   });

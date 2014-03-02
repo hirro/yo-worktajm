@@ -66,6 +66,14 @@ describe('Filter: durationFilter', function () {
     expect(durationFilter(timeEntry)).toBe(7200);
   });
 
+  it('should return duration calculated using duration if both duration and startTime, endTime are provided', function () {
+    var start = new XDate().addSeconds(-123);
+    var timeEntry = {
+      startTime: start
+    };
+    expect(durationFilter(timeEntry)).toBe(123);
+  });
+
   it('should return duration 0 if no attributes are present', function () {
     var timeEntry = {
     };
