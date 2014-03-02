@@ -1,0 +1,45 @@
+<h1>
+  <span>Company Name</span>
+  <span>Invoice</span>
+</h1>
+
+<hr/>
+
+Stockholm {{XDate().toString()}}
+
+<h2>Till</h2>
+<address>
+  __CUSTOMER_NAME__<br/>
+  __LINE1__<br/>
+  __LINE1__<br/>
+  __COUNTRY__<br/>
+  Er referens: __REFERENCE_PERSON__<br/>
+</address>
+
+<p>
+  Faktura nummer: 75
+  Vår referenc</p>
+
+<small>
+  <table>
+    <thead>
+      <tr>
+        <th class="col-md-1"></th>
+        <th class="col-md-2"></th>
+        <th class="col-md-9"></th>
+      </tr>
+    </thead>
+    <tbody>        
+      <tr>
+        <td>From</td>
+        <td>{{selection.from.toLocaleString()}}</td>
+      </tr>
+      <tr>
+        <td>To</td>
+        <td>{{selection.to.toLocaleString()}}</td>
+      </tr>
+    </tbody>
+  </table>
+</small>
+<p/>
+

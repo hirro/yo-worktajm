@@ -41,7 +41,8 @@ angular.module('yoWorktajmApp')
     ];
     $scope.reportTypes = [
       { id: 'timesheet',  name: 'Timesheet' },
-      { id: 'pivot',      name: 'Pivot' }
+      { id: 'pivot',      name: 'Pivot' },
+      { id: 'invoice',      name: 'Invoice' }
     ];
     $scope.allCustomers ={
       id: 0, 
@@ -129,6 +130,23 @@ angular.module('yoWorktajmApp')
       $scope.selection.to = to;
       $scope.selection.from = from;
       console.log('changeTimePeriod: from[%s], to[%s]', from.toISOString(), to.toISOString());
+    };
+
+    $scope.onChangeReportType = function () {
+      console.log('onChangeReportType %s', $scope.selection.reportType);
+      if ($scope.selection.reportType === 'invoice') {
+        if ($scope.customers[0].id === 0) {
+          $scope.customers.splice(0, 1);
+          if (($scope.selection.customer === 0) && ($scope.customers.length)) {
+            $scope.selection.customer = $scope.customers[0].id;
+          }
+        }
+      } else {
+        if ($scope.customers[0].id !== 0) {
+          var all = { id: 0, name: 'All'};
+          $scope.customers.splice(0, 0, all);
+        }
+      }
     };
 
     $scope.loadProjects();
