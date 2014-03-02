@@ -1,45 +1,120 @@
-<h1>
-  <span>Company Name</span>
-  <span>Invoice</span>
-</h1>
+{{customers}}
+<button type="button" class="btn btn-default btn-lg" ng-click="window.print(); return false;">
+  <span class="glyphicon glyphicon-print"></span> Print
+</button>
 
-<hr/>
+<div class="row">
+  <div class="col-sm-2 col-sm-offset-10">
+    <h3>FAKTURA</h3>  
+  </div>
+</div>
+<div class="row">
+  <h3>__COMPANY_NAME__</h3>  
+</div>
+<br/>
+<br/>
+<br/>
 
-Stockholm {{XDate().toString()}}
+<div class="row">
+  <div class="col-sm-6">
+    <strong>Fakturaaddress</strong><br/>
+    <address>
+      __CUSTOMER_NAME__<br/>
+      __LINE1__<br/>
+      __LINE1__<br/>
+      __COUNTRY__<br/>
+    </address>    
+  </div>
+  <div class="col-sm-offset-2 col-sm-4">
+    Faktura nummer: 75<br/>
+    Er referens: {{customer.reference}}<br/>
+    Vår referens: {{principal.firstName}} {{principal.lastName}}<br/>
+  </div>
+</div>
 
-<h2>Till</h2>
-<address>
-  __CUSTOMER_NAME__<br/>
-  __LINE1__<br/>
-  __LINE1__<br/>
-  __COUNTRY__<br/>
-  Er referens: __REFERENCE_PERSON__<br/>
-</address>
+<br/>
+<br/>
+<br/>
 
-<p>
-  Faktura nummer: 75
-  Vår referenc</p>
-
-<small>
-  <table>
+<div class="row">
+  <!-- Iterator for time entries -->
+  <table  class="table table-condensed table-hover" >
     <thead>
       <tr>
-        <th class="col-md-1"></th>
-        <th class="col-md-2"></th>
-        <th class="col-md-9"></th>
+        <th class="col-sm-4">Projekt</th>
+        <th class="col-sm-2">Antal</th>
+        <th class="col-sm-2">Á-pris</th>
+        <th class="col-sm-2">Summa</th>
       </tr>
     </thead>
-    <tbody>        
+    <tbody ng-repeat="timeEntry in filteredTimeEntries = (timeEntries | timeEntryFilter:selection | groupByProjectsFilter)">
       <tr>
-        <td>From</td>
-        <td>{{selection.from.toLocaleString()}}</td>
-      </tr>
-      <tr>
-        <td>To</td>
-        <td>{{selection.to.toLocaleString()}}</td>
+        <td>
+          {{timeEntry.name}}
+        </td>
+        <td>{{timeEntry | durationFilter | hhmmssFilter}}</td>
+        <td>650</td>
+        <td>3444 SKR</td>
       </tr>
     </tbody>
-  </table>
-</small>
-<p/>
+    <tfooter>
+      <tr>
+        <th>Exkl. moms</th>
+        <th>Moms %</th>
+        <th>Moms SKR</th>
+        <th><b>ATT BETALA</b></th>
+      </tr>
+      <tr>
+        <td>{{2}}</td>
+        <td>25%</td>
+        <td>23445</td>
+        <td><b>34343</b></td>
+      </tr>
+    </tfooter>
+  </table>  
+</div>
+
+<br/>
+<br/>
+<br/>
+
+<div class="row">
+  <div class="col-sm-3">
+    <address>
+      <small>Adress</small><br/>
+      Företaget AB<br/>
+      Smågatan 1<br/>
+      123 45 SMÅSTADEN<br/>
+    </address>
+  </div>
+  <div class="col-sm-9">
+    <div class="row">
+      <div class="col-sm-4">
+        <small>Telefon</small><br/>
+        555-2368
+      </div>
+      <div class="col-sm-4">
+        <small>Bankgiro</small><br/>
+        22222222
+      </div>
+      <div class="col-sm-4">
+        <small>E-post</small><br/>
+        aaa@aaa.ccc.dd
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <small>Organisationsnummer</small><br/>
+        123456789-0987
+      </div>
+      <div class="col-sm-4">
+        <small>Momsregistreringsnummer</small><br/>
+        SE123456789-0987        
+      </div>
+      <div class="col-sm-4">
+        Vi innehar F-skattsedel. 
+      </div>
+    </div>
+  </div>
+</div>
 

@@ -98,12 +98,12 @@
         <div class="panel panel-default" ng-include="'views/reports/timesheet.html'"/>
       </div>
 
-      <div ng-if="selection.reportType==='invoice'">
+      <div class="panel panel-default" ng-if="selection.reportType==='invoice'">
         <div class="panel-heading">
-          <h4 class="panel-title">Time entries per project</h4>
+          <h4 class="panel-title">Invoice</h4>
         </div>
         <div class="panel-body">
-          <div class="panel panel-default" ng-include="'views/reports/invoice.html'"/>
+          <div class="col-md-10 col-md-offset-1" ng-include="'views/reports/invoice.html'"/>
         </div>
       </div>
 
