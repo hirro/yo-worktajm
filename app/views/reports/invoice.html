@@ -4,12 +4,26 @@
 </button>
 
 <div class="row">
-  <div class="col-sm-2 col-sm-offset-10">
-    <h3>FAKTURA</h3>  
+  <div class="col-sm-4 col-sm-offset-8">
+    <div class="col-sm-12">
+      <h3>FAKTURA</h3>      
+    </div>
   </div>
 </div>
 <div class="row">
   <h3>__COMPANY_NAME__</h3>  
+</div>
+<div class="row">
+  <div class="col-sm-4 col-sm-offset-8">
+    <div class="col-sm-6">
+      <small>Fakturanummer</small><br/>
+      123
+    </div>
+    <div class="col-sm-6">
+      <small>Fakturadatum</small><br/>
+      2001-01-01
+    </div>
+  </div>
 </div>
 <br/>
 <br/>
@@ -26,7 +40,6 @@
     </address>    
   </div>
   <div class="col-sm-offset-2 col-sm-4">
-    Faktura nummer: 75<br/>
     Er referens: {{customer.reference}}<br/>
     Vår referens: {{principal.firstName}} {{principal.lastName}}<br/>
   </div>
@@ -78,6 +91,13 @@
 <br/>
 <br/>
 
+<hr>
+<div class="row">
+  <div class="col-sm-12">
+    Innehar F-skattsedel  <br/>
+  </div>
+</div>
+<br/>
 <div class="row">
   <div class="col-sm-3">
     <address>
@@ -112,7 +132,6 @@
         SE123456789-0987        
       </div>
       <div class="col-sm-4">
-        Vi innehar F-skattsedel. 
       </div>
     </div>
   </div>
