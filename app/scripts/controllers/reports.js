@@ -42,7 +42,7 @@ angular.module('yoWorktajmApp')
     $scope.reportTypes = [
       { id: 'timesheet',  name: 'Timesheet' },
       { id: 'pivot',      name: 'Pivot' },
-      { id: 'invoice',      name: 'Invoice' }
+      { id: 'invoice',    name: 'Invoice' }
     ];
     $scope.allCustomers ={
       id: 0, 
@@ -143,10 +143,81 @@ angular.module('yoWorktajmApp')
         }
       } else {
         if ($scope.customers[0].id !== 0) {
-          var all = { id: 0, name: 'All'};
+          var all = { id: 0, name: 'All', enabled: false };
           $scope.customers.splice(0, 0, all);
         }
       }
+    };
+
+    $scope.groupedByProject = function (timeEntries) {
+      var projects = [];
+      var totalSum = 0;
+
+      // Group by project id
+      var groupedByProjectName = _.groupBy(timeEntries, function (timeEntry) {
+        return timeEntry.project.name;
+      });
+
+      // Calculate total duration
+      _.each(groupedByProjectName, function (projectValue, projectKey) {
+        var groupSum = _.reduce(projectValue, function(memo, item) {
+          var durationSum = memo;
+          if (item.startTime && item.endTime) {
+            var startTime = new XDate(item.startTime);
+            var endTime = new XDate(item.endTime);
+            var duration = startTime.diffSeconds(endTime);
+            durationSum = memo + duration;
+          }
+          return durationSum;
+        }, 0);
+        var projectsElement = {
+          name: projectKey,
+          duration: groupSum
+        };
+        projects.push(projectsElement);
+        totalSum = totalSum + groupSum;
+      });
+      var result = {
+        projects: projects,
+        total: totalSum
+      };
+      return result;
+    };
+
+    $scope.generateInvoice = function (timeEntries) {
+      var result = {};
+
+      // Load the customer
+      console.log('generateInvoice');
+      CustomerService.get($scope.selection.customerId).then(function (customer) {
+        result.customer = customer;        
+      });
+
+      // Group by projeect and calculate the total time
+      console.log('groupedByProject');
+      var groupedByProject = $scope.groupedByProject(timeEntries);
+      result.projects = groupedByProject.projects;
+      result.totalHours = Math.round(groupedByProject.total/3600);
+
+      // Get the rate
+      console.log('Get the rate');
+      result.rate = 670;
+
+      // Get the total sum
+      console.log('Get the total sum');
+      result.totalExclVat = result.totalHours * result.rate;
+
+      // Calculate the VAT
+      console.log('Calculate the VAT');
+      result.vatPercentage = 0.25;
+      result.additionalVat = result.totalExclVat * result.vatPercentage;
+
+      // Calculate grand total
+      console.log('Calculate grand total');
+      result.totalIncVat = result.totalExclVat + result.additionalVat;
+
+      console.log(result);
+      return result;
     };
 
     $scope.loadProjects();
