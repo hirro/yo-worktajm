@@ -349,6 +349,11 @@ module.exports = function (grunt) {
         configFile: 'karma.conf.js',
         singleRun: true
       }
+    },
+    coveralls: {
+      options: {
+        coverage_dir: 'coverage/'
+      }
     }
   });
 
@@ -396,6 +401,15 @@ module.exports = function (grunt) {
     'rev',
     'usemin',
     'htmlmin'
+  ]);  
+
+  grunt.registerTask('test:travis', [
+    'clean:server',
+    'concurrent:test',
+    'autoprefixer',
+    'connect:test',
+    'karma',
+    'coveralls'
   ]);  
 
   grunt.registerTask('default', [
