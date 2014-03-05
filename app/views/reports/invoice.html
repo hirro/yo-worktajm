@@ -62,7 +62,7 @@
         <th class="col-sm-2">Summa</th>
       </tr>
     </thead>
-    <tbody ng-repeat="timeEntry in filteredTimeEntries = (timeEntries | timeEntryFilter:selection | groupByProjectsFilter)">
+    <tbody ng-repeat="timeEntry in filteredTimeEntries = (timeEntries | timeEntryFilter:selection | invoiceFilter)">
       <tr>
         <td>
           {{timeEntry.name}}

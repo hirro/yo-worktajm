@@ -205,16 +205,16 @@ angular.module('yoWorktajmApp')
 
       // Get the total sum
       console.log('Get the total sum');
-      result.totalExclVat = result.totalHours * result.rate;
+      result.totalAmountExclVat = result.totalHours * result.rate;
 
       // Calculate the VAT
       console.log('Calculate the VAT');
       result.vatPercentage = 0.25;
-      result.additionalVat = result.totalExclVat * result.vatPercentage;
+      result.additionalVat = result.totalAmountExclVat * result.vatPercentage;
 
       // Calculate grand total
       console.log('Calculate grand total');
-      result.totalIncVat = result.totalExclVat + result.additionalVat;
+      result.totalIncVat = result.totalAmountExclVat + result.additionalVat;
 
       console.log(result);
       return result;

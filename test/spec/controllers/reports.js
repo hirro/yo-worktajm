@@ -228,7 +228,7 @@ describe('Controller: ReportsCtrl', function () {
       ],
       totalHours : 17,
       rate : 670,
-      totalExclVat : 11390,
+      totalAmountExclVat : 11390,
       vatPercentage : 0.25,
       additionalVat : 2847.5,
       totalIncVat : 14237.5

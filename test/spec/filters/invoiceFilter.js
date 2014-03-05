@@ -27,16 +27,16 @@
 
 'use strict';
 
-describe('Filter: groupByProjectsFilter', function () {
+describe('Filter: invoiceFilter', function () {
 
   // load the filter's module
   beforeEach(module('yoWorktajmApp'));
 
   // Constants
-  var project0  = { id: 1, name: 'Project 0',                   enabled: true };
-  var projectA1 = { id: 2, name: 'Project A.1',  customerId: 1, enabled: true };
-  var projectA2 = { id: 3, name: 'Project A.2',  customerId: 1, enabled: true };
-  var projectB  = { id: 4, name: 'Project B',    customerId: 2, enabled: true };
+  var project0  = { id: 1, name: 'Project 0',                   enabled: true, rate:  750 };
+  var projectA1 = { id: 2, name: 'Project A.1',  customerId: 1, enabled: true, rate:  850 };
+  var projectA2 = { id: 3, name: 'Project A.2',  customerId: 1, enabled: true, rate:  950 };
+  var projectB  = { id: 4, name: 'Project B',    customerId: 2, enabled: true, rate: 1050 };
 
   var timeEntries = [
     // Project 0
@@ -58,18 +58,25 @@ describe('Filter: groupByProjectsFilter', function () {
   ];
 
   // initialize a new instance of the filter before each test
-  var groupByProjectsFilter;
+  var invoiceFilter;
   beforeEach(inject(function ($filter) {
-    groupByProjectsFilter = $filter('groupByProjectsFilter');
+    invoiceFilter = $filter('invoiceFilter');
   }));
 
   it('should return time entries grouped by projecs with updated duration', function () {
-    expect(groupByProjectsFilter(timeEntries)).toEqual([
-      { name: project0.name,  duration: 1800 },
-      { name: projectA1.name, duration: 1800 },
-      { name: projectA2.name, duration: 0 },
-      { name: projectB.name,  duration: 7200 },
-    ]);
+    expect(invoiceFilter(timeEntries)).toEqual({
+      projects: [
+        { name: project0.name,  duration: 1800, rate:  750, subTotal:  375 },
+        { name: projectA1.name, duration: 1800, rate:  850, subTotal:  425 },
+        { name: projectA2.name, duration:    0, rate:  950, subTotal:    0 },
+        { name: projectB.name,  duration: 7200, rate: 1050, subTotal: 2100 }
+      ],
+      totalTimeInSeconds : 10800,
+      totalAmountExclVat : 2900,
+      vatPercentage : 0.25,
+      additionalVat : 725,
+      totalIncVat : 3625
+    });
   });
 
 });
