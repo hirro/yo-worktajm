@@ -1,139 +1,143 @@
-<button type="button" class="btn btn-default btn-lg" ng-click="window.print(); return false;">
-  <span class="glyphicon glyphicon-print"></span> Print
-</button>
-<button type="button" class="btn btn-default btn-lg" ng-click="window.print(); return false;">
-  <span class="glyphicon glyphicon-envelope"></span> Send
-</button>
+<div ng-repeat="invoice in invoices = (timeEntries | timeEntryFilter:selection | invoiceFilter)">
 
-<div class="row">
-  <div class="col-sm-4 col-sm-offset-8">
+  <button type="button" class="btn btn-default btn-lg" ng-click="window.print(); return false;">
+    <span class="glyphicon glyphicon-print"></span> Print
+  </button>
+  <button type="button" class="btn btn-default btn-lg" ng-click="window.print(); return false;">
+    <span class="glyphicon glyphicon-envelope"></span> Send
+  </button>
+
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-8">
+      <div class="col-sm-12">
+        <h3>FAKTURA</h3>      
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <h3>__COMPANY_NAME__</h3>  
+  </div>
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-8">
+      <div class="col-sm-6">
+        <small>Fakturanummer</small><br/>
+        123
+      </div>
+      <div class="col-sm-6">
+        <small>Fakturadatum</small><br/>
+        2001-01-01
+      </div>
+    </div>
+  </div>
+  <br/>
+  <br/>
+  <br/>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <strong>Fakturaaddress</strong><br/>
+      <address>
+        {{customer.name}}<br/>
+        {{customer.billingAddress.line1}}<br/>
+        {{customer.billingAddress.line2}}<br/>
+        {{customer.billingAddress.zip}} {{customer.billingAddress.city}}<br/>
+        {{customer.billingAddress.country}}<br/>
+      </address>    
+    </div>
+    <div class="col-sm-offset-2 col-sm-4">
+      Er referens: {{customer.reference}}<br/>
+      Vår referens: {{principal.firstName}} {{principal.lastName}}<br/>
+    </div>
+  </div>
+
+  <br/>
+  <br/>
+  <br/>
+
+  <div class="row">
+    <!-- Iterator for time entries -->
+    <table  class="table table-condensed table-hover" >
+      <thead>
+        <tr>
+          <th class="col-sm-4">Projekt</th>
+          <th class="col-sm-2">Antal</th>
+          <th class="col-sm-2">Á-pris</th>
+          <th class="col-sm-2">Summa</th>
+        </tr>
+      </thead>
+       <tbody ng-repeat="project in invoice.projects">
+        <tr>
+          <td>
+            {{project.name}}
+          </td>
+          <td>{{project.duration | hhmmssFilter}}</td>
+          <td>{{project.rate}}</td>
+          <td>{{project.subTotal.toFixed(0)}}</td>
+        </tr>
+      </tbody>
+      <tfooter>
+        <tr>
+          <th>Exkl. moms</th>
+          <th>Moms %</th>
+          <th>Moms SKR</th>
+          <th><b>ATT BETALA</b></th>
+        </tr>
+        <tr>
+          <td>{{invoice.totalAmountExclVat}}</td>
+          <td>{{invoice.vatPercentage * 100}}</td>
+          <td>{{invoice.additionalVat.toFixed(0)}}</td>
+          <td><b>{{invoice.totalIncVat.toFixed(0)}}</b></td>
+        </tr>
+      </tfooter>
+    </table>  
+  </div>
+
+  <br/>
+  <br/>
+  <br/>
+
+  <hr>
+  <div class="row">
     <div class="col-sm-12">
-      <h3>FAKTURA</h3>      
+      Innehar F-skattsedel  <br/>
     </div>
   </div>
-</div>
-<div class="row">
-  <h3>__COMPANY_NAME__</h3>  
-</div>
-<div class="row">
-  <div class="col-sm-4 col-sm-offset-8">
-    <div class="col-sm-6">
-      <small>Fakturanummer</small><br/>
-      123
+  <br/>
+  <div class="row">
+    <div class="col-sm-3">
+      <address>
+        <small>Adress</small><br/>
+        Företaget AB<br/>
+        Smågatan 1<br/>
+        123 45 SMÅSTADEN<br/>
+      </address>
     </div>
-    <div class="col-sm-6">
-      <small>Fakturadatum</small><br/>
-      2001-01-01
-    </div>
-  </div>
-</div>
-<br/>
-<br/>
-<br/>
-
-<div class="row">
-  <div class="col-sm-6">
-    <strong>Fakturaaddress</strong><br/>
-    <address>
-      __CUSTOMER_NAME__<br/>
-      __LINE1__<br/>
-      __LINE1__<br/>
-      __COUNTRY__<br/>
-    </address>    
-  </div>
-  <div class="col-sm-offset-2 col-sm-4">
-    Er referens: {{customer.reference}}<br/>
-    Vår referens: {{principal.firstName}} {{principal.lastName}}<br/>
-  </div>
-</div>
-
-<br/>
-<br/>
-<br/>
-
-<div class="row">
-  <!-- Iterator for time entries -->
-  <table  class="table table-condensed table-hover" >
-    <thead>
-      <tr>
-        <th class="col-sm-4">Projekt</th>
-        <th class="col-sm-2">Antal</th>
-        <th class="col-sm-2">Á-pris</th>
-        <th class="col-sm-2">Summa</th>
-      </tr>
-    </thead>
-    <tbody ng-repeat="timeEntry in filteredTimeEntries = (timeEntries | timeEntryFilter:selection | invoiceFilter)">
-      <tr>
-        <td>
-          {{timeEntry.name}}
-        </td>
-        <td>{{timeEntry | durationFilter | hhmmssFilter}}</td>
-        <td>650</td>
-        <td>3444 SKR</td>
-      </tr>
-    </tbody>
-    <tfooter>
-      <tr>
-        <th>Exkl. moms</th>
-        <th>Moms %</th>
-        <th>Moms SKR</th>
-        <th><b>ATT BETALA</b></th>
-      </tr>
-      <tr>
-        <td>{{2}}</td>
-        <td>25%</td>
-        <td>23445</td>
-        <td><b>34343</b></td>
-      </tr>
-    </tfooter>
-  </table>  
-</div>
-
-<br/>
-<br/>
-<br/>
-
-<hr>
-<div class="row">
-  <div class="col-sm-12">
-    Innehar F-skattsedel  <br/>
-  </div>
-</div>
-<br/>
-<div class="row">
-  <div class="col-sm-3">
-    <address>
-      <small>Adress</small><br/>
-      Företaget AB<br/>
-      Smågatan 1<br/>
-      123 45 SMÅSTADEN<br/>
-    </address>
-  </div>
-  <div class="col-sm-9">
-    <div class="row">
-      <div class="col-sm-4">
-        <small>Telefon</small><br/>
-        555-2368
+    <div class="col-sm-9">
+      <div class="row">
+        <div class="col-sm-4">
+          <small>Telefon</small><br/>
+          555-2368
+        </div>
+        <div class="col-sm-4">
+          <small>Bankgiro</small><br/>
+          22222222
+        </div>
+        <div class="col-sm-4">
+          <small>E-post</small><br/>
+          aaa@aaa.ccc.dd
+        </div>
       </div>
-      <div class="col-sm-4">
-        <small>Bankgiro</small><br/>
-        22222222
-      </div>
-      <div class="col-sm-4">
-        <small>E-post</small><br/>
-        aaa@aaa.ccc.dd
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-4">
-        <small>Organisationsnummer</small><br/>
-        123456789-0987
-      </div>
-      <div class="col-sm-4">
-        <small>Momsregistreringsnummer</small><br/>
-        SE123456789-0987        
-      </div>
-      <div class="col-sm-4">
+      <div class="row">
+        <div class="col-sm-4">
+          <small>Organisationsnummer</small><br/>
+          123456789-0987
+        </div>
+        <div class="col-sm-4">
+          <small>Momsregistreringsnummer</small><br/>
+          SE123456789-0987        
+        </div>
+        <div class="col-sm-4">
+        </div>
       </div>
     </div>
   </div>

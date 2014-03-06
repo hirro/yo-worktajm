@@ -81,30 +81,24 @@ angular.module('yoWorktajmApp')
       var generateInvoice = function (timeEntries) {
 
         // Group by projeect and calculate the total time
-        console.log('groupedByProject');
         var result = groupByProject(timeEntries);
 
         // Get the total sum
-        console.log('Get the total sum');
         result.totalAmountExclVat = _.reduce(result.projects, function(memo, item) {
-          console.log(item);
           return memo + item.subTotal;
         }, 0);
 
         // Calculate the VAT
-        console.log('Calculate the VAT');
         result.vatPercentage = 0.25;
         result.additionalVat = result.totalAmountExclVat * result.vatPercentage;
 
         // Calculate grand total
-        console.log('Calculate grand total');
         result.totalIncVat = result.totalAmountExclVat + result.additionalVat;
 
-        console.log(result);
         return result;
       };
 
       var result = generateInvoice(timeEntries);
-      return result;
+      return [result];
     };
   });

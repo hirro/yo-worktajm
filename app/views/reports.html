@@ -63,6 +63,7 @@
                           class="btn btn-sm btn-primary"
                           ng-model="selection.customer"
                           btn-radio="customer.id"
+                          ng-change="onChangedCustomer()"
                           >
                     {{customer.name}}
                   </button>

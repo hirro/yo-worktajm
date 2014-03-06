@@ -64,19 +64,21 @@ describe('Filter: invoiceFilter', function () {
   }));
 
   it('should return time entries grouped by projecs with updated duration', function () {
-    expect(invoiceFilter(timeEntries)).toEqual({
-      projects: [
-        { name: project0.name,  duration: 1800, rate:  750, subTotal:  375 },
-        { name: projectA1.name, duration: 1800, rate:  850, subTotal:  425 },
-        { name: projectA2.name, duration:    0, rate:  950, subTotal:    0 },
-        { name: projectB.name,  duration: 7200, rate: 1050, subTotal: 2100 }
-      ],
-      totalTimeInSeconds : 10800,
-      totalAmountExclVat : 2900,
-      vatPercentage : 0.25,
-      additionalVat : 725,
-      totalIncVat : 3625
-    });
+    expect(invoiceFilter(timeEntries)).toEqual([
+      {
+        projects: [
+          { name: project0.name,  duration: 1800, rate:  750, subTotal:  375 },
+          { name: projectA1.name, duration: 1800, rate:  850, subTotal:  425 },
+          { name: projectA2.name, duration:    0, rate:  950, subTotal:    0 },
+          { name: projectB.name,  duration: 7200, rate: 1050, subTotal: 2100 }
+        ],
+        totalTimeInSeconds : 10800,
+        totalAmountExclVat : 2900,
+        vatPercentage : 0.25,
+        additionalVat : 725,
+        totalIncVat : 3625
+      }
+    ]);
   });
 
 });
