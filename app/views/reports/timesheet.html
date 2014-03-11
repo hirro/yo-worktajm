@@ -16,7 +16,7 @@
         <th class="col-md-2">Duration</th>
       </tr>
     </thead>
-    <tbody ng-repeat="timeEntry in filteredTimeEntries = (timeEntries | timeEntryFilter:selection) ">
+    <tbody ng-repeat="timeEntry in filteredTimeEntries">
       <tr>
         <td>
           {{timeEntry.project.name}}

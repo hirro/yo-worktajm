@@ -5,28 +5,26 @@
 
   <div ng-include src="'views/reports/timestamp.html'" />
   <!-- Iterator for time entries -->
-  <div ng-repeat="dummy in invoice = (timeEntries | timeEntryFilter:selection | invoiceFilter)">
-    <table class="table table-condensed table-hover" >
-      <thead>
-        <tr>
-          <th class="col-md-10" >Project</th>
-          <th class="col-md-2">Duration</th>
-        </tr>
-      </thead>
-      <tbody ng-repeat="project in dummy.projects">
-        <tr>
-          <td>
-            {{project.name}}
-          </td>
-          <td>{{project.duration | hhmmssFilter}}</td>
-        </tr>
-      </tbody>
-      <tfooter>
-        <tr>
-          <th>Sum</th>
+  <table class="table table-condensed table-hover" >
+    <thead>
+      <tr>
+        <th class="col-md-10" >Project</th>
+        <th class="col-md-2">Duration</th>
+      </tr>
+    </thead>
+    <tbody ng-repeat="project in invoice[0].projects">
+      <tr>
+        <td>
+          {{project.name}}
+        </td>
+        <td>{{project.duration | hhmmssFilter}}</td>
+      </tr>
+    </tbody>
+    <tfooter>
+      <tr>
+        <th>Sum</th>
           <th>{{filteredTimeEntries | sumFilter | hhmmssFilter}}</th>
-        </tr>
-      </tfooter>
-    </table>
-  </div>    
+      </tr>
+    </tfooter>
+  </table>
 </div>

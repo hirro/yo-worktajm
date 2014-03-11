@@ -28,7 +28,7 @@
 'use strict';
 
 angular.module('yoWorktajmApp')
-  .controller('ReportsCtrl', function ($scope, CustomerService, TimerService) {
+  .controller('ReportsCtrl', function ($scope, $filter, CustomerService, TimerService) {
 
     // Constants
     $scope.timeChoices = [
@@ -47,7 +47,7 @@ angular.module('yoWorktajmApp')
     $scope.allCustomers ={
       id: 0, 
       name: 'All'
-    };
+    };    
 
     // Variables
     $scope.customers = [];
@@ -60,6 +60,7 @@ angular.module('yoWorktajmApp')
     };
     $scope.selectedCustomers = $scope.allCustomers.id;
     $scope.selectedProjects = {};
+    $scope.invoice = {};
 
     // Load the available projects
     $scope.loadProjects = function () {
@@ -85,9 +86,9 @@ angular.module('yoWorktajmApp')
 
     // Load the time entries
     $scope.loadTimeEntries = function () {
-       TimerService.getTimeEntries().then(function (result) {
+      return TimerService.getTimeEntries().then(function (result) {
         $scope.timeEntries = result;
-       });
+      });
     };
 
     $scope.changedTimePeriod = function (id, referenceDay) {
@@ -130,6 +131,7 @@ angular.module('yoWorktajmApp')
       $scope.selection.to = to;
       $scope.selection.from = from;
       console.log('changeTimePeriod: from[%s], to[%s]', from.toISOString(), to.toISOString());
+      $scope.onChange();
     };
 
     $scope.onChangedCustomer = function () {
@@ -137,6 +139,7 @@ angular.module('yoWorktajmApp')
         console.log(customer);
         $scope.customer = customer;
       });
+      $scope.onChange();
     };
 
     $scope.onChangeReportType = function () {
@@ -154,11 +157,21 @@ angular.module('yoWorktajmApp')
           $scope.customers.splice(0, 0, all);
         }
       }
+      $scope.onChange();
+    };
+
+    $scope.onChange = function () {
+      $scope.filteredTimeEntries = $filter('timeEntryFilter')($scope.timeEntries, $scope.selection);
+      $scope.invoice = $filter('invoiceFilter')($scope.filteredTimeEntries);
     };
 
     $scope.loadProjects();
     $scope.loadCustomers();
-    $scope.loadTimeEntries();
-    $scope.changedTimePeriod($scope.selection.timePeriod);
-    $scope.onChangedCustomer();
+    $scope.loadTimeEntries().then(function () {
+      console.log('*****************');
+      $scope.changedTimePeriod($scope.selection.timePeriod);
+      console.log('*****************');
+      $scope.onChangedCustomer();
+      console.log('*****************');
+    });
   });
