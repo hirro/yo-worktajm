@@ -167,6 +167,27 @@ angular.module('yoWorktajmApp')
       return deferred.promise;
     };
 
+    // Find or create customer with name
+    svc.findOrCreateCustomerByName = function (name) {
+      var deferred = $q.defer();
+
+      svc.findCustomerByName(name).then(function (customer) {
+        deferred.resolve(customer);
+      }, function () {
+        console.log('Customer not found, creating new one with name [%s]'. name);
+        svc.create({
+          name: name
+        }).then(function (customer) {
+          deferred.resolve(customer);
+        }, function (result) {
+          console.error('Failed to create customer');
+          deferred.reject(result);
+        });
+      });
+
+      return deferred.promise;
+    };
+
     return svc;
 
   });

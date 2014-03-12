@@ -396,6 +396,59 @@ describe('Service: CustomerService', function () {
       expect(customer).toBeUndefined();
       expect(error).toBeUndefined();
     });
-
   });
+
+  describe('findOrCreateCustomerByName', function () {
+    it('should find customer with provided name', function () {
+      // Setup
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer').respond(customers);
+      spyOn(customerService, 'list').andCallThrough();
+      spyOn(customerService, 'findCustomerByName').andCallThrough();
+
+      // Test
+      var customer;
+      var error;
+      customerService.findOrCreateCustomerByName(customerA.name).then(function (result) {
+        customer = result;
+      }, function (e) {
+        error = e;
+      });
+      scope.$digest();
+      httpBackend.flush();
+
+      // Verification
+      expect(customerService.list).toHaveBeenCalled();
+      expect(customerService.findCustomerByName).toHaveBeenCalledWith(customerA.name);
+      expect(customer.id).toBe(customerA.id);
+      expect(error).toBeUndefined();
+    });
+
+    it('should create a customer with a name that doesnt exist', function () {
+      // Setup
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer').respond(301);
+      httpBackend.whenPOST('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer').respond(_.clone(customerA));
+      spyOn(customerService, 'list').andCallThrough();
+      spyOn(customerService, 'findCustomerByName').andCallThrough();
+      spyOn(customerService, 'create').andCallThrough();
+
+      // Test
+      var customer;
+      var error;
+      customerService.findOrCreateCustomerByName(customerA.name).then(function (result) {
+        customer = result;
+      }, function (e) {
+        error = e;
+      });
+      scope.$digest();
+      httpBackend.flush();
+
+      // Verification
+      expect(customerService.list).toHaveBeenCalled();
+      expect(customerService.findCustomerByName).toHaveBeenCalledWith(customerA.name);
+      expect(customerService.create).toHaveBeenCalled();
+      expect(customer.id).toBe(customerA.id);
+      expect(error).toBeUndefined();
+    });
+  });
+
 });
