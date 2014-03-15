@@ -25,7 +25,7 @@
 
 /*globals describe, beforeEach, inject, expect, it, spyOn, $ */
 'use strict';
-ddescribe('Controller: DashboardProjectsCtrl', function () {
+describe('Controller: DashboardProjectsCtrl', function () {
 
   // load the controller's module
   beforeEach(module('yoWorktajmApp'));
@@ -84,10 +84,43 @@ ddescribe('Controller: DashboardProjectsCtrl', function () {
     }
   };
 
+  var CustomerServiceMock = {
+
+    list: function () {
+      return customers;
+    },
+    findCustomerByName: function (name) {
+      var deferred = q.defer();
+      if (name === customerA.name) {
+        console.log('Found customer in mock');
+        return deferred.resolve(customerA);
+      } else {
+        console.log('Customer NOT found in mock');
+        return deferred.resolve(customerA);
+      }
+      return deferred.promise;
+    },
+    findOrCreateCustomerByName: function (name) {
+      var deferred = q.defer();
+      if (name === customerA.name) {
+        console.log('Found customer in mock');
+        deferred.resolve(customerA);
+      } else if (name===null) {
+        console.log('No name is provided, returning null');
+        deferred.resolve(null);
+      } else {
+        console.log('Customer NOT found in mock, creating new one');
+        deferred.resolve(customerA);
+      }
+      return deferred.promise;
+    }
+  };
+
+
+
   // Declare test constants
   var customerA;
   var customers;
-  var CustomerServiceMock;
   var activeProjectId;
   var PersonServiceMock;
 
@@ -101,34 +134,6 @@ ddescribe('Controller: DashboardProjectsCtrl', function () {
     customers = [
       { customerName: 'Company A'}
     ];
-    CustomerServiceMock = {
-
-      list: function () {
-        return customers;
-      },
-      findCustomerByName: function (name) {
-        var deferred = q.defer();
-        if (name === customerA.name) {
-          console.log('Found customer in mock');
-          deferred.resolve(customerA);
-        } else {
-          console.log('Customer NOT found in mock');
-          deferred.resolve();
-        }
-        return deferred.promise;
-      },
-      findOrCreateCustomerByName: function () {
-        var deferred = q.defer();
-        if (name === customerA.name) {
-          console.log('Found customer in mock');
-          deferred.resolve(customerA);
-        } else {
-          console.log('Customer NOT found in mock');
-          deferred.resolve();
-        }
-        return deferred.promise;
-      }
-    };
 
     // Initialize the PersonServiceMock
     activeProjectId = -1;
@@ -167,7 +172,7 @@ ddescribe('Controller: DashboardProjectsCtrl', function () {
     expect(scope.getById(scope.projects, 2)).toEqual(projects[1]);
   });
 
-  iit('should create a new project', function () {
+  it('should create a new project', function () {
     spyOn(TimerServiceMock, 'updateProject').andCallThrough();
     spyOn(CustomerServiceMock, 'findOrCreateCustomerByName').andCallThrough();
     var project = {
@@ -177,6 +182,7 @@ ddescribe('Controller: DashboardProjectsCtrl', function () {
       customerName: 'sdfsfd'
     };
     scope.updateProject(project);
+    scope.$digest();
     expect(CustomerServiceMock.findOrCreateCustomerByName).toHaveBeenCalled();
     expect(TimerServiceMock.updateProject).toHaveBeenCalled();
   });
@@ -225,6 +231,11 @@ ddescribe('Controller: DashboardProjectsCtrl', function () {
         var project = projects[2];
         spyOn(TimerServiceMock, 'updateProject').andCallThrough();
         scope.updateProject(project);
+
+        // Make the request go through
+        scope.$digest();
+
+        // Validation
         expect(TimerServiceMock.updateProject).toHaveBeenCalled();
       });
     });
@@ -235,7 +246,7 @@ ddescribe('Controller: DashboardProjectsCtrl', function () {
         var project = projects[2];
         project.customerName = customerA.name;
         spyOn(TimerServiceMock, 'updateProject').andCallThrough();
-        spyOn(CustomerServiceMock, 'findCustomerByName').andCallThrough();
+        spyOn(CustomerServiceMock, 'findOrCreateCustomerByName').andCallThrough();
 
         // Test
         scope.updateProject(project);
@@ -244,7 +255,7 @@ ddescribe('Controller: DashboardProjectsCtrl', function () {
         scope.$digest();
 
         // Validation
-        expect(CustomerServiceMock.findCustomerByName).toHaveBeenCalledWith(project.customerName);
+        expect(CustomerServiceMock.findOrCreateCustomerByName).toHaveBeenCalledWith(project.customerName);
         expect(TimerServiceMock.updateProject).toHaveBeenCalled();
       });
     });
@@ -255,7 +266,7 @@ ddescribe('Controller: DashboardProjectsCtrl', function () {
         var project = projects[2];
         project.customerName = 'new customer name';
         spyOn(TimerServiceMock, 'updateProject').andCallThrough();
-        spyOn(CustomerServiceMock, 'findCustomerByName').andCallThrough();
+        spyOn(CustomerServiceMock, 'findOrCreateCustomerByName').andCallThrough();
         httpBackend.whenGET('customerModal.html').respond();
 
         // Test
@@ -265,8 +276,8 @@ ddescribe('Controller: DashboardProjectsCtrl', function () {
         scope.$digest();
 
         // Validation
-        expect(CustomerServiceMock.findCustomerByName).toHaveBeenCalledWith(project.customerName);
-        expect(TimerServiceMock.updateProject).not.toHaveBeenCalled();
+        expect(CustomerServiceMock.findOrCreateCustomerByName).toHaveBeenCalledWith(project.customerName);
+        expect(TimerServiceMock.updateProject).toHaveBeenCalled();
       });
     });
   });

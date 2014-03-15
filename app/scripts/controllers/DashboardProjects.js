@@ -63,10 +63,13 @@ angular.module('yoWorktajmApp')
 
       var promise = CustomerService.findOrCreateCustomerByName(project.customerName);
       return promise.then(function (customer) {
+        console.log('findOrCreateCustomerByName returned %s', customer.id);
         if (customer) {
           project.customerId = customer.id;
         }
         TimerService.updateProject(project);
+      }, function (result) {
+        console.log('findOrCreateCustomerByName failed: ', result);
       });
     };
 
