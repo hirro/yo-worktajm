@@ -25,7 +25,7 @@
 
 /*globals describe, beforeEach, inject, expect, it, spyOn, $ */
 'use strict';
-describe('Controller: DashboardProjectsCtrl', function () {
+ddescribe('Controller: DashboardProjectsCtrl', function () {
 
   // load the controller's module
   beforeEach(module('yoWorktajmApp'));
@@ -116,6 +116,17 @@ describe('Controller: DashboardProjectsCtrl', function () {
           deferred.resolve();
         }
         return deferred.promise;
+      },
+      findOrCreateCustomerByName: function () {
+        var deferred = q.defer();
+        if (name === customerA.name) {
+          console.log('Found customer in mock');
+          deferred.resolve(customerA);
+        } else {
+          console.log('Customer NOT found in mock');
+          deferred.resolve();
+        }
+        return deferred.promise;
       }
     };
 
@@ -156,12 +167,17 @@ describe('Controller: DashboardProjectsCtrl', function () {
     expect(scope.getById(scope.projects, 2)).toEqual(projects[1]);
   });
 
-  it('should create a new project', function () {
+  iit('should create a new project', function () {
     spyOn(TimerServiceMock, 'updateProject').andCallThrough();
-    scope.project.name = 'New Project';
-    scope.project.rate = 530;
-    scope.project.comment = 'Hej';
-    scope.updateProject(scope.project);
+    spyOn(CustomerServiceMock, 'findOrCreateCustomerByName').andCallThrough();
+    var project = {
+      name: 'New Project',
+      rate: 530,
+      comment: 'Hej',
+      customerName: 'sdfsfd'
+    };
+    scope.updateProject(project);
+    expect(CustomerServiceMock.findOrCreateCustomerByName).toHaveBeenCalled();
     expect(TimerServiceMock.updateProject).toHaveBeenCalled();
   });
 

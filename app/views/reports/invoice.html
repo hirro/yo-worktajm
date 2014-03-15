@@ -13,7 +13,7 @@
   </div>
 </div>
 <div class="row">
-  <h3>__COMPANY_NAME__</h3>  
+  <h3>{{company.address.name}}</h3>  
 </div>
 <div class="row">
   <div class="col-sm-4 col-sm-offset-8">
@@ -81,10 +81,10 @@
         <th><b>ATT BETALA</b></th>
       </tr>
       <tr>
-        <td>{{invoice.totalAmountExclVat}}</td>
-        <td>{{invoice.vatPercentage * 100}}</td>
-        <td>{{invoice.additionalVat.toFixed(0)}}</td>
-        <td><b>{{invoice.totalIncVat.toFixed(0)}}</b></td>
+        <td>{{invoice[0].totalAmountExclVat}}</td>
+        <td>{{invoice[0].vatPercentage * 100}}</td>
+        <td>{{invoice[0].additionalVat.toFixed(0)}}</td>
+        <td><b>{{invoice[0].totalIncVat.toFixed(0)}}</b></td>
       </tr>
     </tfooter>
   </table>  
@@ -105,34 +105,36 @@
   <div class="col-sm-3">
     <address>
       <small>Adress</small><br/>
-      Företaget AB<br/>
-      Smågatan 1<br/>
-      123 45 SMÅSTADEN<br/>
+      {{company.address.name}}<br/>
+      {{company.address.line1}}<br/>
+      {{company.address.line2}}<br/>
+      {{company.address.zip}} {{company.address.city}}<br/>
+      {{company.address.country}}<br/>
     </address>
   </div>
   <div class="col-sm-9">
     <div class="row">
       <div class="col-sm-4">
         <small>Telefon</small><br/>
-        555-2368
+        {{company.invoiceDetails.phone}}
       </div>
       <div class="col-sm-4">
         <small>Bankgiro</small><br/>
-        22222222
+        {{company.invoiceDetails.ban}}
       </div>
       <div class="col-sm-4">
         <small>E-post</small><br/>
-        aaa@aaa.ccc.dd
+        {{company.invoiceDetails.email}}
       </div>
     </div>
     <div class="row">
       <div class="col-sm-4">
         <small>Organisationsnummer</small><br/>
-        123456789-0987
+        {{company.invoiceDetails.organizationalNumber}}
       </div>
       <div class="col-sm-4">
         <small>Momsregistreringsnummer</small><br/>
-        SE123456789-0987        
+        {{company.invoiceDetails.vatNumber}}
       </div>
       <div class="col-sm-4">
       </div>

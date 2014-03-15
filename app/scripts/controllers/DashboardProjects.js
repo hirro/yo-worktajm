@@ -61,39 +61,13 @@ angular.module('yoWorktajmApp')
     $scope.updateProject = function (project) {
       console.log('DashboardProjectsCtrl::updateProject - name: %s', project.name);
 
-      // 1. If customer name is presented:
-      // 1.1 Check if presented customer is new or existing.
-      // 1.1.1 Customer exists - Continue with update of project
-      // 1.1.2 Customer new - Present a modal to verify creating of customer. 
-      //     This modal provides possibility to enter all information required for building a invoice.
-      // 1.2 Clear the customer id in project and proceed with update.
-      if (project.customerName) {
-        console.log('project has a customer name %s', project.customerName);
-        CustomerService.findCustomerByName(project.customerName).then(function(customer) {
-          if (customer) {
-            // Just assign the customer id to project and be gone with it
-            console.log('Customer found, updating');
-            project.customerId = customer.id;
-            TimerService.updateProject(project);
-          } else {
-            console.log('Customer not found, stopping');
-            var customer = {
-              name: project.customerName
-            };
-            $scope.showCustomerModal(customer);
-          }
-        }).then(function () {
-          console.log('Project updated in backend');
-          project.isOpen = false;
-        });
-      } else {
-        // Just save the project
-        console.log('No customer name provided');
-        project.customerId = NaN;
-        TimerService.updateProject(project).then(function () {
-          project.isOpen = false;
-        });
-      }
+      var promise = CustomerService.findOrCreateCustomerByName(project.customerName);
+      return promise.then(function (customer) {
+        if (customer) {
+          project.customerId = customer.id;
+        }
+        TimerService.updateProject(project);
+      });
     };
 
     // Restore the provided project to the value of the database.

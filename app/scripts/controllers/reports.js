@@ -61,6 +61,23 @@ angular.module('yoWorktajmApp')
     $scope.selectedCustomers = $scope.allCustomers.id;
     $scope.selectedProjects = {};
     $scope.invoice = {};
+    $scope.company = {
+      address: {
+        name: 'Företaget AB',
+        line1: 'Smågatan 1',
+        line2: '',
+        zip: '123 45',
+        city: 'Småstaden',
+        country: 'SE'
+      },
+      invoiceDetails: {
+        organizationalNumber: '123456-7890',
+        vatNumber: 'SE-123456-7890',
+        email: 'accounting@example.com',
+        ban: '123-1233.1231.123-3',
+        phone: '555-1232'
+      }
+    };
 
     // Load the available projects
     $scope.loadProjects = function () {

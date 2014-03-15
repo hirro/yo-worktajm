@@ -171,19 +171,26 @@ angular.module('yoWorktajmApp')
     svc.findOrCreateCustomerByName = function (name) {
       var deferred = $q.defer();
 
-      svc.findCustomerByName(name).then(function (customer) {
-        deferred.resolve(customer);
-      }, function () {
-        console.log('Customer not found, creating new one with name [%s]'. name);
-        svc.create({
-          name: name
-        }).then(function (customer) {
+      console.log('findOrCreateCustomerByName(%s)', name);
+      if (name) {
+        svc.findCustomerByName(name).then(function (customer) {
+          console.log('Customer found with id [%s]', customer.id);
           deferred.resolve(customer);
-        }, function (result) {
-          console.error('Failed to create customer');
-          deferred.reject(result);
-        });
-      });
+        }, function () {
+          console.log('Customer not found, creating new one with name [%s]'. name);
+          svc.create({
+            name: name
+          }).then(function (customer) {
+            deferred.resolve(customer);
+          }, function (result) {
+            console.error('Failed to create customer');
+            deferred.reject(result);
+          });
+        });        
+      } else {
+        console.log('Name not specified');
+        deferred.resolve(null);
+      }
 
       return deferred.promise;
     };
