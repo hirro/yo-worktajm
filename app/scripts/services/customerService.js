@@ -62,10 +62,8 @@ angular.module('yoWorktajmApp')
     // Creates a customer.
     // Returns a promise to the created customer.
     svc.create = function (customer) {
-      console.log('CustomerService::create');
       var deferred = $q.defer();
       svc.restangularCustomers.post(customer).then(function (newCustomer) {
-        console.log('Created customer successfully at backend. New id is: %s', newCustomer.id);
         svc.customers.list.push(newCustomer);
         deferred.resolve(newCustomer);
         $rootScope.$broadcast('onCustomerCreated', newCustomer);
@@ -87,14 +85,12 @@ angular.module('yoWorktajmApp')
 
     // Returns a promise to customer with the provided id.
     svc.get = function (id) {
-      console.log('CustomerService::get - customer id [%d]', id);
       var deferred = $q.defer();
       svc.list().then(function (customers) {
         var item = _.find(customers, function (iter) {
           return iter.id === id;
         });
         if (item) {
-          console.log('CustomerService::get - located customer id [%d]', item.id);
           deferred.resolve(item);
         } else {
           console.warn('Failed to find cached entry');
@@ -112,7 +108,6 @@ angular.module('yoWorktajmApp')
       console.log('CustomerService::list');
       var deferred = $q.defer();
       if (svc.customers.loaded) {
-        console.log('CustomerService::list - Returning cached list');
         deferred.resolve(svc.customers.list);
       } else {
         svc.restangularCustomers.getList().then(function (existingCustomers) {
@@ -134,17 +129,16 @@ angular.module('yoWorktajmApp')
     // Deletes the customer with the provided id.
     // Returns a promise to the delete operation.
     svc.delete = function (id) {
-      console.log('CustomerService::delete(%d)', id);
       var loadedCustomer;
 
       return svc.get(id)
         .then(function (customer) {
-          console.log('CustomerService::update - Deleting customer (backend) with id [%d]', customer.id);
+          console.info('CustomerService::update - Deleting customer (backend) with id [%d]', customer.id);
           loadedCustomer = customer;
           return customer.remove();
         })
         .then(function () {
-          console.log('CustomerService::update - Deleted customer (backend) with id [%d]', loadedCustomer.id);
+          console.info('CustomerService::update - Deleted customer (backend) with id [%d]', loadedCustomer.id);
           $rootScope.$broadcast('onCustomerDeleted', loadedCustomer);
           var index = _.indexOf(svc.customers.list, loadedCustomer);
           svc.customers.list.splice(index, 1);
@@ -154,7 +148,6 @@ angular.module('yoWorktajmApp')
     // Find the customer with the provided name.
     // Returns a promise to a customer.
     svc.findCustomerByName = function(name) {
-      console.log('CustomerService::findCustomerByName(%s)', name);
       var deferred = $q.defer();
       svc.list().then(function (customers) {
         var customer = _.find(customers, function(c) {
@@ -174,13 +167,12 @@ angular.module('yoWorktajmApp')
       console.log('findOrCreateCustomerByName(%s)', name);
       if (name) {
         svc.findCustomerByName(name).then(function (customer) {
-          console.log('Customer found with id [%s]', customer.id);
           deferred.resolve(customer);
         }, function () {
-          console.log('Customer not found, creating new one with name [%s]'. name);
           svc.create({
             name: name
           }).then(function (customer) {
+            console.info('Created new customer');
             deferred.resolve(customer);
           }, function (result) {
             console.error('Failed to create customer');

@@ -44,10 +44,8 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
   // No server reload done
   // 
   svc.reloadProject = function () {
-    console.log('TimerService::reloadProject');
     var q = svc.baseProjects.getList();
     q.then(function (result) {
-      console.log('TimerService::reloadProject - List retrieved from backend, size: %d', result.length);
       svc.projects = result;
       svc.projectsLoaded = true;
       var activeProjectId = PersonService.getActiveProjectId();
@@ -64,14 +62,12 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
         if (customerId) {
           CustomerService.get(customerId).then(function (result) {
             var customer = result;
-            console.log('Fetched custsomer name [%s]', customer.name);
             project.customerName = customer.name;
           });
         }
       });
 
       // Notify all listeners that project list has been refreshed
-      console.log('BROADCAST: onProjectsRefreshed');
       $rootScope.$broadcast('onProjectsRefreshed', svc.projects);
       return result;
     });
@@ -84,21 +80,16 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
   svc.updateProject = function (project) {
     var deferred = $q.defer();
     if (project.id) {
-      console.log('TimerService::updateProject with id []%d', project.id);
       var originalProject = svc.getProject(project.id);
-      _.extend(originalProject, _.pick(project, 'id', 'name', 'rate', 'description'));
+      _.extend(originalProject, _.pick(project, 'id', 'name', 'rate', 'description', 'customerId'));
       originalProject.put().then(function (updatedProject) {
-        console.log('TimerService::updateProject - Backend updated successfully');
-        console.log('BROADCAST: - onProjectUpdated (%d)', project.id);
         $rootScope.$broadcast('onProjectUpdated', project);
         deferred.resolve(updatedProject);
       }, function (reason) {
         deferred.reject(reason);
       });
     } else {
-      console.log('updateProject - creating new entry');
       svc.baseProjects.post(project).then(function (newProject) {
-        console.log('Updated project successfully at backend. New id is: %s', newProject.id);
         svc.projects.push(newProject);
         $rootScope.$broadcast('onProjectCreated', newProject);
         deferred.resolve(newProject);
@@ -110,18 +101,14 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
   };
 
   svc.deleteProject = function (project) {
-    console.log('TimerService::remove(name: [%s], id: [%d])', project.name, project.id);
     project.remove().then(function () {
-      console.log('Project deleted from backend');
       var index = _.indexOf(svc.projects, project);
-      console.log('Removing project at index %d', index);
       svc.projects.splice(index, 1);
       $rootScope.$broadcast('onProjectDeleted', project);      
     });
   };
 
   svc.getProject = function (id) {
-    console.log('TimerService::getProject(id [%d])', id);
     var item = _.find(svc.projects, function (p) {
       return p.id === id;
     });
@@ -143,7 +130,6 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
   // Set project status
   // Only one project may be active at the time.
   svc.setActive = function (project, active) {
-    console.log('TimerService::setActive - %d', active);
     var p = this.getProject(project.id);
     if (p) {
      p.active = active;        
@@ -163,13 +149,9 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
   // CRUD for time entries
   //
   svc.getTimeEntries = function () {
-    console.log('TimerService::getTimeEntries');
     var q = svc.baseTimeEntries.getList();
     q.then(function (result) {
-      console.log('TimerService::getTimeEntries - List retrieved from backend, size: %d', result.length);
       svc.timeEntries = result;
-      
-      console.log('BROADCAST onTimeEntriesRefreshed');
       $rootScope.$broadcast('onTimeEntriesRefreshed', svc.timeEntries);
       return svc.timeEntries;
     });
@@ -182,7 +164,6 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
     });
   };
   svc.updateTimeEntry = function (timeEntry) {
-    console.log('TimerService::updateTimeEntry(id: [%d])', timeEntry.id);
     var deferred = $q.defer();
     var restangularTimeEntry = svc.findTimeEntryById(timeEntry.id);
     if (restangularTimeEntry) {
@@ -191,7 +172,6 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
       restangularTimeEntry.endTime = timeEntry.endTime;
       restangularTimeEntry.comment = timeEntry.comment;
       restangularTimeEntry.put().then(function (result) {
-        console.log('TimerService::updateTimeEntry - OK');
         $rootScope.$broadcast('onTimeEntryUpdated', restangularTimeEntry);
         deferred.resolve(result);
       }, function () {
@@ -210,12 +190,9 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
     var id = entry.id;
     var timeEntry = this.findTimeEntryById(id);
     var index = _.indexOf(svc.timeEntries, timeEntry);
-    console.log('removeTimeEntry::removeTimeEntry(%s)', id);
     var q = timeEntry.remove();
     q.then(function () {
-      console.log('removeTimeEntry::removeTimeEntry - OK');
       svc.timeEntries.splice(index, 1);
-      console.log('BROADCAST: onTimeEntryRemoved(id [%d]', timeEntry.id);
       $rootScope.$broadcast('onTimeEntryRemoved', timeEntry);
     });
 
@@ -235,7 +212,6 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
   // Start the timer for the specified project.
   // Returns a promise to the operation
   svc.startTimer = function(project) {
-    console.log('timerService::startTimer');
     var deferred = $q.defer();        
 
     // Get the currently logged in person
@@ -244,21 +220,17 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
       // Create the new time entry
       var timeEntry = { person: person, project: project, startTime: $.now()};
       svc.createTimeEntry(timeEntry).then(function (newTimeEntry) {
-        console.log('timerService::startTimer - Time entry created at backend(id [%d]', newTimeEntry.id);
         newTimeEntry.active = true;
         svc.setActive(project, true);
         svc.timeEntries.push(newTimeEntry);
 
         // Update the person
         PersonService.setActiveTimeEntry(newTimeEntry).then(function () {
-          // Signal the events
-          console.log('timerService::startTimer - OK');
 
           // Resolve the promise
           deferred.resolve(newTimeEntry);
 
           // Send events
-          console.log('BROADCAST: onTimeEntryUpdated');
           $rootScope.$broadcast('onTimeEntryUpdated', newTimeEntry);
         }, function (reason) {
           console.error('timerService::startTimer - Failed to setActiveTimeEntry %s', reason);
@@ -278,7 +250,6 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
   // Stop the active task.
   // If no task is active an error is returned.
   svc.stopTimer = function() {
-    console.log('timerService::stopTimer');
     var deferred = $q.defer();
 
     // Get hold of the active time entry of the logged in user
@@ -286,12 +257,9 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
       var timeEntry = person.activeTimeEntry;
       var project = timeEntry ? timeEntry.project : null;
       if (timeEntry && project) {
-        console.log('timerService::stopTimer - Got an active project');
         timeEntry.endTime = $.now();
         svc.updateTimeEntry(timeEntry).then(function () {
-          console.log('timerService::stopTimer - Time entry updated at backend');
           PersonService.setActiveTimeEntry(null).then(function () {
-            console.log('timerService::stopTimer - OK');                
             deferred.resolve();
           }, function (reason) {
             console.error(reason);

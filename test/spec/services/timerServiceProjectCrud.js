@@ -158,6 +158,25 @@ describe('Service: TimerService, CRUD tests for Project', function () {
       expect(successful).toBe(true);
     });
 
+    it('should update the provided project that has a customer name set', function () {
+      var projectId = 302;
+      var successful = false;
+
+      // First get the project
+      var project = timerService.getProject(projectId);
+      expect(project.id).toBe(projectId);
+      // Update it
+      httpBackend.whenPUT('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/project/302').respond();
+      timerService.updateProject(project).then(function () {
+        successful = true;
+      });
+      // Make the requests go though
+      scope.$digest();
+      httpBackend.flush();
+      // Verify
+      expect(successful).toBe(true);
+    });
+
     it('should create a new project when project has no id', function () {
       var project = { name: 'New project' };
       var result;
