@@ -42,6 +42,7 @@ describe('Service: TimerService, CRUD tests for Project', function () {
   var projects;
   var timeEntries;
   var persons;
+  var customers;
 
   // Inject the required services
   beforeEach(inject(function (TimerService, PersonService, $httpBackend, $rootScope) {
@@ -63,6 +64,10 @@ describe('Service: TimerService, CRUD tests for Project', function () {
       { id: 1, username: 'User A', activeTimeEntry: null },
       { id: 2, username: 'User B' },
       { id: 3, username: 'User C', activeTimeEntry: timeEntries[0] }
+    ];
+    customers = [
+      { id: 1, name: 'Customer A'},
+      { id: 2, name: 'Customer B'}
     ];
 
   }));
@@ -93,6 +98,7 @@ describe('Service: TimerService, CRUD tests for Project', function () {
 
   describe('CRUD tests with an initialized project list', function() {
     beforeEach(function () {
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer').respond([]);
       httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/project').respond(_.clone(projects));
       spyOn(timerService, 'getProjects').andCallThrough();
       spyOn(timerService, 'reloadProject').andCallThrough();

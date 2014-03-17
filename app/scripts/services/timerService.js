@@ -44,12 +44,20 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
   // No server reload done
   // 
   svc.reloadProject = function () {
-    var q = svc.baseProjects.getList();
-    q.then(function (result) {
-      svc.projects = result;
+    // Must make sure customers are loaded before the projects are.
+    // Otherwise the code to get customer name from id gets too messy.
+    var deferred = $q.defer();    
+    $q.all([  
+      CustomerService.list(), 
+      svc.baseProjects.getList()
+    ]).then(function (results) {
+      var customers = results[0];
+      var projects = results[1];
+      svc.projects = projects;
       svc.projectsLoaded = true;
       var activeProjectId = PersonService.getActiveProjectId();
       _(svc.projects).each(function (project) {
+
         // Mark the active project
         if (project.id === activeProjectId) {
           project.active = true;
@@ -60,18 +68,18 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
         // Check if customer id is defined, in that case fetch it from backend.
         var customerId = project.customerId;
         if (customerId) {
-          CustomerService.get(customerId).then(function (result) {
-            var customer = result;
-            project.customerName = customer.name;
+          var matchingCustomer = _.find(customers, function(customer) {
+            return customer.id === customerId;
           });
+          project.customerName = matchingCustomer.name;
         }
       });
-
+  
       // Notify all listeners that project list has been refreshed
       $rootScope.$broadcast('onProjectsRefreshed', svc.projects);
-      return result;
     });
-    return q;
+
+    return deferred.promise;
   };
 
   //
