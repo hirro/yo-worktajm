@@ -88,8 +88,15 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
   svc.updateProject = function (project) {
     var deferred = $q.defer();
     if (project.id) {
+      // Get the managed project and update it
       var originalProject = svc.getProject(project.id);
       _.extend(originalProject, _.pick(project, 'id', 'name', 'rate', 'description', 'customerId'));
+
+      // If customer name is empty, then make sure customerId is nulled
+      if (!project.customerName && project.customerName.length === 0) {
+        delete originalProject.customerId;
+      }
+
       originalProject.put().then(function (updatedProject) {
         $rootScope.$broadcast('onProjectUpdated', project);
         deferred.resolve(updatedProject);
@@ -97,6 +104,7 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
         deferred.reject(reason);
       });
     } else {
+      // Create project
       svc.baseProjects.post(project).then(function (newProject) {
         svc.projects.push(newProject);
         $rootScope.$broadcast('onProjectCreated', newProject);
