@@ -93,7 +93,7 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
       _.extend(originalProject, _.pick(project, 'id', 'name', 'rate', 'description', 'customerId'));
 
       // If customer name is empty, then make sure customerId is nulled
-      if (!project.customerName && project.customerName.length === 0) {
+      if (!project.customerName || project.customerName.length === 0) {
         delete originalProject.customerId;
       }
 
