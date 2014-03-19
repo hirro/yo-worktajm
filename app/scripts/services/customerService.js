@@ -153,7 +153,11 @@ angular.module('yoWorktajmApp')
         var customer = _.find(customers, function(c) {
           return c.name === name;
         });
-        deferred.resolve(customer);
+        if (customer) {
+          deferred.resolve(customer);
+        } else {
+          deferred.reject('Customer not found');
+        }
       }, function (reason) {
         deferred.reject(reason);
       });
@@ -180,8 +184,7 @@ angular.module('yoWorktajmApp')
           });
         });        
       } else {
-        console.log('Name not specified');
-        deferred.resolve(null);
+        deferred.reject('Name not specifed');
       }
 
       return deferred.promise;

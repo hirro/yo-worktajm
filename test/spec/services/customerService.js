@@ -394,14 +394,17 @@ describe('Service: CustomerService', function () {
       expect(customerService.list).toHaveBeenCalled();
       expect(customerService.findCustomerByName).toHaveBeenCalledWith('customerA.name');
       expect(customer).toBeUndefined();
-      expect(error).toBeUndefined();
+      expect(error).toBeDefined();
     });
   });
 
   describe('findOrCreateCustomerByName', function () {
+    beforeEach(function () {
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer').respond(customers);
+    });
+
     it('should find customer with provided name', function () {
       // Setup
-      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer').respond(customers);
       spyOn(customerService, 'list').andCallThrough();
       spyOn(customerService, 'findCustomerByName').andCallThrough();
 
@@ -423,31 +426,47 @@ describe('Service: CustomerService', function () {
       expect(error).toBeUndefined();
     });
 
-    it('should create a customer with a name that doesnt exist', function () {
+    it('should not find customer with provided name, a new customer will be created', function () {
+      var newCustomer = {
+        name: 'New customer name'
+      };
+      var newCustomerCreateed = _.extend(newCustomer, { id: 678 });
+
       // Setup
-      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer').respond(301);
-      httpBackend.whenPOST('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer').respond(_.clone(customerA));
+      httpBackend.whenPOST('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer').respond(newCustomerCreateed);
       spyOn(customerService, 'list').andCallThrough();
       spyOn(customerService, 'findCustomerByName').andCallThrough();
       spyOn(customerService, 'create').andCallThrough();
 
       // Test
       var customer;
-      var error;
-      customerService.findOrCreateCustomerByName(customerA.name).then(function (result) {
+      customerService.findOrCreateCustomerByName(newCustomerCreateed.name).then(function (result) {
         customer = result;
-      }, function (e) {
-        error = e;
       });
       scope.$digest();
       httpBackend.flush();
 
       // Verification
+      expect(customer).not.toBeUndefined();
       expect(customerService.list).toHaveBeenCalled();
-      expect(customerService.findCustomerByName).toHaveBeenCalledWith(customerA.name);
+      expect(customerService.findCustomerByName).toHaveBeenCalledWith(newCustomerCreateed.name);
       expect(customerService.create).toHaveBeenCalled();
-      expect(customer.id).toBe(customerA.id);
-      expect(error).toBeUndefined();
+      //expect(customer.id).toBe(newCustomerCreateed.id);
+    });
+
+    it('name is not provided', function () {
+      var failed;
+      customerService.findOrCreateCustomerByName()
+      .then(
+        function () {
+          failed = false;
+        })
+      .then(null,
+        function () {
+          failed = true;
+        });
+      scope.$digest();
+      expect(failed).toBe(true);
     });
   });
 
