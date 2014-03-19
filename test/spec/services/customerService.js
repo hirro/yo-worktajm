@@ -300,7 +300,7 @@ describe('Service: CustomerService', function () {
     it('should delete the customer with the provider id (unless it is associated with a project)', function () {
       // Setup
       httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer').respond(customers);
-      spyOn(customerService, 'list').andCallThrough();           
+      spyOn(customerService, 'list').andCallThrough();
       httpBackend.whenDELETE('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer/1').respond(200);
       spyOn(customerService, 'delete').andCallThrough();
 
@@ -325,7 +325,7 @@ describe('Service: CustomerService', function () {
     it('should handle error from backend', function () {
       // Setup
       httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer').respond(customers);
-      spyOn(customerService, 'list').andCallThrough();      
+      spyOn(customerService, 'list').andCallThrough();
       httpBackend.whenDELETE('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer/1').respond(401);
       spyOn(customerService, 'delete').andCallThrough();
 
@@ -373,9 +373,31 @@ describe('Service: CustomerService', function () {
       expect(error).toBeUndefined();
     });
 
-    it('should not find customer with undefined name', function () {
+    it('should return undefined when user is not found', function () {
       // Setup
       httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer').respond(customers);
+      spyOn(customerService, 'list').andCallThrough();
+      spyOn(customerService, 'findCustomerByName').andCallThrough();
+
+      // Test
+      var name = 'Tjolahopp';
+      var customer;
+      customerService.findCustomerByName(name)
+      .then(function (result) {
+        customer = result;
+      });
+      scope.$digest();
+      httpBackend.flush();
+
+      // Verification
+      expect(customerService.list).toHaveBeenCalled();
+      expect(customerService.findCustomerByName).toHaveBeenCalledWith(name);
+      expect(customer).toBeUndefined();
+    });
+
+    it('should fail to call the backend', function () {
+      // Setup
+      httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer').respond(301);
       spyOn(customerService, 'list').andCallThrough();
       spyOn(customerService, 'findCustomerByName').andCallThrough();
 
@@ -396,6 +418,7 @@ describe('Service: CustomerService', function () {
       expect(customer).toBeUndefined();
       expect(error).toBeDefined();
     });
+
   });
 
   describe('findOrCreateCustomerByName', function () {
@@ -428,30 +451,55 @@ describe('Service: CustomerService', function () {
 
     it('should not find customer with provided name, a new customer will be created', function () {
       var newCustomer = {
-        name: 'New customer name'
+        name: 'New customer name',
+        id: 4454
       };
-      var newCustomerCreateed = _.extend(newCustomer, { id: 678 });
 
       // Setup
-      httpBackend.whenPOST('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer').respond(newCustomerCreateed);
+      httpBackend.whenPOST('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer').respond(newCustomer);
       spyOn(customerService, 'list').andCallThrough();
       spyOn(customerService, 'findCustomerByName').andCallThrough();
       spyOn(customerService, 'create').andCallThrough();
 
       // Test
       var customer;
-      customerService.findOrCreateCustomerByName(newCustomerCreateed.name).then(function (result) {
+      customerService.findOrCreateCustomerByName(newCustomer.name)
+      .then(function (result) {
         customer = result;
       });
       scope.$digest();
       httpBackend.flush();
 
       // Verification
-      expect(customer).not.toBeUndefined();
+      expect(customer).toBeDefined();
       expect(customerService.list).toHaveBeenCalled();
-      expect(customerService.findCustomerByName).toHaveBeenCalledWith(newCustomerCreateed.name);
+      expect(customerService.findCustomerByName).toHaveBeenCalledWith(newCustomer.name);
       expect(customerService.create).toHaveBeenCalled();
       //expect(customer.id).toBe(newCustomerCreateed.id);
+    });
+
+    it('should handle failed connection to backend', function () {
+      var customer;
+
+      // Setup
+      httpBackend.whenPOST('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer').respond(301);
+      spyOn(customerService, 'list').andCallThrough();
+      spyOn(customerService, 'findCustomerByName').andCallThrough();
+      spyOn(customerService, 'create').andCallThrough();
+
+      // Test
+      customerService.findOrCreateCustomerByName('fail')
+      .then(function (result) {
+        customer = result;
+      });
+      scope.$digest();
+      httpBackend.flush();
+
+      // Verification
+      expect(customer).not.toBeDefined();
+      expect(customerService.list).toHaveBeenCalled();
+      expect(customerService.findCustomerByName).toHaveBeenCalledWith('fail');
+      //expect(customerService.create).not.toHaveBeenCalled();
     });
 
     it('name is not provided', function () {
@@ -461,8 +509,7 @@ describe('Service: CustomerService', function () {
         function () {
           failed = false;
         })
-      .then(null,
-        function () {
+      .catch(function () {
           failed = true;
         });
       scope.$digest();

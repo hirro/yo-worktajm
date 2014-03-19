@@ -148,46 +148,36 @@ angular.module('yoWorktajmApp')
     // Find the customer with the provided name.
     // Returns a promise to a customer.
     svc.findCustomerByName = function(name) {
-      var deferred = $q.defer();
-      svc.list().then(function (customers) {
-        var customer = _.find(customers, function(c) {
+      return svc.list()
+      .then(function (customers) {
+        return _.find(customers, function(c) {
           return c.name === name;
         });
-        if (customer) {
-          deferred.resolve(customer);
-        } else {
-          deferred.reject('Customer not found');
-        }
-      }, function (reason) {
-        deferred.reject(reason);
       });
-      return deferred.promise;
     };
 
     // Find or create customer with name
     svc.findOrCreateCustomerByName = function (name) {
-      var deferred = $q.defer();
-
       console.log('findOrCreateCustomerByName(%s)', name);
       if (name) {
-        svc.findCustomerByName(name).then(function (customer) {
-          deferred.resolve(customer);
-        }, function () {
-          svc.create({
-            name: name
-          }).then(function (customer) {
-            console.info('Created new customer');
-            deferred.resolve(customer);
-          }, function (result) {
-            console.error('Failed to create customer');
-            deferred.reject(result);
-          });
+        return svc.findCustomerByName(name)
+        .then(function (customer) {
+          if (customer) {
+            return customer;
+          } 
+          else {
+            return svc.create({ name: name })
+            .then(function (customer) {
+              console.info('Created new customer');
+              return customer;
+            });
+          }
         });        
       } else {
+        var deferred = $q.defer();
         deferred.reject('Name not specifed');
+        return deferred.promise;
       }
-
-      return deferred.promise;
     };
 
     return svc;
