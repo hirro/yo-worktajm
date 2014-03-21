@@ -10,7 +10,8 @@ angular.module('yoWorktajmApp', [
   // 'ui.date',
   // 'ui.calendar',
   'restangular',
-  'ui.bootstrap.datetimepicker'
+  'ui.bootstrap.datetimepicker',
+  'ui.bootstrap.tabs'
 ])
   .config(function ($routeProvider) {
     $routeProvider

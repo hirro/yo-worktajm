@@ -1,0 +1,107 @@
+<!-- The project list  -->
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">Billing Information</h4>
+  </div>
+  <div class="panel-body projects">
+    <form name="profileForm" role="form" novalidate>
+      <fieldset>
+      
+        <div class="form-group" ng-class="{ 'has-error' : profileForm.name.$invalid && !profileForm.name.$pristine }">
+          <label for="name">Company name</label>
+          <input id="name" 
+                 class="input-xlarge form-control" 
+                 name="name" 
+                 type="name" 
+                 placeholder="Enter first name" 
+                 required="" 
+                 tabindex="1" 
+                 autofocus="autofocus" 
+                 ng-model="billing.name" />
+          <span class="help-block" ng-show="profileForm.name.$error.required">Required</span>               
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : profileForm.addressLine1.$invalid && !profileForm.addressLine1.$pristine }">
+          <label for="addressLine1">Address Line 1</label>
+          <input id="addressLine1" 
+                 class="input-xlarge form-control" 
+                 name="addressLine1" 
+                 type="addressLine1" 
+                 placeholder="Enter first name" 
+                 required="" 
+                 tabindex="1" 
+                 autofocus="autofocus" 
+                 ng-model="billing.addressLine1" />
+          <span class="help-block" ng-show="profileForm.addressLine1.$error.required">Required</span>               
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : profileForm.addressLine2.$invalid && !profileForm.addressLine2.$pristine }">
+          <label for="addressLine2">Address Line 2</label>
+          <input id="addressLine2" 
+                 class="input-xlarge form-control" 
+                 name="addressLine2" 
+                 type="addressLine2" 
+                 placeholder="Enter first name" 
+                 required="" 
+                 tabindex="1" 
+                 autofocus="autofocus" 
+                 ng-model="billing.addressLine2" />
+          <span class="help-block" ng-show="profileForm.addressLine2.$error.required">Required</span>               
+        </div>                
+
+        <div class="form-group" ng-class="{ 'has-error' : profileForm.state.$invalid && !profileForm.state.$pristine }">
+          <label for="state">State</label>
+          <input id="state" 
+                 class="input-xlarge form-control" 
+                 name="state" 
+                 type="state" 
+                 placeholder="Enter first name" 
+                 required="" 
+                 tabindex="1" 
+                 autofocus="autofocus" 
+                 ng-model="billing.state" />
+          <span class="help-block" ng-show="profileForm.state.$error.required">Required</span>               
+        </div>                
+
+        <div class="form-group" ng-class="{ 'has-error' : profileForm.zip.$invalid && !profileForm.zip.$pristine }">
+          <label for="zip">Zip Code</label>
+          <input id="zip" 
+                 class="input-xlarge form-control" 
+                 name="zip" 
+                 type="zip" 
+                 placeholder="Enter first name" 
+                 required="" 
+                 tabindex="1" 
+                 autofocus="autofocus" 
+                 ng-model="billing.zip" />
+          <span class="help-block" ng-show="profileForm.zip.$error.required">Required</span>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : profileForm.country.$invalid && !profileForm.country.$pristine }">
+          <label for="country">Country</label>
+          <input id="country" 
+                 class="input-xlarge form-control" 
+                 name="country" 
+                 type="country" 
+                 placeholder="Enter first name" 
+                 required="" 
+                 tabindex="1" 
+                 autofocus="autofocus" 
+                 ng-model="billing.country" />
+          <span class="help-block" ng-show="profileForm.country.$error.required">Required</span>
+        </div>
+
+        <!-- Button -->
+        <button id="profileButton" 
+                type="submit" 
+                class="btn btn-primary" 
+                value="profileButton"
+                ng-disabled="!profileForm.$valid">
+          Register
+        </button>
+        
+      </fieldset>
+    </form>    
+  </div>
+</div>
+

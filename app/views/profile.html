@@ -1,4 +1,35 @@
 <div ng-include src="'views/partials/navbar.html'" ></div>
 
+<div ng-controller="ProfileCtrl">
 
-Profile
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">User Name</h4>
+      </div>
+      <div class="panel-body projects">
+      </div>
+        
+        <tabset vertical="true" type="navType">
+          <tab heading="Profile" active="tabs[0].active"></tab>
+          <tab heading="Account Settings" active="tabs[1].active"></tab>
+          <tab heading="Billing" active="tabs[2].active"></tab>
+        </tabset>
+    </div>
+  </div>
+
+  <div class="col-md-8">
+    <div ng-show="tabs[0].active">
+      <div ng-include src="'views/profile/user_panel.html'">
+      </div>
+    </div>
+    <div ng-show="tabs[1].active">
+      <div ng-include src="'views/profile/password_panel.html'">
+      </div>
+    </div>
+    <div ng-show="tabs[2].active">
+      <div ng-include src="'views/profile/billing_panel.html'">
+      </div>
+    </div>
+  </div>
+</div>
