@@ -5,12 +5,14 @@
   <div class="col-md-4">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h4 class="panel-title">User Name</h4>
+        <h4 class="panel-title">{{principal.firstName}} {{principal.lastName}}</h4>
       </div>
       <tabset vertical="true" type="navType">
         <tab heading="Profile" active="tabs[0].active"></tab>
         <tab heading="Account Settings" active="tabs[1].active"></tab>
         <tab heading="Billing" active="tabs[2].active"></tab>
+        <tab heading="Projects" active="tabs[3].active"></tab>
+        <tab heading="Customers" active="tabs[4].active"></tab>
       </tabset>
     </div>
   </div>
@@ -26,6 +28,14 @@
     </div>
     <div ng-show="tabs[2].active">
       <div ng-include src="'views/profile/billing_panel.html'">
+      </div>
+    </div>
+    <div ng-show="tabs[3].active">
+      <div ng-include src="'views/profile/projects_panel.html'">
+      </div>
+    </div>
+    <div ng-show="tabs[4].active">
+      <div ng-include src="'views/profile/customers_panel.html'">
       </div>
     </div>
   </div>

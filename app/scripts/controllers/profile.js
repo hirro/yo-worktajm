@@ -6,6 +6,8 @@ angular.module('yoWorktajmApp')
     $scope.tabs = [ 
       { active: true },
       { active: false },
+      { active: false },
+      { active: false },
       { active: false }
     ];
   });
