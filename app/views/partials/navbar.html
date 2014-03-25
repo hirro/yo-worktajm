@@ -33,20 +33,36 @@
             Reports
           </a>
         </li>
-        <li class="dropdown" ng-class="{active: isActive('/profile')}">
+<!--
+         <li class="dropdown visible-sm visible-md visible-lg" ng-class="{active: isActive('/profile')}">
           <a  href="#/profile"
               popover="User preferences" 
               popover-placement="bottom"
               popover-trigger="mouseenter">
             <span class="glyphicon glyphicon-cog" >              
-              <!-- Settings -->
             </span>
           </a>
         </li>
+ -->
+         <li class="dropdown">
+          <a id="nav_user" class="dropdown-toggle" ng-class="{active: isActive('/profile')}" data-toggle="dropdown">
+            <span class="glyphicon glyphicon-cog">
+              Settings
+            </span>
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a id="nav_profile_profile" href="#/profile/user">Profile</a></li>
+            <li><a id="nav_profile_password" href="#/profile/password">Password</a></li>
+            <li><a id="nav_profile_billing" href="#/profile/billing">Billing</a></li>
+            <li><a id="nav_profile_projects" href="#/profile/projects">Projects</a></li>
+            <li><a id="nav_profile_customers" href="#/profile/customers">Customers</a></li>
+          </ul>
+        </li>        
         <li>
           <a id="nav_logout" ng-click="logout()"
             <span class="glyphicon glyphicon-log-out" >
-              <!-- Logout -->
+              Logout
             </span>
           </a>
         </li>

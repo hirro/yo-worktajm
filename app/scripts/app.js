@@ -35,7 +35,23 @@ angular.module('yoWorktajmApp', [
         templateUrl: 'views/customers.html',
         controller: 'CustomersCtrl'
       })
-      .when('/profile', {
+      .when('/profile/user', {
+        templateUrl: 'views/profile.html',
+        controller: 'DashboardCtrl'
+      })
+      .when('/profile/password', {
+        templateUrl: 'views/profile.html',
+        controller: 'DashboardCtrl'
+      })
+      .when('/profile/billing', {
+        templateUrl: 'views/profile.html',
+        controller: 'DashboardCtrl'
+      })
+      .when('/profile/projects', {
+        templateUrl: 'views/profile.html',
+        controller: 'DashboardCtrl'
+      })
+      .when('/profile/customers', {
         templateUrl: 'views/profile.html',
         controller: 'DashboardCtrl'
       })
