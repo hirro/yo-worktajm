@@ -26,8 +26,8 @@
                 </li>
                 <li class="dropdown">
                     <a id="nav_user" class="dropdown-toggle" ng-class="{active: isActive('/profile')}" data-toggle="dropdown">
-                        &nbsp;
-                        <span class="glyphicon glyphicon-cog">&nbsp;Settings</span>
+                        <span class="glyphicon glyphicon-cog"></span>
+                        Settings
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
@@ -49,7 +49,10 @@
                     </ul>
                 </li>
                 <li>
-                    <a id="nav_logout" ng-click="logout()">&nbsp;<span class="glyphicon glyphicon-log-out">&nbsp;Logout</span></a>
+                  <a id="nav_logout" ng-click="logout()">
+                    <span class="glyphicon glyphicon-log-out">                    
+                    Logout
+                  </a>
                 </li>
             </ul>
         </div>
