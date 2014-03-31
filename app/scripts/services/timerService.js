@@ -56,7 +56,7 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
       svc.projects = projects;
       svc.projectsLoaded = true;
       var activeProjectId = PersonService.getActiveProjectId();
-      _(svc.projects).each(function (project) {
+      _.each(svc.projects, function (project) {
 
         // Mark the active project
         if (project.id === activeProjectId) {

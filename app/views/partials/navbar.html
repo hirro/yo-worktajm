@@ -1,67 +1,60 @@
-<html>
-    <head>
-        <meta name="generator" content="HTML Tidy for Mac OS X (vers 31 October 2006 - Apple Inc. build 15.12), see www.w3.org">
-        <title></title>
-    </head>
-    <body>
-        <div>
-            <div ng-include="" src="'views/modals/confirmationModal.html'"></div>
+
+<div>
+    <div ng-include="" src="'views/modals/confirmationModal.html'"></div>
+</div>
+<div>
+    <div ng-include="" src="'views/modals/customerModal.html'"></div>
+</div>
+<div>
+    <div ng-include="" src="'views/modals/confirmationModal.html'"></div>
+</div>
+<div>
+    <div ng-include="" src="'views/modals/projectModal.html'"></div>
+</div>
+<div class="navbar navbar-inverse navbar-fixed-top" ng-show="principal" ng-controller="LoginCtrl">
+    <div class="container">
+        <div class="navbar-header">
+            <img src="images/self/logo.png">
         </div>
-        <div>
-            <div ng-include="" src="'views/modals/customerModal.html'"></div>
-        </div>
-        <div>
-            <div ng-include="" src="'views/modals/confirmationModal.html'"></div>
-        </div>
-        <div>
-            <div ng-include="" src="'views/modals/projectModal.html'"></div>
-        </div>
-        <div class="navbar navbar-inverse navbar-fixed-top" ng-show="principal" ng-controller="LoginCtrl">
-            <div class="container">
-                <div class="navbar-header">
-                    <img src="images/self/logo.png">
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li id="nav_dashboard" ng-class="{active: isActive('/dashboard')}">
-                            <a href="#/dashboard">Dashboard</a>
-                        </li>
-                        <li id="nav_reports" ng-class="{active: isActive('/reports')}">
-                            <a href="#/reports">Reports</a>
-                        </li>
-                        <li class="dropdown">
-                            <a id="nav_user" class="dropdown-toggle" ng-class="{active: isActive('/profile')}" data-toggle="dropdown">
-                              <span class="glyphicon glyphicon-cog">Settings
-                              </span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a id="nav_profile_profile" href="#/profile/user">Profile</a>
-                                </li>
-                                <li>
-                                    <a id="nav_profile_password" href="#/profile/password">Password</a>
-                                </li>
-                                <li>
-                                    <a id="nav_profile_billing" href="#/profile/billing">Billing</a>
-                                </li>
-                                <li>
-                                    <a id="nav_profile_projects" href="#/profile/projects">Projects</a>
-                                </li>
-                                <li>
-                                    <a id="nav_profile_customers" href="#/profile/customers">Customers</a>
-                                </li>
-                            </ul>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li id="nav_dashboard" ng-class="{active: isActive('/dashboard')}">
+                    <a href="#/dashboard">Dashboard</a>
+                </li>
+                <li id="nav_reports" ng-class="{active: isActive('/reports')}">
+                    <a href="#/reports">Reports</a>
+                </li>
+                <li class="dropdown">
+                    <a id="nav_user" class="dropdown-toggle" ng-class="{active: isActive('/profile')}" data-toggle="dropdown">
+                      <span class="glyphicon glyphicon-cog">Settings
+                      </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a id="nav_profile_profile" href="#/profile/user">Profile</a>
                         </li>
                         <li>
-                            <a id="nav_logout" ng-click="logout()">
-                              <span class="glyphicon glyphicon-log-out">
-                                Logout
-                              </span>
-                            </a>
+                            <a id="nav_profile_password" href="#/profile/password">Password</a>
+                        </li>
+                        <li>
+                            <a id="nav_profile_billing" href="#/profile/billing">Billing</a>
+                        </li>
+                        <li>
+                            <a id="nav_profile_projects" href="#/profile/projects">Projects</a>
+                        </li>
+                        <li>
+                            <a id="nav_profile_customers" href="#/profile/customers">Customers</a>
                         </li>
                     </ul>
-                </div>
-            </div>
+                </li>
+                <li>
+                    <a id="nav_logout" ng-click="logout()">
+                      <span class="glyphicon glyphicon-log-out">
+                        Logout
+                      </span>
+                    </a>
+                </li>
+            </ul>
         </div>
-    </body>
-</html>
+    </div>
+</div>

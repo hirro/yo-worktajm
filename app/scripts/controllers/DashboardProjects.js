@@ -65,6 +65,9 @@ angular.module('yoWorktajmApp')
           project.customerId = customer.id;
         }
         TimerService.updateProject(project);
+      })
+      .then(function() {
+        project.isOpen = false;
       });
     };
 
@@ -196,7 +199,7 @@ angular.module('yoWorktajmApp')
     $scope.$on('onProjectsRefreshed', function (event, updatedProjectList) {
       console.log('EVENT: DashboardProjectsCtrl::onProjectsRefreshed(size [%d])', updatedProjectList.length);
       var activeProjectId = PersonService.getActiveProjectId();
-      _(updatedProjectList).each(function(p) {
+      _.each(updatedProjectList, function(p) {
         // Cloning here, don't want to modify the internal cached entries
         $scope.projects.push(_.clone(p));
         if (p.id === activeProjectId) {

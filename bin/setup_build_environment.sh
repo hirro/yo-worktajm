@@ -47,6 +47,10 @@ function install() {
   echo "Installing karma-cli"
   npm install -g karma-cli
 
+  # Protractor
+  echo "Installing protractor"
+  npm install -g protractor
+
   # Install local npm modules
   echo "Installing local npm modules"
   npm install

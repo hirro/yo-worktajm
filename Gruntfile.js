@@ -27,6 +27,10 @@ module.exports = function (grunt) {
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
+      bower: {
+        files: ['bower.json'],
+        tasks: ['bowerInstall']
+      },
       js: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
         tasks: ['newer:jshint:all'],
@@ -140,15 +144,16 @@ module.exports = function (grunt) {
     },
     
     // Automatically inject Bower components into the app
-    'bower-install': {
+    bowerInstall: {
       app: {
-        html: '<%= yeoman.app %>/index.html',
+        src: ['<%= yeoman.app %>/index.html'],
         ignorePath: '<%= yeoman.app %>/'
+      },
+      sass: {
+        src: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+        ignorePath: '<%= yeoman.app %>/bower_components/'
       }
     },
-
-
-
 
     // Compiles Sass to CSS and generates necessary files if requested    
     compass: {
@@ -199,13 +204,22 @@ module.exports = function (grunt) {
     useminPrepare: {
       html: '<%= yeoman.app %>/index.html',
       options: {
-        dest: '<%= yeoman.dist %>'
+        dest: '<%= yeoman.dist %>',
+        flow: {
+          html: {
+            steps: {
+              js: ['concat', 'uglifyjs'],
+              css: ['cssmin']
+            },
+            post: {}
+          }
+        }
       }
     },
 
     // Performs rewrites based on rev and the useminPrepare configuration
     usemin: {
-      html: ['<%= yeoman.dist %>/{,**/}*.html'],
+      html: ['<%= yeoman.dist %>/{,*/}*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
       options: {
         assetsDirs: ['<%= yeoman.dist %>']
@@ -213,6 +227,12 @@ module.exports = function (grunt) {
     },
 
     // The following *-min tasks produce minified files in the dist folder
+    cssmin: {
+      options: {
+        root: '<%= yeoman.app %>'
+      }
+    },
+
     imagemin: {
       dist: {
         files: [{
@@ -223,6 +243,7 @@ module.exports = function (grunt) {
         }]
       }
     },
+
     svgmin: {
       dist: {
         files: [{
@@ -233,6 +254,7 @@ module.exports = function (grunt) {
         }]
       }
     },
+
     htmlmin: {
       dist: {
         options: {
@@ -250,8 +272,9 @@ module.exports = function (grunt) {
       }
     },
 
-    // Allow the use of non-minsafe AngularJS files. Automatically makes it
-    // minsafe compatible so Uglify does not destroy the ng references
+    // ngmin tries to make the code safe for minification automatically by
+    // using the Angular long form for dependency injection. It doesn't work on
+    // things like resolve or inject so those have to be done manually.
     ngmin: {
       dist: {
         files: [{
@@ -283,7 +306,6 @@ module.exports = function (grunt) {
             '.htaccess',
             '*.html',
             'views/{,*/}*.html',
-            'bower_components/**/*',
             'images/{,*/}*.{webp}',
             'fonts/*'
           ]
@@ -365,7 +387,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
-      'bower-install',
+      'bowerInstall',
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',
@@ -373,9 +395,9 @@ module.exports = function (grunt) {
     ]);
   });
 
-  grunt.registerTask('server', function () {
+  grunt.registerTask('server', function (target) {
     grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
-    grunt.task.run(['serve']);
+    grunt.task.run(['serve:' + target]);
   });
 
   grunt.registerTask('test', [
@@ -388,7 +410,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'bower-install',
+    'bowerInstall',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
