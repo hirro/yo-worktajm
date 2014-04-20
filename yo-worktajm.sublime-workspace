@@ -4,144 +4,32 @@
 		"selected_items":
 		[
 			[
+				"ch",
+				"Chrome"
+			],
+			[
 				"time",
-				"timeEntries"
+				"timeEntry"
 			],
 			[
-				"to",
-				"toISOString"
+				"mar",
+				"margin-bottom"
 			],
 			[
-				"gr",
-				"groupSum"
+				"open",
+				"openCalendar"
 			],
 			[
-				"e",
-				"enabledProjectsIds"
+				"auth",
+				"authenicationResponse"
 			],
 			[
-				"project",
-				"projectA2"
+				"pers",
+				"personId"
 			],
 			[
-				"end",
-				"endTime"
-			],
-			[
-				"fil",
-				"filteredByProjects"
-			],
-			[
-				"add",
-				"addMonths"
-			],
-			[
-				"st",
-				"startTime"
-			],
-			[
-				"start",
-				"startOfToday"
-			],
-			[
-				"filtered",
-				"filteredByTime"
-			],
-			[
-				"de",
-				"defer"
-			],
-			[
-				"reg",
-				"registration"
-			],
-			[
-				"CUST",
-				"CUSTOMER_A"
-			],
-			[
-				"re",
-				"register"
-			],
-			[
-				"R",
-				"RegisterCtrl"
-			],
-			[
-				"person",
-				"personService"
-			],
-			[
-				"ex",
-				"existingCustomers"
-			],
-			[
-				"pr",
-				"projectsBefore"
-			],
-			[
-				"get",
-				"generateUniqueId"
-			],
-			[
-				"go",
-				"goToCustomerTab"
-			],
-			[
-				"create",
-				"createCustomer"
-			],
-			[
-				"cust",
-				"customerId"
-			],
-			[
-				"find",
-				"findCustomerByName"
-			],
-			[
-				"Cus",
-				"CustomerServiceMock"
-			],
-			[
-				"comp",
-				"companyName"
-			],
-			[
-				"C",
-				"CustomerService"
-			],
-			[
-				"toBe",
-				"toBeUndefined"
-			],
-			[
-				"service",
-				"serviceInstance"
-			],
-			[
-				"ser",
-				"serviceInstance"
-			],
-			[
-				"customer",
-				"customerName"
-			],
-			[
-				"timeE",
-				"timeEntryForm"
-			],
-			[
-				"T",
-				"TimeEntryModalCtrl"
-			],
-			[
-				"m",
-				"modalInstance"
-			],
-			[
-				"da",
-				"DashboardTimeEntriesCtrl"
+				"ret",
+				"returnedToken"
 			],
 			[
 				"P",
@@ -178,6 +66,10 @@
 			[
 				"fa",
 				"false"
+			],
+			[
+				"to",
+				"toBe"
 			],
 			[
 				"password",
@@ -228,6 +120,10 @@
 				"emptyList"
 			],
 			[
+				"project",
+				"projects"
+			],
+			[
 				"Timer",
 				"TimerServiceMock"
 			],
@@ -240,8 +136,8 @@
 				"deferred"
 			],
 			[
-				"pers",
-				"person"
+				"timeE",
+				"timeEntries"
 			],
 			[
 				"error",
@@ -262,6 +158,10 @@
 			[
 				"PersonService",
 				"PersonServiceMock"
+			],
+			[
+				"person",
+				"PersonService"
 			],
 			[
 				"toBE",
@@ -296,6 +196,18 @@
 				"Restangular"
 			],
 			[
+				"get",
+				"getPerson"
+			],
+			[
+				"T",
+				"TimeEntryServiceMock"
+			],
+			[
+				"pr",
+				"projectToStart"
+			],
+			[
 				"and",
 				"andCallThrough"
 			],
@@ -320,6 +232,10 @@
 				"activeTimeEntry"
 			],
 			[
+				"start",
+				"startTime"
+			],
+			[
 				"t",
 				"then"
 			],
@@ -330,6 +246,10 @@
 			[
 				"projet",
 				"projects"
+			],
+			[
+				"de",
+				"description"
 			],
 			[
 				"fun",
@@ -347,80 +267,36 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "app/views/reports.html",
-			"settings":
-			{
-				"buffer_size": 4303,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/scripts/controllers/reports.js",
-			"settings":
-			{
-				"buffer_size": 6620,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/reports/pivot.html",
-			"settings":
-			{
-				"buffer_size": 758,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/reports/timesheet.html",
-			"settings":
-			{
-				"buffer_size": 1125,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/reports/invoice.html",
-			"settings":
-			{
-				"buffer_size": 3553,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 375.0,
+		"height": 203.0,
 		"selected_items":
 		[
-			[
-				"sor",
-				"Sort Lines"
-			],
 			[
 				"sort",
 				"Sort Lines"
 			],
 			[
-				"swa",
-				"BracketHighlighter: Swap Quotes"
+				"packa",
+				"Package Control: Install Package"
 			],
 			[
-				"packa",
-				"Package Control: Remove Package"
+				"package",
+				"Package Control: Install Package"
 			],
 			[
 				"swap",
 				"BracketHighlighter: Swap Quotes"
 			],
 			[
-				"package",
-				"Package Control: Remove Package"
-			],
-			[
 				"insta",
 				"Package Control: Install Package"
+			],
+			[
+				"swa",
+				"BracketHighlighter: Swap Brackets"
 			],
 			[
 				"iterm",
@@ -563,11 +439,14 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 507.0
+		"width": 435.0
 	},
 	"console":
 	{
-		"height": 125.0
+		"height": 125.0,
+		"history":
+		[
+		]
 	},
 	"distraction_free":
 	{
@@ -580,126 +459,97 @@
 	},
 	"file_history":
 	[
-		"/Users/jiar/git/yo-worktajm/app/views/reports/invoice.html",
-		"/Users/jiar/git/yo-worktajm/app/views/reports/invoice_header.html",
-		"/Users/jiar/git/yo-worktajm/app/views/reports/invoiceHeader.html",
-		"/Users/jiar/git/yo-worktajm/app/scripts/controllers/reports.js",
-		"/Users/jiar/git/yo-worktajm/app/views/reports.html",
-		"/Users/jiar/git/yo-worktajm/test/spec/filters/sumfilter.js",
-		"/Users/jiar/git/yo-worktajm/app/views/reports/pivot.html",
-		"/Users/jiar/git/yo-worktajm/app/scripts/filters/durationfilter.js",
-		"/Users/jiar/git/yo-worktajm/test/spec/filters/durationfilter.js",
-		"/Users/jiar/git/yo-worktajm/test/spec/filters/groupByProjectsFilter.js",
-		"/Users/jiar/git/yo-worktajm/app/scripts/filters/groupByProjectsFilter.js",
-		"/Users/jiar/git/yo-worktajm/app/scripts/filters/sumfilter.js",
-		"/Users/jiar/git/yo-worktajm/app/views/reports/timesheet.html",
-		"/Users/jiar/git/yo-worktajm/app/views/reports/timestamp.html",
-		"/Users/jiar/git/yo-worktajm/test/spec/controllers/reports.js",
-		"/Users/jiar/git/yo-worktajm/app/scripts/filters/projectfilter.js",
-		"/Users/jiar/git/yo-worktajm/node_modules/karma-coverage/node_modules/ibrik/lib/report.js",
-		"/Users/jiar/git/yo-worktajm/test/spec/filters/timeEntryFilter.js",
-		"/Users/jiar/git/yo-worktajm/app/scripts/filters/timeEntryFilter.js",
+		"/Users/jiar/git/yo-worktajm/package.json",
+		"/Users/jiar/tmp/package.json",
+		"/Users/jiar/git/be-worktajm/.travis.yml",
+		"/Users/jiar/git/be-worktajm/README.md",
+		"/Users/jiar/git/be-worktajm/core/src/main/resources/liquibase/db.changelog.xml",
+		"/Users/jiar/git/be-worktajm/pom.xml",
+		"/Users/jiar/git/be-worktajm/src/main/resources/logback.xml",
+		"/Users/jiar/git/be-worktajm/src/main/java/com/arnellconsulting/tps/configuration/SecurityContext.java",
+		"/Users/jiar/Downloads/_default.asp",
+		"/Users/jiar/git/be-worktajm/target/classes/logback.xml",
+		"/Users/jiar/git/be-worktajm/target/classes/liquibase.properties",
+		"/Users/jiar/git/be-worktajm/core/target/classes/liquibase.properties",
+		"/Users/jiar/git/be-worktajm/.settings/org.eclipse.core.resources.prefs",
+		"/Users/jiar/git/be-worktajm/.idea/libraries/Maven__org_mockito_mockito_core_1_9_5.xml",
+		"/Users/jiar/git/be-worktajm/core/target/classes/liquibase/db.changelog.xml",
+		"/Users/jiar/git/be-worktajm/core/test/demo.sql",
+		"/Users/jiar/git/be-worktajm/core/target/classes/logback.xml",
+		"/Users/jiar/git/be-worktajm/.idea/libraries/Maven__ch_qos_logback_logback_access_0_9_26.xml",
+		"/Users/jiar/git/yo-worktajm/app/bower_components/bootstrap/_includes/footer.html",
+		"/Users/jiar/git/yo-worktajm/app/scripts/services/timerService.js",
+		"/Users/jiar/git/yo-worktajm/bin/setup_build_environment.sh",
+		"/Users/jiar/git/yo-worktajm/app/styles/spinner.css",
+		"/Users/jiar/git/yo-worktajm/app/views/customers.html",
+		"/Users/jiar/git/yo-worktajm/app/views/partials/dashboard/projects.html",
+		"/Users/jiar/git/yo-worktajm/app/views/partials/dashboard/company.html",
+		"/Users/jiar/git/yo-worktajm/app/scripts/controllers/login.js",
+		"/Users/jiar/git/yo-worktajm/app/views/partials/dashboard/timeEntries.html",
+		"/Users/jiar/git/yo-worktajm/app/views/partials/dashboard/confirmationModal.html",
+		"/Users/jiar/git/yo-worktajm/test/spec/controllers/DashboardProjects.js",
+		"/Users/jiar/git/yo-worktajm/app/scripts/controllers/DashboardProjects.js",
+		"/Users/jiar/git/yo-worktajm/app/scripts/controllers/TimeEntryModal.js",
+		"/Users/jiar/git/yo-worktajm/app/scripts/controllers/ConfirmationModal.js",
+		"/Users/jiar/git/yo-worktajm/app/scripts/services/personService.js",
+		"/Users/jiar/git/yo-worktajm/app/views/partials/dashboard/timeEntryModal.html",
+		"/Users/jiar/git/yo-worktajm/app/index.html",
+		"/Users/jiar/git/yo-worktajm/bower.json",
+		"/Users/jiar/git/yo-worktajm/Gruntfile.js",
+		"/Users/jiar/git/yo-worktajm/app/views/partials/dashboard/deleteConfirmationModal.html",
+		"/Users/jiar/git/yo-worktajm/app/views/partials/modals/confirm.html",
+		"/Users/jiar/git/be-worktajm/api.md",
+		"/Users/jiar/git/yo-worktajm/.jshintrc",
+		"/Users/jiar/git/yo-worktajm/README.md",
+		"/Users/jiar/git/yo-worktajm/app/views/partials/projectModal.html",
+		"/Users/jiar/git/yo-worktajm/app/scripts/controllers/DashboardTimeEntries.js",
 		"/Users/jiar/git/yo-worktajm/app/scripts/app.js",
 		"/Users/jiar/git/yo-worktajm/karma.conf.js",
-		"/Users/jiar/git/yo-worktajm/app/index.html",
-		"/Users/jiar/git/yo-worktajm/app/scripts/filters/hhmmssfilter.js",
-		"/Users/jiar/git/yo-worktajm/test/spec/filters/totaldurationfilter.js",
-		"/Users/jiar/git/yo-worktajm/app/scripts/filters/totaldurationfilter.js",
 		"/Users/jiar/git/yo-worktajm/test/spec/controllers/DashboardTimeEntries.js",
-		"/Users/jiar/git/yo-worktajm/app/scripts/controllers/DashboardTimeEntries.js",
-		"/Users/jiar/git/yo-worktajm/bin/setup_build_environment.sh",
-		"/Users/jiar/git/yo-worktajm/test/spec/controllers/DashboardProjects.js",
-		"/Users/jiar/git/yo-worktajm/bower.json",
-		"/Users/jiar/git/yo-worktajm/package.json",
-		"/Users/jiar/git/yo-worktajm/app/views/partials/reports/pivot.html",
-		"/Users/jiar/git/yo-worktajm/app/views/partials/reports/timesheet.html",
-		"/Users/jiar/git/yo-worktajm/test/spec/filters/groupbyprojectsfilter.js",
-		"/Users/jiar/git/yo-worktajm/test/spec/filters/hhmmssfilter.js",
-		"/Users/jiar/git/yo-worktajm/test/spec/filters/dateFilter.js",
-		"/Users/jiar/git/yo-worktajm/app/views/dashboard.html",
-		"/Users/jiar/git/yo-worktajm/test/e2e/loginTest.js",
-		"/Users/jiar/git/yo-worktajm/test/e2e/utilities.js",
-		"/Users/jiar/git/yo-worktajm/app/scripts/controllers/customers.js",
-		"/Users/jiar/git/yo-worktajm/app/scripts/controllers/projects.js",
-		"/Users/jiar/git/yo-worktajm/test/spec/controllers/projects.js",
-		"/Users/jiar/git/yo-worktajm/test/spec/services/registrationService.js",
-		"/Users/jiar/git/yo-worktajm/app/scripts/services/registrationService.js",
-		"/Users/jiar/git/yo-worktajm/app/scripts/controllers/register.js",
-		"/Users/jiar/git/yo-worktajm/test/spec/controllers/register.js",
-		"/Users/jiar/git/yo-worktajm/app/views/partials/navbar.html",
-		"/Users/jiar/git/yo-worktajm/test/e2e/registrationTest.js",
-		"/Users/jiar/git/yo-worktajm/test/e2e/dashboardTest.js",
-		"/Users/jiar/git/yo-worktajm/test/spec/controllers/login.js",
-		"/Users/jiar/git/yo-worktajm/coverage/Firefox 27.0.0 (Mac OS X 10.9)/lcov-report/scripts/controllers/DashboardProjects.js.html",
-		"/Users/jiar/git/yo-worktajm/test/spec/controllers/customers.js",
-		"/Users/jiar/git/yo-worktajm/app/scripts/controllers/modals/confirmationModal.js",
-		"/Users/jiar/Library/Application Support/Sublime Text 2/Packages/User/Default (OSX).sublime-keymap",
-		"/Users/jiar/git/yo-worktajm/app/scripts/services/personService.js",
-		"/Users/jiar/git/yo-worktajm/app/views/customers.html",
-		"/Users/jiar/git/yo-worktajm/app/views/projects.html",
-		"/Users/jiar/git/yo-worktajm/app/scripts/controllers/login.js",
-		"/Users/jiar/git/yo-worktajm/test/spec/services/personService.js",
-		"/Users/jiar/git/yo-worktajm/app/scripts/services/loginService.js",
-		"/Users/jiar/git/yo-worktajm/test/spec/services/loginService.js",
-		"/Users/jiar/git/yo-worktajm/app/scripts/services/customerService.js",
-		"/Users/jiar/git/yo-worktajm/test/spec/services/customerService.js",
-		"/Users/jiar/git/yo-worktajm/test/spec/controllers/confirmationModal.js",
-		"/Users/jiar/git/yo-worktajm/app/bower_components/angular-cookies/angular-cookies.js",
-		"/Users/jiar/git/yo-worktajm/test/spec/services/timerService.js",
-		"/Users/jiar/git/yo-worktajm/app/views/modals/customerModal.html",
-		"/Users/jiar/git/yo-worktajm/app/scripts/controllers/DashboardProjects.js",
-		"/Users/jiar/git/yo-worktajm/app/scripts/services/timerService.js",
-		"/Users/jiar/git/yo-worktajm/app/views/partials/dashboard/timeEntries.html",
-		"/Users/jiar/git/yo-worktajm/app/scripts/controllers/modals/customerModal.js",
-		"/Users/jiar/git/yo-worktajm/test/e2e/constants.js",
-		"/Users/jiar/git/yo-worktajm/README.md",
-		"/Users/jiar/git/yo-worktajm/test/e2e/customerPageTest.js",
-		"/Users/jiar/git/yo-worktajm/.travis.yml",
-		"/Users/jiar/git/yo-worktajm/test/e2e/addProjectTest.js",
-		"/Users/jiar/git/yo-worktajm/Gruntfile.js",
-		"/Users/jiar/git/yo-worktajm/app/views/partials/registrationForm.html",
-		"/Users/jiar/git/yo-worktajm/protractor-e2e.conf.js",
-		"/Users/jiar/git/yo-worktajm/app/views/main.html",
-		"/Users/jiar/git/yo-worktajm/app/views/partials/dashboard/projects.html",
 		"/Users/jiar/git/yo-worktajm/app/views/login.html",
-		"/Users/jiar/git/yo-worktajm/app/views/partials/modals/customerModal.html",
-		"/Users/jiar/git/yo-worktajm/app/views/partials/dashboard/customerModal.html",
-		"/Users/jiar/git/yo-worktajm/app/scripts/controllers/customer.js",
-		"/Users/jiar/git/yo-worktajm/app/views/partials/dashboard/confirmationModal.html",
-		"/Users/jiar/git/be-worktajm/core/src/main/java/com/arnellconsulting/tps/model/Address.java",
-		"/Users/jiar/git/be-worktajm/core/src/main/java/com/arnellconsulting/tps/model/Customer.java",
-		"/Users/jiar/git/be-worktajm/core/src/main/java/com/arnellconsulting/tps/model/Person.java",
-		"/Users/jiar/git/be-worktajm/core/src/main/java/com/arnellconsulting/tps/model/Project.java",
-		"/Users/jiar/git/be-worktajm/core/src/main/java/com/arnellconsulting/tps/model/TimeEntry.java",
-		"/Users/jiar/git/be-worktajm/core/src/test/java/com/arnellconsulting/tps/config/TestContext.java",
-		"/Users/jiar/git/be-worktajm/core/src/test/java/com/arnellconsulting/tps/config/WebAppContext.java",
-		"/Users/jiar/git/be-worktajm/rest-api/src/test/java/com/arnellconsulting/tps/config/TestContext.java",
-		"/Users/jiar/git/be-worktajm/rest-api/src/test/java/com/arnellconsulting/tps/config/WebAppContext.java",
-		"/Users/jiar/git/yo-worktajm/test/spec/services/timerServiceTimeEntryCrud.js",
-		"/Users/jiar/git/yo-worktajm/test/spec/services/timerServiceProjectCrud.js",
-		"/Users/jiar/git/yo-worktajm/app/views/partials/user.html",
-		"/Users/jiar/git/yo-worktajm/app/scripts/controllers/Main.js",
-		"/Users/jiar/git/yo-worktajm/app/scripts/controllers/TimeEntryModal.js",
-		"/Users/jiar/git/yo-worktajm/app/scripts/filters/dateFilter.js",
-		"/Users/jiar/git/yo-worktajm/app/scripts/services/TpsConstants.js",
 		"/Users/jiar/git/yo-worktajm/test/spec/controllers/about.js",
-		"/Users/jiar/git/yo-worktajm/test/spec/controllers/Main.js",
-		"/Users/jiar/git/yo-worktajm/test/spec/controllers/TimeEntryModal.js",
-		"/Users/jiar/git/yo-worktajm/test/spec/services/TpsConstants.js",
-		"/Users/jiar/git/yo-worktajm/app/scripts/controllers/about.js",
-		"/Users/jiar/git/yo-worktajm/app/scripts/controllers/dashboard.js",
-		"/Users/jiar/git/yo-worktajm/app/views/partials/dashboard/timeEntryModal.html",
 		"/Users/jiar/git/yo-worktajm/test/spec/controllers/dashboard.js",
-		"/Users/jiar/git/yo-worktajm/app/scripts/controllers/timeEntryModal.js",
-		"/Users/jiar/git/yo-worktajm/test/spec/controllers/timeEntryModal.js",
-		"/Users/jiar/git/yo-worktajm/app/bower_components/jasmine-jquery/lib/jasmine-jquery.js",
-		"/Users/jiar/git/yo-worktajm/yo-worktajm.sublime-project",
-		"/Users/jiar/git/yo-worktajm/.tmp/styles/main.css",
+		"/Users/jiar/git/yo-worktajm/test/spec/controllers/login.js",
+		"/Users/jiar/git/yo-worktajm/test/spec/controllers/Main.js",
+		"/Users/jiar/git/yo-worktajm/test/spec/controllers/register.js",
+		"/Users/jiar/git/yo-worktajm/test/spec/controllers/reports.js",
+		"/Users/jiar/git/yo-worktajm/test/spec/filters/dateFilter.js",
+		"/Users/jiar/git/yo-worktajm/test/spec/services/personService.js",
+		"/Users/jiar/git/yo-worktajm/test/spec/services/timerService.js",
+		"/Users/jiar/git/yo-worktajm/test/spec/services/timerServiceProjectCrud.js",
+		"/Users/jiar/git/yo-worktajm/test/spec/services/timerServiceTimeEntryCrud.js",
+		"/Users/jiar/git/yo-worktajm/test/spec/services/TpsConstants.js",
 		"/Users/jiar/git/yo-worktajm/app/styles/main.scss",
-		"/Users/jiar/git/yo-worktajm/app/views/partials/dashboard/company.html",
-		"/Users/jiar/git/yo-worktajm/.sass-cache/717119ad097a9d561e1de4ea2542261a0714292f/main.scssc",
-		"/Users/jiar/git/yo-worktajm/app/views/partials/projectModal.html",
+		"/Users/jiar/git/yo-worktajm/app/bower_components/angular-ui-bootstrap3/ui-bootstrap-tpls.js",
+		"/Users/jiar/git/yo-worktajm/app/bower_components/jquery-ui/ui/jquery-ui.js",
+		"/Users/jiar/git/yo-worktajm/app/bower_components/angular-ui-calendar/src/calendar.js",
+		"/Users/jiar/git/yo-worktajm/app/bower_components/angular-ui-bootstrap3/ui-bootstrap.js",
+		"/Users/jiar/git/yo-worktajm/app/bower_components/fullcalendar/readme.md",
+		"/Users/jiar/git/yo-worktajm/app/bower_components/angular-resource/angular-resource.js",
+		"/Users/jiar/git/yo-worktajm/app/bower_components/angular-route/angular-route.js",
+		"/Users/jiar/git/yo-worktajm/app/bower_components/angular-ui-bootstrap3/.bower.json",
+		"/Users/jiar/git/yo-worktajm/readme.txt",
+		"/Users/jiar/git/yo-worktajm/app/bower_components/angular-ui-bootstrap3/README.md",
+		"/Users/jiar/git/yo-worktajm/app/bower_components/jquery-timepicker/jquery.ui.timepicker.js",
+		"/Users/jiar/git/yo-worktajm/test/spec/services/notificationService.js",
+		"/Users/jiar/git/yo-worktajm/app/scripts/controllers/register.js",
+		"/Users/jiar/git/yo-worktajm/app/views/main.html",
+		"/Users/jiar/git/yo-worktajm/app/views/dashboard.html",
+		"/Users/jiar/git/yo-worktajm/app/scripts/services/notificationService.js",
+		"/Users/jiar/git/yo-worktajm/app/scripts/controllers/notification.js",
+		"/Users/jiar/git/yo-worktajm/test/spec/controllers/notification.js",
+		"/Users/jiar/git/yo-worktajm/test/spec/services/notification.js",
+		"/Users/jiar/git/yo-worktajm/app/scripts/services/notification.js",
+		"/Users/jiar/git/yo-worktajm/app/bower_components/AngularJS-Toaster/README.md",
+		"/Users/jiar/git/yo-worktajm/app/bower_components/AngularJS-Toaster/bower.json",
 		"/Users/jiar/git/yo-worktajm/app/views/about.html",
+		"/Users/jiar/git/yo-worktajm/app/views/reports.html",
+		"/Users/jiar/git/yo-worktajm/.tmp/styles/main.css",
+		"/Users/jiar/git/yo-worktajm/yo-worktajm.sublime-project",
+		"/Users/jiar/git/yo-worktajm/app/scripts/controllers/dashboard.js",
+		"/Users/jiar/git/yo-worktajm/.sass-cache/717119ad097a9d561e1de4ea2542261a0714292f/main.scssc",
+		"/Users/jiar/git/yo-worktajm/app/views/partials/registrationForm.html",
+		"/Users/jiar/git/yo-worktajm/.travis.yml",
 		"/Users/jiar/Downloads/iOS-7-Omnigraffle-Stencil-Freebie-master/README.md",
 		"/Users/jiar/git/tps/yo/app/views/dashboard.html",
 		"/Users/jiar/git/tps/yo/app/views/main.html",
@@ -707,26 +557,48 @@
 		"/Users/jiar/git/tps/yo/test/spec/controllers/register.js",
 		"/Users/jiar/git/tps/yo/app/scripts/controllers/register.js",
 		"/Users/jiar/git/tps/yo/test/spec/controllers/DashboardProjects.js",
-		"/Users/jiar/git/tps/yo/app/scripts/app.js"
+		"/Users/jiar/git/tps/yo/app/scripts/app.js",
+		"/Users/jiar/git/tps/yo/app/views/partials/dashboard/projects.html",
+		"/Users/jiar/git/tps/yo/app/scripts/controllers/login.js",
+		"/Users/jiar/git/tps/yo/app/scripts/controllers/dashboard.js",
+		"/Users/jiar/git/tps/yo/app/scripts/services/personService.js",
+		"/Users/jiar/git/tps/yo/app/index.html",
+		"/Users/jiar/git/tps/yo/app/bower_components/toastr/toastr.js",
+		"/Users/jiar/git/tps/yo/bower.json",
+		"/Users/jiar/git/tps/yo/app/bower_components/toastr/bower.json",
+		"/Users/jiar/git/tps/yo/test/spec/controllers/dashboard.js",
+		"/Users/jiar/git/tps/yo/app/scripts/controllers/DashboardProjects.js",
+		"/Users/jiar/git/tps/yo/coverage/Chrome 30.0.1599 (Mac OS X 10.9.0)/scripts/controllers/DashboardProjects.js.html",
+		"/Users/jiar/git/tps/yo/app/views/partials/projectModal.html",
+		"/Users/jiar/git/tps/yo/app/scripts/services/timerService.js",
+		"/Users/jiar/git/tps/yo/app/bower_components/angular-cookies/angular-cookies.js",
+		"/Users/jiar/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/jiar/git/tps/yo/app/scripts/controllers/DashboardTimeEntries.js",
+		"/Users/jiar/git/tps/yo/app/views/partials/dashboard/timeEntries.html",
+		"/Users/jiar/git/tps/yo/app/views/partials/dashboard/timeEntryModal.html",
+		"/Users/jiar/git/tps/yo/test/spec/services/timerServiceProjectCrud.js",
+		"/Users/jiar/git/tps/yo/test/spec/controllers/DashboardTimeEntries.js",
+		"/Users/jiar/git/tps/yo/app/bower_components/sass-bootstrap-compass/js/modal.js",
+		"/Users/jiar/git/tps/yo/app/styles/inside.scss",
+		"/Users/jiar/git/tps/yo/app/views/partials/project.html",
+		"/Users/jiar/git/tps/yo/app/bower_components/string-format/component.json",
+		"/Users/jiar/git/tps/yo/app/bower_components/string-format/test/spec/StringFormatSpec.js",
+		"/Users/jiar/git/tps/yo/app/bower_components/string-format/string-format.js",
+		"/Users/jiar/git/tps/yo/test/spec/controllers/Main.js",
+		"/Users/jiar/git/tps/yo/test/spec/directives/bsHolder.js",
+		"/Users/jiar/git/tps/yo/app/scripts/directives/bsHolder.js"
 	],
 	"find":
 	{
-		"height": 35.0
+		"height": 37.0
 	},
 	"find_in_files":
 	{
 		"height": 95.0,
 		"where_history":
 		[
-			"-*/dist/*,-*/coverage/*,-*/node_modules/*,-*/app/bower_components/*,*.js,*.html,*.scss",
-			"-*/app/coverage/*,-*/app/node_modules/*,-*/app/bower_components/*,*.js,*.html,*.scss",
-			"-*/app/node_modules/*,-*/app/bower_components/*,*.js,*.html,*.scss",
-			"-*/app/bower_components/*,*.js,*.html,*.scss",
-			"-*/app/bower_components/*,*.js,*.html,*.scss,*",
-			"-*/app/bower_components/*,*.js,*.html,*.scss",
-			"-*/app/bower_components/*,*.js,*.html,*.scss,*",
-			"-*/app/bower_components/*,*.js,*.html,*.scss",
-			"-*/coverage/*,-*/app/bower_components/*,*.js,-*/node_modules/*,*.html,*.scss,-/dist/*",
+			"-*/coverage/*,-*/app/bower_components/*,-*.idea/*,*.js,-*/node_modules/*,*",
+			"-*/coverage/*,-*/app/bower_components/*,*.js,-*/node_modules/*,*",
 			"-*/coverage/*,-*/app/bower_components/*,*.js,-*/node_modules/*,*.html,*.scss",
 			"-*/coverage/*,-*/app/bower_components/*,*.js,-/node_modules/*,*.html,*.scss",
 			"-*/coverage/*,-*/app/bower_components/*,*.js,-/node_modules,*.html,*.scss",
@@ -773,134 +645,134 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"pivot",
-			"result",
-			"grouped by projecs with updated duration",
-			"startTime: new XDate(2014,  0, 29,  0,  0,  0), endTime: new XDate(2014,  0, 29,  1,  0,  0)",
-			"toLocale",
-			"fromLocale",
-			"fromLocal",
-			"projecs with updated duration",
-			"timeEntries",
-			"sumFilter",
-			"project",
-			"ng-include",
-			"lastWeek",
-			"thisWeek",
-			"2007",
-			"to",
-			"To",
-			"tO",
-			"to",
-			"To",
-			"tO",
-			"to",
-			"To",
-			"tO",
-			"to",
-			"from",
-			"referenceDay",
-			"ddescribe",
-			"11",
-			"route",
-			"mock",
-			"12",
-			"ith empty project list,",
-			"is null",
-			"updateTimeEntryOnOk",
-			"project:",
-			"project",
-			"groupedByProject",
-			"group",
-			"Group",
-			"group",
-			"groupedTimeEntries",
+			"logback-classic",
+			"1.7.2",
+			"        ",
+			"       ",
+			"      ",
+			"     ",
+			"    ",
+			"   ",
+			"tomcat",
+			"maven-tomcat",
+			"root",
+			"casc",
+			"devMode",
+			"Project A",
+			"First name",
+			"first name",
+			"primary",
+			"btn-group",
+			"modal",
+			"should call removeProject",
+			"ConfirmationModalCtrl",
+			"delete",
+			"    \n",
+			"onShowConfirmationModal",
+			"removeProject",
+			"broadcast",
+			"broad",
+			"removeProject",
+			"delete",
+			"ConfirmationModalCtrl",
+			"timeEntryModal",
+			"myModalContent.html",
+			"TimeEntryModal",
+			"devMode",
+			"TimeEntryModal.js",
+			"phan",
+			"coverall",
+			"cover",
+			"2.6.0",
+			"timeEntryModal",
+			"devMode",
+			"more",
+			"worktaj,",
+			"https://api.no.de/",
+			"https://worktaj,arnellconsulting.dyndns.org:8080/api",
+			"jill:secret",
+			"jill",
+			"Jill",
+			"jill",
+			"loadNpm",
+			"onTimeEntryUpdated",
+			"tomcat",
+			"manager",
+			"managar",
+			"artifactory",
+			"devMode",
+			"Create new project",
+			"description",
+			"timeEntry.description",
+			"timeEntry.",
+			"dropdown2",
 			"startTime",
-			"id:   ",
-			"Filter",
-			"enabledProjects",
-			"enabledCustomers",
-			"iit",
-			"projectA",
-			"project: 2",
-			"project: 1",
-			"projectId",
-			"customer: 1",
-			"input",
-			"startTime: new XDate",
-			" 8,",
-			" 9,",
-			"9,",
-			"9",
-			"from",
-			"getYear",
-			"toBe",
-			"Weeks",
-			"2014, 2,  3",
-			"2014, 2, 10",
-			"2014, 2, 10, 0, 0, 0",
-			"2014, 2, 10",
-			"XDate",
-			"Date",
+			"timeEntryModal",
+			"glyph",
+			"data.dateDropDownInput",
+			"ng-model",
+			"cover",
+			"requi",
+			"xdescribe(",
+			"startDate",
+			"modal",
+			"describe(",
+			"$scope",
+			"editTimeEntry",
+			"start",
+			"devMode",
+			"h1",
+			"icon",
+			"timeEntries.html",
+			"Time Entries",
+			"jquery-ui",
+			"\"></script>",
+			"restangular",
+			"icon-",
+			"timepicker",
+			"endTime",
+			"timeEntries.html",
 			"timeEntries",
-			"express",
-			"ogin successfully and then logout",
-			"register successfully",
-			"describe",
-			"ddescribe",
-			"Jim Arnell",
-			"person.firstName",
-			"ConfirmationModalCtrl",
-			"result",
-			"onRemoveCustomerModalCancel",
-			"ddescribe",
-			"failed",
-			"should fail login",
-			"rootScope.user",
-			"/dashboard",
-			"dashboard",
-			"angular-cookies",
-			"dd",
-			"svc.person",
-			"loginService",
-			"PersonService",
-			"LoginService",
-			"LoginServiceMock",
-			"LoginService",
-			"PersonService",
-			"PersonService.person",
-			"LoginService.person",
-			"LoginService",
-			"personService",
-			"PersonService",
-			"personService",
-			"PersonService",
-			"personService",
-			"PersonService",
-			"personService",
-			"PersonService",
-			"personService",
-			"PersonService",
-			"personService",
-			"PersonService",
-			"personService",
-			"PersonService",
-			"personService",
-			"personId",
-			"jim@arnellconsulting.com",
-			"reporter",
-			"onCustomerDeleted",
-			"VENT: CustomersCtrl::onCustomerDeleted(",
-			"onCustomerDeleted",
-			"ConfirmationModalCtrl",
-			"onRemoveCustomerModalOk",
-			"should remove a customer",
-			"delete",
-			"delete\\",
-			"delete",
-			"angular-cookies",
-			"should update a customer",
-			"delete tests"
+			"timeEntryModal",
+			"devMode",
+			"devModel",
+			"event that authentication suceed",
+			"hould login successfully",
+			"should login successfully",
+			"tests should login successfully",
+			" for person gracefully",
+			"projects and time entries loaded should handle null value for person gracefully",
+			"should get the currenly logged in person",
+			"1",
+			"userId",
+			"password",
+			"ng-controller",
+			"password",
+			"\"",
+			"right",
+			"spy",
+			"$on",
+			"describe(",
+			"spy",
+			"broadcast",
+			"r.module('tps')",
+			"yoWorktajmApp",
+			"Notification",
+			"notification",
+			"broadcast",
+			"\"",
+			"toaster",
+			"toast-top-right",
+			"success",
+			"toastr",
+			"1.2.1",
+			"toastr",
+			"glyphicon-bar",
+			"glyphicon",
+			"footer",
+			"company",
+			"Name missing",
+			"User"
 		],
 		"highlight": false,
 		"in_selection": false,
@@ -908,15 +780,10 @@
 		"regex": false,
 		"replace_history":
 		[
-			"   private",
-			"",
-			"CustomerService",
-			"'yoWorktajmApp'",
+			"timeEntryModal.html",
 			"describe(",
 			"xdescribe(",
-			"TimeEntryModalCtrl",
-			"describe(",
-			"xdescribe(",
+			"icon-bar",
 			"describe(",
 			"xdescribe(",
 			"describe(",
@@ -955,1464 +822,8 @@
 	"groups":
 	[
 		{
-			"selected": 4,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "app/views/reports.html",
-					"settings":
-					{
-						"buffer_size": 4303,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"annotations":
-							[
-								"TODO",
-								"README",
-								"FIXME"
-							],
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"codeintel": true,
-							"codeintel_config":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2.0,
-									"codeintel_scan_files_in_project": false,
-									"javascriptExtraPaths":
-									[
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 5.0,
-									"codeintel_scan_files_in_project": false,
-									"phpExtraPaths":
-									[
-									]
-								},
-								"Python":
-								{
-									"env":
-									{
-									}
-								}
-							},
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_live": true,
-							"codeintel_live_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_max_recursive_dir_depth": 10.0,
-							"codeintel_scan_exclude_dir":
-							{
-								"JavaScript":
-								[
-									"/build/",
-									"/min/"
-								]
-							},
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-								"PyWin32",
-								"jQuery",
-								"Rails"
-							],
-							"codeintel_snippets": true,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"csslint_options":
-							{
-								"adjoining-classes": "warning",
-								"box-model": true,
-								"box-sizing": "warning",
-								"compatible-vendor-prefixes": "warning",
-								"display-property-grouping": true,
-								"duplicate-background-images": "warning",
-								"duplicate-properties": true,
-								"empty-rules": true,
-								"errors": true,
-								"fallback-colors": "warning",
-								"floats": "warning",
-								"font-faces": "warning",
-								"font-sizes": "warning",
-								"gradients": "warning",
-								"ids": "warning",
-								"import": "warning",
-								"important": "warning",
-								"known-properties": true,
-								"outline-none": "warning",
-								"overqualified-elements": "warning",
-								"qualified-headings": "warning",
-								"regex-selectors": "warning",
-								"rules-count": "warning",
-								"shorthand": "warning",
-								"star-property-hack": "warning",
-								"text-indent": "warning",
-								"underscore-property-hack": "warning",
-								"unique-headings": "warning",
-								"universal-selector": "warning",
-								"vendor-prefix": true,
-								"zero-units": "warning"
-							},
-							"gjslint_ignore":
-							[
-								110.0
-							],
-							"gjslint_options":
-							[
-							],
-							"javascript_linter": "jshint",
-							"jshint_options":
-							{
-								"browser": true,
-								"camelcase": false,
-								"eqeqeq": true,
-								"evil": true,
-								"globals":
-								{
-									"beforeEach": false,
-									"describe": false,
-									"expect": false,
-									"spyOn": false
-								},
-								"indent": 2.0,
-								"predef":
-								[
-									"confirm",
-									"alert",
-									"jasmine",
-									"spyOn",
-									"it",
-									"console",
-									"describe",
-									"expect",
-									"beforeEach",
-									"waits",
-									"waitsFor",
-									"runs"
-								],
-								"quotmark": "single",
-								"regexdash": true,
-								"sub": true,
-								"trailing": true,
-								"wsh": true
-							},
-							"pep8": true,
-							"pep8_ignore":
-							[
-								"E501"
-							],
-							"perl_linter": "perlcritic",
-							"pyflakes_ignore":
-							[
-							],
-							"pyflakes_ignore_import_*": true,
-							"sublime_auto_complete": true,
-							"sublimelinter": true,
-							"sublimelinter_delay": 2.0,
-							"sublimelinter_disable":
-							[
-							],
-							"sublimelinter_executable_map":
-							{
-							},
-							"sublimelinter_fill_outlines": false,
-							"sublimelinter_gutter_marks": true,
-							"sublimelinter_gutter_marks_theme": "simple",
-							"sublimelinter_mark_style": "none",
-							"sublimelinter_notes": false,
-							"sublimelinter_objj_check_ascii": false,
-							"sublimelinter_popup_errors_on_save": false,
-							"sublimelinter_syntax_map":
-							{
-								"C++": "c",
-								"Python Django": "python",
-								"Ruby on Rails": "ruby"
-							},
-							"sublimelinter_wrap_find": true,
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 353.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "app/scripts/controllers/reports.js",
-					"settings":
-					{
-						"buffer_size": 6620,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"annotations":
-							[
-								"TODO",
-								"README",
-								"FIXME"
-							],
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"codeintel": true,
-							"codeintel_config":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2.0,
-									"codeintel_scan_files_in_project": false,
-									"javascriptExtraPaths":
-									[
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 5.0,
-									"codeintel_scan_files_in_project": false,
-									"phpExtraPaths":
-									[
-									]
-								},
-								"Python":
-								{
-									"env":
-									{
-									}
-								}
-							},
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_live": true,
-							"codeintel_live_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_max_recursive_dir_depth": 10.0,
-							"codeintel_scan_exclude_dir":
-							{
-								"JavaScript":
-								[
-									"/build/",
-									"/min/"
-								]
-							},
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-								"PyWin32",
-								"jQuery",
-								"Rails"
-							],
-							"codeintel_snippets": true,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"csslint_options":
-							{
-								"adjoining-classes": "warning",
-								"box-model": true,
-								"box-sizing": "warning",
-								"compatible-vendor-prefixes": "warning",
-								"display-property-grouping": true,
-								"duplicate-background-images": "warning",
-								"duplicate-properties": true,
-								"empty-rules": true,
-								"errors": true,
-								"fallback-colors": "warning",
-								"floats": "warning",
-								"font-faces": "warning",
-								"font-sizes": "warning",
-								"gradients": "warning",
-								"ids": "warning",
-								"import": "warning",
-								"important": "warning",
-								"known-properties": true,
-								"outline-none": "warning",
-								"overqualified-elements": "warning",
-								"qualified-headings": "warning",
-								"regex-selectors": "warning",
-								"rules-count": "warning",
-								"shorthand": "warning",
-								"star-property-hack": "warning",
-								"text-indent": "warning",
-								"underscore-property-hack": "warning",
-								"unique-headings": "warning",
-								"universal-selector": "warning",
-								"vendor-prefix": true,
-								"zero-units": "warning"
-							},
-							"gjslint_ignore":
-							[
-								110.0
-							],
-							"gjslint_options":
-							[
-							],
-							"javascript_linter": "jshint",
-							"jshint_options":
-							{
-								"browser": true,
-								"camelcase": false,
-								"eqeqeq": true,
-								"evil": true,
-								"globals":
-								{
-									"beforeEach": false,
-									"describe": false,
-									"expect": false,
-									"spyOn": false
-								},
-								"indent": 2.0,
-								"predef":
-								[
-									"confirm",
-									"alert",
-									"jasmine",
-									"spyOn",
-									"it",
-									"console",
-									"describe",
-									"expect",
-									"beforeEach",
-									"waits",
-									"waitsFor",
-									"runs"
-								],
-								"quotmark": "single",
-								"regexdash": true,
-								"sub": true,
-								"trailing": true,
-								"wsh": true
-							},
-							"pep8": true,
-							"pep8_ignore":
-							[
-								"E501"
-							],
-							"perl_linter": "perlcritic",
-							"pyflakes_ignore":
-							[
-							],
-							"pyflakes_ignore_import_*": true,
-							"sublime_auto_complete": true,
-							"sublimelinter": true,
-							"sublimelinter_delay": 2.0,
-							"sublimelinter_disable":
-							[
-							],
-							"sublimelinter_executable_map":
-							{
-							},
-							"sublimelinter_fill_outlines": false,
-							"sublimelinter_gutter_marks": true,
-							"sublimelinter_gutter_marks_theme": "simple",
-							"sublimelinter_mark_style": "none",
-							"sublimelinter_notes": false,
-							"sublimelinter_objj_check_ascii": false,
-							"sublimelinter_popup_errors_on_save": false,
-							"sublimelinter_syntax_map":
-							{
-								"C++": "c",
-								"Python Django": "python",
-								"Ruby on Rails": "ruby"
-							},
-							"sublimelinter_wrap_find": true,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1011.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "app/views/reports/pivot.html",
-					"settings":
-					{
-						"buffer_size": 758,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"annotations":
-							[
-								"TODO",
-								"README",
-								"FIXME"
-							],
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"codeintel": true,
-							"codeintel_config":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2.0,
-									"codeintel_scan_files_in_project": false,
-									"javascriptExtraPaths":
-									[
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 5.0,
-									"codeintel_scan_files_in_project": false,
-									"phpExtraPaths":
-									[
-									]
-								},
-								"Python":
-								{
-									"env":
-									{
-									}
-								}
-							},
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_live": true,
-							"codeintel_live_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_max_recursive_dir_depth": 10.0,
-							"codeintel_scan_exclude_dir":
-							{
-								"JavaScript":
-								[
-									"/build/",
-									"/min/"
-								]
-							},
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-								"PyWin32",
-								"jQuery",
-								"Rails"
-							],
-							"codeintel_snippets": true,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"csslint_options":
-							{
-								"adjoining-classes": "warning",
-								"box-model": true,
-								"box-sizing": "warning",
-								"compatible-vendor-prefixes": "warning",
-								"display-property-grouping": true,
-								"duplicate-background-images": "warning",
-								"duplicate-properties": true,
-								"empty-rules": true,
-								"errors": true,
-								"fallback-colors": "warning",
-								"floats": "warning",
-								"font-faces": "warning",
-								"font-sizes": "warning",
-								"gradients": "warning",
-								"ids": "warning",
-								"import": "warning",
-								"important": "warning",
-								"known-properties": true,
-								"outline-none": "warning",
-								"overqualified-elements": "warning",
-								"qualified-headings": "warning",
-								"regex-selectors": "warning",
-								"rules-count": "warning",
-								"shorthand": "warning",
-								"star-property-hack": "warning",
-								"text-indent": "warning",
-								"underscore-property-hack": "warning",
-								"unique-headings": "warning",
-								"universal-selector": "warning",
-								"vendor-prefix": true,
-								"zero-units": "warning"
-							},
-							"gjslint_ignore":
-							[
-								110.0
-							],
-							"gjslint_options":
-							[
-							],
-							"javascript_linter": "jshint",
-							"jshint_options":
-							{
-								"browser": true,
-								"camelcase": false,
-								"eqeqeq": true,
-								"evil": true,
-								"globals":
-								{
-									"beforeEach": false,
-									"describe": false,
-									"expect": false,
-									"spyOn": false
-								},
-								"indent": 2.0,
-								"predef":
-								[
-									"confirm",
-									"alert",
-									"jasmine",
-									"spyOn",
-									"it",
-									"console",
-									"describe",
-									"expect",
-									"beforeEach",
-									"waits",
-									"waitsFor",
-									"runs"
-								],
-								"quotmark": "single",
-								"regexdash": true,
-								"sub": true,
-								"trailing": true,
-								"wsh": true
-							},
-							"pep8": true,
-							"pep8_ignore":
-							[
-								"E501"
-							],
-							"perl_linter": "perlcritic",
-							"pyflakes_ignore":
-							[
-							],
-							"pyflakes_ignore_import_*": true,
-							"sublime_auto_complete": true,
-							"sublimelinter": true,
-							"sublimelinter_delay": 2.0,
-							"sublimelinter_disable":
-							[
-							],
-							"sublimelinter_executable_map":
-							{
-							},
-							"sublimelinter_fill_outlines": false,
-							"sublimelinter_gutter_marks": true,
-							"sublimelinter_gutter_marks_theme": "simple",
-							"sublimelinter_mark_style": "none",
-							"sublimelinter_notes": false,
-							"sublimelinter_objj_check_ascii": false,
-							"sublimelinter_popup_errors_on_save": false,
-							"sublimelinter_syntax_map":
-							{
-								"C++": "c",
-								"Python Django": "python",
-								"Ruby on Rails": "ruby"
-							},
-							"sublimelinter_wrap_find": true,
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "app/views/reports/timesheet.html",
-					"settings":
-					{
-						"buffer_size": 1125,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"annotations":
-							[
-								"TODO",
-								"README",
-								"FIXME"
-							],
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"codeintel": true,
-							"codeintel_config":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2.0,
-									"codeintel_scan_files_in_project": false,
-									"javascriptExtraPaths":
-									[
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 5.0,
-									"codeintel_scan_files_in_project": false,
-									"phpExtraPaths":
-									[
-									]
-								},
-								"Python":
-								{
-									"env":
-									{
-									}
-								}
-							},
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_live": true,
-							"codeintel_live_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_max_recursive_dir_depth": 10.0,
-							"codeintel_scan_exclude_dir":
-							{
-								"JavaScript":
-								[
-									"/build/",
-									"/min/"
-								]
-							},
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-								"PyWin32",
-								"jQuery",
-								"Rails"
-							],
-							"codeintel_snippets": true,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"csslint_options":
-							{
-								"adjoining-classes": "warning",
-								"box-model": true,
-								"box-sizing": "warning",
-								"compatible-vendor-prefixes": "warning",
-								"display-property-grouping": true,
-								"duplicate-background-images": "warning",
-								"duplicate-properties": true,
-								"empty-rules": true,
-								"errors": true,
-								"fallback-colors": "warning",
-								"floats": "warning",
-								"font-faces": "warning",
-								"font-sizes": "warning",
-								"gradients": "warning",
-								"ids": "warning",
-								"import": "warning",
-								"important": "warning",
-								"known-properties": true,
-								"outline-none": "warning",
-								"overqualified-elements": "warning",
-								"qualified-headings": "warning",
-								"regex-selectors": "warning",
-								"rules-count": "warning",
-								"shorthand": "warning",
-								"star-property-hack": "warning",
-								"text-indent": "warning",
-								"underscore-property-hack": "warning",
-								"unique-headings": "warning",
-								"universal-selector": "warning",
-								"vendor-prefix": true,
-								"zero-units": "warning"
-							},
-							"gjslint_ignore":
-							[
-								110.0
-							],
-							"gjslint_options":
-							[
-							],
-							"javascript_linter": "jshint",
-							"jshint_options":
-							{
-								"browser": true,
-								"camelcase": false,
-								"eqeqeq": true,
-								"evil": true,
-								"globals":
-								{
-									"beforeEach": false,
-									"describe": false,
-									"expect": false,
-									"spyOn": false
-								},
-								"indent": 2.0,
-								"predef":
-								[
-									"confirm",
-									"alert",
-									"jasmine",
-									"spyOn",
-									"it",
-									"console",
-									"describe",
-									"expect",
-									"beforeEach",
-									"waits",
-									"waitsFor",
-									"runs"
-								],
-								"quotmark": "single",
-								"regexdash": true,
-								"sub": true,
-								"trailing": true,
-								"wsh": true
-							},
-							"pep8": true,
-							"pep8_ignore":
-							[
-								"E501"
-							],
-							"perl_linter": "perlcritic",
-							"pyflakes_ignore":
-							[
-							],
-							"pyflakes_ignore_import_*": true,
-							"sublime_auto_complete": true,
-							"sublimelinter": true,
-							"sublimelinter_delay": 2.0,
-							"sublimelinter_disable":
-							[
-							],
-							"sublimelinter_executable_map":
-							{
-							},
-							"sublimelinter_fill_outlines": false,
-							"sublimelinter_gutter_marks": true,
-							"sublimelinter_gutter_marks_theme": "simple",
-							"sublimelinter_mark_style": "none",
-							"sublimelinter_notes": false,
-							"sublimelinter_objj_check_ascii": false,
-							"sublimelinter_popup_errors_on_save": false,
-							"sublimelinter_syntax_map":
-							{
-								"C++": "c",
-								"Python Django": "python",
-								"Ruby on Rails": "ruby"
-							},
-							"sublimelinter_wrap_find": true,
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "app/views/reports/invoice.html",
-					"settings":
-					{
-						"buffer_size": 3553,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								507,
-								507
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"annotations":
-							[
-								"TODO",
-								"README",
-								"FIXME"
-							],
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"codeintel": true,
-							"codeintel_config":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2.0,
-									"codeintel_scan_files_in_project": false,
-									"javascriptExtraPaths":
-									[
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 5.0,
-									"codeintel_scan_files_in_project": false,
-									"phpExtraPaths":
-									[
-									]
-								},
-								"Python":
-								{
-									"env":
-									{
-									}
-								}
-							},
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_live": true,
-							"codeintel_live_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_max_recursive_dir_depth": 10.0,
-							"codeintel_scan_exclude_dir":
-							{
-								"JavaScript":
-								[
-									"/build/",
-									"/min/"
-								]
-							},
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-								"PyWin32",
-								"jQuery",
-								"Rails"
-							],
-							"codeintel_snippets": true,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"csslint_options":
-							{
-								"adjoining-classes": "warning",
-								"box-model": true,
-								"box-sizing": "warning",
-								"compatible-vendor-prefixes": "warning",
-								"display-property-grouping": true,
-								"duplicate-background-images": "warning",
-								"duplicate-properties": true,
-								"empty-rules": true,
-								"errors": true,
-								"fallback-colors": "warning",
-								"floats": "warning",
-								"font-faces": "warning",
-								"font-sizes": "warning",
-								"gradients": "warning",
-								"ids": "warning",
-								"import": "warning",
-								"important": "warning",
-								"known-properties": true,
-								"outline-none": "warning",
-								"overqualified-elements": "warning",
-								"qualified-headings": "warning",
-								"regex-selectors": "warning",
-								"rules-count": "warning",
-								"shorthand": "warning",
-								"star-property-hack": "warning",
-								"text-indent": "warning",
-								"underscore-property-hack": "warning",
-								"unique-headings": "warning",
-								"universal-selector": "warning",
-								"vendor-prefix": true,
-								"zero-units": "warning"
-							},
-							"gjslint_ignore":
-							[
-								110.0
-							],
-							"gjslint_options":
-							[
-							],
-							"javascript_linter": "jshint",
-							"jshint_options":
-							{
-								"browser": true,
-								"camelcase": false,
-								"eqeqeq": true,
-								"evil": true,
-								"globals":
-								{
-									"beforeEach": false,
-									"describe": false,
-									"expect": false,
-									"spyOn": false
-								},
-								"indent": 2.0,
-								"predef":
-								[
-									"confirm",
-									"alert",
-									"jasmine",
-									"spyOn",
-									"it",
-									"console",
-									"describe",
-									"expect",
-									"beforeEach",
-									"waits",
-									"waitsFor",
-									"runs"
-								],
-								"quotmark": "single",
-								"regexdash": true,
-								"sub": true,
-								"trailing": true,
-								"wsh": true
-							},
-							"pep8": true,
-							"pep8_ignore":
-							[
-								"E501"
-							],
-							"perl_linter": "perlcritic",
-							"pyflakes_ignore":
-							[
-							],
-							"pyflakes_ignore_import_*": true,
-							"sublime_auto_complete": true,
-							"sublimelinter": true,
-							"sublimelinter_delay": 2.0,
-							"sublimelinter_disable":
-							[
-							],
-							"sublimelinter_executable_map":
-							{
-							},
-							"sublimelinter_fill_outlines": false,
-							"sublimelinter_gutter_marks": true,
-							"sublimelinter_gutter_marks_theme": "simple",
-							"sublimelinter_mark_style": "none",
-							"sublimelinter_notes": false,
-							"sublimelinter_objj_check_ascii": false,
-							"sublimelinter_popup_errors_on_save": false,
-							"sublimelinter_syntax_map":
-							{
-								"C++": "c",
-								"Python Django": "python",
-								"Ruby on Rails": "ruby"
-							},
-							"sublimelinter_wrap_find": true,
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -2455,6 +866,11 @@
 	{
 		"height": 102.0
 	},
+	"output.markdown":
+	{
+		"height": 96.0
+	},
+	"project": "yo-worktajm.sublime-project",
 	"replace":
 	{
 		"height": 66.0
@@ -2466,228 +882,168 @@
 		"selected_items":
 		[
 			[
-				"reports",
-				"yo-worktajm/app/scripts/controllers/reports.js"
+				"log",
+				"src/main/resources/logback.xml"
 			],
 			[
-				"report",
-				"yo-worktajm/app/views/reports.html"
+				"rea",
+				"README.md"
 			],
 			[
-				"durationfilter",
-				"yo-worktajm/test/spec/filters/durationfilter.js"
+				"pom.xml",
+				"pom.xml"
 			],
 			[
-				"sum",
-				"yo-worktajm/app/scripts/filters/sumfilter.js"
+				"db.change",
+				"core/src/main/resources/liquibase/db.changelog.xml"
 			],
 			[
-				"reports.",
-				"yo-worktajm/app/scripts/controllers/reports.js"
-			],
-			[
-				"report.js",
-				"yo-worktajm/node_modules/karma-coverage/node_modules/ibrik/lib/report.js"
-			],
-			[
-				"index",
-				"yo-worktajm/app/index.html"
-			],
-			[
-				"karm",
-				"yo-worktajm/karma.conf.js"
-			],
-			[
-				"app.",
-				"yo-worktajm/app/scripts/app.js"
-			],
-			[
-				"pivo",
-				"yo-worktajm/app/views/reports/pivot.html"
-			],
-			[
-				"kar",
-				"yo-worktajm/karma.conf.js"
-			],
-			[
-				"timesh",
-				"yo-worktajm/app/views/reports/timesheet.html"
-			],
-			[
-				"karma",
-				"yo-worktajm/karma.conf.js"
-			],
-			[
-				"ashboardtimeentries.js",
-				"yo-worktajm/test/spec/controllers/DashboardTimeEntries.js"
-			],
-			[
-				"reports.js",
-				"yo-worktajm/app/scripts/controllers/reports.js"
-			],
-			[
-				"time",
-				"yo-worktajm/app/views/partials/reports/timesheet.html"
-			],
-			[
-				"timeentry",
-				"test/spec/filters/timeEntryFilter.js"
-			],
-			[
-				"uti",
-				"test/e2e/utilities.js"
-			],
-			[
-				"package",
-				"package.json"
-			],
-			[
-				"registrationser",
-				"app/scripts/services/registrationService.js"
-			],
-			[
-				"registrat",
-				"test/spec/services/registrationService.js"
-			],
-			[
-				"customers.js",
-				"test/spec/controllers/customers.js"
-			],
-			[
-				"confirmat",
-				"app/scripts/controllers/modals/confirmationModal.js"
-			],
-			[
-				"confirm",
-				"app/scripts/controllers/modals/confirmationModal.js"
-			],
-			[
-				"projects",
-				"test/spec/controllers/projects.js"
-			],
-			[
-				"customers",
-				"test/spec/controllers/customers.js"
-			],
-			[
-				"registrations",
-				"test/spec/services/registrationService.js"
-			],
-			[
-				"register",
-				"test/spec/controllers/register.js"
-			],
-			[
-				"registration",
-				"test/spec/services/registrationService.js"
-			],
-			[
-				"bower",
-				"bower.json"
-			],
-			[
-				"personser",
-				"app/scripts/services/personService.js"
-			],
-			[
-				"loginser",
-				"test/spec/services/loginService.js"
-			],
-			[
-				"personservice",
-				"app/scripts/services/personService.js"
-			],
-			[
-				"angular",
-				"app/bower_components/angular-cookies/angular-cookies.js"
-			],
-			[
-				"customerservi",
-				"test/spec/services/customerService.js"
+				"liqu",
+				"core/target/classes/liquibase.properties"
 			],
 			[
 				"timers",
 				"app/scripts/services/timerService.js"
 			],
 			[
-				"registr",
-				"app/views/partials/registrationForm.html"
-			],
-			[
-				"login",
-				"app/scripts/controllers/login.js"
-			],
-			[
-				"logi",
-				"app/scripts/controllers/login.js"
-			],
-			[
-				"customer",
-				"app/views/partials/dashboard/customerModal.html"
-			],
-			[
-				"confirmationmodal.html",
+				"confirm",
 				"app/views/partials/dashboard/confirmationModal.html"
 			],
 			[
-				"customerser",
-				"app/scripts/services/customerService.js"
+				"timerservice",
+				"app/scripts/services/timerService.js"
 			],
 			[
-				"dash",
-				"app/scripts/controllers/DashboardProjects.js"
+				"confirmation",
+				"app/scripts/controllers/ConfirmationModal.js"
 			],
 			[
-				"packa",
+				"package",
 				"package.json"
 			],
 			[
-				"customerserv",
-				"app/scripts/services/customerService.js"
+				"pack",
+				"package.json"
 			],
 			[
-				"timerserver",
-				"test/spec/services/timerServiceTimeEntryCrud.js"
+				"bow",
+				"bower.json"
 			],
 			[
-				"das",
-				"test/spec/controllers/DashboardTimeEntries.js"
+				"grunt",
+				"Gruntfile.js"
 			],
 			[
-				"dashboar",
-				"app/scripts/controllers/DashboardTimeEntries.js"
+				"bower",
+				"bower.json"
 			],
 			[
-				"inde",
+				"index",
 				"app/index.html"
+			],
+			[
+				"karma",
+				"karma.conf.js"
 			],
 			[
 				"app",
 				"app/scripts/app.js"
 			],
 			[
-				"bowr",
-				"bower.json"
+				"inde",
+				"app/index.html"
 			],
 			[
-				"bowe",
-				"bower.json"
+				"time",
+				"app/views/partials/dashboard/timeEntryModal.html"
+			],
+			[
+				"dashb",
+				"app/scripts/controllers/DashboardTimeEntries.js"
+			],
+			[
+				"timeentr",
+				"app/views/partials/dashboard/timeEntryModal.html"
 			],
 			[
 				"dashboard",
-				"test/spec/controllers/DashboardProjects.js"
+				"test/spec/controllers/DashboardTimeEntries.js"
+			],
+			[
+				"karm",
+				"karma.conf.js"
 			],
 			[
 				"main",
-				".tmp/styles/main.css"
+				"app/styles/main.scss"
+			],
+			[
+				"dashboardtimeentries",
+				"app/scripts/controllers/DashboardTimeEntries.js"
+			],
+			[
+				"app.js",
+				"app/scripts/app.js"
+			],
+			[
+				"dashboardtimeentrie",
+				"app/scripts/controllers/DashboardTimeEntries.js"
+			],
+			[
+				"dasboardt",
+				"test/spec/controllers/DashboardTimeEntries.js"
+			],
+			[
+				"timer",
+				"app/scripts/services/timerService.js"
+			],
+			[
+				"timee",
+				"app/views/partials/dashboard/timeEntryModal.html"
 			],
 			[
 				"person",
 				"app/scripts/services/personService.js"
 			],
 			[
+				"login",
+				"app/scripts/controllers/login.js"
+			],
+			[
+				"ap",
+				"app/scripts/app.js"
+			],
+			[
+				"regis",
+				"app/scripts/controllers/register.js"
+			],
+			[
+				"logn",
+				"app/scripts/controllers/login.js"
+			],
+			[
 				"regi",
 				"app/scripts/controllers/register.js"
+			],
+			[
+				"dashbo",
+				"app/scripts/controllers/DashboardProjects.js"
+			],
+			[
+				"index.html",
+				"app/index.html"
+			],
+			[
+				"ine",
+				"app/index.html"
+			],
+			[
+				"",
+				"app/scripts/services/personService.js"
+			],
+			[
+				"pers",
+				"app/scripts/services/personService.js"
 			],
 			[
 				"proj",
@@ -2698,8 +1054,20 @@
 				"test/spec/controllers/register.js"
 			],
 			[
-				"dashb",
-				"test/spec/controllers/dashboard.js"
+				"register",
+				"app/scripts/controllers/register.js"
+			],
+			[
+				"registr",
+				"app/views/partials/registrationForm.html"
+			],
+			[
+				"dashboar",
+				"test/spec/controllers/DashboardProjects.js"
+			],
+			[
+				"bowr",
+				"bower.json"
 			],
 			[
 				"dashboardpro",
@@ -2718,12 +1086,12 @@
 				"coverage/Chrome 30.0.1599 (Mac OS X 10.9.0)/scripts/controllers/DashboardProjects.js.html"
 			],
 			[
-				"timer",
-				"app/scripts/services/timerService.js"
+				"projects",
+				"app/views/partials/dashboard/projects.html"
 			],
 			[
-				"ap",
-				"app/scripts/app.js"
+				"dash",
+				"app/views/dashboard.html"
 			],
 			[
 				"bower.",
@@ -2774,28 +1142,12 @@
 				"app/scripts/directives/bsHolder.js"
 			],
 			[
-				"app.js",
-				"app/scripts/app.js"
-			],
-			[
 				"main.sc",
 				"app/styles/main.scss"
 			],
 			[
-				"grunt",
-				"Gruntfile.js"
-			],
-			[
-				"index.html",
-				"app/index.html"
-			],
-			[
-				"log",
-				"app/scripts/controllers/login.js"
-			],
-			[
-				"logn",
-				"app/views/partials/login.html"
+				"logi",
+				"test/spec/controllers/login.js"
 			],
 			[
 				"date",
@@ -2818,12 +1170,8 @@
 				"app/scripts/services/timerService.js"
 			],
 			[
-				"pers",
-				"app/scripts/services/personService.js"
-			],
-			[
-				"",
-				"app/scripts/services/timerService.js"
+				"das",
+				"test/spec/controllers/DashboardProjects.js"
 			],
 			[
 				"persone",
@@ -2835,6 +1183,10 @@
 			],
 			[
 				"timeentryservice",
+				"test/spec/services/timeEntryService.js"
+			],
+			[
+				"timeentry",
 				"test/spec/services/timeEntryService.js"
 			],
 			[
@@ -2866,14 +1218,6 @@
 				"app/scripts/controllers/dashboard.js"
 			],
 			[
-				"regis",
-				"app/scripts/controllers/register.js"
-			],
-			[
-				"dashbo",
-				"app/scripts/controllers/dashboard.js"
-			],
-			[
 				"font",
 				".sass-cache/a0f63b71362144b81fd630665372bfe40464d2da/font-awesome.scssc"
 			],
@@ -2882,16 +1226,16 @@
 				"node_modules/grunt-contrib-compass/tasks/lib/compass.js"
 			],
 			[
-				"bow",
-				"bower.json"
-			],
-			[
 				"dasj",
 				"app/scripts/controllers/dashboard.js"
 			],
 			[
 				"mysql",
 				"target/classes/META-INF/spring/mysql.properties"
+			],
+			[
+				"registration",
+				"tech-samples/roo/tps-roo-spring-mvc-2/src/main/java/com/arnellconsulting/tps/webflow/Registration.java"
 			],
 			[
 				"security",
@@ -2981,13 +1325,31 @@
 		"height": 500.0,
 		"selected_items":
 		[
+			[
+				"",
+				"~/git/yo-worktajm/yo-worktajm.sublime-project"
+			]
 		],
 		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
 	},
 	"show_minimap": false,
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 314.0,
-	"status_bar_visible": true
+	"side_bar_width": 272.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
 }

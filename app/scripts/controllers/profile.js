@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('yoWorktajmApp')
-  .controller('ProfileCtrl', function ($scope) {
+  .controller('ProfileCtrl', function ($scope, $routeParams) {
     $scope.selected = 'profile'; 
     $scope.tabs = [ 
       { active: true },
@@ -10,4 +10,6 @@ angular.module('yoWorktajmApp')
       { active: false },
       { active: false }
     ];
+    console.log('Route params');
+    console.log($routeParams);
   });

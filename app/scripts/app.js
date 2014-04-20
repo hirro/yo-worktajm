@@ -35,25 +35,28 @@ angular.module('yoWorktajmApp', [
         templateUrl: 'views/customers.html',
         controller: 'CustomersCtrl'
       })
-      .when('/profile/user', {
-        templateUrl: 'views/profile.html',
-        controller: 'DashboardCtrl'
+      .when('/profile/user/:param', {
+        templateUrl: 'views/profile.html?a=b',
+        controller: 'ProfileCtrl',
+        a: 'sdfsdf',
+        activeTab: [{ active: true }, {active: false}, {active: false}, {active: false}, {active: false}]
       })
       .when('/profile/password', {
         templateUrl: 'views/profile.html',
-        controller: 'DashboardCtrl'
+        controller: 'ProfileCtrl',
+        a: 'sdfsdf'        
       })
       .when('/profile/billing', {
         templateUrl: 'views/profile.html',
-        controller: 'DashboardCtrl'
+        controller: 'ProfileCtrl'
       })
       .when('/profile/projects', {
         templateUrl: 'views/profile.html',
-        controller: 'DashboardCtrl'
+        controller: 'ProfileCtrl'
       })
       .when('/profile/customers', {
         templateUrl: 'views/profile.html',
-        controller: 'DashboardCtrl'
+        controller: 'ProfileCtrl'
       })
       .otherwise({
         templateUrl: 'views/main.html',
