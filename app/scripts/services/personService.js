@@ -53,8 +53,8 @@ angular.module('yoWorktajmApp').service('PersonService', function PersonService(
         console.log('PersonService:getPerson - OK (remote)');
         personService.person = p;
         return deferred.resolve(p);
-      }, function () {
-        var msg = 'Failed to load the person from backend';
+      }, function (reason) {
+        var msg = 'Failed to load the person from backend ' + reason;
         console.error('PersonService:getPerson - %s', msg);
         return deferred.reject(msg);
       });
