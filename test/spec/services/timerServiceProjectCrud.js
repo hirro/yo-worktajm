@@ -81,7 +81,7 @@ describe('Service: TimerService, CRUD tests for Project', function () {
 
     it('should return empty list when project list has not been refreshProjected/initialized', function () {
       // Test setup
-      spyOn(timerService, 'getProjects').andCallThrough();
+      spyOn(timerService, 'getProjects').and.callThrough();
 
       // Test
       var result = timerService.getProjects();
@@ -100,9 +100,9 @@ describe('Service: TimerService, CRUD tests for Project', function () {
     beforeEach(function () {
       httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer').respond([]);
       httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/project').respond(_.clone(projects));
-      spyOn(timerService, 'getProjects').andCallThrough();
-      spyOn(timerService, 'reloadProject').andCallThrough();
-      spyOn(scope, '$broadcast').andCallThrough();
+      spyOn(timerService, 'getProjects').and.callThrough();
+      spyOn(timerService, 'reloadProject').and.callThrough();
+      spyOn(scope, '$broadcast').and.callThrough();
       timerService.reloadProject();
       // Must let the timerService process the reloadProject
       scope.$digest();
@@ -213,7 +213,7 @@ describe('Service: TimerService, CRUD tests for Project', function () {
       var error;
 
       // Create the proejct
-      spyOn(timerService, 'updateProject').andCallThrough();
+      spyOn(timerService, 'updateProject').and.callThrough();
       httpBackend.whenPOST('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/project').respond(projects[1]);
       timerService.updateProject(project).then(function (r) {
         result = r;

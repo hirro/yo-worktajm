@@ -56,7 +56,7 @@ describe('Controller: DashboardCtrl', function () {
       };
 
       // Register spies that are called during controller initalization
-      spyOn(PersonServiceMock, 'getPerson').andCallThrough();
+      spyOn(PersonServiceMock, 'getPerson').and.callThrough();
     });
 
     beforeEach(inject(function ($controller, $rootScope, $injector, _$q_) {
@@ -93,7 +93,7 @@ describe('Controller: DashboardCtrl', function () {
       };
 
       // Register spies that are called during controller initalization
-      spyOn(PersonServiceMock, 'getPerson').andCallThrough();
+      spyOn(PersonServiceMock, 'getPerson').and.callThrough();
     });
 
     beforeEach(inject(function ($controller, $rootScope, $injector, _$q_) {

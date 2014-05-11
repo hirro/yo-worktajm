@@ -141,14 +141,14 @@ describe('Controller: ProjectsCtrl', function () {
 
   it('should verify that onRemoveProject just propagates the patameter to TimeService', function () {
     var object = PROJECT_A;
-    spyOn(TimerServiceMock, 'deleteProject').andCallThrough();
+    spyOn(TimerServiceMock, 'deleteProject').and.callThrough();
     $scope.onRemoveProject(object);
     expect(TimerServiceMock.deleteProject).toHaveBeenCalledWith(object);
   });
 
   it('should verify that onUpdateProject just propagates the patameter to TimeService', function () {
     var object = PROJECT_A;
-    spyOn(TimerServiceMock, 'updateProject').andCallThrough();
+    spyOn(TimerServiceMock, 'updateProject').and.callThrough();
     $scope.onUpdateProject(object);
     expect(TimerServiceMock.updateProject).toHaveBeenCalledWith(object);
   });

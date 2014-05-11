@@ -85,7 +85,7 @@ describe('Service: PersonService', function () {
 
       // Test setup
       httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/person/1').respond(persons[0]);
-      spyOn(service, 'getPerson').andCallThrough();
+      spyOn(service, 'getPerson').and.callThrough();
 
       // Test
       var personA = null;
@@ -121,7 +121,7 @@ describe('Service: PersonService', function () {
     it('should fail gracefully when token has expired or is invalid', function () {
         // Test setup
         httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/person/1').respond(403);
-        spyOn(service, 'getPerson').andCallThrough();
+        spyOn(service, 'getPerson').and.callThrough();
 
         // Test
         var person = null;
@@ -185,7 +185,7 @@ describe('Service: PersonService', function () {
 
       // Test setup
       httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/person/1').respond(persons[0]);
-      spyOn(service, 'getPerson').andCallThrough();
+      spyOn(service, 'getPerson').and.callThrough();
 
       // Test
       var personA = null;

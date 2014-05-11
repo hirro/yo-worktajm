@@ -54,6 +54,7 @@ describe('Controller: LoginCtrl', function () {
     },
     login: function (username, password) {
       var deferred = $q.defer();
+      console.log('XXXXXXXXXX %s');
       if (username === usernameA) {
         deferred.resolve(person);
       } else {
@@ -88,7 +89,7 @@ describe('Controller: LoginCtrl', function () {
 
   it('should login successfully', function () {
     // Setup
-    spyOn(LoginServiceMock, 'login').andCallThrough();
+    spyOn(LoginServiceMock, 'login').and.callThrough();
 
     // Test
     $scope.username = usernameA;
@@ -105,12 +106,10 @@ describe('Controller: LoginCtrl', function () {
   it('should fail login', function () {
     // Setup
     $httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/authenticate').respond(401);
-    spyOn(LoginServiceMock, 'login').andCallThrough();
+    spyOn(LoginServiceMock, 'login').and.callThrough();
 
     // Test
-    $scope.username = usernameB;
-    $scope.password = passwordB;
-    $scope.login();
+    $scope.login(usernameA, passwordA);
 
     // Make the requests go though
     $scope.$digest();
@@ -121,8 +120,8 @@ describe('Controller: LoginCtrl', function () {
   });
 
   it('should logout', function () {
-    spyOn(LoginServiceMock, 'logout').andCallThrough();
-    spyOn(LoginServiceMock, 'clear').andCallThrough();
+    spyOn(LoginServiceMock, 'logout').and.callThrough();
+    spyOn(LoginServiceMock, 'clear').and.callThrough();
     $scope.logout();
     $scope.$digest();
     expect(LoginServiceMock.logout).toHaveBeenCalled();
@@ -130,7 +129,7 @@ describe('Controller: LoginCtrl', function () {
   });
 
   it('should check if current location is active', function () {
-    spyOn($location, 'path').andReturn('/a');
+    spyOn($location, 'path').and.returnValue('/a');
     expect($scope.isActive('/')).toBe(false);
     expect($scope.isActive('/a')).toBe(true);
   });

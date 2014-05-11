@@ -173,8 +173,8 @@ describe('Controller: DashboardProjectsCtrl', function () {
   });
 
   it('should create a new project', function () {
-    spyOn(TimerServiceMock, 'updateProject').andCallThrough();
-    spyOn(CustomerServiceMock, 'findOrCreateCustomerByName').andCallThrough();
+    spyOn(TimerServiceMock, 'updateProject').and.callThrough();
+    spyOn(CustomerServiceMock, 'findOrCreateCustomerByName').and.callThrough();
     var project = {
       name: 'New Project',
       rate: 530,
@@ -190,7 +190,7 @@ describe('Controller: DashboardProjectsCtrl', function () {
   describe('open modals', function () {
     it('should call deleteProject in TimerService', function () {
       // Register spyes
-      spyOn(TimerServiceMock, 'deleteProject').andCallThrough();
+      spyOn(TimerServiceMock, 'deleteProject').and.callThrough();
 
       // Test code
       var project = projects[1];
@@ -211,7 +211,7 @@ describe('Controller: DashboardProjectsCtrl', function () {
 
 
   it('should restore the provided project', function () {
-    spyOn(TimerServiceMock, 'getProject').andCallThrough();
+    spyOn(TimerServiceMock, 'getProject').and.callThrough();
 
     var project = {
       id:         1,
@@ -229,7 +229,7 @@ describe('Controller: DashboardProjectsCtrl', function () {
     describe('project with no customer', function () {
       it('should just call updateProject in TimerService', function () {
         var project = projects[2];
-        spyOn(TimerServiceMock, 'updateProject').andCallThrough();
+        spyOn(TimerServiceMock, 'updateProject').and.callThrough();
         scope.updateProject(project);
 
         // Make the request go through
@@ -245,8 +245,8 @@ describe('Controller: DashboardProjectsCtrl', function () {
         // Setup
         var project = projects[2];
         project.customerName = customerA.name;
-        spyOn(TimerServiceMock, 'updateProject').andCallThrough();
-        spyOn(CustomerServiceMock, 'findOrCreateCustomerByName').andCallThrough();
+        spyOn(TimerServiceMock, 'updateProject').and.callThrough();
+        spyOn(CustomerServiceMock, 'findOrCreateCustomerByName').and.callThrough();
 
         // Test
         scope.updateProject(project);
@@ -265,8 +265,8 @@ describe('Controller: DashboardProjectsCtrl', function () {
         // Setup
         var project = projects[2];
         project.customerName = 'new customer name';
-        spyOn(TimerServiceMock, 'updateProject').andCallThrough();
-        spyOn(CustomerServiceMock, 'findOrCreateCustomerByName').andCallThrough();
+        spyOn(TimerServiceMock, 'updateProject').and.callThrough();
+        spyOn(CustomerServiceMock, 'findOrCreateCustomerByName').and.callThrough();
         httpBackend.whenGET('customerModal.html').respond();
 
         // Test
@@ -285,8 +285,8 @@ describe('Controller: DashboardProjectsCtrl', function () {
 
   it('should just start a timer for the given project', function () {
     // Register spyes
-    spyOn(TimerServiceMock, 'startTimer').andCallThrough();
-    spyOn(TimerServiceMock, 'stopTimer').andCallThrough();
+    spyOn(TimerServiceMock, 'startTimer').and.callThrough();
+    spyOn(TimerServiceMock, 'stopTimer').and.callThrough();
 
     // Start timer
     var projectToStart = projects[0];
@@ -304,7 +304,7 @@ describe('Controller: DashboardProjectsCtrl', function () {
 
   it('should stop active timer when project is active', function () {
     // Register spyes
-    spyOn(TimerServiceMock, 'startTimer').andCallThrough();
+    spyOn(TimerServiceMock, 'startTimer').and.callThrough();
 
     // Test code
     var projectToStart = projects[0];
@@ -321,7 +321,7 @@ describe('Controller: DashboardProjectsCtrl', function () {
 
   it('should call stop timer of timer service', function () {
     // Register spyes
-    spyOn(TimerServiceMock, 'stopTimer').andCallThrough();
+    spyOn(TimerServiceMock, 'stopTimer').and.callThrough();
 
     // Test code
     scope.stopTimer();
@@ -374,7 +374,7 @@ describe('Controller: DashboardProjectsCtrl', function () {
 
   describe('customer tests', function () {
     it('should get a list of customers', function () {
-      spyOn(CustomerServiceMock, 'list').andCallThrough();
+      spyOn(CustomerServiceMock, 'list').and.callThrough();
 
       // Actual test
       var result = scope.getCustomers();

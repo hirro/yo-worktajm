@@ -108,65 +108,6 @@ describe('Controller: CustomersCtrl', function () {
     CustomersCtrl.$inject = ['$scope',  '$route', 'CustomerService'];
   }));
 
-  beforeEach(inject(function ($rootScope) {
-    this.addMatchers({
-
-      toBeResolvedWith: function(value) {
-        var resolved;
-        this.message = function() {
-          return "Expected '" + angular.mock.dump(this.actual) + "' to be resolved with '" + value + "'.";
-        };
-        this.actual.then(function(result){
-          resolved = result;
-        });
-        $rootScope.$digest();
-
-        return resolved === value;
-      },
-
-      toBeRejectedWith: function(value) {
-        var rejected;
-        this.message = function() {
-          return "Expected '" + angular.mock.dump(this.actual) + "' to be rejected with '" + value + "'.";
-        };
-        this.actual.then(angular.noop, function(reason){
-          rejected = reason;
-        });
-        $rootScope.$digest();
-
-        return rejected === value;
-      },
-
-      toHaveModalOpenWithContent: function(content, selector) {
-
-        var contentToCompare, modalDomEls = this.actual.find('body > div.modal > div.modal-dialog > div.modal-content');
-
-        this.message = function() {
-          return "Expected '" + angular.mock.dump(modalDomEls) + "' to be open with '" + content + "'.";
-        };
-
-        contentToCompare = selector ? modalDomEls.find(selector) : modalDomEls;
-        return modalDomEls.css('display') === 'block' &&  contentToCompare.html() == content;
-      },
-
-      toHaveModalsOpen: function(noOfModals) {
-
-        var modalDomEls = this.actual.find('body > div.modal');
-        return modalDomEls.length === noOfModals;
-      },
-
-      toHaveBackdrop: function() {
-
-        var backdropDomEls = this.actual.find('body > div.modal-backdrop');
-        this.message = function() {
-          return "Expected '" + angular.mock.dump(backdropDomEls) + "' to be a backdrop element'.";
-        };
-
-        return backdropDomEls.length === 1;
-      }
-    });
-  }));
-
   afterEach(function() {
     $httpBackend.verifyNoOutstandingExpectation();
     $httpBackend.verifyNoOutstandingRequest();
@@ -238,22 +179,22 @@ describe('Controller: CustomersCtrl', function () {
   });
 
   it('should call delete on onRemoveCustomerModalOk', function () {
-    spyOn(CustomerServiceMock, 'delete').andCallThrough();
+    spyOn(CustomerServiceMock, 'delete').and.callThrough();
     $scope.onRemoveCustomerModalOk(CUSTOMER_A);
     expect(CustomerServiceMock.delete).toHaveBeenCalledWith(CUSTOMER_A.id);
   });
 
   it('should call update on onOpenCustomerModalOk when customer id is defined', function () {
-    spyOn(CustomerServiceMock, 'update').andCallThrough();
-    spyOn(CustomerServiceMock, 'create').andCallThrough();
+    spyOn(CustomerServiceMock, 'update').and.callThrough();
+    spyOn(CustomerServiceMock, 'create').and.callThrough();
     $scope.onOpenCustomerModalOk({id: 1});
     expect(CustomerServiceMock.update).toHaveBeenCalled();
     expect(CustomerServiceMock.create).not.toHaveBeenCalled();
   });
 
   it('should call update on onOpenCustomerModalOk when customer id is NOT defined', function () {
-    spyOn(CustomerServiceMock, 'update').andCallThrough();
-    spyOn(CustomerServiceMock, 'create').andCallThrough();
+    spyOn(CustomerServiceMock, 'update').and.callThrough();
+    spyOn(CustomerServiceMock, 'create').and.callThrough();
     $scope.onOpenCustomerModalOk({});
     expect(CustomerServiceMock.update).not.toHaveBeenCalled();
     expect(CustomerServiceMock.create).toHaveBeenCalled();

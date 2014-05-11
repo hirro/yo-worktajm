@@ -45,8 +45,8 @@ describe('Service: LoginService', function () {
   it('should login', function () {
     $httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/authenticate').respond(person);
     $httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/person').respond(person);
-    spyOn(LoginService, 'setCredentials').andCallThrough();
-    spyOn(LoginService, 'clearCredentials').andCallThrough();
+    spyOn(LoginService, 'setCredentials').and.callThrough();
+    spyOn(LoginService, 'clearCredentials').and.callThrough();
 
     // Login
     LoginService.login(username, password);

@@ -144,7 +144,7 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
 
     it('should remove the time entry', function () {
       var timeEntry = scope.findTimeEntryById(1);
-      spyOn(TimerServiceMock, 'removeTimeEntry').andCallThrough();
+      spyOn(TimerServiceMock, 'removeTimeEntry').and.callThrough();
       expect(timeEntry).not.toBeDefined();
       scope.$broadcast('onTimeEntriesRefreshed', timeEntries);
       scope.$digest();
@@ -162,9 +162,9 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
     });
 
     it('should update a time entry with unmodified project name', function () {
-      spyOn(TimerServiceMock, 'updateTimeEntry').andCallThrough();
-      spyOn(TimerServiceMock, 'updateProject').andCallThrough();
-      spyOn(TimerServiceMock, 'createTimeEntry').andCallThrough();
+      spyOn(TimerServiceMock, 'updateTimeEntry').and.callThrough();
+      spyOn(TimerServiceMock, 'updateProject').and.callThrough();
+      spyOn(TimerServiceMock, 'createTimeEntry').and.callThrough();
       var timeEntry = {
         id: 1,
         startTime: 1,
@@ -185,8 +185,8 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
     });
 
     it('should create a project and update a time entry when project id is null', function () {
-      spyOn(TimerServiceMock, 'createTimeEntry').andCallThrough();
-      spyOn(TimerServiceMock, 'updateProject').andCallThrough();
+      spyOn(TimerServiceMock, 'createTimeEntry').and.callThrough();
+      spyOn(TimerServiceMock, 'updateProject').and.callThrough();
       var project = {
         name: 'Hej'
       };

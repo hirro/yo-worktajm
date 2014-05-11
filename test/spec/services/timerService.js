@@ -115,7 +115,7 @@ describe('Service: TimerService', function () {
       // Prereq 3 = Projects must be loaded
       httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/project').respond(_.clone(projects));
       httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer/1066').respond(customers[0]);
-      spyOn(scope, '$broadcast').andCallThrough();
+      spyOn(scope, '$broadcast').and.callThrough();
       timerService.reloadProject();
       scope.$digest();
       httpBackend.flush();

@@ -85,8 +85,8 @@ describe('Controller: RegisterCtrl', function () {
   }));
 
   it('should register successfully', function () {
-    spyOn(RegistrationServiceMock, 'register').andCallThrough();
-    spyOn(LoginServiceMock, 'login').andCallThrough();
+    spyOn(RegistrationServiceMock, 'register').and.callThrough();
+    spyOn(LoginServiceMock, 'login').and.callThrough();
 
     scope.registration = {
       email: 'ok',
@@ -101,8 +101,8 @@ describe('Controller: RegisterCtrl', function () {
   });
 
   it('should handle registration failure gracefully when registration fails', function () {
-    spyOn(RegistrationServiceMock, 'register').andCallThrough();
-    spyOn(LoginServiceMock, 'login').andCallThrough();
+    spyOn(RegistrationServiceMock, 'register').and.callThrough();
+    spyOn(LoginServiceMock, 'login').and.callThrough();
 
     scope.registration = {
       email: 'nok',
@@ -116,8 +116,8 @@ describe('Controller: RegisterCtrl', function () {
   });
 
   it('should handle registration failure gracefully when login fails', function () {
-    spyOn(RegistrationServiceMock, 'register').andCallThrough();
-    spyOn(LoginServiceMock, 'login').andCallThrough();
+    spyOn(RegistrationServiceMock, 'register').and.callThrough();
+    spyOn(LoginServiceMock, 'login').and.callThrough();
 
     scope.registration = {
       email: 'ok',

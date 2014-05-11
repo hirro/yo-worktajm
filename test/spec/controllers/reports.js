@@ -87,7 +87,7 @@ describe('Controller: ReportsCtrl', function () {
   }));
 
   it('should initialize correctly', function () {
-    spyOn(CustomerServiceMock, 'list').andCallThrough();
+    spyOn(CustomerServiceMock, 'list').and.callThrough();
     scope.customers = [];
     scope.loadCustomers();
     scope.$digest();
