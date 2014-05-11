@@ -44,7 +44,7 @@ angular.module('yoWorktajmApp').service('LoginService', function LoginService($r
     console.log('LoginService::login(%s, *****)', username);
 
     // Step 1: Authenticate and get authentation token
-    var authenticate = function (username, password) {
+     var authenticate = function (username, password) {
       var deferred = $q.defer();
       // The the basic HTTP authentication
       loginService.setCredentials(username, password);
@@ -53,8 +53,8 @@ angular.module('yoWorktajmApp').service('LoginService', function LoginService($r
       Restangular.one('authenticate').get().then(function (token) {
         console.log('LoginService::login - Successfully authenticated, token.id: [%s]', token.id);
         deferred.resolve(token);
-      }, function (reason) {
-        console.error('Failed to authenticate user, reason : [%s]', reason);
+      }, function (reason) { 
+        console.error('Failed to authenticate user, reason : [%s]', reason.toString());
         deferred.reject(reason);
       });
       return deferred.promise;
@@ -70,6 +70,7 @@ angular.module('yoWorktajmApp').service('LoginService', function LoginService($r
         $location.path('/dashboard');
         deferred.resolve(person);
       }, function (reason) {
+        console.error('Failed to authenticate user, reason : [%s]', reason.toString());
         deferred.reject(reason);
       });
       return deferred.promise;
