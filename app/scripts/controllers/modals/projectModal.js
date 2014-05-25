@@ -32,7 +32,8 @@ angular.module('yoWorktajmApp').controller('ProjectModalCtrl', function ($scope,
     $scope.project = {
       name: modalParams.project.name,
       rate: modalParams.project.rate,
-      description: modalParams.project.description
+      description: modalParams.project.description,
+      id: modalParams.project.id
     };
     $scope.ok = function () {
       // FIXME
