@@ -71,7 +71,7 @@ angular.module('yoWorktajmApp').service('PersonService', function PersonService(
     console.log('PersonService:setActiveTimeEntry(id [%d])', timeEntry ? timeEntry.id : null);
     var stoppedProject = personService.person.activeTimeEntry ? personService.person.activeTimeEntry.project : null;
     var startedProject = timeEntry ? timeEntry.project : null;
-    personService.person.activeTimeEntry = timeEntry;
+    personService.person.activeTimeEntry = _.pick(timeEntry, 'id');
     personService.person.put().then(function (result) {
       // Signal that the project status has changed.
       if (stoppedProject) {
