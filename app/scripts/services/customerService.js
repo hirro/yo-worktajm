@@ -105,13 +105,11 @@ angular.module('yoWorktajmApp')
 
     // Returns a promise to a list of all customers.
     svc.list = function () {
-      console.log('CustomerService::list');
       var deferred = $q.defer();
       if (svc.customers.loaded) {
         deferred.resolve(svc.customers.list);
       } else {
         svc.restangularCustomers.getList().then(function (existingCustomers) {
-          console.log('Retrieved customer successfully from backend, count [%d]', _.size(existingCustomers));
           svc.customers.list = existingCustomers;
           svc.customers.loaded = true;
           deferred.resolve(svc.customers.list);
@@ -133,15 +131,16 @@ angular.module('yoWorktajmApp')
 
       return svc.get(id)
         .then(function (customer) {
-          console.info('CustomerService::update - Deleting customer (backend) with id [%d]', customer.id);
           loadedCustomer = customer;
           return customer.remove();
         })
         .then(function () {
-          console.info('CustomerService::update - Deleted customer (backend) with id [%d]', loadedCustomer.id);
           $rootScope.$broadcast('onCustomerDeleted', loadedCustomer);
           var index = _.indexOf(svc.customers.list, loadedCustomer);
           svc.customers.list.splice(index, 1);
+        })
+        .catch(function (reason) {
+          //console.error(reason);
         });
     };
 
@@ -158,7 +157,6 @@ angular.module('yoWorktajmApp')
 
     // Find or create customer with name
     svc.findOrCreateCustomerByName = function (name) {
-      console.log('findOrCreateCustomerByName(%s)', name);
       if (name) {
         return svc.findCustomerByName(name)
         .then(function (customer) {

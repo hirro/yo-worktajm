@@ -45,7 +45,6 @@ angular.module('yoWorktajmApp').service('PersonService', function PersonService(
     var deferred = $q.defer();
 
     if (personService.person) {
-      console.log('PersonService:getPerson - OK (cached)');
       deferred.resolve(personService.person);
     } else {
       var qPerson = Restangular.one('person', personService.personId).get();

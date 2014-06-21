@@ -107,7 +107,6 @@ describe('Service: TimerService, CRUD tests for Project', function () {
       // Must let the timerService process the reloadProject
       scope.$digest();
       httpBackend.flush();
-      console.log('init list');
     });
 
     it('should return project list when project list has been refreshProjected/initialized', function () {

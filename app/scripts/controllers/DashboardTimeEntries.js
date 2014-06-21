@@ -29,8 +29,6 @@
 angular.module('yoWorktajmApp')
   .controller('DashboardTimeEntriesCtrl', function ($scope, $rootScope, $resource, $controller, $filter, $q, $timeout, $modal, TimerService) {
 
-    console.log('Initiating DashboardTimeEntriesCtrl');
-
     // Selected date
     $scope.date = new Date();
     $scope.selectedDate = new Date().toISOString().substring(0, 10);
@@ -48,7 +46,6 @@ angular.module('yoWorktajmApp')
 
     // User clicks remove button
     $scope.removeTimeEntry = function (timeEntry) {
-      console.log('DashboardTimeEntriesCtrl::removeTimeEntry(%d)', timeEntry.id);
       TimerService.removeTimeEntry(timeEntry);
     };
 
@@ -65,11 +62,10 @@ angular.module('yoWorktajmApp')
           console.log('Project exists for time entry');
           if (timeEntry.id) {
             TimerService.updateTimeEntry(timeEntry).then(function (newTimeEntry) {
-              console.log('TimeEntry updated');
+              // Event will be triggered
             });            
           } else {
             TimerService.createTimeEntry(timeEntry).then(function (newTimeEntry) {
-              console.log('TimeEntry created');
               $scope.timeEntries.push(newTimeEntry);
             });            
           }

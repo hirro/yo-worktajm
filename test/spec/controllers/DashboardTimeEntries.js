@@ -46,13 +46,10 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
   // Initialize the TimerServiceMock
   var TimerServiceMock = {
     startTimer: function () {
-      console.log('TimerServiceMock:startTimer called');
     },
     stopTimer: function () {
-      console.log('TimerServiceMock:stopTimer called');
     },
     getTimeEntries: function () {
-      console.log('TimerServiceMock::getTimeEntries');
       return null;
     },
     removeTimeEntry: function() {
@@ -63,7 +60,6 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
     updateTimeEntry: function (timeEntry) {
       var deferred = $q.defer();
       deferred.resolve(timeEntry);
-      console.log('TimerServiceMock::updateTimeEntry done');
       return deferred.promise;
     },
     updateProject: function (project) {
@@ -71,7 +67,6 @@ describe('Controller: DashboardTimeEntriesCtrl', function () {
       var result = _.clone(project);
       result.id = 33;
       deferred.resolve(result);
-      console.log('TimerServiceMock::updateProject done');
       return deferred.promise;
     },
     createTimeEntry: function (timeEntry) {

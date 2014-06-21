@@ -234,7 +234,11 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
     PersonService.getPerson().then(function (person) {
 
       // Create the new time entry
-      var timeEntry = { person: person, project: project, startTime: $.now()};
+      var timeEntry = { 
+        person: person, 
+        project: project, 
+        startTime: new XDate()
+      };
       svc.createTimeEntry(timeEntry).then(function (newTimeEntry) {
         newTimeEntry.active = true;
         svc.setActive(project, true);
@@ -273,7 +277,7 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
       var timeEntry = person.activeTimeEntry;
       var project = timeEntry ? timeEntry.project : null;
       if (timeEntry && project) {
-        timeEntry.endTime = $.now();
+        timeEntry.endTime = new XDate();
         svc.updateTimeEntry(timeEntry).then(function () {
           PersonService.setActiveTimeEntry(null).then(function () {
             deferred.resolve();
@@ -298,3 +302,4 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
 
   return svc;
 });
+

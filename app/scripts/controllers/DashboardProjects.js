@@ -28,7 +28,6 @@
 
 angular.module('yoWorktajmApp')
   .controller('DashboardProjectsCtrl', function ($scope, $rootScope, $resource, $location, $modal, $q, TimerService, PersonService, CustomerService) {
-    console.log('Initiating DashboardProjectsCtrl');
 
     $scope.activeProject = null;
     $scope.project = {};
@@ -39,7 +38,6 @@ angular.module('yoWorktajmApp')
     //
     // Start the project
     $scope.startTimer = function (project) {
-      console.log('DashboardProjectsCtrl::startTimer -  project id: %d', project.id);
       // Always stop active timer 
       TimerService.stopTimer().then(function () {
         TimerService.startTimer(project);
@@ -73,7 +71,6 @@ angular.module('yoWorktajmApp')
 
     // Restore the provided project to the value of the database.
     $scope.restoreProject = function (project) {
-      console.log('DashboardProjectsCtrl::restoreProject(id: %d, name: %s)', project.id, project.name);
       var originalProject = TimerService.getProject(project.id);
       project.name = originalProject.name;
       project.description = originalProject.description;
@@ -83,7 +80,6 @@ angular.module('yoWorktajmApp')
 
     // Read (cached)
     $scope.getById = function (list, id) {
-      console.log('DashboardProjectsCtrl::getById([%d])', id);
       return _(list).find({
         'id': id
       });

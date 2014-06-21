@@ -40,35 +40,27 @@ describe('Controller: DashboardProjectsCtrl', function () {
   // Initialize the TimerServiceMock
   var TimerServiceMock = {
     startTimer: function (project) {
-      console.log('TimerServiceMock:startTimer called');
       var deferred = q.defer();
       deferred.resolve(project);
       return deferred.promise;
     },
     stopTimer: function () {
-      console.log('TimerServiceMock:stopTimer called');
       var deferred = q.defer();
       deferred.resolve();
-      console.log('TimerServiceMock::stopTimer done');
       return deferred.promise;
     },
     deleteProject: function () {
-      console.log('TimerServiceMock:deleteProject called');
     },
     refresh: function () {
-      console.log('TimerServiceMock:refresh called');
     },
     updateProject: function (project) {
-      console.log('TimerServiceMock:updateProject called');
       var deferred = q.defer();
       deferred.resolve(project);
       return deferred.promise;
     },
     reloadProject: function () {
-      console.log('TimerServiceMock::reloadProject called');
     },
     restoreProject: function (project) {
-      console.log('TimerServiceMock:restoreProject called');
       var deferred = q.defer();
       if (project.id === 1) {
         project.name = projects[0].name;

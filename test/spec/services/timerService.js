@@ -134,7 +134,7 @@ describe('Service: TimerService', function () {
 
     });
 
-    it('should start and stop the timer successfully', function () {
+    iit('should start and stop the timer successfully for the provided project', function () {
       // Start the timer
       var person = personService.getPerson();
       var timerStartedSuccessfully = false;
@@ -162,6 +162,7 @@ describe('Service: TimerService', function () {
       expect(timerStartedSuccessfully).toBe(true);
 
       // Stop the timer
+      debugger;
       var timerStoppedSuccessfully = false;
       timerService.stopTimer().then(function () {
         timerStoppedSuccessfully = true;

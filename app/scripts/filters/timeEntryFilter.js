@@ -31,8 +31,6 @@ angular.module('yoWorktajmApp')
   .filter('timeEntryFilter', function () {
     return function (timeEntries, selection) {
 
-      console.log('timeEntryFilter');
-
       // Filter by date
       var filteredByTime = _.filter(timeEntries, function (timeEntry) {
         return (timeEntry.startTime >= selection.from) && (timeEntry.startTime <= selection.to);
