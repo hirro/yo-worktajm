@@ -180,23 +180,31 @@ describe('Service: TimerService - CRUD operations for TimeEntry', function () {
  });   
 
   it('should handle an update that returns HTTP error', function () {
-    // Must load time entries      
+    // Must load time entries    
+    var succeeded = false;
+    var failed = false;
     httpBackend.whenGET('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/timeEntry').respond(301);
     timerService.getTimeEntries().then(function () {
-      console.log('Got time entries from service');
+      succeeded = true;
+    }, function () {
+      failed = true;
     });
     scope.$digest();
     httpBackend.flush();
+    expect(succeeded).toBe(false);
+    expect(failed).toBe(true);
 
     // Perform the update
-    var failed = false;
+    var succeeded = false;
+    var failed = false;    
     timerService.updateTimeEntry(timeEntries[0]).then(function () {
-      console.error('Should not get a success from this');
+      succeeded = true;
     },
     function () {
       failed = true;
     });
     scope.$digest();
+    expect(succeeded).toBe(false);
     expect(failed).toBe(true);
   });    
 });

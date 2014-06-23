@@ -218,7 +218,7 @@ describe('Service: PersonService', function () {
       // Make the requiest go through
       scope.$digest();
       httpBackend.flush();
-      expect(service.getActiveTimeEntry()).toBe(timeEntries[0]);
+      expect(service.getActiveTimeEntry().id).toBe(timeEntries[0].id);
       expect(activated).toBe(true);
       expect(failed).toBe(false);
     });
@@ -236,7 +236,7 @@ describe('Service: PersonService', function () {
       // Make the requiest go through
       scope.$digest();
       httpBackend.flush();
-      expect(service.getActiveTimeEntry()).toBe(timeEntries[0]);
+      expect(service.getActiveTimeEntry().id).toBe(timeEntries[0].id);
       expect(activated).toBe(false);
       expect(failed).toBe(true);
     });

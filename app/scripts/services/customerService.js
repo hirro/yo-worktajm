@@ -127,21 +127,18 @@ angular.module('yoWorktajmApp')
     // Deletes the customer with the provided id.
     // Returns a promise to the delete operation.
     svc.delete = function (id) {
-      var loadedCustomer;
+      var removeCustomer = function (customer) {
+        return customer.remove()
+          .then(function () {
+            $rootScope.$broadcast('onCustomerDeleted', customer);
+            var index = _.indexOf(svc.customers.list, customer);
+            svc.customers.list.splice(index, 1);
+          }
+        )
+      };
 
       return svc.get(id)
-        .then(function (customer) {
-          loadedCustomer = customer;
-          return customer.remove();
-        })
-        .then(function () {
-          $rootScope.$broadcast('onCustomerDeleted', loadedCustomer);
-          var index = _.indexOf(svc.customers.list, loadedCustomer);
-          svc.customers.list.splice(index, 1);
-        })
-        .catch(function (reason) {
-          //console.error(reason);
-        });
+        .then(removeCustomer);
     };
 
     // Find the customer with the provided name.

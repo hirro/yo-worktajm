@@ -202,6 +202,7 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
     }
     return deferred.promise;        
   };
+
   svc.removeTimeEntry = function (entry) {
     var id = entry.id;
     var timeEntry = this.findTimeEntryById(id);
@@ -216,6 +217,7 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
     timeEntry.disable = true;
     return q;
   };
+  
   svc.findTimeEntryById = function (id) {
     return _(svc.timeEntries).find({
       'id': id
@@ -228,76 +230,69 @@ angular.module('yoWorktajmApp').service('TimerService', function TimerService(Re
   // Start the timer for the specified project.
   // Returns a promise to the operation
   svc.startTimer = function(project) {
-    var deferred = $q.defer();        
 
-    // Get the currently logged in person
-    PersonService.getPerson().then(function (person) {
-
-      // Create the new time entry
-      var timeEntry = { 
+    var createTimeEntry = function(person) {
+      return svc.createTimeEntry({ 
         person: person, 
         project: project, 
         startTime: new XDate()
-      };
-      svc.createTimeEntry(timeEntry).then(function (newTimeEntry) {
-        newTimeEntry.active = true;
-        svc.setActive(project, true);
-        svc.timeEntries.push(newTimeEntry);
-
-        // Update the person
-        PersonService.setActiveTimeEntry(newTimeEntry).then(function () {
-
-          // Resolve the promise
-          deferred.resolve(newTimeEntry);
-
-          // Send events
-          $rootScope.$broadcast('onTimeEntryUpdated', newTimeEntry);
-        }, function (reason) {
-          console.error('timerService::startTimer - Failed to setActiveTimeEntry %s', reason);
-          deferred.reject(reason);
-        });
-      }, function (reason) {
-        console.error('timerService::startTimer - Failed to create time entry. %s', reason);
-        return deferred.reject(reason);
       });
-    }, function (reason) {
-      console.error('timerService::startTimer - Failed to get logged in user. %s', reason);
-      return deferred.reject(reason);
-    });
+    };
 
-    return deferred.promise;
-  };
+    var setActiveTimeEntry = function(timeEntry) {
+      return PersonService.setActiveTimeEntry(timeEntry);
+    };
+
+    var notifyTimeEntryUpdated = function(timeEntry) {
+      $rootScope.$broadcast('onTimeEntryUpdated', timeEntry);
+    };
+
+    var reportProblem = function() {
+      console.error('Failed to stop timer');
+    };    
+
+    return PersonService.getPerson()
+      .then(createTimeEntry)
+      .then(setActiveTimeEntry)
+      .then(notifyTimeEntryUpdated)
+      .catch(reportProblem);
+  }
+
   // Stop the active task.
   // If no task is active an error is returned.
   svc.stopTimer = function() {
-    var deferred = $q.defer();
 
-    // Get hold of the active time entry of the logged in user
-    PersonService.getPerson().then(function (person) {   
-      var timeEntry = person.activeTimeEntry;
-      var project = timeEntry ? timeEntry.project : null;
-      if (timeEntry && project) {
-        timeEntry.endTime = new XDate();
-        svc.updateTimeEntry(timeEntry).then(function () {
-          PersonService.setActiveTimeEntry(null).then(function () {
-            deferred.resolve();
-          }, function (reason) {
-            console.error(reason);
-            deferred.reject(reason);
-          });
-        }, function (reason) {
-          console.error('timerService::stopTimer - Failed to update time entry');
-          deferred.reject(reason);
-        });
-      } else {
-        console.log('timerService::stopTimer - This person has no active timer');
-        return deferred.resolve(null);
-      }            
-    }, function (reason) {
-      console.error('timerService::stopTimer - Failed to get logged in person');
-      return deferred.reject(reason);
-    });
-    return deferred.promise;  
+    var getActiveTimeEntry = function() {
+      var deferred = $q.defer();
+      PersonService.getPerson().then(
+        function (person) {
+          if (person.activeTimeEntry) {
+            deferred.resolve(person);
+          } else {
+            deferred.reject('Person has no active time entry');
+          }
+        },
+        function (message) {
+          deferred.reject(message);
+        }
+      );
+      return deferred.promise;
+    };
+
+    var stopTimeEntry = function(timeEntry) {
+      timeEntry.endTime = new XDate();
+      return $q.all([
+        svc.updateTimeEntry(timeEntry),
+        PersonService.setActiveTimeEntry(null)]);
+    };
+
+    var reportProblem = function() {
+      console.error('Failed to stop timer');
+    };
+
+    return getActiveTimeEntry()
+      .then(stopTimeEntry)
+      .catch(reportProblem);
   };
 
   return svc;

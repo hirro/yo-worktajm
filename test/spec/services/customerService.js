@@ -328,23 +328,19 @@ describe('Service: CustomerService', function () {
       spyOn(customerService, 'list').and.callThrough();
       httpBackend.whenDELETE('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/customer/1').respond(401);
       spyOn(customerService, 'delete').and.callThrough();
+      var successHandler = jasmine.createSpy('success');
+      var failureHandler = jasmine.createSpy('failure');
 
       // Test
-      var result;
-      var failMessage;
-      customerService.delete(customerA.id).then(function () {
-        result = 'ok';
-      }, function (msg) {
-        failMessage = msg;
-      });
+      customerService.delete(1).then(successHandler, failureHandler);
       scope.$digest();
       httpBackend.flush();
       
       // Validation
       expect(customerService.list).toHaveBeenCalled();
       expect(customerService.delete).toHaveBeenCalledWith(1);
-      expect(result).toBeUndefined();
-      expect(failMessage.status).toBe(401);
+      expect(successHandler).not.toHaveBeenCalledWith();
+      expect(failureHandler).toHaveBeenCalled();
     });
   });
   

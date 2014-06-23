@@ -134,19 +134,22 @@ describe('Service: TimerService', function () {
 
     });
 
-    iit('should start and stop the timer successfully for the provided project', function () {
+    it('should start and stop the timer successfully for the provided project', function () {
       // Start the timer
       var person = personService.getPerson();
       var timerStartedSuccessfully = false;
       var error;
       var result;
-      timerService.startTimer(projects[0]).then(function (r) {
-        result = r;
-        timerStartedSuccessfully = true;
-      }, function (m) {
-        error = m;
-        timerStartedSuccessfully = false;
-      });
+      timerService.startTimer(projects[0]).then(
+        function (r) {
+          result = r;
+          timerStartedSuccessfully = true;
+        }, 
+        function (m) {
+          error = m;
+          timerStartedSuccessfully = false;
+        }
+      );
 
       // Create time entry
       httpBackend.whenPOST('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/timeEntry').respond(timeEntries[0]);
@@ -179,7 +182,13 @@ describe('Service: TimerService', function () {
     });
 
     it('should not stop the timer when there are no active projects', function () {
-      timerService.stopTimer(projects[0], persons[0]);
+      timerService.stopTimer(projects[0], persons[0]).then(
+        function (r) {
+          // Fail!
+        },
+        function (m) {
+          // OK!
+        });
     });
 
     it('should handle null value for person gracefully', function () {

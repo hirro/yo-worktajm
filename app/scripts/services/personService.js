@@ -107,7 +107,8 @@ angular.module('yoWorktajmApp').service('PersonService', function PersonService(
     return timeEntry;
   };
 
-  /** Returns the id if the active project.
+  /** 
+   * Returns the id if the active project.
    * @return id of the active project, -1 if no project is active.
    */
   personService.getActiveProjectId = function () {
@@ -117,8 +118,6 @@ angular.module('yoWorktajmApp').service('PersonService', function PersonService(
         personService.person.activeTimeEntry.project) {
       console.log('PersonService::getActiveProjectId(id [%d])', personService.person.activeTimeEntry.project.id);
       result = personService.person.activeTimeEntry.project.id;
-    } else {
-      console.log('PersonService::getActiveProjectId - No active project');
     }
     return result;
   };
