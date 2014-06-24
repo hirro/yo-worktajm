@@ -84,12 +84,12 @@ describe('Service: RegistrationService', function () {
   });
 
   describe('registration tests', function () {
-    xit('should register successfully', function () {
+    it('should register successfully', function () {
       var person = {
         email: 'a',
         password: 'b'
       };
-      httpBackend.expectPOST('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/registration/[object Object]').respond(person);
+      httpBackend.expectPOST('http://worktajm.arnellconsulting.dyndns.org:8080/worktajm-api/registration').respond(person);
 
       service.register(person);
       httpBackend.flush();
