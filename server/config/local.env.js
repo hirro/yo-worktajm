@@ -7,10 +7,10 @@
 
 module.exports = {
   SESSION_SECRET: "worktajm-secret",
-  FACEBOOK_ID: "114023518795137",
-  FACEBOOK_SECRET: "334c941e39306ae61c017ec1a2d1aaa7",
+  FACEBOOK_ID: "app-id",
+  FACEBOOK_SECRET: "secret",
   TWITTER_ID: "app-id",
   TWITTER_SECRET: "secret",
-  GOOGLE_ID: "82785843776-p76n3v6himmv6tt1pc56ru5aqh4gdup1.apps.googleusercontent.com",
-  GOOGLE_SECRET: "pLQRC_pMHfYjlAmWb3IHLlvC"
+  GOOGLE_ID: "app-id",
+  GOOGLE_SECRET: "secret"
 };

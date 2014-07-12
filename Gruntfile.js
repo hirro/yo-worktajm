@@ -81,6 +81,12 @@ module.exports = function (grunt) {
           '<%= yeoman.client %>/{app,components}/**/*.{scss,sass}'],
         tasks: ['sass', 'autoprefixer']
       },
+      jade: {
+        files: [
+          '<%= yeoman.client %>/{app,components}/*',
+          '<%= yeoman.client %>/{app,components}/**/*.jade'],
+        tasks: ['jade']
+      },
       gruntfile: {
         files: ['Gruntfile.js']
       },
@@ -364,9 +370,11 @@ module.exports = function (grunt) {
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
+        'jade',
         'sass',
       ],
       test: [
+        'jade',
         'sass',
       ],
       debug: {
@@ -379,6 +387,7 @@ module.exports = function (grunt) {
         }
       },
       dist: [
+        'jade',
         'sass',
         'imagemin',
         'svgmin'
@@ -421,6 +430,26 @@ module.exports = function (grunt) {
         NODE_ENV: 'production'
       },
       all: require('./server/config/local.env')
+    },
+
+    // Compiles Jade to html
+    jade: {
+      compile: {
+        options: {
+          data: {
+            debug: false
+          }
+        },
+        files: [{
+          expand: true,
+          cwd: '<%= yeoman.client %>',
+          src: [
+            '{app,components}/**/*.jade'
+          ],
+          dest: '.tmp',
+          ext: '.html'
+        }]
+      }
     },
 
     // Compiles Sass to CSS
