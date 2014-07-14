@@ -2,18 +2,16 @@ div(ng-include='"components/navbar/navbar.html"')
 .container
   .row
     .col-sm-12
-      h1 Sign up
+      h2(class='text-uppercase') BECOME A WORKTAJM MEMBER
     .col-sm-12
       form.form(name='form', ng-submit='register(form)', novalidate='')
-        .form-group(ng-class='{ "has-success": form.name.$valid && submitted,\
-        "has-error": form.name.$invalid && submitted }')
+        .form-group(ng-class='{ "has-success": form.name.$valid && submitted, "has-error": form.name.$invalid && submitted }')
           label Name
           input.form-control(type='text', name='name', ng-model='user.name', required='')
           p.help-block(ng-show='form.name.$error.required && submitted')
             | A name is required
 
-        .form-group(ng-class='{ "has-success": form.email.$valid && submitted,\
-        "has-error": form.email.$invalid && submitted }')
+        .form-group(ng-class='{ "has-success": form.email.$valid && submitted, "has-error": form.email.$invalid && submitted }')
           label Email
           input.form-control(type='email', name='email', ng-model='user.email', required='', mongoose-error='')
           p.help-block(ng-show='form.email.$error.email && submitted')

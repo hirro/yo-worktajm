@@ -19,7 +19,8 @@ var UserSchema = new Schema({
   facebook: {},
   twitter: {},
   github: {},
-  google: {}
+  google: {},
+  timeEntries: [{type: Schema.Types.ObjectId, ref: 'TimeEntry' }]
 });
 
 /**
