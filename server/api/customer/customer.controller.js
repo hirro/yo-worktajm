@@ -5,7 +5,11 @@ var Customer = require('./customer.model');
 
 // Get list of customers
 exports.index = function(req, res) {
-  Customer.find(function (err, customers) {
+  var user = req.user;
+
+  Customer
+  .find({"createdBy": user._id})
+  .exec(function (err, customers) {
     if(err) { return handleError(res, err); }
     return res.json(200, customers);
   });
@@ -22,8 +26,12 @@ exports.show = function(req, res) {
 
 // Creates a new customer in the DB.
 exports.create = function(req, res) {
-  Customer.create(req.body, function(err, customer) {
-    if(err) { return handleError(res, err); }
+  var customer = new Customer(req.body);
+  customer.createdBy = req.user;
+  customer.save(function(err) {
+    if(err) { 
+      return handleError(res, err); 
+    }
     return res.json(201, customer);
   });
 };

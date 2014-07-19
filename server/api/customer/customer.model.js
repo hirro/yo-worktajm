@@ -1,23 +1,23 @@
 'use strict';
 
+var session = require('express-session');
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
+// Plugins
+var timestampPlugin = require('mongoose-timestamp');
+
 var CustomerSchema = new Schema({
-  name: String,
+  name: { type: String, required: true },
   info: String,
-  line_1: String,
-  line_2: String,
+  line1: String,
+  line2: String,
   zip: String,
   country: String,
-  reference_person: String,
-
-  // Relations
-  address: Schema.Types.ObjectId,
+  referencePerson: String,
 
   // Auditing
-  created_by: { type: Schema.Types.ObjectId, ref: 'User' },
-  created_at: { type: Date, default: Date.now},
+  createdBy: { type: Schema.Types.ObjectId, ref: 'User', required: true },
 
   // Unknown
   active: Boolean
@@ -28,10 +28,14 @@ var CustomerSchema = new Schema({
  */
 CustomerSchema
   .pre('save', function(next) {
-    //this.created_by = req?.session?.user_id?
-    next()    
+    console.log('Hej %s', session.name);
+    next()
   });
 
-CustomerSchema.index({name: 1, user_id: 1});
+// Plugins
+CustomerSchema.plugin(timestampPlugin);
+
+// Indexes
+CustomerSchema.index({name: 1, createdBy: 1});
 
 module.exports = mongoose.model('Customer', CustomerSchema);

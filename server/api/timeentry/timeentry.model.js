@@ -4,14 +4,22 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var TimeentrySchema = new Schema({
-  name: String,
-  info: String,
-  active: Boolean,
-  start_time: Date,
-  end_time: Date,
+  startTime: {type: Date, required: true},
+  endTime: Date,
   comment: String,
-  project_id: Schema.Types.ObjectId,
-  customer_id: Schema.Types.ObjectId
+
+  /////////////////////////////////////////////////////////////////////////////
+  // Relations
+  /////////////////////////////////////////////////////////////////////////////
+  project: {type: Schema.Types.ObjectId, required: true},
+  customer: {type: Schema.Types.ObjectId, required: true},
+
+  // Auditing
+  createdBy: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+
+  // Unknown
+  info: String,
+  active: Boolean
 });
 
 TimeentrySchema.index({project_id: 1, customer_id: 1});

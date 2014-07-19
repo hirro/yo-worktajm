@@ -3,11 +3,14 @@
 var _ = require('lodash');
 var Timeentry = require('./timeentry.model');
 
-// Get list of timeentrys
+// Get list of timeentries
 exports.index = function(req, res) {
-  Timeentry.find(function (err, timeentrys) {
+  var user = req.user;
+  Timeentry
+  .find({"createdBy": user._id})
+  .exec(function (err, timeentries) {
     if(err) { return handleError(res, err); }
-    return res.json(200, timeentrys);
+    return res.json(200, timeentries);
   });
 };
 
@@ -22,7 +25,9 @@ exports.show = function(req, res) {
 
 // Creates a new timeentry in the DB.
 exports.create = function(req, res) {
-  Timeentry.create(req.body, function(err, timeentry) {
+  var timeentry = new Timeentry(req.body);
+  timeentry.createdBy = req.user;
+  timeentry.save(function(err) {
     if(err) { return handleError(res, err); }
     return res.json(201, timeentry);
   });
