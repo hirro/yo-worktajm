@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('worktajmApp')
-  .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q) {
+  .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q, $state) {
     var currentUser = {};
     if($cookieStore.get('token')) {
       currentUser = User.get();
@@ -19,6 +19,7 @@ angular.module('worktajmApp')
       login: function(user, callback) {
         var cb = callback || angular.noop;
         var deferred = $q.defer();
+        console.log('xXxLOGIN 0');
 
         $http.post('/auth/local', {
           email: user.email,
@@ -28,6 +29,10 @@ angular.module('worktajmApp')
           $cookieStore.put('token', data.token);
           currentUser = User.get();
           deferred.resolve(data);
+          console.log('xXxLOGIN 1');
+          $state.go('dashboard');
+
+          //$state.go('dashboard');
           return cb();
         }).
         error(function(err) {
@@ -47,6 +52,7 @@ angular.module('worktajmApp')
       logout: function() {
         $cookieStore.remove('token');
         currentUser = {};
+        console.log('xXxLOGOUT 1');
       },
 
       /**

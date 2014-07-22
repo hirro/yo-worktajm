@@ -18,4 +18,5 @@ angular.module('worktajmApp')
         templateUrl: 'app/account/settings/settings.html',
         controller: 'SettingsCtrl'
       });
+
   });

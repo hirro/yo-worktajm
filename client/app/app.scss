@@ -15,6 +15,27 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
     padding: 0.2em 0;
 }
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 40px;
+  background-color: #000000;
+  color: #FFFFFF;
+  padding: 0px 0;
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
     .container {
@@ -22,10 +43,18 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
     }
 }
 
+@media screen and (min-width: 1024px) {
+    .container {
+        max-width: 1024px;
+    }
+}
+
+
 // Component styles are injected through grunt
 // injector
 @import 'account/login/login.scss';
 @import 'admin/admin.scss';
+@import 'dashboard/dashboard.scss';
 @import 'main/main.scss';
 @import 'reports/reports.scss';
 // endinjector

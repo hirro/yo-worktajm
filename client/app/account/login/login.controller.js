@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('worktajmApp')
-  .controller('LoginCtrl', function ($scope, Auth, $location, $window) {
+  .controller('LoginCtrl', function ($scope, Auth, $location, $window, $state) {
     $scope.user = {};
     $scope.errors = {};
 
@@ -9,21 +9,25 @@ angular.module('worktajmApp')
       $scope.submitted = true;
 
       if(form.$valid) {
+        console.log('Calling Auth.login');
         Auth.login({
           email: $scope.user.email,
           password: $scope.user.password
         })
         .then( function() {
           // Logged in, redirect to home
-          $location.path('/');
+          console.log('login - Logged in, redirect to home');
+          $state.go('main.authenticated');
         })
         .catch( function(err) {
+          console.log('login - error');
           $scope.errors.other = err.message;
         });
       }
     };
 
     $scope.loginOauth = function(provider) {
+      console.log('loginOauth');
       $window.location.href = '/auth/' + provider;
     };
   });

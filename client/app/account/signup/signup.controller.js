@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('worktajmApp')
-  .controller('SignupCtrl', function ($scope, Auth, $location) {
+  .controller('SignupCtrl', function ($scope, Auth, $state) {
     $scope.user = {};
     $scope.errors = {};
 
@@ -16,7 +16,8 @@ angular.module('worktajmApp')
         })
         .then( function() {
           // Account created, redirect to home
-          $location.path('/');
+          console.log('Account created, redirect to home');
+          $state.go('dashboard');
         })
         .catch( function(err) {
           err = err.data;

@@ -2,10 +2,15 @@
 
 angular.module('worktajmApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth) {
-    $scope.menu = [{
-      'title': 'Home',
-      'link': '/'
-    }];
+  
+    $scope.unauthenticatedMenu = [
+      {'title': 'Home', 'link': '/'}
+    ];
+
+    $scope.authenticatedMenu = [
+      {'title': 'Home', 'link': '/dashboard'},
+      {'title': 'Reports', 'link': '/reports'}
+    ];
 
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
@@ -14,7 +19,7 @@ angular.module('worktajmApp')
 
     $scope.logout = function() {
       Auth.logout();
-      $location.path('/login');
+      $location.path('/');
     };
 
     $scope.isActive = function(route) {
