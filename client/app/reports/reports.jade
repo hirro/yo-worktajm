@@ -1,10 +1,15 @@
 div(ng-include='"components/navbar/navbar.html"')
 
 .container
-    p Reports
-footer.footer
-  .container
-    p
-      a(href='https://twitter.com/tyhenkel') @tyhenkel
-      = ' | '
-      a(href='https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open') Issues
+  .row
+    h1 Reports
+  .row
+    .col-md-2
+        div(ui-view="projects")
+    .col-sm-8
+        div(ui-view="timeEntries")
+    .col-md-2
+        div(ui-view="status")    
+
+div(ng-include='"components/footer/footer.html"')
+

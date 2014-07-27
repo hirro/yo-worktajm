@@ -2,12 +2,12 @@ div(ng-include='"components/navbar/navbar.html"')
 
 .container
   .row
-    .col-md-2
-        h2 Projects
+    .col-md-4
+        div(ui-view="projects")
     .col-sm-8
-        h2 Time entries
-    .col-md-2
-        h2 Info
+        div(ui-view="timeEntries")
+    //- .col-md-3
+    //-     div(ui-view="status")
 
 div(ng-include='"components/footer/footer.html"')
 

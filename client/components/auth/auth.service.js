@@ -1,10 +1,19 @@
 'use strict';
 
 angular.module('worktajmApp')
-  .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q, $state) {
+  .factory('Auth', function Auth($http, User, $cookieStore, $q, $state) {
     var currentUser = {};
-    if($cookieStore.get('token')) {
-      currentUser = User.get();
+    if ($cookieStore.get('token')) {
+      currentUser = User.get(
+        {}, 
+        function (user) {
+          console.log('Auth:success ', user);
+          $state.go('dashboard');
+        },
+        function (err) {
+          console.log('Auth:error', err);
+        });
+      console.log('Auth', currentUser);
     }
 
     return {
@@ -16,30 +25,30 @@ angular.module('worktajmApp')
        * @param  {Function} callback - optional
        * @return {Promise}
        */
-      login: function(user, callback) {
+      login: function (user, callback) {
         var cb = callback || angular.noop;
         var deferred = $q.defer();
-        console.log('xXxLOGIN 0');
+        console.log('Auth::login(email: [%s])', user.email);
 
         $http.post('/auth/local', {
           email: user.email,
           password: user.password
         }).
-        success(function(data) {
-          $cookieStore.put('token', data.token);
-          currentUser = User.get();
-          deferred.resolve(data);
-          console.log('xXxLOGIN 1');
-          $state.go('dashboard');
+          success(function (data) {
+            $cookieStore.put('token', data.token);
+            currentUser = User.get();
+            deferred.resolve(data);
+            console.log('Auth::login - success');
+            $state.go('dashboard');
 
-          //$state.go('dashboard');
-          return cb();
-        }).
-        error(function(err) {
-          this.logout();
-          deferred.reject(err);
-          return cb(err);
-        }.bind(this));
+            //$state.go('dashboard');
+            return cb();
+          }).
+          error(function (err) {
+            this.logout();
+            deferred.reject(err);
+            return cb(err);
+          }.bind(this));
 
         return deferred.promise;
       },
@@ -49,10 +58,10 @@ angular.module('worktajmApp')
        *
        * @param  {Function}
        */
-      logout: function() {
+      logout: function () {
         $cookieStore.remove('token');
         currentUser = {};
-        console.log('xXxLOGOUT 1');
+        console.log('Auth::logout', currentUser);
       },
 
       /**
@@ -62,16 +71,16 @@ angular.module('worktajmApp')
        * @param  {Function} callback - optional
        * @return {Promise}
        */
-      createUser: function(user, callback) {
+      createUser: function (user, callback) {
         var cb = callback || angular.noop;
 
         return User.save(user,
-          function(data) {
+          function (data) {
             $cookieStore.put('token', data.token);
             currentUser = User.get();
             return cb(user);
           },
-          function(err) {
+          function (err) {
             this.logout();
             return cb(err);
           }.bind(this)).$promise;
@@ -85,15 +94,15 @@ angular.module('worktajmApp')
        * @param  {Function} callback    - optional
        * @return {Promise}
        */
-      changePassword: function(oldPassword, newPassword, callback) {
+      changePassword: function (oldPassword, newPassword, callback) {
         var cb = callback || angular.noop;
 
         return User.changePassword({ id: currentUser._id }, {
           oldPassword: oldPassword,
           newPassword: newPassword
-        }, function(user) {
+        }, function (user) {
           return cb(user);
-        }, function(err) {
+        }, function (err) {
           return cb(err);
         }).$promise;
       },
@@ -103,7 +112,9 @@ angular.module('worktajmApp')
        *
        * @return {Object} user
        */
-      getCurrentUser: function() {
+      getCurrentUser: function () {
+        console.log('Auth::getCurrentUser');
+        console.log(currentUser);
         return currentUser;
       },
 
@@ -112,7 +123,7 @@ angular.module('worktajmApp')
        *
        * @return {Boolean}
        */
-      isLoggedIn: function() {
+      isLoggedIn: function () {
         return currentUser.hasOwnProperty('role');
       },
 
@@ -121,14 +132,14 @@ angular.module('worktajmApp')
        *
        * @return {Boolean}
        */
-      isAdmin: function() {
+      isAdmin: function () {
         return currentUser.role === 'admin';
       },
 
       /**
        * Get auth token
        */
-      getToken: function() {
+      getToken: function () {
         return $cookieStore.get('token');
       }
     };

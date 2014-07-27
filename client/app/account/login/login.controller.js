@@ -27,7 +27,7 @@ angular.module('worktajmApp')
     };
 
     $scope.loginOauth = function(provider) {
-      console.log('loginOauth');
+      console.log('loginOauth - provider [%s]', provider);
       $window.location.href = '/auth/' + provider;
     };
   });

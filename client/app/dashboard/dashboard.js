@@ -5,7 +5,20 @@ angular.module('worktajmApp')
     $stateProvider
       .state('dashboard', {
         url: '/dashboard',
-        templateUrl: 'app/dashboard/dashboard.html',
+        views: {
+          '': {
+            templateUrl: 'app/dashboard/dashboard.html'
+          },
+          'projects@dashboard': {
+            templateUrl: 'app/dashboard/projects/projects.html'
+          },
+          'timeEntries@dashboard': {
+            templateUrl: 'app/dashboard/timeEntries/timeEntries.html'
+          },
+          'status@dashboard': {
+            templateUrl: 'app/dashboard/status/status.html'
+          }
+        },
         controller: 'DashboardCtrl'
       });
   });
