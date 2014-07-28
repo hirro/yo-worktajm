@@ -7,7 +7,6 @@ angular.module('worktajmApp')
       currentUser = User.get(
         {}, 
         function (user) {
-          console.log('Auth:success ', user);
           $state.go('dashboard');
         },
         function (err) {
@@ -28,7 +27,6 @@ angular.module('worktajmApp')
       login: function (user, callback) {
         var cb = callback || angular.noop;
         var deferred = $q.defer();
-        console.log('Auth::login(email: [%s])', user.email);
 
         $http.post('/auth/local', {
           email: user.email,
@@ -38,10 +36,7 @@ angular.module('worktajmApp')
             $cookieStore.put('token', data.token);
             currentUser = User.get();
             deferred.resolve(data);
-            console.log('Auth::login - success');
             $state.go('dashboard');
-
-            //$state.go('dashboard');
             return cb();
           }).
           error(function (err) {
@@ -113,8 +108,6 @@ angular.module('worktajmApp')
        * @return {Object} user
        */
       getCurrentUser: function () {
-        console.log('Auth::getCurrentUser');
-        console.log(currentUser);
         return currentUser;
       },
 

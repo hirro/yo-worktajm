@@ -10,7 +10,8 @@ angular.module('worktajmApp')
             templateUrl: 'app/dashboard/dashboard.html'
           },
           'projects@dashboard': {
-            templateUrl: 'app/dashboard/projects/projects.html'
+            templateUrl: 'app/dashboard/projects/projects.html',
+            controller: 'ProjectsCtrl'
           },
           'timeEntries@dashboard': {
             templateUrl: 'app/dashboard/timeEntries/timeEntries.html'
