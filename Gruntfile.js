@@ -1,6 +1,12 @@
 'use strict';
 
 module.exports = function (grunt) {
+  var localConfig;
+  try {
+    localConfig = require('./server/config/local.env');
+  } catch(e) {
+    localConfig = {};
+  }
 
   // Load grunt tasks automatically, when needed
   require('jit-grunt')(grunt, {
@@ -211,7 +217,7 @@ module.exports = function (grunt) {
       target: {
         src: '<%= yeoman.client %>/index.html',
         ignorePath: '<%= yeoman.client %>/',
-        exclude: [/bootstrap-sass-official/, /bootstrap.js/, /bootstrap.css/, /font-awesome.css/ ]
+        exclude: [/bootstrap-sass-official/, /bootstrap.js/, '/json3/', '/es5-shim/', /bootstrap.css/, /font-awesome.css/ ]
       }
     },
 
@@ -283,7 +289,7 @@ module.exports = function (grunt) {
 
     // Allow the use of non-minsafe AngularJS files. Automatically makes it
     // minsafe compatible so Uglify does not destroy the ng references
-    ngmin: {
+    ngAnnotate: {
       dist: {
         files: [{
           expand: true,
@@ -429,7 +435,7 @@ module.exports = function (grunt) {
       prod: {
         NODE_ENV: 'production'
       },
-      all: require('./server/config/local.env')
+      all: localConfig
     },
 
     // Compiles Jade to html
@@ -542,7 +548,7 @@ module.exports = function (grunt) {
     setTimeout(function () {
       grunt.log.writeln('Done waiting!');
       done();
-    }, 500);
+    }, 1500);
   });
 
   grunt.registerTask('express-keepalive', 'Keep grunt running', function() {
@@ -551,7 +557,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('serve', function (target) {
     if (target === 'dist') {
-      return grunt.task.run(['build', 'env:all', 'env:prod', 'express:prod', 'open', 'express-keepalive']);
+      return grunt.task.run(['build', 'env:all', 'env:prod', 'express:prod', 'wait', 'open', 'express-keepalive']);
     }
 
     if (target === 'debug') {
@@ -639,7 +645,7 @@ module.exports = function (grunt) {
     'autoprefixer',
     'ngtemplates',
     'concat',
-    'ngmin',
+    'ngAnnotate',
     'copy:dist',
     'cdnify',
     'cssmin',
