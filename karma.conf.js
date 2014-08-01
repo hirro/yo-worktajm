@@ -51,6 +51,29 @@ module.exports = function(config) {
     // list of files / patterns to exclude
     exclude: [],
 
+    // use dots reporter, as travis terminal does not support escaping sequences
+    // possible values: 'dots', 'progress', 'junit', 'teamcity'
+    // CLI --reporters progress
+    reporters: ['progress', 'coverage','junit', 'growl'],
+
+    junitReporter: {
+      // will be resolved to basePath (in the same way as files/exclude patterns)
+      outputFile: 'test-results.xml'
+    }, 
+
+    // // Coverage configuration
+    // preprocessors: {
+    //   // source files, that you wanna generate coverage for
+    //   // do not include tests or libraries
+    //   // (these files will be instrumented by Istanbul)
+    //   //'app/scripts/**/*.js': ['coverage']
+    // },
+    
+    coverageReporter: {
+      type: 'lcov',
+      dir: 'coverage/'
+    },
+
     // web server port
     port: 8080,
 
@@ -60,7 +83,7 @@ module.exports = function(config) {
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
+    autoWatch: true,
 
 
     // Start these browsers, currently available:

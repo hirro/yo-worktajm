@@ -1,0 +1,20 @@
+.modal-header
+    h4 {{titleText}}
+    .modal-body
+      form(role='form', name='projectForm')
+        .form-group
+          label(for='projectName') Project name
+          input#projectModalName.form-control(type='text', name='name', placeholder='Enter project name', ng-model='project.name', autofocus='autofocus', required='required')
+          span.help-block(ng-show='projectForm.name.$error.required') Required
+          span.help-block(ng-show='projectForm.name.$error.uniqueProjectPerUser') Project name is already defined
+        .form-group
+          label(for='projectRate') Rate
+          input#projectModalRate.form-control(type='name', name='rate', placeholder='Enter rate', ng-model='project.rate')
+          span.help-block Optional
+        .form-group
+          label(for='description') Description
+          input#projectModalDescription.form-control(type='name', name='description', placeholder='Enter project description', ng-model='project.description')
+          span.help-block Optional
+    .modal-footer
+      button#projectModalCancel.btn.btn-default(type='button', ng-click='cancel()') {{cancelText}}
+      button#projectModalOk.btn.btn-primary(type='button', ng-click='ok()') {{okText}}

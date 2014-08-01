@@ -408,6 +408,12 @@ module.exports = function (grunt) {
       }
     },
 
+    coveralls: {
+      options: {
+        coverage_dir: 'coverage/'
+      }
+    },    
+
     mochaTest: {
       options: {
         reporter: 'spec'

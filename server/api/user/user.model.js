@@ -3,7 +3,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var crypto = require('crypto');
-
 var authTypes = ['github', 'twitter', 'facebook', 'google'];
 
 var UserSchema = new Schema({
@@ -18,8 +17,8 @@ var UserSchema = new Schema({
   salt: String,
   facebook: {},
   twitter: {},
-  github: {},
   google: {},
+  github: {},
   timeEntries: [{type: Schema.Types.ObjectId, ref: 'TimeEntry' }]
 });
 
@@ -65,7 +64,6 @@ UserSchema
 UserSchema
   .path('email')
   .validate(function(email) {
-    // if you are authenticating by any of the oauth strategies, don't validate
     if (authTypes.indexOf(this.provider) !== -1) return true;
     return email.length;
   }, 'Email cannot be blank');
@@ -74,7 +72,6 @@ UserSchema
 UserSchema
   .path('hashedPassword')
   .validate(function(hashedPassword) {
-    // if you are authenticating by any of the oauth strategies, don't validate
     if (authTypes.indexOf(this.provider) !== -1) return true;
     return hashedPassword.length;
   }, 'Password cannot be blank');

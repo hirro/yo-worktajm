@@ -4,9 +4,9 @@ angular.module('worktajmApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ui.bootstrap',
   'btford.socket-io',
-  'ui.router'
+  'ui.router',
+  'ui.bootstrap'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
@@ -28,7 +28,7 @@ angular.module('worktajmApp', [
       },
 
       // Intercept 401s and redirect you to login
-      responseError: function (response) {
+      responseError: function(response) {
         if(response.status === 401) {
           $location.path('/login');
           // remove any stale tokens
@@ -45,13 +45,10 @@ angular.module('worktajmApp', [
   .run(function ($rootScope, $location, Auth) {
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, next) {
-
-      if (next.authenticate && !Auth.isLoggedIn()) {
-        $location.path('/login');
-      }
-
-      if ((next.name == 'main') && Auth.isLoggedIn()) {
-        $location.path('/dashboard');
-      }
+      Auth.isLoggedInAsync(function(loggedIn) {
+        if (next.authenticate && !loggedIn) {
+          $location.path('/login');
+        }
+      });
     });
   });

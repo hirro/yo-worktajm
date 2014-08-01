@@ -8,7 +8,8 @@ var timestampPlugin = require('mongoose-timestamp');
 
 var ProjectSchema = new Schema({
   name: { type: String, required: true },
-  description: String,
+  rate: { type: Number },
+  description: { type: String },
 
   // Relationships
   customer: { type: Schema.Types.ObjectId, ref: 'Customer', required: false },

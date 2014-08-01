@@ -2,6 +2,7 @@
 
 angular.module('worktajmApp')
   .controller('MainCtrl', function ($scope, Auth, $location) {
+    $scope.awesomeThings = [];    
     $scope.user = {};
     $scope.errors = {};
 
@@ -31,7 +32,6 @@ angular.module('worktajmApp')
       }
     };
     $scope.isAuthenticated = function () {
-      console.log('sdfsdf');
       return Auth.isLoggedIn();
     }
   });

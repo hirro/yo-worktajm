@@ -1,7 +1,9 @@
+/*globals console */
+
 'use strict';
 
 angular.module('worktajmApp')
-  .controller('ProjectsCtrl', function ($scope, Timer) {
+  .controller('ProjectsCtrl', function ($scope, $modal, Timer) {
     $scope.message = 'Hello';
 
     $scope.projects = [];
@@ -9,12 +11,30 @@ angular.module('worktajmApp')
       $scope.projects = result;
     });
 
-    $scope.createProject = function () {
-      console.log('createProject');
+    var ProjectModalCtrl = function ($scope, $modalInstance, modalParams) {
+      _.extend($scope, modalParams);
+      $scope.project = {
+        name: modalParams.project.name,
+        rate: modalParams.project.rate,
+        description: modalParams.project.description,
+        id: modalParams.project.id
+      };
+
+      $scope.ok = function () {
+        // FIXME
+        // Make sure project name is unique for the logged in person.
+        // If not, set the error status on the input
+        //$scope.projectForm.project.$setValidity('uniqueProjectPerUser', false);
+        $modalInstance.close($scope.project);
+      };
+
+      $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+      };
     };
 
     $scope.openModal = function (project, titleText, messageText, okText, cancelText) {
-      console.log('ProjectsCtrl::editProject, projectName: %s', project.name);
+      console.log('ProjectsCtrl::openModal', project.name);
       var modalParams = {
         project: project,
         titleText: titleText,
@@ -24,8 +44,8 @@ angular.module('worktajmApp')
         subject: _.clone(project)
       };
       var modalInstance = $modal.open({
-        templateUrl: 'projectModal.html',
-        controller: 'ProjectModalCtrl',
+        templateUrl: 'app/dashboard/projects/projectModal.html',
+        controller: ProjectModalCtrl,
         resolve: {
           modalParams: function () {
             return modalParams;
@@ -41,7 +61,14 @@ angular.module('worktajmApp')
     };
 
     $scope.createProject = function () {
-      var project = {};
+      console.log('ProjectsCtrl::createProject');
+      var project = { name: ''};
       $scope.openModal(project, 'Create Project', '', 'Create', 'Cancel');
     };
+
+    $scope.onUpdateProject = function (project) {
+      console.log('onUpdateProject');
+      return Timer.createProject(project);
+    };
+
   });

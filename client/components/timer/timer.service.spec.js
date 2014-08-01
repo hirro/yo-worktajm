@@ -4,6 +4,7 @@ describe('Service: Timer', function () {
 
   // load the service's module
   beforeEach(module('worktajmApp'));
+  beforeEach(module('socketMock'));  
 
   // instantiate service
   var Timer;

@@ -15,6 +15,29 @@ angular.module('worktajmApp')
           deferred.resolve(projects);
         });
         return deferred.promise;
+      },
+
+      createProject: function (project, callback) {
+        console.log('createProject', project);
+        var cb = callback || angular.noop;
+        var deferred = $q.defer();
+
+        $http.post('/api/projects', {
+          name: project.name,
+          rate: project.rate,
+          description: project.description
+        }).
+            success(function (data) {
+            console.log('Created new project');
+            cb();
+          }).
+          error(function (err) {
+            console.log('Failed to created project');
+            cb(err);
+          }.bind(this));
+
+        return deferred.promise;
+
       }
     }
   });
