@@ -25,16 +25,31 @@
             .form-group
               label Project Name
               input.form-control(type='text', placeholder='Project name', ng-model='project.name')
-            .form-group
-              label Customer Name
-              input.form-control(type='text', placeholder='Customer name', ng-model='project.customerName', typeahead='customer.name for customer in getCustomers() | filter:$viewValue | limitTo:8')
+            //- .form-group
+            //-   label Customer Name
+            //-   input.form-control(type='text', placeholder='Customer name', ng-model='project.customerName', typeahead='customer.name for customer in getCustomers() | filter:$viewValue | limitTo:8')
             .form-group
               label Rate
               input.form-control(type='number', placeholder='Hourly rate', ng-model='project.rate')
             .form-group
               .controls
                 .btn-group
-                  button.btn.btn-primary.btn-sm.glyphicon.glyphicon-ok.save-project(type='button', ng-click='updateProject(project)', popover='Save', popover-placement='bottom', popover-trigger='mouseenter')
-                  button.btn.btn-primary.btn-sm.glyphicon.glyphicon-remove.restore-project(type='button', ng-click='restoreProject(project)', popover='Undo', popover-placement='bottom', popover-trigger='mouseenter')
+                  button.btn.btn-primary.btn-sm.glyphicon.glyphicon-ok.save-project(
+                    type='button', 
+                    ng-click='updateProject(project)', 
+                    popover='Save', 
+                    popover-placement='bottom', 
+                    popover-trigger='mouseenter')
+                  button.btn.btn-primary.btn-sm.glyphicon.glyphicon-remove.restore-project(
+                    type='button', 
+                    ng-click='restoreProject(project)', 
+                    popover='Undo', 
+                    popover-placement='bottom', 
+                    popover-trigger='mouseenter')
                 .btn-group
-                  button.btn.btn-danger.btn-sm.glyphicon.glyphicon-trash.delete-project(type='button', ng-click='deleteProject(project)', popover='Delete', popover-placement='bottom', popover-trigger='mouseenter')
+                  button.btn.btn-danger.btn-sm.glyphicon.glyphicon-trash.delete-project(
+                    type='button', 
+                    ng-click='deleteProject(project)', 
+                    popover='Delete', 
+                    popover-placement='bottom', 
+                    popover-trigger='mouseenter')

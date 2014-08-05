@@ -11,10 +11,10 @@
           label(for='projectRate') Rate
           input#projectModalRate.form-control(type='name', name='rate', placeholder='Enter rate', ng-model='project.rate')
           span.help-block Optional
-        .form-group
-          label(for='description') Description
-          input#projectModalDescription.form-control(type='name', name='description', placeholder='Enter project description', ng-model='project.description')
-          span.help-block Optional
+        //- .form-group
+        //-   label(for='description') Description
+        //-   input#projectModalDescription.form-control(type='name', name='description', placeholder='Enter project description', ng-model='project.description')
+        //-   span.help-block Optional
     .modal-footer
       button#projectModalCancel.btn.btn-default(type='button', ng-click='cancel()') {{cancelText}}
       button#projectModalOk.btn.btn-primary(type='button', ng-click='ok()') {{okText}}

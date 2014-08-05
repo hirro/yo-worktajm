@@ -61,14 +61,32 @@ angular.module('worktajmApp')
     };
 
     $scope.createProject = function () {
-      console.log('ProjectsCtrl::createProject');
       var project = { name: ''};
       $scope.openModal(project, 'Create Project', '', 'Create', 'Cancel');
     };
 
+    $scope.updateProject = function (project) {
+      Timer.updateProject(project);
+    };
+
+    $scope.restoreProject = function (project) {
+      Timer.restoreProject(project);
+    };
+
     $scope.onUpdateProject = function (project) {
-      console.log('onUpdateProject');
       return Timer.createProject(project);
+    };
+
+    $scope.deleteProject = function (project) {
+      return Timer.deleteProject(project);
+    };
+
+    $scope.startTimer = function (project) {
+      return Timer.startTimer(project);
+    };
+
+    $scope.stopTimer = function (project) {
+      return Timer.stopTimer(project);
     };
 
   });
