@@ -3,11 +3,11 @@
 'use strict';
 
 angular.module('worktajmApp')
-  .controller('ProjectsCtrl', function ($scope, $modal, Timer) {
+  .controller('ProjectsCtrl', function ($scope, $modal, Worktajm) {
     $scope.message = 'Hello';
 
     $scope.projects = [];
-    Timer.getMyProjects().then(function (result) {
+    Worktajm.getMyProjects().then(function (result) {
       $scope.projects = result;
     });
 
@@ -66,27 +66,27 @@ angular.module('worktajmApp')
     };
 
     $scope.updateProject = function (project) {
-      Timer.updateProject(project);
+      Worktajm.updateProject(project);
     };
 
     $scope.restoreProject = function (project) {
-      Timer.restoreProject(project);
+      Worktajm.restoreProject(project);
     };
 
     $scope.onUpdateProject = function (project) {
-      return Timer.createProject(project);
+      return Worktajm.createProject(project);
     };
 
     $scope.deleteProject = function (project) {
-      return Timer.deleteProject(project);
+      return Worktajm.deleteProject(project);
     };
 
     $scope.startTimer = function (project) {
-      return Timer.startTimer(project);
+      return Worktajm.startTimer(project);
     };
 
     $scope.stopTimer = function (project) {
-      return Timer.stopTimer(project);
+      return Worktajm.stopTimer(project);
     };
 
   });
