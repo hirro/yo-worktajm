@@ -1,0 +1,49 @@
+.modal-header
+    h4 {{titleText}}
+    .modal-body
+      form.form-horizontal(role='form', name='customerForm')
+        h4 Customer Information
+        .form-group
+          label.col-sm-4.control-label(for='name') Company Name
+          .col-sm-8
+            input.form-control(type='text', ng-model='customer.name', autofocus='autofocus')
+            span.help-block(ng-show='registrationForm.email.$error.required') Required
+        h4 Invoice generation
+        .form-group
+          label.col-sm-4.control-label(for='billingFrequency') Invoice Generation
+          .col-sm-8
+            select#billingFrequency.form-control(type='text', ng-model='customer.billingFrequency')
+              option None
+              option Daily
+              option Weekly
+              option Weekly (within month)
+              option Monthly
+        div(ng-hide='customer.billingFrequency===undefined || customer.billingFrequency===\'None\'')
+          h4 Billing Information
+          .form-group
+            label.col-sm-4.control-label(for='reference') Billing Reference
+            .col-sm-8
+              input.form-control(type='text', ng-model='customer.reference')
+          .form-group
+            label.col-sm-4.control-label(for='line1') Line 1
+            .col-sm-8
+              input#line1.form-control(type='text', ng-model='customer.billingAddress.line1')
+          .form-group
+            label.col-sm-4.control-label(for='line2') Line 2
+            .col-sm-8
+              input#line2.form-control(type='text', ng-model='customer.billingAddress.line2')
+          .form-group
+            label.col-sm-4.control-label(for='city') City
+            .col-sm-8
+              input#city.form-control(type='text', ng-model='customer.billingAddress.city')
+          .form-group
+            label.col-sm-4.control-label(for='zip') Zip code
+            .col-sm-8
+              input#zip.form-control(type='text', ng-model='customer.billingAddress.zip')
+          .form-group
+            label.col-sm-4.control-label(for='country') Country
+            .col-sm-8
+              input#country.form-control(type='text', ng-model='customer.billingAddress.country')
+    .modal-footer
+      button#cusomerModalConfirmBtn.btn.btn-success(type='button', ng-click='ok()') Confirm
+      button.btn.btn-default(type='button', ng-click='cancel()') Cancel

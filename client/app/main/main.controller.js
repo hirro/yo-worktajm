@@ -33,5 +33,5 @@ angular.module('worktajmApp')
     };
     $scope.isAuthenticated = function () {
       return Auth.isLoggedIn();
-    }
+    };
   });

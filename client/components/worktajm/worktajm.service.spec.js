@@ -4,15 +4,16 @@ describe('Service: worktajm', function () {
 
   // load the service's module
   beforeEach(module('worktajmApp'));
+  beforeEach(module('socketMock'));  
 
   // instantiate service
-  var worktajm;
-  beforeEach(inject(function (_worktajm_) {
-    worktajm = _worktajm_;
+  var Worktajm;
+  beforeEach(inject(function (_Worktajm_) {
+    Worktajm = _Worktajm_;
   }));
 
   it('should do something', function () {
-    expect(!!worktajm).toBe(true);
+    expect(!!Worktajm).toBe(true);
   });
 
 });

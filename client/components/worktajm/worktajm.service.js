@@ -4,6 +4,7 @@ angular.module('worktajmApp')
   .service('Worktajm', function ($http, $q, socket, Project, TimeEntry, Auth) {
     // AngularJS will instantiate a singleton by calling "new" on this function
     var projects = [];
+    var timeEntries = [];
 
     return {
       getMyProjects: function () {
@@ -14,6 +15,16 @@ angular.module('worktajmApp')
           deferred.resolve(projects);
         });
         return deferred.promise;
+      },
+
+      getTimeEntries: function () {
+        var deferred = $q.defer();
+        $http.get('/api/timeEntries').success(function (timeEntryList) {
+          timeEntries = timeEntryList;
+          socket.syncUpdates('timeentry', timeEntries);
+          deferred.resolve(timeEntries);
+        });
+        return deferred.promise;      
       },
 
       createProject: function (project, callback) {
@@ -129,12 +140,35 @@ angular.module('worktajmApp')
             project: project._id,
             startTime: '2014-07-21T08:00:00.000Z'
           },
-          function (timeEntry) {
+          function () {
             console.log('Created time entry');
           },
-          function (err) {
+          function () {
             console.log('Failed to create time entry');
           });
+      },
+
+      deleteTimeEntry: function (timeEntry, callback) {
+        console.log('deleteTimeEntry - id [%s]', timeEntry._id);
+        var cb = callback || angular.noop;        
+        var deferred = $q.defer();
+
+        TimeEntry.delete(
+          {
+            id: timeEntry._id
+          },
+          function (timeEntry) {
+            console.log('Deleted time entry');
+            cb(timeEntry);
+            deferred.resolve(timeEntry);
+          },
+          function (err) {
+            console.log('Failed to delete time entry');
+            cb(err);
+            deferred.reject(err);
+          }
+        );
+        return deferred.promise;        
       }
 
     };

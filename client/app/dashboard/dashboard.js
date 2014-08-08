@@ -14,7 +14,8 @@ angular.module('worktajmApp')
             controller: 'ProjectsCtrl'
           },
           'timeEntries@dashboard': {
-            templateUrl: 'app/dashboard/timeEntries/timeEntries.html'
+            templateUrl: 'app/dashboard/timeEntries/timeEntries.html',
+            controller: 'TimeentriesCtrl'            
           },
           'status@dashboard': {
             templateUrl: 'app/dashboard/status/status.html'

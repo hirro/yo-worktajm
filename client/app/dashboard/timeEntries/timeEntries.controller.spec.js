@@ -4,6 +4,7 @@ describe('Controller: TimeentriesCtrl', function () {
 
   // load the controller's module
   beforeEach(module('worktajmApp'));
+  beforeEach(module('socketMock'));  
 
   var TimeentriesCtrl, scope;
 
