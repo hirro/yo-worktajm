@@ -1,0 +1,14 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+.container
+  .row
+    .col-md-4
+        div(ui-view="projects")
+    .col-sm-8
+        div(ui-view="timeEntries")
+    //- .col-md-3
+    //-     div(ui-view="status")
+
+div(ng-include='"components/footer/footer.html"')
+
+

@@ -51,6 +51,9 @@ function install() {
   echo "Installing protractor"
   npm install -g protractor
 
+  # Bower
+  npm install -g bower
+
   # Install local npm modules
   echo "Installing local npm modules"
   npm install
@@ -58,6 +61,9 @@ function install() {
   # Install bower packages
   echo "Installing local bower packages"
   bower install
+
+  # Install grunt 
+  npm install -g grunt-cli
 }
 
 function verify() {

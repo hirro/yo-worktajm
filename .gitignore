@@ -1,11 +1,8 @@
 node_modules
-dist
+public
 .tmp
 .sass-cache
-app/bower_components
-.DS_Store
-coverage
+client/bower_components
+dist
+/server/config/local.env.js
 test-results.xml
-.idea
-tmp
-yo-worktajm.sublime-project

@@ -1,0 +1,55 @@
+.panel.panel-default
+    .panel-heading
+        h4.panel-title Projects
+      .panel-body.projects
+        p
+          a#createProject.btn.btn-primary.btn-sm(ng-click='createProject()')
+            i.glyphicon-plus
+            | Add new project
+        div(ng-repeat='project in projects')
+          // First part, always visable 
+          table.table.project_header
+            tr.timer_row
+              th.col-md-8
+                a.timer_text(ng-click='project.isOpen = !project.isOpen')
+                  small.pull-left.glyphicon.left-margin-5(ng-class='{\'glyphicon-chevron-down\': project.isOpen, \'glyphicon-chevron-right\': !project.isOpen}')
+                  span
+                    | {{project.name}}
+              th.col-md-4
+                a.btn.btn-xs.btn-danger.pull-right(ng-click='stopTimer(project)', role='button', ng-show='project.active')
+                  | Stop
+                a.btn.btn-xs.btn-success.pull-right(ng-click='startTimer(project)', role='button', ng-hide='project.active')
+                  | Start
+          // Second part, only visable if project is open 
+          form(role='form', collapse='!project.isOpen')
+            .form-group
+              label Project Name
+              input.form-control(type='text', placeholder='Project name', ng-model='project.name')
+            //- .form-group
+            //-   label Customer Name
+            //-   input.form-control(type='text', placeholder='Customer name', ng-model='project.customerName', typeahead='customer.name for customer in getCustomers() | filter:$viewValue | limitTo:8')
+            .form-group
+              label Rate
+              input.form-control(type='number', placeholder='Hourly rate', ng-model='project.rate')
+            .form-group
+              .controls
+                .btn-group
+                  button.btn.btn-primary.btn-sm.glyphicon.glyphicon-ok.save-project(
+                    type='button', 
+                    ng-click='updateProject(project)', 
+                    popover='Save', 
+                    popover-placement='bottom', 
+                    popover-trigger='mouseenter')
+                  button.btn.btn-primary.btn-sm.glyphicon.glyphicon-remove.restore-project(
+                    type='button', 
+                    ng-click='restoreProject(project)', 
+                    popover='Undo', 
+                    popover-placement='bottom', 
+                    popover-trigger='mouseenter')
+                .btn-group
+                  button.btn.btn-danger.btn-sm.glyphicon.glyphicon-trash.delete-project(
+                    type='button', 
+                    ng-click='deleteProject(project)', 
+                    popover='Delete', 
+                    popover-placement='bottom', 
+                    popover-trigger='mouseenter')

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="12.2">
+  <zoom_level>8</zoom_level>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>904</x>
+      <y>184</y>
+      <w>152</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>Customer
+--
+- name: String
+--
+Indexes
+- name (user)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>24</x>
+      <y>184</y>
+      <w>152</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>User
+--
+- id: ID
+- email: String
+- team_id: ID</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>584</x>
+      <y>168</y>
+      <w>336</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>24;24;320;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>904</x>
+      <y>288</y>
+      <w>152</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>Project
+--
+- name: String
+- cost: Currency
+--
+Indexes
+- name (user)
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>584</x>
+      <y>272</y>
+      <w>336</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>24;24;320;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>904</x>
+      <y>40</y>
+      <w>152</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Address
+--
+- line1: String
+- line2: String
+- zip: String
+- country: String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>256</x>
+      <y>272</y>
+      <w>152</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>TimeEntry
+--
+- customer_id: ID
+- project_id: ID
+- startTime: DateTime
+- endTime: DateTime
+- comment: String
+--
+Indexes
+- user_id
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>952</x>
+      <y>96</y>
+      <w>40</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>24;88;24;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>152</x>
+      <y>256</y>
+      <w>120</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>24;24;104;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>456</x>
+      <y>184</y>
+      <w>152</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>Team
+--
+- name: String
+--
+Indexes
+- name
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>512</x>
+      <y>56</y>
+      <w>408</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>24;128;392;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>152</x>
+      <y>152</y>
+      <w>320</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1..n
+m2=1
+memberOf &gt;</panel_attributes>
+    <additional_attributes>24;40;304;40</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>904</x>
+      <y>496</y>
+      <w>160</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>Roles
+--
+- admins: [user_id]
+- members: [user_id]
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>584</x>
+      <y>328</y>
+      <w>336</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>24;24;320;176</additional_attributes>
+  </element>
+</diagram>

@@ -1,0 +1,41 @@
+div.navbar.navbar-default.navbar-static-top.navbar-inverse(ng-controller='NavbarCtrl')
+  div.container
+    div.navbar-header
+      button.navbar-toggle(type='button', ng-click='isCollapsed = !isCollapsed')
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      img(src="assets/images/logo.png")
+
+    div#navbar-main.navbar-collapse.collapse(collapse='isCollapsed')
+      ul.nav.navbar-nav(ng-hide='isLoggedIn()')
+        li(ng-repeat='item in unauthenticatedMenu', ng-class='{active: isActive(item.link)}')
+          a(ng-href='{{item.link}}') {{item.title}}
+      ul.nav.navbar-nav(ng-show='isLoggedIn()')
+        li(ng-repeat='item in authenticatedMenu', ng-class='{active: isActive(item.link)}')
+          a(ng-href='{{item.link}}') {{item.title}}
+
+        li(ng-show='isAdmin()', ng-class='{active: isActive("/admin")}')
+          a(href='/admin') Admin
+          
+      ul.nav.navbar-nav.navbar-right
+
+        li(ng-hide='isLoggedIn()', ng-class='{active: isActive("/login")}')
+          a(href='/login') Login
+
+        li(ng-show='isLoggedIn()')
+          p.navbar-text Hello {{ getCurrentUser().name }}
+
+        li(ng-show='isLoggedIn()', ng-class='{active: isActive("/settings")}', class='dropdown')
+          a(href='/settings', class='dropdown-toggle')
+            span.glyphicon.glyphicon-cog 
+          ul(class="dropdown-menu")
+            li
+              a(href='/password') Password
+              a(href='#') Billing
+              a(href='#') Projects
+              a(href='#') Customers
+
+        li(ng-show='isLoggedIn()', ng-class='{active: isActive("/logout")}')
+          a(href='', ng-click='logout()') Logout
