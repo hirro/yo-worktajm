@@ -6,7 +6,7 @@
 [ ![Codeship Status for hirro/yo-worktajm](https://www.codeship.io/projects/295e56d0-3115-0131-77a2-4ab24c68f59c/status?branch=master)](https://www.codeship.io/projects/9576)
 
 # WorkTajm
-Hosted at: http://www.worktajm.com
+Dev build hosted at: http://worktajm.herokuapp.com/
 
 ***
 
