@@ -1,49 +1,36 @@
 .modal-header
     h4 {{titleText}}
     .modal-body
-      form.form-horizontal(role='form', name='customerForm')
-        h4 Customer Information
+      form(role='form')
         .form-group
-          label.col-sm-4.control-label(for='name') Company Name
-          .col-sm-8
-            input.form-control(type='text', ng-model='customer.name', autofocus='autofocus')
-            span.help-block(ng-show='registrationForm.email.$error.required') Required
-        h4 Invoice generation
+          label(for='project') Project
+          input.form-control(type='text', ng-model='timeEntry.project.name', typeahead='project for project in projectNames | filter:$viewValue | limitTo:8', required='required')
+          p
+            .alert.alert-info(ng-hide='timeEntry.project.id')
+              | Project name does not exist, new project will be created
         .form-group
-          label.col-sm-4.control-label(for='billingFrequency') Invoice Generation
-          .col-sm-8
-            select#billingFrequency.form-control(type='text', ng-model='customer.billingFrequency')
-              option None
-              option Daily
-              option Weekly
-              option Weekly (within month)
-              option Monthly
-        div(ng-hide='customer.billingFrequency===undefined || customer.billingFrequency===\'None\'')
-          h4 Billing Information
-          .form-group
-            label.col-sm-4.control-label(for='reference') Billing Reference
-            .col-sm-8
-              input.form-control(type='text', ng-model='customer.reference')
-          .form-group
-            label.col-sm-4.control-label(for='line1') Line 1
-            .col-sm-8
-              input#line1.form-control(type='text', ng-model='customer.billingAddress.line1')
-          .form-group
-            label.col-sm-4.control-label(for='line2') Line 2
-            .col-sm-8
-              input#line2.form-control(type='text', ng-model='customer.billingAddress.line2')
-          .form-group
-            label.col-sm-4.control-label(for='city') City
-            .col-sm-8
-              input#city.form-control(type='text', ng-model='customer.billingAddress.city')
-          .form-group
-            label.col-sm-4.control-label(for='zip') Zip code
-            .col-sm-8
-              input#zip.form-control(type='text', ng-model='customer.billingAddress.zip')
-          .form-group
-            label.col-sm-4.control-label(for='country') Country
-            .col-sm-8
-              input#country.form-control(type='text', ng-model='customer.billingAddress.country')
+          label(for='startDate') Start time
+          .dropdown
+            a#dropdown1.dropdown-toggle(role='button', data-toggle='dropdown', data-target='#', href='#')
+              .input-group
+                input.form-control(type='text', data-ng-model='timeEntry.start', ng-required='ng-required')
+                span.input-group-addon
+                  i.glyphicon.glyphicon-calendar
+            ul.dropdown-menu(role='menu', aria-labelledby='dLabel')
+              datetimepicker(data-ng-model='timeEntry.start', data-datetimepicker-config='{ dropdownSelector: \'#dropdown1\' }')
+        .form-group
+          label(for='endDate') End time
+          .dropdown
+            a#dropdown2.dropdown-toggle(role='button', data-toggle='dropdown', data-target='#', href='#')
+              .input-group
+                input.form-control(type='text', data-ng-model='timeEntry.end', ng-required='ng-required')
+                span.input-group-addon
+                  i.glyphicon.glyphicon-calendar
+            ul.dropdown-menu(role='menu', aria-labelledby='dLabel')
+              datetimepicker(data-ng-model='timeEntry.end', data-datetimepicker-config='{ dropdownSelector: \'#dropdown2\' }')
+        .form-group
+          label(for='comment') Comment
+          textarea#comment.form-control(rows='10', placeholder='Enter comment', ng-model='timeEntry.comment')
     .modal-footer
-      button#cusomerModalConfirmBtn.btn.btn-success(type='button', ng-click='ok()') Confirm
-      button.btn.btn-default(type='button', ng-click='cancel()') Cancel
+      button.btn.btn-default(type='button', ng-click='cancel()') {{cancelText}}
+      button.btn.btn-primary(type='button', ng-click='ok()') {{okText}}
