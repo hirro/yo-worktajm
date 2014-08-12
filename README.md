@@ -2,7 +2,6 @@
 [![Code Climate](https://codeclimate.com/github/hirro/yo-worktajm.png)](https://codeclimate.com/github/hirro/yo-worktajm)
 [![Coverage Status](https://coveralls.io/repos/hirro/yo-worktajm/badge.png?branch=master)](https://coveralls.io/r/hirro/yo-worktajm?branch=master)
 [![Dependency Status](https://gemnasium.com/hirro/yo-worktajm.png)](https://gemnasium.com/hirro/yo-worktajm)
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/hirro/yo-worktajm/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 [ ![Codeship Status for hirro/yo-worktajm](https://www.codeship.io/projects/295e56d0-3115-0131-77a2-4ab24c68f59c/status?branch=master)](https://www.codeship.io/projects/9576)
 
