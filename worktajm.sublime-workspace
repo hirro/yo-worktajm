@@ -47,14 +47,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "worktajm.json",
-			"settings":
-			{
-				"buffer_size": 151,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -92,6 +84,7 @@
 	},
 	"file_history":
 	[
+		"/Users/jiar/git/yo-worktajm/master/worktajm.json",
 		"/Users/jiar/git/yo-worktajm/node/client/app/dashboard/dashboard.js",
 		"/Users/jiar/git/yo-worktajm/node/client/components/timer/timer.service.js",
 		"/Users/jiar/git/yo-worktajm/node/client/app/app.js",
@@ -136,7 +129,7 @@
 	],
 	"find":
 	{
-		"height": 23.0
+		"height": 22.0
 	},
 	"find_in_files":
 	{
@@ -218,44 +211,14 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "worktajm.json",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 151,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								151,
-								151
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 23.0
+		"height": 22.0
 	},
 	"input":
 	{
@@ -295,7 +258,7 @@
 	"project": "worktajm.sublime-project",
 	"replace":
 	{
-		"height": 42.0
+		"height": 40.0
 	},
 	"save_all_on_build": true,
 	"select_file":
