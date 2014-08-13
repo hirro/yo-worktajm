@@ -22,6 +22,7 @@ module.exports = function(config) {
       'client/bower_components/lodash/dist/lodash.compat.js',
       'client/bower_components/angular-socket-io/socket.js',
       'client/bower_components/angular-ui-router/release/angular-ui-router.js',
+      'client/bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js',      
       'client/app/app.js',
       'client/app/app.coffee',
       'client/app/**/*.js',
@@ -38,6 +39,7 @@ module.exports = function(config) {
       '**/*.jade': 'ng-jade2js',
       '**/*.html': 'html2js',
       '**/*.coffee': 'coffee',
+      'client/app/**/*.js': ['coverage']
     },
 
     ngHtml2JsPreprocessor: {

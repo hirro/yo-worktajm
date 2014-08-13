@@ -84,6 +84,13 @@
 	},
 	"file_history":
 	[
+		"/Users/jiar/git/yo-worktajm/master/client/app/dashboard/projects/projects.controller.js",
+		"/Users/jiar/git/yo-worktajm/master/client/app/dashboard/customers/customerModal.jade",
+		"/Users/jiar/git/yo-worktajm/master/client/app/app.js",
+		"/Users/jiar/git/yo-worktajm/master/client/app/dashboard/timeEntries/timeEntries.controller.js",
+		"/Users/jiar/git/yo-worktajm/master/client/app/dashboard/timeEntries/timeEntryModal.jade",
+		"/Users/jiar/git/yo-worktajm/master/bower.json",
+		"/Users/jiar/git/yo-worktajm/master/worktajm.sublime-project",
 		"/Users/jiar/git/yo-worktajm/master/worktajm.json",
 		"/Users/jiar/git/yo-worktajm/node/client/app/dashboard/dashboard.js",
 		"/Users/jiar/git/yo-worktajm/node/client/components/timer/timer.service.js",
@@ -129,7 +136,7 @@
 	],
 	"find":
 	{
-		"height": 22.0
+		"height": 37.0
 	},
 	"find_in_files":
 	{
@@ -148,9 +155,18 @@
 	},
 	"find_state":
 	{
-		"case_sensitive": false,
+		"case_sensitive": true,
 		"find_history":
 		[
+			"wp:",
+			"wp:Toast",
+			"Toast",
+			"Notification",
+			"Project",
+			"project",
+			"Project",
+			"project",
+			"Project",
 			"projects2",
 			"name",
 			"}",
