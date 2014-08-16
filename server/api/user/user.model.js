@@ -20,7 +20,7 @@ var UserSchema = new Schema({
   google: {},
   github: {},
   timeEntries: [{type: Schema.Types.ObjectId, ref: 'TimeEntry' }],
-  currentTimeEntry:  { type: Schema.Types.ObjectId, ref: 'TimeEntry'}
+  activeTimeEntry:  { type: Schema.Types.ObjectId, ref: 'TimeEntry'}
 });
 
 /**

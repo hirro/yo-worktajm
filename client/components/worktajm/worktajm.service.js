@@ -24,7 +24,7 @@ angular.module('worktajmApp')
           socket.syncUpdates('timeentry', timeEntries);
           deferred.resolve(timeEntries);
         });
-        return deferred.promise;      
+        return deferred.promise;
       },
 
       createProject: function (project, callback) {
@@ -74,7 +74,7 @@ angular.module('worktajmApp')
       },
 
       restoreProject: function (project, callback) {
-        var cb = callback || angular.noop;        
+        var cb = callback || angular.noop;
         var deferred = $q.defer();
 
         Project.get(
@@ -99,7 +99,7 @@ angular.module('worktajmApp')
 
       deleteProject: function (project, callback) {
         console.log('deleteProject - id [%s]', project._id);
-        var cb = callback || angular.noop;        
+        var cb = callback || angular.noop;
         var deferred = $q.defer();
 
         Project.delete(
@@ -135,17 +135,21 @@ angular.module('worktajmApp')
       },
 
       createTimeEntry: function (project) {
+        var deferred = $q.defer();
         TimeEntry.save(
           {
             project: project._id,
             startTime: '2014-07-21T08:00:00.000Z'
           },
-          function () {
+          function (newTimeEntry) {
             console.log('Created time entry');
+            deferred.resolve(newTimeEntry);
           },
-          function () {
+          function (error) {
             console.log('Failed to create time entry');
+            deferred.reject(error);
           });
+        return deferred.promise;
       },
 
       deleteTimeEntry: function (timeEntry, callback) {
