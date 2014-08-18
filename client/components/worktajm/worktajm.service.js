@@ -126,7 +126,7 @@ angular.module('worktajmApp')
         console.log('current user is ', user);
 
         // Create new time entry (for given project)
-        this.createTimeEntry(project);
+        return this.createTimeEntry(project);
         // updateCurrentUser();
       },
 
