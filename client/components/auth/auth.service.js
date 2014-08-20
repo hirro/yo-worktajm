@@ -31,6 +31,7 @@ angular.module('worktajmApp')
           return cb();
         }).
         error(function(err) {
+          console.log('XXX');
           this.logout();
           deferred.reject(err);
           return cb(err);

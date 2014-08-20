@@ -94,6 +94,22 @@ exports.me = function(req, res, next) {
 };
 
 /**
+ * Set the active time entry
+ */
+exports.setActiveTimeentry = function () {
+  var userId = req.user._id;
+  var activeTimeEntry = String(req.body.activeTimeEntry);
+  
+  User.findById(userId, function (err, user) {
+    user.activeTimeEntry = activeTimeEntry;
+    user.save(function(err) {
+      if (err) return validationError(res, err);
+      res.send(200);
+    });
+  });
+};
+
+/**
  * Authentication callback
  */
 exports.authCallback = function(req, res, next) {

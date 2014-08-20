@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('worktajmApp')
-  .service('Worktajm', function ($http, $q, socket, Project, TimeEntry, Auth) {
+  .service('Worktajm', function ($http, $q, socket, Project, TimeEntry, User, Auth) {
     // AngularJS will instantiate a singleton by calling "new" on this function
     var projects = [];
     var timeEntries = [];
@@ -121,17 +121,30 @@ angular.module('worktajmApp')
       },
 
       startTimer: function (project) {
+        var self = this;
         console.log('startTimer - id [%s]', project._id);
         var user = Auth.getCurrentUser();
         console.log('current user is ', user);
 
-        // Create new time entry (for given project)
-        return this.createTimeEntry(project);
-        // updateCurrentUser();
+        var createNewTimeEntry = function () {
+          return self.createTimeEntry(project);
+        };
+        var updateUserWithActiveTimeEntry = function (timeEntry) {
+          console.log('updateUserWithActiveTimeEntry [%s]', timeEntry._id);
+          user.currentTimeEntry = timeEntry._id;
+          console.log('updateing user [%O]', user);
+          return User.save(user);
+        };
+
+        return createNewTimeEntry()
+          .then(updateUserWithActiveTimeEntry);
       },
 
       stopTimer: function (project) {
         console.log('stopTimer - id [%s]', project._id);
+        var deferred = $q.defer();
+
+        return deferred.promise;
       },
 
       createTimeEntry: function (project) {
