@@ -67,6 +67,8 @@ describe('Service: worktajm', function () {
     });
     $httpBackend.flush();
 
+    console.log(newTimeEntry);
+
     expect(newTimeEntry._id).toEqual(timeEntryA1._id);
     expect(newTimeEntry.createdBy).toEqual(userA._id);
   });

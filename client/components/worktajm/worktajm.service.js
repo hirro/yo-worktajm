@@ -122,6 +122,9 @@ angular.module('worktajmApp')
 
       startTimer: function (project) {
         var self = this;
+        var deferred = $q.defer();
+        var newTimeEntry = {};
+
         console.log('startTimer - id [%s]', project._id);
         var user = Auth.getCurrentUser();
         console.log('current user is ', user);
@@ -131,13 +134,23 @@ angular.module('worktajmApp')
         };
         var updateUserWithActiveTimeEntry = function (timeEntry) {
           console.log('updateUserWithActiveTimeEntry [%s]', timeEntry._id);
+          newTimeEntry = timeEntry;
           user.currentTimeEntry = timeEntry._id;
           console.log('updateing user [%O]', user);
           return User.save(user);
         };
+        var resolveTimeEntry = function () {
+          deferred.resolve(newTimeEntry);
+        };
+        var reportProblem = function () {
+          console.error('Failed to start timer');
+        };    
+        createNewTimeEntry()
+          .then(updateUserWithActiveTimeEntry)
+          .then(resolveTimeEntry)
+          .catch(reportProblem);
 
-        return createNewTimeEntry()
-          .then(updateUserWithActiveTimeEntry);
+        return deferred.promise;
       },
 
       stopTimer: function (project) {
