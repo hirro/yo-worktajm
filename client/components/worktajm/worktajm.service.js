@@ -138,7 +138,7 @@ angular.module('worktajmApp')
           user.currentTimeEntry = timeEntry._id;
           console.log('updateing user [%O]', user);
           return User.setActiveTimeEntry(
-            { id: user._id }, 
+            { }, 
             { id: timeEntry._id }).$promise;
         };
         var resolveTimeEntry = function () {

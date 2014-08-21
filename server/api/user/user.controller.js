@@ -4,6 +4,7 @@ var User = require('./user.model');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
+var log = require('npmlog')
 
 var validationError = function(res, err) {
   return res.json(422, err);
@@ -96,9 +97,10 @@ exports.me = function(req, res, next) {
 /**
  * Set the active time entry
  */
-exports.setActiveTimeentry = function () {
+exports.activeTimeEntry = function (req, res, next) {
   var userId = req.user._id;
-  var activeTimeEntry = String(req.body.activeTimeEntry);
+  var activeTimeEntry = String(req.body.id);
+  log.info('UserController', 'activeTimeEntry user._id: [%s], activeTimeEntry: [%s]', req.user._id, activeTimeEntry);
   
   User.findById(userId, function (err, user) {
     user.activeTimeEntry = activeTimeEntry;

@@ -15,7 +15,8 @@ angular.module('worktajmApp')
       setActiveTimeEntry: {
         method: 'PUT',
         params: {
-          controller:'currentTimeEntry'
+          id:'me',
+          controller:'activeTimeEntry'
         }
       },      
       get: {
