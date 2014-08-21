@@ -99,11 +99,17 @@ exports.me = function(req, res, next) {
  */
 exports.activeTimeEntry = function (req, res, next) {
   var userId = req.user._id;
-  var activeTimeEntry = String(req.body.id);
-  log.info('UserController', 'activeTimeEntry user._id: [%s], activeTimeEntry: [%s]', req.user._id, activeTimeEntry);
+  var activeProjectId = String(req.body.activeProjectId);
+  var activeTimeEntryId = String(req.body.activeTimeEntryId);
+  log.info(
+    'UserController', 'activeTimeEntry - userId: [%s], activeProjectId: [%s], activeTimeEntryId: [%s]', 
+    req.user._id,
+    activeProjectId,
+    activeTimeEntryId);
   
   User.findById(userId, function (err, user) {
-    user.activeTimeEntry = activeTimeEntry;
+    user.activeTimeEntryId = activeTimeEntryId;
+    user.activeProjectId = activeProjectId;
     user.save(function(err) {
       if (err) return validationError(res, err);
       res.send(200);

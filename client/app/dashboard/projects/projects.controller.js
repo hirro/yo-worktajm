@@ -3,10 +3,16 @@
 'use strict';
 
 angular.module('worktajmApp')
-  .controller('ProjectsCtrl', function ($scope, $modal, Worktajm) {
+  .controller('ProjectsCtrl', function ($scope, $modal, Worktajm, Auth) {
     $scope.message = 'Hello';
 
     $scope.projects = [];
+    $scope.currentUser = [];
+
+    Worktajm.getCurrentUser().then(function (result) {
+      $scope.currentUser = result;
+    });
+
     Worktajm.getMyProjects().then(function (result) {
       $scope.projects = result;
     });
@@ -82,11 +88,26 @@ angular.module('worktajmApp')
     };
 
     $scope.startTimer = function (project) {
+      project.isActive = true;
       return Worktajm.startTimer(project);
     };
 
     $scope.stopTimer = function (project) {
+      project.isActive = false;
       return Worktajm.stopTimer(project);
     };
+
+    $scope.isProjectActive = function (project) {
+      var user = $scope.currentUser[0];
+      var result = (user
+        && user.activeProjectId
+        && (project._id === user.activeProjectId));
+      console.log(
+        'isProjectActive, currentProject [%s], activeProject: [%s], equal: [%b]', 
+        project._id, 
+        user.activeProjectId, 
+        result);
+      return result;
+    }
 
   });

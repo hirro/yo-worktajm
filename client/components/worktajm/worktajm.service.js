@@ -5,8 +5,10 @@ angular.module('worktajmApp')
     // AngularJS will instantiate a singleton by calling "new" on this function
     var projects = [];
     var timeEntries = [];
+    var currentUser = [];
 
     return {
+
       getMyProjects: function () {
         var deferred = $q.defer();
         $http.get('/api/projects').success(function (projectList) {
@@ -23,6 +25,17 @@ angular.module('worktajmApp')
           timeEntries = timeEntryList;
           socket.syncUpdates('timeentry', timeEntries);
           deferred.resolve(timeEntries);
+        });
+        return deferred.promise;
+      },
+
+      getCurrentUser: function () {
+        var deferred = $q.defer();
+        $http.get('/api/users/me').success(function (userEntry) {
+          currentUser = [ userEntry ];
+          socket.syncUpdates('user', currentUser);
+          deferred.resolve(currentUser);
+          console.log('getCurrentUser - subscribed');
         });
         return deferred.promise;
       },
@@ -138,8 +151,11 @@ angular.module('worktajmApp')
           user.currentTimeEntry = timeEntry._id;
           console.log('updateing user [%O]', user);
           return User.setActiveTimeEntry(
-            { }, 
-            { id: timeEntry._id }).$promise;
+            {}, 
+            { 
+              activeTimeEntryId: timeEntry._id,
+              activeProjectId: project._id,
+            }).$promise;
         };
         var resolveTimeEntry = function () {
           deferred.resolve(newTimeEntry);
