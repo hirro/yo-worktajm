@@ -137,7 +137,9 @@ angular.module('worktajmApp')
           newTimeEntry = timeEntry;
           user.currentTimeEntry = timeEntry._id;
           console.log('updateing user [%O]', user);
-          return User.save(user);
+          return User.setActiveTimeEntry(
+            { id: user._id }, 
+            { id: timeEntry._id }).$promise;
         };
         var resolveTimeEntry = function () {
           deferred.resolve(newTimeEntry);

@@ -12,6 +12,12 @@ angular.module('worktajmApp')
           controller:'password'
         }
       },
+      setActiveTimeEntry: {
+        method: 'PUT',
+        params: {
+          controller:'currentTimeEntry'
+        }
+      },      
       get: {
         method: 'GET',
         params: {

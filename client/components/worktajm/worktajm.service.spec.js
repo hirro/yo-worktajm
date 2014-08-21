@@ -56,7 +56,7 @@ describe('Service: worktajm', function () {
       startTime: '2014-07-21T08:00:00.000Z'
     };
     $httpBackend.expectPOST('/api/timeEntries', pushed).respond(timeEntryA1);
-    $httpBackend.expectPOST('/api/users/' + userA._id, userAWithActiveTimeEntryA1).respond(userAWithActiveTimeEntryA1);
+    $httpBackend.expectPUT('/api/users/11111111/currentTimeEntry').respond(userAWithActiveTimeEntryA1);
 
     // Login
     Auth.login(userA);
