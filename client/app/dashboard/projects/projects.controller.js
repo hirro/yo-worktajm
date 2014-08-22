@@ -88,12 +88,10 @@ angular.module('worktajmApp')
     };
 
     $scope.startTimer = function (project) {
-      project.isActive = true;
       return Worktajm.startTimer(project);
     };
 
     $scope.stopTimer = function (project) {
-      project.isActive = false;
       return Worktajm.stopTimer(project);
     };
 

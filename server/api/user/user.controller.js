@@ -99,8 +99,8 @@ exports.me = function(req, res, next) {
  */
 exports.activeTimeEntry = function (req, res, next) {
   var userId = req.user._id;
-  var activeProjectId = String(req.body.activeProjectId);
-  var activeTimeEntryId = String(req.body.activeTimeEntryId);
+  var activeProjectId = req.body.activeProjectId ? String(req.body.activeProjectId) : null;
+  var activeTimeEntryId = req.body.activeTimeEntryId ? String(req.body.activeTimeEntryId) : null;
   log.info(
     'UserController', 'activeTimeEntry - userId: [%s], activeProjectId: [%s], activeTimeEntryId: [%s]', 
     req.user._id,

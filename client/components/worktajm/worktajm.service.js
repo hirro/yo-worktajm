@@ -151,10 +151,10 @@ angular.module('worktajmApp')
           user.currentTimeEntry = timeEntry._id;
           console.log('updateing user [%O]', user);
           return User.setActiveTimeEntry(
-            {}, 
-            { 
+            {},
+            {
               activeTimeEntryId: timeEntry._id,
-              activeProjectId: project._id,
+              activeProjectId: project._id
             }).$promise;
         };
         var resolveTimeEntry = function () {
@@ -171,9 +171,56 @@ angular.module('worktajmApp')
         return deferred.promise;
       },
 
-      stopTimer: function (project) {
-        console.log('stopTimer - id [%s]', project._id);
+      stopTimer: function () {
+        console.log('stopTimer');
         var deferred = $q.defer();
+        if (!currentUser
+          || !currentUser.activeTimeEntryId) {
+          deferred.reject();
+          return deferred.promise;
+        }
+
+        var getCurrentTimeEntry = function () {
+          TimeEntry.get(
+          {
+            id: project._id
+          }, 
+          function (timeEntry) {
+            deferred.resolve(restoredProject);
+          },
+          function (err) {
+            console.log('Failed to restore project');
+            cb(err);
+            deferred.reject(err);
+          }          
+        };
+        var updateTimeEntry = function () {
+
+        };
+
+        var updateUser = function () {
+          console.log('updateUser [%s]', timeEntry._id);
+          newTimeEntry = timeEntry;
+          user.currentTimeEntry = timeEntry._id;
+          console.log('updateing user [%O]', user);
+          return User.setActiveTimeEntry(
+            {}, 
+            { 
+              activeTimeEntryId: null,
+              activeProjectId: null,
+            }).$promise;
+        };
+        var resolveResult = function () {
+          deferred.resolve(updatedTimeEntry);
+        };
+        var reportProblem = function () {
+          console.error('Failed to start timer');
+        };
+
+        getCurrentTimeEntry()
+          .then(updateUser)
+          .then(resolveResult)
+          .catch(reportProblem);
 
         return deferred.promise;
       },
