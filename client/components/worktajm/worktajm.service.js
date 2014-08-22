@@ -174,6 +174,8 @@ angular.module('worktajmApp')
       stopTimer: function () {
         console.log('stopTimer');
         var deferred = $q.defer();
+
+        // Quick fail if no active time entry exists
         if (!currentUser
           || !currentUser.activeTimeEntryId) {
           deferred.reject();
@@ -192,10 +194,9 @@ angular.module('worktajmApp')
             console.log('Failed to restore project');
             cb(err);
             deferred.reject(err);
-          }          
+          });
         };
         var updateTimeEntry = function () {
-
         };
 
         var updateUser = function () {
