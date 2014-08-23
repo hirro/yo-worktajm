@@ -230,7 +230,7 @@ angular.module('worktajmApp')
         var deferred = $q.defer();
         TimeEntry.save(
           {
-            project: project._id,
+            projectId: project._id,
             startTime: '2014-07-21T08:00:00.000Z'
           },
           function (newTimeEntry) {

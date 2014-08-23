@@ -19,7 +19,6 @@ var UserSchema = new Schema({
   twitter: {},
   google: {},
   github: {},
-  timeEntries: [{type: Schema.Types.ObjectId, ref: 'TimeEntry' }],
   activeTimeEntryId:  { type: Schema.Types.ObjectId, ref: 'TimeEntry'},
   activeProjectId: { type: Schema.Types.ObjectId, ref: 'Project'}
 });

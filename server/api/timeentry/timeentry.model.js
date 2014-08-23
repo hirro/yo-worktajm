@@ -11,8 +11,8 @@ var TimeentrySchema = new Schema({
   /////////////////////////////////////////////////////////////////////////////
   // Relations
   /////////////////////////////////////////////////////////////////////////////
-  project: {type: Schema.Types.ObjectId, required: true},
-  customer: {type: Schema.Types.ObjectId, required: false},
+  projectId: {type: Schema.Types.ObjectId, required: true},
+  customerId: {type: Schema.Types.ObjectId, required: false},
 
   // Auditing
   createdBy: { type: Schema.Types.ObjectId, ref: 'User', required: true },

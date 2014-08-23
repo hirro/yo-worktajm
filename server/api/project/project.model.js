@@ -12,7 +12,7 @@ var ProjectSchema = new Schema({
   description: { type: String },
 
   // Relationships
-  customer: { type: Schema.Types.ObjectId, ref: 'Customer', required: false },
+  customerId: { type: Schema.Types.ObjectId, ref: 'Customer', required: false },
 
   // Auditing
   createdBy: { type: Schema.Types.ObjectId, ref: 'User', required: true },
