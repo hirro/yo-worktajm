@@ -101,8 +101,10 @@ angular.module('worktajmApp')
         && user.activeProjectId
         && (project._id === user.activeProjectId));
       console.log(
-        'isProjectActive, currentProject [%s], activeProject: [%s], equal: [%b]', 
-        project._id, 
+        'isProjectActive, currentProject [%s], user: [%s], activeProject: [%s], equal: [%b]', 
+        project._id,
+        JSON.stringify($scope.currentUser), 
+        $scope.currentUser._id,
         user ? user.activeProjectId : null, 
         result);
       return result;
