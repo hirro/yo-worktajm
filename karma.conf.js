@@ -38,9 +38,9 @@ module.exports = function(config) {
     preprocessors: {
       '**/*.jade': 'ng-jade2js',
       '**/*.html': 'html2js',
-      '**/*.coffee': 'coffee'
-      // 'client/app/**/*.js': ['xcoverage'],
-      // 'client/components/**/*.js': ['xcoverage']
+      '**/*.coffee': 'coffee',
+      'client/app/**/*.js': ['coverage'],
+      'client/components/**/*.js': ['coverage']
     },
 
     ngHtml2JsPreprocessor: {
@@ -97,7 +97,7 @@ module.exports = function(config) {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
-    browsers: ['PhantomJS'],
+    browsers: ['ChromeCanary'],
 
 
     // Continuous Integration mode

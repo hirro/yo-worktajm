@@ -33,7 +33,7 @@ angular.module('worktajmApp')
         var deferred = $q.defer();
         if (currentUser
           && currentUser[0]) {
-          console.log('Using cached entry [%s]', currentUser[0].activeTimeEntryId);
+          console.log('Using cached user id: [%s]', currentUser[0]._id);
           deferred.resolve(currentUser[0]);
         } else {
           $http.get('/api/users/me').success(function (userEntry) {
@@ -63,6 +63,7 @@ angular.module('worktajmApp')
               deferred.resolve();
             },
             function (error) {
+              console.log('Failed to setActiveTimeEntry');
               deferred.reject(error)
             }
           );
@@ -90,6 +91,8 @@ angular.module('worktajmApp')
             deferred.reject(err);
           });
         } else {
+          console.log("User does not have any active timer");
+          console.log(currentUser);
           deferred.resolve(null);
         }
         return deferred.promise;
@@ -111,7 +114,7 @@ angular.module('worktajmApp')
             deferred.resolve(project);
           },
           function (err) {
-            console.log('Failed to created project');
+            console.log('createProject failed - [%s]', err);
             cb(err);
             deferred.reject(err);
           }
@@ -132,7 +135,7 @@ angular.module('worktajmApp')
             deferred.resolve(project);
           },
           function (err) {
-            console.log('Failed to update project');
+            console.log('updateProject failed - [%s]', err);
             cb(err);
             deferred.reject(err);
           }
@@ -156,7 +159,7 @@ angular.module('worktajmApp')
             deferred.resolve(restoredProject);
           },
           function (err) {
-            console.log('Failed to restore project');
+            console.log('restoreProject failed - [%s]', err); 
             cb(err);
             deferred.reject(err);
           }
@@ -180,7 +183,7 @@ angular.module('worktajmApp')
             deferred.resolve(project);
           },
           function (err) {
-            console.log('Failed to delete project');
+            console.log('deleteProject failed - [%s]', err);             
             cb(err);
             deferred.reject(err);
           }
@@ -204,12 +207,12 @@ angular.module('worktajmApp')
           console.log('startTimer - resolveTimeEntry');
           deferred.resolve(newTimeEntry);
         };
-        var reportProblem = function () {
-          console.log('startTimer - reportProblem');
+        var reportProblem = function (err) {
+          console.log('startTimer failed - [%s]', err);
         };
         self.stopTimer()
           .then(createNewTimeEntry)
-          .then(setActiveTimeEntry)
+          .then(this.setActiveTimeEntry)
           .then(resolveTimeEntry)
           .catch(reportProblem);
 
@@ -226,32 +229,41 @@ angular.module('worktajmApp')
         var loadCurrentUser = function () {
           return self.getCurrentUser().then(function (result) {
             currentUser = result;
+            console.log('stopTimer - User loaded');
           });
         };
 
         var loadCurrentTimeEntry = function () {
           return self.getActiveTimeEntry().then(function (result) {
             currentTimeEntry = result;
+            console.log('stopTimer - Active time entry loaded');
+            //currentTimeEntry.endTime = '';
           });
         };
 
         var updateUser = function (user) {
           var deferred = $q.defer();
           if (!currentUser) {
-            deferred.reject('No current user');
+            console.log('No current user');
+            deferred.resolve();
           } else if (!currentTimeEntry) {
-            deferred.reject('No active timer');
+            console.log('No current time entry to stop');
+            deferred.resolve();
           } else {
             return self.setActiveTimeEntry(currentTimeEntry);
           }
           return deferred.promise;
         };
-        var reportProblem = function () {
-          console.error('Failed to stop timer');
+        var resolveResponse = function () {
+          deferred.resolve();
+        };        
+        var reportProblem = function (err) {
+          console.log('stopTimer failed - [%s]', err);             
         };
         loadCurrentUser()
           .then(loadCurrentTimeEntry)
           .then(updateUser)
+          .then(resolveResponse)
           .catch(reportProblem);
 
         return deferred.promise;

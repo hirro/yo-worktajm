@@ -103,7 +103,7 @@ angular.module('worktajmApp')
       console.log(
         'isProjectActive, currentProject [%s], activeProject: [%s], equal: [%b]', 
         project._id, 
-        user.activeProjectId, 
+        user ? user.activeProjectId : null, 
         result);
       return result;
     }

@@ -40,7 +40,7 @@ describe('Service: worktajm', function () {
     Worktajm.getCurrentUser().then(function (result) {
       currentUser = result;
     });
-    $httpBackend.expectGET('/api/users/me').respond(userA);      
+    $httpBackend.expectGET('/api/users/me').respond(user);      
     $httpBackend.flush();
     expect(currentUser._id).toBe(userA._id);
 
@@ -73,167 +73,108 @@ describe('Service: worktajm', function () {
     });
   });
 
-  ddescribe('User A is logged in, no active timer', function () {
+  describe('timer,', function () {
+    describe('User A is logged in, user A has no active timer, ', function () {
 
-    beforeEach(function() {
-      var currentUser;
+      beforeEach(function() {
+        var currentUser;
+        loginAs(userA);
+        Worktajm.getCurrentUser()
+          .then(function(result) {
+            currentUser = result;
+          });
+        $scope.$digest();
+      });
 
-      loginAs(userA);
-      Worktajm.getCurrentUser()
-        .then(function(result) {
+      it('should set and get the active time entry', function () {
+        var currentUser, activeTimeEntry;
+
+        // Setting active to A1
+        Worktajm.setActiveTimeEntry(timeEntryA1);
+        $httpBackend.expectPUT('/api/users/me/activeTimeEntry').respond(userAWithActiveTimeEntryA1);
+        $httpBackend.flush();
+
+        // Get current time entry
+        Worktajm.getActiveTimeEntry().then(function (result) {
+          activeTimeEntry = result;
+        });
+        $httpBackend.expectGET('/api/timeEntries/' + timeEntryA1._id).respond(timeEntryA1);
+        $httpBackend.flush();
+        $scope.$digest();
+        expect(activeTimeEntry._id).toEqual(timeEntryA1._id);
+      });
+
+      it('should start timer for project A', function () {
+        Worktajm.startTimer(projectA);
+
+        // New time entry is created
+        $httpBackend.expectPOST('/api/timeEntries').respond(timeEntryA1);
+        // User is updated with active time entry
+        $httpBackend.expectPUT('/api/users/me/activeTimeEntry').respond(userAWithActiveTimeEntryA1);
+
+        $httpBackend.flush();
+        $scope.$digest();
+      });
+
+      it('should try to stop the timer', function () {
+        Worktajm.stopTimer();
+
+        // No communication with backend is expected
+        $scope.$digest();
+      });
+
+    });
+
+    describe('User A is logged in and has an active timer running - ', function () {
+
+      beforeEach(function() {
+        var currentUser;
+        loginAs(userAWithActiveTimeEntryA1);
+        Worktajm.getCurrentUser().then(function(result) {
+          console.log('XXX');
+          console.log(result);          
           currentUser = result;
         });
-      $scope.$digest();
+        $scope.$digest();
+        expect(currentUser._id).toEqual(userAWithActiveTimeEntryA1._id);
+        expect(currentUser.activeTimeEntryId).toEqual(userAWithActiveTimeEntryA1.activeTimeEntryId);
+      });      
 
+      it('should not fetch user information since it is cached', function () {
+        var currentUser, activeTimeEntry;
 
-    });
+        // Get current time entry
+        Worktajm.getCurrentUser().then(function (result) {
+          currentUser = result;
+        });
 
-    it('should set and get the active time entry', function () {
-      var currentUser, activeTimeEntry;
-
-      // Setting active to A1
-      Worktajm.setActiveTimeEntry(timeEntryA1);
-      $httpBackend.expectPUT('/api/users/me/activeTimeEntry').respond(userAWithActiveTimeEntryA1);
-      $httpBackend.flush();
-
-      // Get current time entry
-      Worktajm.getActiveTimeEntry().then(function (result) {
-        activeTimeEntry = result;
-      });
-      $httpBackend.expectGET('/api/timeEntries/' + timeEntryA1._id).respond(timeEntryA1);
-      $httpBackend.flush();
-      $scope.$digest();
-      expect(activeTimeEntry._id).toEqual(timeEntryA1._id);
-    });
-
-    xit('should start timer for project A', function () {
-      Worktajm.startTimer(projectA);
-      $httpBackend.flush();
-      expect();
-    });
-
-    iit('should try to stop the timer', function () {
-      Worktajm.stopTimer();
-      $scope.$digest();
-    });
-
-  });
-
-  describe('startTimer', function () {
-    it('should start a timer for project when there are no active timers', function () {
-
-      Auth.login(userA);
-
-      // Mock create project
-      var pushedTimeEntry = {
-        projectId:  projectA._id,
-        startTime: '2014-07-21T08:00:00.000Z'
-      };
-
-      $httpBackend.expectPOST('/api/timeEntries', pushedTimeEntry).respond(timeEntryA1);
-      $httpBackend.expectPUT('/api/users/me/activeTimeEntry').respond(userAWithActiveTimeEntryA1);
-
-      // Start one timer
-      var newTimeEntry = null;
-      Worktajm.startTimer(projectA).then(function (result) {
-        newTimeEntry = result;
-      });
-      $httpBackend.flush();
-      expect(newTimeEntry._id).toEqual(timeEntryA1._id);
-      expect(newTimeEntry.createdBy).toEqual(userA._id);
-    });
-
-    it('should return the active time entry for a user with a running task', function () {
-      Auth.login(userAWithActiveTimeEntryA1);
-      var currentUser;
-
-      Worktajm.getCurrentUser().then(function (u) {
-        currentUser = u[0];
+        // Current time entry needs to be fetched from backend.
+        $scope.$digest();
+        expect(currentUser._id).toEqual(userAWithActiveTimeEntryA1._id);
       });
 
-      $httpBackend.expectGET('/api/users/me').respond(userAWithActiveTimeEntryA1);
-      $httpBackend.flush();
+      it('should return return the active time entry', function () {
+        var currentUser, activeTimeEntry;
 
-      expect(currentUser.activeTimeEntryId).toEqual(timeEntryA1._id);
+        // Get current time entry
+        Worktajm.getActiveTimeEntry().then(function (result) {
+          activeTimeEntry = result;
+        });
 
-      // Get active time entry
-      var activeTimeEntry = null;
-      Worktajm.f().then(function (result) {
-        activeTimeEntry = result;
+        // Current time entry needs to be fetched from backend.
+        $httpBackend.expectGET('/api/timeEntries/' + timeEntryA1._id).respond(timeEntryA1);
+        $httpBackend.flush();
+        $scope.$digest();
+        expect(activeTimeEntry._id).toEqual(timeEntryA1._id);
       });
 
-      //$httpBackend.expectPUT('/api/users/me/activeTimeEntry').respond(userAWithActiveTimeEntryA1);
-      $httpBackend.expectGET('/api/timeEntries/' + timeEntryA1._id).respond(timeEntryA1);      
-      $httpBackend.flush();
-
-      expect(activeTimeEntry._id).toEqual(timeEntryA1._id);
-      expect(activeTimeEntry.createdBy).toEqual(userA._id);
-    });
-
-    it('should set the active time entry', function () {
-      console.log('');
-
-    });
-
-    it('should stop person with no active timers', function () {
-      Auth.login(userA);
-      var currentUser;
-
-      Worktajm.getCurrentUser().then(function (u) {
-        currentUser = u[0];
+      it('should stop an active timer', function () {
+        Worktajm.stopTimer();
+        $httpBackend.expectGET('/api/timeEntries/' + timeEntryA1._id).respond(timeEntryA1);
+        $httpBackend.expectPUT('/api/users/me/activeTimeEntry').respond(userAWithActiveTimeEntryA1);
+        $httpBackend.flush();
+        $scope.$digest();
       });
-
-      $httpBackend.flush();
-      expect(currentUser.activeTimeEntryId).toBeNull();
-
-     //  // Mock create project
-     //  var pushedTimeEntry = {
-     //    projectId:  projectA._id,
-     //    startTime: '2014-07-21T08:00:00.000Z'
-     //  };
-
-     //  $httpBackend.expectGET('/api/timeEntries/' + timeEntryA1._id).respond(timeEntryA1);
-     //  $httpBackend.expectPUT('/api/users/me/activeTimeEntry').respond(userAWithActiveTimeEntryA1);
-     // // $httpBackend.expectPOST('/api/timeEntries', pushedTimeEntry).respond(timeEntryA1);
-
-     //  // Start one timer
-     //  var newTimeEntry = null;
-     //  Worktajm.stopTimer().then(function (result) {
-     //    newTimeEntry = result;
-     //  });
-     //  $httpBackend.flush();
-     //  expect(newTimeEntry._id).toEqual(timeEntryA1._id);
-      //expect(newTimeEntry.createdBy).toEqual(userA._id);      
-    });    
-
-    it('should stop an active timer', function () {
-      Auth.login(userAWithActiveTimeEntryA1);
-      var currentUser;
-
-       Worktajm.getCurrentUser().then(function (u) {
-        currentUser = u[0];
-       });
-
-      expect(currentUser.activeTimeEntryId).toEqual(timeEntryA1._id);
-
-      // Mock create project
-      var pushedTimeEntry = {
-        projectId:  projectA._id,
-        startTime: '2014-07-21T08:00:00.000Z'
-      };
-
-      $httpBackend.expectGET('/api/timeEntries/' + timeEntryA1._id).respond(timeEntryA1);
-      $httpBackend.expectPUT('/api/users/me/activeTimeEntry').respond(userAWithActiveTimeEntryA1);
-     // $httpBackend.expectPOST('/api/timeEntries', pushedTimeEntry).respond(timeEntryA1);
-
-      // Start one timer
-      var newTimeEntry = null;
-      Worktajm.stopTimer().then(function (result) {
-        newTimeEntry = result;
-      });
-      $httpBackend.flush();
-      expect(newTimeEntry._id).toEqual(timeEntryA1._id);
-      //expect(newTimeEntry.createdBy).toEqual(userA._id);      
     });
   });
 });
