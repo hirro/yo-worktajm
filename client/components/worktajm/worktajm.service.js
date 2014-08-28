@@ -5,7 +5,7 @@ angular.module('worktajmApp')
     // AngularJS will instantiate a singleton by calling "new" on this function
     var projects = [];
     var timeEntries = [];
-    var currentUser = [];
+    var currentUser = {};
 
     return {
 
@@ -31,16 +31,15 @@ angular.module('worktajmApp')
 
       getCurrentUser: function () {
         var deferred = $q.defer();
-        if (currentUser
-          && currentUser[0]) {
-          console.log('Using cached user id: [%s]', currentUser[0]._id);
-          deferred.resolve(currentUser[0]);
+        if (currentUser._id) {
+          console.log('Using cached user id: [%s]', currentUser._id);
+          deferred.resolve(currentUser);
         } else {
           $http.get('/api/users/me').success(function (userEntry) {
-            currentUser[0] = userEntry;
-            socket.syncUpdates('user', currentUser);
-            deferred.resolve(currentUser[0]);
-            console.log('getCurrentUser - id: [%s]', currentUser[0]._id);
+            currentUser = userEntry;
+            socket.syncUpdatesOnObject('user', currentUser);
+            deferred.resolve(currentUser);
+            console.log('getCurrentUser - id: [%s]', currentUser._id);
           });          
         }
         return deferred.promise;

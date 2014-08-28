@@ -60,7 +60,7 @@ angular.module('worktajmApp')
           _.remove(array, {_id: item._id});
           cb(event, item, array);
         });
-      },
+      },      
 
       /**
        * Removes listeners for a models updates on the socket
@@ -70,6 +70,49 @@ angular.module('worktajmApp')
       unsyncUpdates: function (modelName) {
         socket.removeAllListeners(modelName + ':save');
         socket.removeAllListeners(modelName + ':remove');
-      }
+      },
+
+      /**
+       * Register listeners to sync an object with updates on a model
+       *
+       * Takes the object we want to sync, the model name that socket updates are sent from,
+       * and an optional callback function after new items are updated.
+       *
+       * @param {String} modelName
+       * @param {Object} objectToSynchronize
+       * @param {Function} cb
+       */
+      syncUpdatesOnObject: function (modelName, objectToSynchronize, cb) {
+        cb = cb || angular.noop;
+
+        /**
+         * Syncs item updates on 'model:save'
+         */
+        socket.on(modelName + ':save', function (item) {
+          console.log('syncUpdatesOnObject - %s:save', modelName);
+          objectToSynchronize = item;
+          _.extend(objectToSynchronize, item);
+          event = 'updated';
+          cb(event, item, array);
+        });
+
+        /**
+         * Syncs removed items on 'model:remove'
+         */
+        socket.on(modelName + ':remove', function (item) {
+          console.log('syncUpdates - %s:remove', modelName);
+        });
+      },
+
+      /**
+       * Removes listeners for a models updates on the socket
+       *
+       * @param modelName
+       */
+      unsyncUpdatesOnObject: function (modelName) {
+        socket.removeAllListeners(modelName + ':save');
+        socket.removeAllListeners(modelName + ':remove');
+      },
+
     };
   });
