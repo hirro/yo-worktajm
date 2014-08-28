@@ -7,7 +7,7 @@ angular.module('worktajmApp')
     $scope.message = 'Hello';
 
     $scope.projects = [];
-    $scope.currentUser = [];
+    $scope.currentUser = {};
 
     Worktajm.getCurrentUser().then(function (result) {
       $scope.currentUser = result;

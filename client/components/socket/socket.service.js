@@ -90,10 +90,9 @@ angular.module('worktajmApp')
          */
         socket.on(modelName + ':save', function (item) {
           console.log('syncUpdatesOnObject - %s:save', modelName);
-          objectToSynchronize = item;
           _.extend(objectToSynchronize, item);
           event = 'updated';
-          cb(event, item, array);
+          cb(event, item, objectToSynchronize);
         });
 
         /**
