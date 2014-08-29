@@ -48,7 +48,7 @@ angular.module('worktajmApp')
       setActiveTimeEntry: function (timeEntry) {
         var deferred = $q.defer();
 
-        if (currentUser[0]) {
+        if (currentUser) {
 
           User.setActiveTimeEntry(
             {},
@@ -57,8 +57,8 @@ angular.module('worktajmApp')
               'activeProjectId': timeEntry.projectId
             },
             function () {
-              currentUser[0].activeTimeEntryId = timeEntry._id; 
-              currentUser[0].activeProjectId = timeEntry.projectId;
+              currentUser.activeTimeEntryId = timeEntry._id; 
+              currentUser.activeProjectId = timeEntry.projectId;
               deferred.resolve();
             },
             function (error) {
@@ -75,12 +75,11 @@ angular.module('worktajmApp')
       getActiveTimeEntry: function () {      
         var deferred = $q.defer();
         if (currentUser
-          && currentUser[0]
-          && currentUser[0].activeTimeEntryId) 
+          && currentUser.activeTimeEntryId) 
         {
           TimeEntry.get(
           {
-            id: currentUser[0].activeTimeEntryId
+            id: currentUser.activeTimeEntryId
           }, 
           function (timeEntry) {
             deferred.resolve(timeEntry);
