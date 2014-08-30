@@ -116,7 +116,7 @@ describe('Service: worktajm', function () {
         $scope.$digest();
       });
 
-      it('should try to stop the timer', function () {
+      iit('should try to stop the timer', function () {
         Worktajm.stopTimer();
 
         // No communication with backend is expected
@@ -131,8 +131,6 @@ describe('Service: worktajm', function () {
         var currentUser;
         loginAs(userAWithActiveTimeEntryA1);
         Worktajm.getCurrentUser().then(function(result) {
-          console.log('XXX');
-          console.log(result);          
           currentUser = result;
         });
         $scope.$digest();
@@ -170,8 +168,11 @@ describe('Service: worktajm', function () {
 
       it('should stop an active timer', function () {
         Worktajm.stopTimer();
+
         $httpBackend.expectGET('/api/timeEntries/' + timeEntryA1._id).respond(timeEntryA1);
+        $httpBackend.expectPOST('/api/timeEntries/' + timeEntryA1._id).respond(timeEntryA1);
         $httpBackend.expectPUT('/api/users/me/activeTimeEntry').respond(userAWithActiveTimeEntryA1);
+
         $httpBackend.flush();
         $scope.$digest();
       });

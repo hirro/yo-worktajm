@@ -49,16 +49,18 @@ angular.module('worktajmApp')
         var deferred = $q.defer();
 
         if (currentUser) {
+          var newTimeEntryId = timeEntry ? timeEntry._id : null;
+          var newProjectId = timeEntry ? timeEntry.projectId : null;
 
           User.setActiveTimeEntry(
             {},
             { 
-              'activeTimeEntryId': timeEntry._id,
-              'activeProjectId': timeEntry.projectId
+              'activeTimeEntryId': newTimeEntryId,
+              'activeProjectId': newProjectId
             },
             function () {
-              currentUser.activeTimeEntryId = timeEntry._id; 
-              currentUser.activeProjectId = timeEntry.projectId;
+              currentUser.activeTimeEntryId = newTimeEntryId; 
+              currentUser.activeProjectId = newProjectId;
               deferred.resolve();
             },
             function (error) {
@@ -189,6 +191,62 @@ angular.module('worktajmApp')
         return deferred.promise;
       },
 
+      createTimeEntry: function (project) {
+        var deferred = $q.defer();
+        TimeEntry.save(
+          {
+            projectId: project._id,
+            startTime: '2014-07-21T08:00:00.000Z'
+          },
+          function (newTimeEntry) {
+            console.log('Created time entry');
+            deferred.resolve(newTimeEntry);
+          },
+          function (error) {
+            console.log('Failed to create time entry');
+            deferred.reject(error);
+          });
+        return deferred.promise;
+      },
+
+      updateTimeEntry: function (timeEntry) {
+        var deferred = $q.defer();
+        TimeEntry.save(
+          timeEntry,
+          function (updatedEntry) {
+            console.log('Updated time entry');
+            deferred.resolve(updatedEntry);
+          },
+          function (error) {
+            console.log('Failed to update time entry');
+            deferred.reject(error);
+          });
+        return deferred.promise;
+      },
+
+      deleteTimeEntry: function (timeEntry, callback) {
+        console.log('deleteTimeEntry - id [%s]', timeEntry._id);
+        var cb = callback || angular.noop;        
+        var deferred = $q.defer();
+
+        TimeEntry.delete(
+          {
+            id: timeEntry._id
+          },
+          function (timeEntry) {
+            console.log('Deleted time entry');
+            cb(timeEntry);
+            deferred.resolve(timeEntry);
+          },
+          function (err) {
+            console.log('Failed to delete time entry');
+            cb(err);
+            deferred.reject(err);
+          }
+        );
+        return deferred.promise;        
+      },
+
       startTimer: function (project) {
         var self = this;
         var deferred = $q.defer();
@@ -231,26 +289,20 @@ angular.module('worktajmApp')
           });
         };
 
-        var loadCurrentTimeEntry = function () {
-          return self.getActiveTimeEntry().then(function (result) {
-            currentTimeEntry = result;
-            console.log('stopTimer - Active time entry loaded');
-            //currentTimeEntry.endTime = '';
-          });
+        var stopCurrentTimeEntry = function (timeEntry) {
+          if (timeEntry) {
+            console.log('stopCurrentTimeEntry');
+            timeEntry.endTime = timeEntry.startTime;
+            return self.updateTimeEntry(timeEntry);
+          } else {
+            var deferred = $q.defer();
+            deferred.resolve();
+            return deferred.promise;
+          }
         };
 
-        var updateUser = function (user) {
-          var deferred = $q.defer();
-          if (!currentUser) {
-            console.log('No current user');
-            deferred.resolve();
-          } else if (!currentTimeEntry) {
-            console.log('No current time entry to stop');
-            deferred.resolve();
-          } else {
-            return self.setActiveTimeEntry(currentTimeEntry);
-          }
-          return deferred.promise;
+        var clearActiveTimeEntry = function () {
+          return self.setActiveTimeEntry({});
         };
         var resolveResponse = function () {
           deferred.resolve();
@@ -258,55 +310,13 @@ angular.module('worktajmApp')
         var reportProblem = function (err) {
           console.log('stopTimer failed - [%s]', err);             
         };
-        loadCurrentUser()
-          .then(loadCurrentTimeEntry)
-          .then(updateUser)
+        this.getActiveTimeEntry()
+          .then(stopCurrentTimeEntry)
+          .then(clearActiveTimeEntry)
           .then(resolveResponse)
           .catch(reportProblem);
 
         return deferred.promise;
-      },
-
-      createTimeEntry: function (project) {
-        var deferred = $q.defer();
-        TimeEntry.save(
-          {
-            projectId: project._id,
-            startTime: '2014-07-21T08:00:00.000Z'
-          },
-          function (newTimeEntry) {
-            console.log('Created time entry');
-            deferred.resolve(newTimeEntry);
-          },
-          function (error) {
-            console.log('Failed to create time entry');
-            deferred.reject(error);
-          });
-        return deferred.promise;
-      },
-
-      deleteTimeEntry: function (timeEntry, callback) {
-        console.log('deleteTimeEntry - id [%s]', timeEntry._id);
-        var cb = callback || angular.noop;        
-        var deferred = $q.defer();
-
-        TimeEntry.delete(
-          {
-            id: timeEntry._id
-          },
-          function (timeEntry) {
-            console.log('Deleted time entry');
-            cb(timeEntry);
-            deferred.resolve(timeEntry);
-          },
-          function (err) {
-            console.log('Failed to delete time entry');
-            cb(err);
-            deferred.reject(err);
-          }
-        );
-        return deferred.promise;        
       }
-
     };
   });
