@@ -170,7 +170,7 @@ describe('Service: worktajm', function () {
         Worktajm.stopTimer();
 
         $httpBackend.expectGET('/api/timeEntries/' + timeEntryA1._id).respond(timeEntryA1);
-        $httpBackend.expectPOST('/api/timeEntries/' + timeEntryA1._id).respond(timeEntryA1);
+        $httpBackend.expectPUT('/api/timeEntries/' + timeEntryA1._id).respond(timeEntryA1);
         $httpBackend.expectPUT('/api/users/me/activeTimeEntry', {}).respond(userA);
 
         $httpBackend.flush();

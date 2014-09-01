@@ -24,7 +24,7 @@
               td
                 div(contenteditable='false', ng-model='timeEntry.project.name', title='Click to edit') {{timeEntry.project.name}}
               td(contenteditable='false') {{timeEntry.startTime | date: 'HH:mm:ss'}}
-              td(contenteditable='false') {{getEndTime(timeEntry)}}
+              td(contenteditable='false') {{timeEntry.endTime | date: 'HH:mm:ss'}}
               td
                 .btn-group.pull-right
                   button.btn.btn-default.btn-sm.glyphicon.glyphicon-edit(type='button', ng-click='editTimeEntry(timeEntry)', popover='Edit', popover-placement='left', popover-trigger='mouseenter')
