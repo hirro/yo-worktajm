@@ -1,12 +1,36 @@
 'use strict';
 
 angular.module('worktajmApp')
-  .controller('TimeentriesCtrl', function ($scope, $modal, Worktajm) {
+  .controller('TimeentriesCtrl', function ($scope, $modal, $q, Worktajm) {
+
     $scope.timeEntries = [];
-    Worktajm.getTimeEntries().then(function (result) {
-    	console.log('Loaded time entries');
-      $scope.timeEntries = result;
-    });
+    $scope.projects = [];
+
+    var loadProjects = function () {
+      var deferred = $q.defer();
+      Worktajm.getMyProjects().then(function (result) {
+        $scope.projects = _.indexBy(result, '_id');
+        deferred.resolve($scope.projects);
+      });
+      return deferred.promise;
+    };
+    var loadTimeEntries = function () {
+      return Worktajm.getTimeEntries().then(function (result) {
+        console.log('Loaded time entries');
+        $scope.timeEntries = result;
+        _.forEach($scope.timeEntries, function (timeEntry) {
+          var project = $scope.projects[timeEntry.projectId];
+          _.extend(timeEntry, { 'project': project });
+        });
+      });
+    };
+    var reportProblem = function (err) {
+      console.log('stopTimer failed - [%s]', err);
+    };
+
+    loadProjects()
+      .then(loadTimeEntries)
+      .catch(reportProblem);
 
     // Modal controller
     var TimeEntryModalCtrl = function ($scope, $modalInstance, modalParams) {
@@ -29,19 +53,19 @@ angular.module('worktajmApp')
       $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
       };
-    };    
+    };
 
     $scope.createTimeEntry = function () {
-    	console.log('createTimeEntry');
+      console.log('createTimeEntry');
     };
 
     $scope.editTimeEntry = function () {
-    	console.log('editTimeEntry');
+      console.log('editTimeEntry');
     };
 
     $scope.deleteTimeEntry = function (timeEntry) {
-    	console.log('deleteTimeEntry');
-    	Worktajm.deleteTimeEntry(timeEntry);
+      console.log('deleteTimeEntry');
+      Worktajm.deleteTimeEntry(timeEntry);
     };
 
     // Modal functions
@@ -75,6 +99,6 @@ angular.module('worktajmApp')
     $scope.createTimeEntry = function () {
       var timeEntry = { name: ''};
       $scope.openModal(timeEntry, 'Create TimeEntry', '', 'Create', 'Cancel');
-    };    
+    };
 
   });
