@@ -22,7 +22,7 @@ describe('Service: worktajm', function () {
     _id: '22222222',
     name: 'Project B',
     createdBy: userA._id
-  };  
+  };
   var timeEntryA1 = {
     _id: '33333333',
     createdBy: userA._id,
@@ -32,19 +32,6 @@ describe('Service: worktajm', function () {
     _id: userA._id,
     activeTimeEntryId: timeEntryA1._id,
     activeProjectId: projectA._id
-  };
-
-  // Utility functions
-  var loginAs = function (user) {
-    var currentUser;
-    Worktajm.getCurrentUser().then(function (result) {
-      currentUser = result;
-    });
-    $httpBackend.expectGET('/api/users/me').respond(user);      
-    $httpBackend.flush();
-    expect(currentUser._id).toBe(userA._id);
-
-    return currentUser;
   };
 
   // instantiate service
@@ -62,6 +49,19 @@ describe('Service: worktajm', function () {
     $httpBackend.verifyNoOutstandingRequest();
   });
 
+  // Utility functions
+  var loginAs = function (user) {
+    var currentUser;
+    Worktajm.getCurrentUser().then(function (result) {
+      currentUser = result;
+    });
+    $httpBackend.expectGET('/api/users/me').respond(user);
+    $httpBackend.flush();
+    expect(currentUser._id).toBe(userA._id);
+
+    return currentUser;
+  };
+
   describe('currentUser', function () {
 
     it('should get the current user first time it is called but not second time', function () {
@@ -76,7 +76,7 @@ describe('Service: worktajm', function () {
   describe('timer,', function () {
     describe('User A is logged in, user A has no active timer, ', function () {
 
-      beforeEach(function() {
+      beforeEach(function () {
         var currentUser;
         loginAs(userA);
         Worktajm.getCurrentUser()
@@ -116,7 +116,7 @@ describe('Service: worktajm', function () {
         $scope.$digest();
       });
 
-      iit('should try to stop the timer', function () {
+      it('should try to stop the timer', function () {
         Worktajm.stopTimer();
 
         // No communication with backend is expected
@@ -136,7 +136,7 @@ describe('Service: worktajm', function () {
         $scope.$digest();
         expect(currentUser._id).toEqual(userAWithActiveTimeEntryA1._id);
         expect(currentUser.activeTimeEntryId).toEqual(userAWithActiveTimeEntryA1.activeTimeEntryId);
-      });      
+      });
 
       it('should not fetch user information since it is cached', function () {
         var currentUser, activeTimeEntry;
@@ -171,7 +171,7 @@ describe('Service: worktajm', function () {
 
         $httpBackend.expectGET('/api/timeEntries/' + timeEntryA1._id).respond(timeEntryA1);
         $httpBackend.expectPOST('/api/timeEntries/' + timeEntryA1._id).respond(timeEntryA1);
-        $httpBackend.expectPUT('/api/users/me/activeTimeEntry').respond(userAWithActiveTimeEntryA1);
+        $httpBackend.expectPUT('/api/users/me/activeTimeEntry', {}).respond(userA);
 
         $httpBackend.flush();
         $scope.$digest();

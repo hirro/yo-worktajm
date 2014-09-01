@@ -38,9 +38,9 @@ module.exports = function(config) {
     preprocessors: {
       '**/*.jade': 'ng-jade2js',
       '**/*.html': 'html2js',
-      '**/*.coffee': 'coffee',
-      'client/app/**/*.js': ['coverage'],
-      'client/components/**/*.js': ['coverage']
+      '**/*.coffee': 'coffee'
+      // 'client/app/**/*.js': ['coverage'],
+      // 'client/components/**/*.js': ['coverage']
     },
 
     ngHtml2JsPreprocessor: {
