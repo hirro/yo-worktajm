@@ -199,6 +199,7 @@ angular.module('worktajmApp')
           },
           function (newTimeEntry) {
             console.log('Created time entry');
+            newTimeEntry.project = project;
             deferred.resolve(newTimeEntry);
           },
           function (error) {

@@ -70,7 +70,8 @@ angular.module('worktajmApp')
 
     // Modal functions
     $scope.openModal = function (timeEntry, titleText, messageText, okText, cancelText) {
-      console.log('TimeEntriesCtrl::openModal', timeEntry.name);
+      console.log('TimeEntriesCtrl::openModal', timeEntry._id);
+      console.log(timeEntry);
       var modalParams = {
         timeEntry: timeEntry,
         titleText: titleText,
@@ -92,13 +93,18 @@ angular.module('worktajmApp')
     };
 
     $scope.editTimeEntry = function (timeEntry) {
-      console.log('TimeEntries::editTimeEntry, timeEntryName: %s', timeEntry.name);
+      console.log('TimeEntries::editTimeEntry, timeEntryName: %s', timeEntry._id);
       $scope.openModal(timeEntry, 'Update TimeEntry', '', 'Update', 'Cancel');
     };
 
     $scope.createTimeEntry = function () {
       var timeEntry = { name: ''};
       $scope.openModal(timeEntry, 'Create TimeEntry', '', 'Create', 'Cancel');
+    };
+
+    $scope.getProjectNameForTimeEntry = function (timeEntry) {
+      var project = $scope.projects[timeEntry.projectId];
+      return project ? project.name : '';
     };
 
   });

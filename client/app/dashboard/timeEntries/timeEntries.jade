@@ -22,7 +22,7 @@
           tbody(ng-repeat='timeEntry in timeEntries')
             tr
               td
-                div(contenteditable='false', ng-model='timeEntry.project.name', title='Click to edit') {{timeEntry.project.name}}
+                div(contenteditable='false', ng-model='projects[timeEntry.projectId].name', title='Click to edit') {{projects[timeEntry.projectId].name}}
               td(contenteditable='false') {{timeEntry.startTime | date: 'HH:mm:ss'}}
               td(contenteditable='false') {{timeEntry.endTime | date: 'HH:mm:ss'}}
               td

@@ -13,21 +13,21 @@
           .dropdown
             a#dropdown1.dropdown-toggle(role='button', data-toggle='dropdown', data-target='#', href='#')
               .input-group
-                input.form-control(type='text', data-ng-model='timeEntry.start', ng-required='ng-required')
+                input.form-control(type='text', data-ng-model='timeEntry.startTime', ng-required='ng-required')
                 span.input-group-addon
                   i.glyphicon.glyphicon-calendar
             ul.dropdown-menu(role='menu', aria-labelledby='dLabel')
-              datetimepicker(data-ng-model='timeEntry.start', data-datetimepicker-config='{ dropdownSelector: \'#dropdown1\' }')
+              datetimepicker(data-ng-model='timeEntry.startTime', data-datetimepicker-config='{ dropdownSelector: \'#dropdown1\' }')
         .form-group
           label(for='endDate') End time
           .dropdown
             a#dropdown2.dropdown-toggle(role='button', data-toggle='dropdown', data-target='#', href='#')
               .input-group
-                input.form-control(type='text', data-ng-model='timeEntry.end', ng-required='ng-required')
+                input.form-control(type='text', data-ng-model='timeEntry.endTime', ng-required='ng-required')
                 span.input-group-addon
                   i.glyphicon.glyphicon-calendar
             ul.dropdown-menu(role='menu', aria-labelledby='dLabel')
-              datetimepicker(data-ng-model='timeEntry.end', data-datetimepicker-config='{ dropdownSelector: \'#dropdown2\' }')
+              datetimepicker(data-ng-model='timeEntry.endTime', data-datetimepicker-config='{ dropdownSelector: \'#dropdown2\' }')
         .form-group
           label(for='comment') Comment
           textarea#comment.form-control(rows='10', placeholder='Enter comment', ng-model='timeEntry.comment')
