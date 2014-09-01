@@ -195,7 +195,7 @@ angular.module('worktajmApp')
         TimeEntry.save(
           {
             projectId: project._id,
-            startTime: '2014-07-21T08:00:00.000Z'
+            startTime: moment()
           },
           function (newTimeEntry) {
             console.log('Created time entry');
@@ -283,7 +283,8 @@ angular.module('worktajmApp')
         var stopCurrentTimeEntry = function (timeEntry) {
           if (timeEntry) {
             console.log('stopCurrentTimeEntry');
-            timeEntry.endTime = timeEntry.startTime;
+            var now = moment();
+            timeEntry.endTime = now;
             return self.updateTimeEntry(timeEntry);
           }
           var deferred2 = $q.defer();
