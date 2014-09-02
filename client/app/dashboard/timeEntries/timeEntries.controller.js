@@ -5,11 +5,13 @@ angular.module('worktajmApp')
 
     $scope.timeEntries = [];
     $scope.projects = [];
+    $scope.projectNames = [];
 
     var loadProjects = function () {
       var deferred = $q.defer();
       Worktajm.getMyProjects().then(function (result) {
         $scope.projects = _.indexBy(result, '_id');
+        updateProjectNames();
         deferred.resolve($scope.projects);
       });
       return deferred.promise;
@@ -24,6 +26,9 @@ angular.module('worktajmApp')
         });
       });
     };
+    var updateProjectNames = function () {
+      $scope.projectNames = _.filter($scope.projects, 'name');
+    };
     var reportProblem = function (err) {
       console.log('stopTimer failed - [%s]', err);
     };
@@ -35,12 +40,7 @@ angular.module('worktajmApp')
     // Modal controller
     var TimeEntryModalCtrl = function ($scope, $modalInstance, modalParams) {
       _.extend($scope, modalParams);
-      $scope.timeEntry = {
-        name: modalParams.timeEntry.name,
-        rate: modalParams.timeEntry.rate,
-        description: modalParams.timeEntry.description,
-        id: modalParams.timeEntry.id
-      };
+      $scope.timeEntry = _.clone(modalParams.timeEntry);
 
       $scope.ok = function () {
         // FIXME
@@ -105,6 +105,20 @@ angular.module('worktajmApp')
     $scope.getProjectNameForTimeEntry = function (timeEntry) {
       var project = $scope.projects[timeEntry.projectId];
       return project ? project.name : '';
+    };
+
+    $scope.onUpdateTimeEntry = function (timeEntry) {
+      if (timeEntry._id) {
+        console.log('onUpdateTimeEntry - updating [%s]', timeEntry);
+
+        // Extend existing entry
+        var existingTimeEntry = _.find($scope.timeEntries, { '_id': timeEntry._id });
+        _.extend(existingTimeEntry, timeEntry);
+        Worktajm.updateTimeEntry(existingTimeEntry);
+      } else {
+        console.log('onUpdateTimeEntry - creating [%s]', timeEntry);
+        Worktajm.createTimeEntry(timeEntry);
+      }
     };
 
   });
