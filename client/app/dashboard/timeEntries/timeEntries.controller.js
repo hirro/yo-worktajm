@@ -5,12 +5,14 @@ angular.module('worktajmApp')
 
     $scope.timeEntries = [];
     $scope.projects = [];
+    $scope.projectsIndexedById = [];
     $scope.projectNames = [];
 
     var loadProjects = function () {
       var deferred = $q.defer();
       Worktajm.getMyProjects().then(function (result) {
-        $scope.projects = _.indexBy(result, '_id');
+        $scope.projects = result;
+        $scope.projectsIndexedById = _.indexBy(result, '_id');
         updateProjectNames();
         deferred.resolve($scope.projects);
       });
@@ -21,8 +23,9 @@ angular.module('worktajmApp')
         console.log('Loaded time entries');
         $scope.timeEntries = result;
         _.forEach($scope.timeEntries, function (timeEntry) {
-          var project = $scope.projects[timeEntry.projectId];
-          _.extend(timeEntry, { 'project': project });
+          var project = $scope.projectsIndexedById[timeEntry.projectId];
+          timeEntry.project = project;
+          console.log('Time entry', timeEntry);
         });
       });
     };
@@ -33,9 +36,13 @@ angular.module('worktajmApp')
       console.log('stopTimer failed - [%s]', err);
     };
 
-    loadProjects()
+    var load = function() {
+      loadProjects()
       .then(loadTimeEntries)
       .catch(reportProblem);
+    };
+
+    load();
 
     // Modal controller
     var TimeEntryModalCtrl = function ($scope, $modalInstance, modalParams) {
