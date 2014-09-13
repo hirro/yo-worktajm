@@ -1,4 +1,4 @@
-/*globals expect, afterEach, beforeEach, spyOn, describe, it, inject, _ */
+/*globals expect, afterEach, beforeEach, describe, it, inject */
 
 'use strict';
 
@@ -16,11 +16,6 @@ describe('Service: worktajm', function () {
   var projectA = {
     _id: '22222222',
     name: 'Project A',
-    createdBy: userA._id
-  };
-  var projectB = {
-    _id: '22222222',
-    name: 'Project B',
     createdBy: userA._id
   };
   var timeEntryA1 = {
@@ -87,7 +82,7 @@ describe('Service: worktajm', function () {
       });
 
       it('should set and get the active time entry', function () {
-        var currentUser, activeTimeEntry;
+        var activeTimeEntry;
 
         // Setting active to A1
         Worktajm.setActiveTimeEntry(timeEntryA1);
@@ -139,7 +134,7 @@ describe('Service: worktajm', function () {
       });
 
       it('should not fetch user information since it is cached', function () {
-        var currentUser, activeTimeEntry;
+        var currentUser;
 
         // Get current time entry
         Worktajm.loadCurrentUser().then(function (result) {
@@ -152,7 +147,7 @@ describe('Service: worktajm', function () {
       });
 
       it('should return return the active time entry', function () {
-        var currentUser, activeTimeEntry;
+        var activeTimeEntry;
 
         // Get current time entry
         Worktajm.getActiveTimeEntry().then(function (result) {

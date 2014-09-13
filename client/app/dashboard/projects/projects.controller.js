@@ -3,7 +3,7 @@
 'use strict';
 
 angular.module('worktajmApp')
-  .controller('ProjectsCtrl', function ($scope, $modal, Worktajm, Auth) {
+  .controller('ProjectsCtrl', function ($scope, $modal, Worktajm) {
     $scope.message = 'Hello';
 
     $scope.projects = [];
@@ -97,10 +97,8 @@ angular.module('worktajmApp')
 
     $scope.isProjectActive = function (project) {
       var user = $scope.currentUser;
-      var result = (user
-        && user.activeProjectId
-        && (project._id === user.activeProjectId));
+      var result = (user && user.activeProjectId && (project._id === user.activeProjectId));
       return result;
-    }
+    };
 
   });

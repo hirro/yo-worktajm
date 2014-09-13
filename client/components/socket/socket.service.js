@@ -93,14 +93,14 @@ angular.module('worktajmApp')
         socket.on(modelName + ':save', function (item) {
           console.log('syncUpdatesOnObject - %s:save', modelName);
           _.extend(objectToSynchronize, item);
-          event = 'updated';
+          var event = 'updated';
           cb(event, item, objectToSynchronize);
         });
 
         /**
          * Syncs removed items on 'model:remove'
          */
-        socket.on(modelName + ':remove', function (item) {
+        socket.on(modelName + ':remove', function () {
           console.log('syncUpdates - %s:remove', modelName);
         });
       },

@@ -26,7 +26,7 @@ angular.module('worktajmApp')
         return currentUser;
       },
 
-      projectsCallback: function (event, project, array) {
+      projectsCallback: function (event, project) {
         console.log('projecsCallback');
         if ('updated' === event) {
           // Propagate changes to indexed list
@@ -47,7 +47,7 @@ angular.module('worktajmApp')
         }
       },
 
-      timeEntryCallback: function (event, timeEntry, array) {
+      timeEntryCallback: function (event, timeEntry) {
         if ('updated' === event) {
           console.log('timeEntryCallback - updated');
           timeEntry.project = projectsIndexedById[timeEntry.projectId];
@@ -108,12 +108,6 @@ angular.module('worktajmApp')
         return deferred.promise;
       },
 
-      loadBackend: function () {
-        loadProjects()
-        .then(loadTimeEntries)
-        .catch(reportProblem);
-      },
-
       setActiveTimeEntry: function (timeEntry) {
         var deferred = $q.defer();
 
@@ -159,7 +153,7 @@ angular.module('worktajmApp')
             }
           );
         } else {
-          console.log("User does not have any active timer");
+          console.log('User does not have any active timer');
           console.log(currentUser);
           deferred.resolve(null);
         }
