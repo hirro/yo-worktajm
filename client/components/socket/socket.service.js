@@ -48,6 +48,8 @@ angular.module('worktajmApp')
             array.push(item);
           }
 
+          console.log('SYNC UPDATES!!');
+          console.log(cb);
           cb(event, item, array);
         });
 

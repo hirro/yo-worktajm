@@ -4,32 +4,95 @@ angular.module('worktajmApp')
   .service('Worktajm', function ($http, $q, socket, Project, TimeEntry, User) {
     // AngularJS will instantiate a singleton by calling "new" on this function
     var projects = [];
+    var projectsIndexedById = [];
     var timeEntries = [];
     var currentUser = {};
 
     return {
 
-      getMyProjects: function () {
+      getProjects: function () {
+        return projects;
+      },
+
+      getProjectsIndexedById: function () {
+        return projectsIndexedById;
+      },
+
+      getTimeEntries: function () {
+        return timeEntries;
+      },
+
+      getCurrentUser: function () {
+        return currentUser;
+      },
+
+      projectsCallback: function (event, project, array) {
+        console.log('projecsCallback');
+        if ('updated' === event) {
+          // Propagate changes to indexed list
+          console.log('projectsCallback - updated');
+          projectsIndexedById[project] = project;
+
+          // Find projects with matching project and update
+          _.forEach(timeEntries, function (timeEntry) {
+            if (timeEntry.projectId === project._id) {
+              timeEntry.project = project;
+            }
+          });
+        } else if ('created' === event) {
+          console.log('projectsCallback - created');
+          // RFU
+        } else {
+          console.log('projectsCallback - Unhandled event [%s]', event);
+        }
+      },
+
+      timeEntryCallback: function (event, timeEntry, array) {
+        if ('updated' === event) {
+          console.log('timeEntryCallback - updated');
+          timeEntry.project = projectsIndexedById[timeEntry.projectId];
+        } else if ('created' === event) {
+          console.log('timeEntryCallback - created time entry, fetching associated project');
+          timeEntry.project = projectsIndexedById[timeEntry.projectId];
+        } else {
+          console.log('timeEntryCallback - Unhandled event [%s]', event);
+        }
+      },
+
+      loadProjects: function () {
         var deferred = $q.defer();
+        var self = this;
+
+        // Currently getting all the entries, this should be split up to fetch per month.
         $http.get('/api/projects').success(function (projectList) {
-          projects = projectList;
-          socket.syncUpdates('project', projects);
+          projects.splice(0, projects.length);
+          _.forEach(projectList, function (project) {
+            projects.push(project);
+            projectsIndexedById[project._id] = project;
+          });
+          socket.syncUpdates('project', projects, self.projectsCallback);
           deferred.resolve(projects);
         });
         return deferred.promise;
       },
 
-      getTimeEntries: function () {
+      loadTimeEntries: function () {
         var deferred = $q.defer();
+        var self = this;
+
         $http.get('/api/timeEntries').success(function (timeEntryList) {
-          timeEntries = timeEntryList;
-          socket.syncUpdates('timeentry', timeEntries);
+          timeEntries.splice(0, timeEntries.length);
+          _.forEach(timeEntryList, function (timeEntry) {
+            timeEntry.project = projectsIndexedById[timeEntry.projectId];
+            timeEntries.push(timeEntry);
+          });
+          socket.syncUpdates('timeentry', timeEntries, self.timeEntryCallback);
           deferred.resolve(timeEntries);
         });
         return deferred.promise;
       },
 
-      getCurrentUser: function () {
+      loadCurrentUser: function () {
         var deferred = $q.defer();
         if (currentUser._id) {
           console.log('Using cached user id: [%s]', currentUser._id);
@@ -43,6 +106,12 @@ angular.module('worktajmApp')
           });
         }
         return deferred.promise;
+      },
+
+      loadBackend: function () {
+        loadProjects()
+        .then(loadTimeEntries)
+        .catch(reportProblem);
       },
 
       setActiveTimeEntry: function (timeEntry) {

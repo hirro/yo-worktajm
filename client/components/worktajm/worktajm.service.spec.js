@@ -52,7 +52,7 @@ describe('Service: worktajm', function () {
   // Utility functions
   var loginAs = function (user) {
     var currentUser;
-    Worktajm.getCurrentUser().then(function (result) {
+    Worktajm.loadCurrentUser().then(function (result) {
       currentUser = result;
     });
     $httpBackend.expectGET('/api/users/me').respond(user);
@@ -66,7 +66,7 @@ describe('Service: worktajm', function () {
 
     it('should get the current user first time it is called but not second time', function () {
       var currentUser = loginAs(userA);
-      Worktajm.getCurrentUser().then(function (result) {
+      Worktajm.loadCurrentUser().then(function (result) {
         currentUser = result;
       });
       expect(currentUser._id).toBe(userA._id);
@@ -79,7 +79,7 @@ describe('Service: worktajm', function () {
       beforeEach(function () {
         var currentUser;
         loginAs(userA);
-        Worktajm.getCurrentUser()
+        Worktajm.loadCurrentUser()
           .then(function(result) {
             currentUser = result;
           });
@@ -130,7 +130,7 @@ describe('Service: worktajm', function () {
       beforeEach(function() {
         var currentUser;
         loginAs(userAWithActiveTimeEntryA1);
-        Worktajm.getCurrentUser().then(function(result) {
+        Worktajm.loadCurrentUser().then(function(result) {
           currentUser = result;
         });
         $scope.$digest();
@@ -142,7 +142,7 @@ describe('Service: worktajm', function () {
         var currentUser, activeTimeEntry;
 
         // Get current time entry
-        Worktajm.getCurrentUser().then(function (result) {
+        Worktajm.loadCurrentUser().then(function (result) {
           currentUser = result;
         });
 

@@ -8,41 +8,20 @@ angular.module('worktajmApp')
     $scope.projectsIndexedById = [];
     $scope.projectNames = [];
 
-    var loadProjects = function () {
-      var deferred = $q.defer();
-      Worktajm.getMyProjects().then(function (result) {
-        $scope.projects = result;
-        $scope.projectsIndexedById = _.indexBy(result, '_id');
-        updateProjectNames();
-        deferred.resolve($scope.projects);
-      });
-      return deferred.promise;
-    };
-    var loadTimeEntries = function () {
-      return Worktajm.getTimeEntries().then(function (result) {
-        console.log('Loaded time entries');
-        $scope.timeEntries = result;
-        _.forEach($scope.timeEntries, function (timeEntry) {
-          var project = $scope.projectsIndexedById[timeEntry.projectId];
-          timeEntry.project = project;
-          console.log('Time entry', timeEntry);
-        });
-      });
-    };
-    var updateProjectNames = function () {
-      $scope.projectNames = _.filter($scope.projects, 'name');
-    };
-    var reportProblem = function (err) {
-      console.log('stopTimer failed - [%s]', err);
+    $scope.load = function() {
+      console.log('load');
+
+      // Start download of objects from BE
+      Worktajm.loadProjects();
+      Worktajm.loadTimeEntries();
+
+      // The references will be updated
+      $scope.projects = Worktajm.getProjects();
+      $scope.projectsIndexedById = Worktajm.getProjectsIndexedById();  
+      $scope.timeEntries = Worktajm.getTimeEntries();
     };
 
-    var load = function() {
-      loadProjects()
-      .then(loadTimeEntries)
-      .catch(reportProblem);
-    };
-
-    load();
+    $scope.load();
 
     // Modal controller
     var TimeEntryModalCtrl = function ($scope, $modalInstance, modalParams) {

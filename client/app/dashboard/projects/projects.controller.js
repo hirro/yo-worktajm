@@ -9,11 +9,11 @@ angular.module('worktajmApp')
     $scope.projects = [];
     $scope.currentUser = {};
 
-    Worktajm.getCurrentUser().then(function (result) {
+    Worktajm.loadCurrentUser().then(function (result) {
       $scope.currentUser = result;
     });
 
-    Worktajm.getMyProjects().then(function (result) {
+    Worktajm.loadProjects().then(function (result) {
       $scope.projects = result;
     });
 
