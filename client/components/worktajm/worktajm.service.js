@@ -27,11 +27,10 @@ angular.module('worktajmApp')
       },
 
       projectsCallback: function (event, project) {
-        console.log('projecsCallback');
         if ('updated' === event) {
           // Propagate changes to indexed list
           console.log('projectsCallback - updated');
-          projectsIndexedById[project] = project;
+          projectsIndexedById[project._id] = project;
 
           // Find projects with matching project and update
           _.forEach(timeEntries, function (timeEntry) {
@@ -41,7 +40,7 @@ angular.module('worktajmApp')
           });
         } else if ('created' === event) {
           console.log('projectsCallback - created');
-          // RFU
+          projectsIndexedById[project._id] = project;          
         } else {
           console.log('projectsCallback - Unhandled event [%s]', event);
         }
@@ -111,6 +110,8 @@ angular.module('worktajmApp')
       setActiveTimeEntry: function (timeEntry) {
         var deferred = $q.defer();
 
+        console.log('AFTER');
+
         if (currentUser) {
           var newTimeEntryId = timeEntry ? timeEntry._id : null;
           var newProjectId = timeEntry ? timeEntry.projectId : null;
@@ -125,6 +126,7 @@ angular.module('worktajmApp')
               currentUser.activeTimeEntryId = newTimeEntryId;
               currentUser.activeProjectId = newProjectId;
               deferred.resolve();
+              console.log('setActiveTimeEntry - User updated');
             },
             function (error) {
               console.log('Failed to setActiveTimeEntry');
@@ -154,7 +156,6 @@ angular.module('worktajmApp')
           );
         } else {
           console.log('User does not have any active timer');
-          console.log(currentUser);
           deferred.resolve(null);
         }
         return deferred.promise;
@@ -171,7 +172,6 @@ angular.module('worktajmApp')
             description: project.description
           },
           function (project) {
-            console.log('Created new project');
             cb(project);
             deferred.resolve(project);
           },
@@ -192,7 +192,6 @@ angular.module('worktajmApp')
         Project.save(
           project,
           function (project) {
-            console.log('Updated project');
             cb(project);
             deferred.resolve(project);
           },
@@ -215,7 +214,6 @@ angular.module('worktajmApp')
             id: project._id
           },
           function (restoredProject) {
-            console.log('Restored project');
             _.assign(project, restoredProject);
             cb(restoredProject);
             deferred.resolve(restoredProject);
@@ -231,7 +229,6 @@ angular.module('worktajmApp')
       },
 
       deleteProject: function (project, callback) {
-        console.log('deleteProject - id [%s]', project._id);
         var cb = callback || angular.noop;
         var deferred = $q.defer();
 
@@ -261,7 +258,6 @@ angular.module('worktajmApp')
             startTime: moment()
           },
           function (newTimeEntry) {
-            console.log('Created time entry');
             newTimeEntry.project = project;
             deferred.resolve(newTimeEntry);
           },
@@ -278,7 +274,6 @@ angular.module('worktajmApp')
         TimeEntry.update(
           timeEntry,
           function (updatedEntry) {
-            console.log('Updated time entry');
             deferred.resolve(updatedEntry);
           },
           function (error) {
@@ -290,7 +285,6 @@ angular.module('worktajmApp')
       },
 
       deleteTimeEntry: function (timeEntry, callback) {
-        console.log('deleteTimeEntry - id [%s]', timeEntry._id);
         var cb = callback || angular.noop;
         var deferred = $q.defer();
 
@@ -317,12 +311,8 @@ angular.module('worktajmApp')
         var deferred = $q.defer();
         var newTimeEntry = {};
 
-        console.log('startTimer - id [%s]', project._id);
+        console.log('startTimer - project id [%s]', project._id);
 
-        var createNewTimeEntry = function () {
-          console.log('startTimer - createNewTimeEntry');
-          return self.createTimeEntry(project);
-        };
         var resolveTimeEntry = function () {
           console.log('startTimer - resolveTimeEntry');
           deferred.resolve(newTimeEntry);
@@ -330,7 +320,14 @@ angular.module('worktajmApp')
         var reportProblem = function (err) {
           console.log('startTimer failed - [%s]', err);
         };
-        self.stopTimer()
+        var createNewTimeEntry = function () {
+          var deferred = $q.defer();
+          self.createTimeEntry(project).then(function (result) {
+            deferred.resolve(result);
+          });
+          return deferred.promise;
+        };        
+        this.stopTimer()
           .then(createNewTimeEntry)
           .then(this.setActiveTimeEntry)
           .then(resolveTimeEntry)

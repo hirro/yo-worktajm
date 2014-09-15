@@ -34,7 +34,6 @@ angular.module('worktajmApp')
          * Syncs item creation/updates on 'model:save'
          */
         socket.on(modelName + ':save', function (item) {
-          console.log('syncUpdates - %s:save', modelName);
           var oldItem = _.find(array, {_id: item._id});
           var index = array.indexOf(oldItem);
           var event = 'created';
@@ -48,8 +47,6 @@ angular.module('worktajmApp')
             array.push(item);
           }
 
-          console.log('SYNC UPDATES!!');
-          console.log(cb);
           cb(event, item, array);
         });
 
@@ -57,7 +54,6 @@ angular.module('worktajmApp')
          * Syncs removed items on 'model:remove'
          */
         socket.on(modelName + ':remove', function (item) {
-          console.log('syncUpdates - %s:remove', modelName);
           var event = 'deleted';
           _.remove(array, {_id: item._id});
           cb(event, item, array);
@@ -91,7 +87,7 @@ angular.module('worktajmApp')
          * Syncs item updates on 'model:save'
          */
         socket.on(modelName + ':save', function (item) {
-          console.log('syncUpdatesOnObject - %s:save', modelName);
+          console.log('XXX');
           _.extend(objectToSynchronize, item);
           var event = 'updated';
           cb(event, item, objectToSynchronize);
@@ -101,7 +97,6 @@ angular.module('worktajmApp')
          * Syncs removed items on 'model:remove'
          */
         socket.on(modelName + ':remove', function () {
-          console.log('syncUpdates - %s:remove', modelName);
         });
       },
 
