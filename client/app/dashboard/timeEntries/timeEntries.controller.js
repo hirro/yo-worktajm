@@ -7,6 +7,9 @@ angular.module('worktajmApp')
     $scope.projects = [];
     $scope.projectsIndexedById = [];
     $scope.projectNames = [];
+    $scope.selectedDate = new Date();
+    $scope.opened = false;
+    $scope.format = 'dd-MMMM-yyyy';
 
     $scope.load = function() {
       console.log('load');
@@ -105,6 +108,13 @@ angular.module('worktajmApp')
         console.log('onUpdateTimeEntry - creating [%s]', timeEntry);
         Worktajm.createTimeEntry(timeEntry);
       }
+    };
+
+    // Date selector
+    $scope.open = function($event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      $scope.opened = true;
     };
 
   });

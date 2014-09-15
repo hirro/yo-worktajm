@@ -1,31 +1,34 @@
 .panel.panel-default
     .panel-heading
-        .panel-title
-          h4.panel-title Time Entries
-      .panel-body.timeentries
-        p
-          a#createTimeEntry.btn.btn-primary.btn-sm(ng-click='createTimeEntry()')
-            i.glyphicon-plus
-            | Add time entry manually
-        #dateSelectionPanel.input-group
-          span.input-group-addon
+      .panel-title
+        h4.panel-title Time Entries
+    .panel-body
+      p.input-group
+        input.form-control(
+          type='text', 
+          datepicker-popup='dd-MMMM-yyyy', 
+          ng-model='dtt', 
+          is-open='opened', 
+          ng-required='true', 
+          close-text='Close')
+        span.input-group-btn
+          button.btn.btn-default(type='button', ng-click='open($event)')
             i.glyphicon.glyphicon-calendar
-          input.form-control(type='text', datepicker-popup='{{format}}', ng-model='selectedDate', is-open='opened', min='minDate', max='\'2015-06-22\'', datepicker-options='dateOptions', date-disabled='disabled(date, mode)', ng-required='true', close-text='Close')
-        table.table.table-condensed.table-hover
-          thead
-            tr
-              th.col-md-5 Project
-              th.col-md-2 Start
-              th.col-md-2 End
-              th.col-md-3  
-          //- tbody(ng-repeat='timeEntry in filteredTimeEntries = (timeEntries | dateFilter:selectedDate)')
-          tbody(ng-repeat='timeEntry in timeEntries')
-            tr
-              td
-                div(contenteditable='false', ng-model='timeEntry.project.name', title='Click to edit') {{timeEntry.project.name}}
-              td(contenteditable='false') {{timeEntry.startTime | date: 'HH:mm:ss'}}
-              td(contenteditable='false') {{timeEntry.endTime | date: 'HH:mm:ss'}}
-              td
-                .btn-group.pull-right
-                  button.btn.btn-default.btn-sm.glyphicon.glyphicon-edit(type='button', ng-click='editTimeEntry(timeEntry)', popover='Edit', popover-placement='left', popover-trigger='mouseenter')
-                  button.btn.btn-default.btn-sm.glyphicon.glyphicon-trash(type='button', ng-click='deleteTimeEntry(timeEntry)', popover='Remove', popover-placement='right', popover-trigger='mouseenter')
+
+      table.table.table-condensed.table-hover
+        thead
+          tr
+            th.col-md-5 Project
+            th.col-md-2 Start
+            th.col-md-2 End
+            th.col-md-3
+        tbody(ng-repeat='timeEntry in timeEntries')
+          tr
+            td
+              div(contenteditable='false', ng-model='timeEntry.project.name', title='Click to edit') {{timeEntry.project.name}}
+            td(contenteditable='false') {{timeEntry.startTime | date: 'HH:mm:ss'}}
+            td(contenteditable='false') {{timeEntry.endTime | date: 'HH:mm:ss'}}
+            td
+              .btn-group.pull-right
+                button.btn.btn-default.btn-sm.glyphicon.glyphicon-edit(type='button', ng-click='editTimeEntry(timeEntry)', popover='Edit', popover-placement='left', popover-trigger='mouseenter')
+                button.btn.btn-default.btn-sm.glyphicon.glyphicon-trash(type='button', ng-click='deleteTimeEntry(timeEntry)', popover='Remove', popover-placement='right', popover-trigger='mouseenter')
