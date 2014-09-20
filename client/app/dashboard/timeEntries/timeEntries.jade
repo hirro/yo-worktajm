@@ -3,16 +3,22 @@
       .panel-title
         h4.panel-title Time Entries
     .panel-body
+
+      p.btn-group
+        label.btn.btn-primary(ng-model='selected.viewMode', btn-radio='\'Day\'', uncheckable='uncheckable') Day
+        label.btn.btn-primary(ng-model='selected.viewMode', btn-radio='\'Week\'', uncheckable='uncheckable') Week
+        label.btn.btn-primary(ng-model='selected.viewMode', btn-radio='\'Month\'', uncheckable='uncheckable') Month
+
       p.input-group
         input.form-control(
           type='text', 
-          datepicker-popup='dd-MMMM-yyyy', 
-          ng-model='dtt', 
-          is-open='opened', 
+          datepicker-popup='{{dateFormat}}', 
+          ng-model='selected.selectedDate', 
+          is-open='datePickerOpened', 
           ng-required='true', 
           close-text='Close')
         span.input-group-btn
-          button.btn.btn-default(type='button', ng-click='open($event)')
+          button.btn.btn-default(type='button', ng-click='openDatePicker($event)')
             i.glyphicon.glyphicon-calendar
 
       table.table.table-condensed.table-hover
@@ -22,7 +28,7 @@
             th.col-md-2 Start
             th.col-md-2 End
             th.col-md-3
-        tbody(ng-repeat='timeEntry in timeEntries')
+        tbody(ng-repeat='timeEntry in timeEntries | timeEntryFilter:selected')
           tr
             td
               div(contenteditable='false', ng-model='timeEntry.project.name', title='Click to edit') {{timeEntry.project.name}}

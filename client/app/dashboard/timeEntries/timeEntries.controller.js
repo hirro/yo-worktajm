@@ -7,9 +7,15 @@ angular.module('worktajmApp')
     $scope.projects = [];
     $scope.projectsIndexedById = [];
     $scope.projectNames = [];
-    $scope.selectedDate = new Date();
-    $scope.opened = false;
-    $scope.format = 'dd-MMMM-yyyy';
+    $scope.datePickerOpened = false;
+    $scope.dateFormat = 'yyyy-MM-dd';
+    $scope.selected = {
+      selectedDate: moment().utc().format(),
+      day: false,
+      week: false,
+      month: false,
+      viewMode: 'Day'
+    };
 
     $scope.load = function() {
       console.log('load');
@@ -20,7 +26,7 @@ angular.module('worktajmApp')
 
       // The references will be updated
       $scope.projects = Worktajm.getProjects();
-      $scope.projectsIndexedById = Worktajm.getProjectsIndexedById();  
+      $scope.projectsIndexedById = Worktajm.getProjectsIndexedById();
       $scope.timeEntries = Worktajm.getTimeEntries();
     };
 
@@ -111,10 +117,10 @@ angular.module('worktajmApp')
     };
 
     // Date selector
-    $scope.open = function($event) {
+    $scope.openDatePicker = function($event) {
       $event.preventDefault();
       $event.stopPropagation();
-      $scope.opened = true;
+      $scope.datePickerOpened = true;
     };
 
   });
