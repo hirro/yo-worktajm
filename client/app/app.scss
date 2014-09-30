@@ -72,7 +72,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-primary {
     @include button-variant(white, $brand-primary, $brand-primary);
-    @include heading-font;
+    // @include heading-font;
     font-weight: 700;
 }
 
@@ -169,7 +169,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 header {
-    background-image: url('../assets/images/agency/header-bg.jpg');
+    background-image: url('../assets/images/header-bg.jpg');
     background-repeat: none;
     background-attachment: scroll;
     background-position: center center;
@@ -538,7 +538,7 @@ aside.clients {
 
 section#contact {
     background-color: $gray-darkest;
-    background-image: url('../assets/images/agency/map-image.png');
+    background-image: url('../assets/images/map-image.png');
     background-position: center;
     background-repeat: no-repeat;
     .section-heading {

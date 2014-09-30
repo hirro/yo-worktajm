@@ -23,7 +23,7 @@
           for the JavaScript code in this page.  
 */
 
-/*globals _, XDate */
+/*globals _ */
 
 'use strict';
 
@@ -33,7 +33,7 @@ describe('Filter: timeEntryFilter', function () {
   beforeEach(module('worktajmApp'));
 
   // Constants
-  var referenceDay = moment([2014, 1, 10, 13, 23, 1]);
+  // var referenceDay = moment([2014, 1, 10, 13, 23, 1]);
   var project0  = { _id: 1, name: 'Project 0',                   enabled: true };
   var projectA1 = { _id: 2, name: 'Project A.1',  customerId: 1, enabled: true };
   var projectA2 = { _id: 3, name: 'Project A.2',  customerId: 1, enabled: true };

@@ -1,4 +1,4 @@
-nav.navbar.navbar-default(animatedHeader=1).navbar-fixed-top
+nav.navbar.navbar-default(animated-header).navbar-fixed-top
   .container
     // Brand and toggle get grouped for better mobile display 
     .navbar-header.page-scroll
@@ -23,11 +23,13 @@ nav.navbar.navbar-default(animatedHeader=1).navbar-fixed-top
           a.page-scroll(href='#team') Team
         li
           a.page-scroll(href='#contact') Contact
+        li
+          a(href='/login') Login
 header
   .container
     .intro-text
       .intro-lead-in Welcome To Worktajm
-      .intro-heading Simple time management system
+      .intro-heading Time Reports
       a.page-scroll.btn.btn-xl(href='#services') More information
 //
    Services Section 
@@ -73,7 +75,7 @@ section#portfolio.bg-light-gray
           .portfolio-hover
             .portfolio-hover-content
               i.fa.fa-plus.fa-3x
-          img.img-responsive(src='assets/images/agency/portfolio/roundicons.png', alt='')
+          img.img-responsive(src='assets/images/portfolio/roundicons.png', alt='')
         .portfolio-caption
           h4 Round Icons
           p.text-muted Graphic Design
@@ -82,7 +84,7 @@ section#portfolio.bg-light-gray
           .portfolio-hover
             .portfolio-hover-content
               i.fa.fa-plus.fa-3x
-          img.img-responsive(src='assets/images/agency/portfolio/startup-framework.png', alt='')
+          img.img-responsive(src='assets/images/portfolio/startup-framework.png', alt='')
         .portfolio-caption
           h4 Startup Framework
           p.text-muted Website Design
@@ -91,7 +93,7 @@ section#portfolio.bg-light-gray
           .portfolio-hover
             .portfolio-hover-content
               i.fa.fa-plus.fa-3x
-          img.img-responsive(src='assets/images/agency/portfolio/treehouse.png', alt='')
+          img.img-responsive(src='assets/images/portfolio/treehouse.png', alt='')
         .portfolio-caption
           h4 Treehouse
           p.text-muted Website Design
@@ -100,7 +102,7 @@ section#portfolio.bg-light-gray
           .portfolio-hover
             .portfolio-hover-content
               i.fa.fa-plus.fa-3x
-          img.img-responsive(src='assets/images/agency/portfolio/golden.png', alt='')
+          img.img-responsive(src='assets/images/portfolio/golden.png', alt='')
         .portfolio-caption
           h4 Golden
           p.text-muted Website Design
@@ -109,7 +111,7 @@ section#portfolio.bg-light-gray
           .portfolio-hover
             .portfolio-hover-content
               i.fa.fa-plus.fa-3x
-          img.img-responsive(src='assets/images/agency/portfolio/escape.png', alt='')
+          img.img-responsive(src='assets/images/portfolio/escape.png', alt='')
         .portfolio-caption
           h4 Escape
           p.text-muted Website Design
@@ -118,7 +120,7 @@ section#portfolio.bg-light-gray
           .portfolio-hover
             .portfolio-hover-content
               i.fa.fa-plus.fa-3x
-          img.img-responsive(src='assets/images/agency/portfolio/dreams.png', alt='')
+          img.img-responsive(src='assets/images/portfolio/dreams.png', alt='')
         .portfolio-caption
           h4 Dreams
           p.text-muted Website Design
@@ -135,7 +137,7 @@ section#about
         ul.timeline
           li
             .timeline-image
-              img.img-circle.img-responsive(src='assets/images/agency/about/1.jpg', alt='')
+              img.img-circle.img-responsive(src='assets/images/about/1.jpg', alt='')
             .timeline-panel
               .timeline-heading
                 h4 2009-2011
@@ -144,7 +146,7 @@ section#about
                   | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!
           li.timeline-inverted
             .timeline-image
-              img.img-circle.img-responsive(src='assets/images/agency/about/2.jpg', alt='')
+              img.img-circle.img-responsive(src='assets/images/about/2.jpg', alt='')
             .timeline-panel
               .timeline-heading
                 h4 March 2011
@@ -154,7 +156,7 @@ section#about
                   | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!
           li
             .timeline-image
-              img.img-circle.img-responsive(src='assets/images/agency/about/3.jpg', alt='')
+              img.img-circle.img-responsive(src='assets/images/about/3.jpg', alt='')
             .timeline-panel
               .timeline-heading
                 h4 December 2012
@@ -164,7 +166,7 @@ section#about
                   | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!
           li.timeline-inverted
             .timeline-image
-              img.img-circle.img-responsive(src='assets/images/agency/about/4.jpg', alt='')
+              img.img-circle.img-responsive(src='assets/images/about/4.jpg', alt='')
             .timeline-panel
               .timeline-heading
                 h4 July 2014
@@ -191,7 +193,7 @@ section#team.bg-light-gray
     .row
       .col-sm-4
         .team-member
-          img.img-responsive.img-circle(src='assets/images/agency/team/1.jpg', alt='')
+          img.img-responsive.img-circle(src='assets/images/team/1.jpg', alt='')
           h4 Kay Garland
           p.text-muted Lead Designer
           ul.list-inline.social-buttons
@@ -206,7 +208,7 @@ section#team.bg-light-gray
                 i.fa.fa-linkedin
       .col-sm-4
         .team-member
-          img.img-responsive.img-circle(src='assets/images/agency/team/2.jpg', alt='')
+          img.img-responsive.img-circle(src='assets/images/team/2.jpg', alt='')
           h4 Larry Parker
           p.text-muted Lead Marketer
           ul.list-inline.social-buttons
@@ -221,7 +223,7 @@ section#team.bg-light-gray
                 i.fa.fa-linkedin
       .col-sm-4
         .team-member
-          img.img-responsive.img-circle(src='assets/images/agency/team/3.jpg', alt='')
+          img.img-responsive.img-circle(src='assets/images/team/3.jpg', alt='')
           h4 Diana Pertersen
           p.text-muted Lead Developer
           ul.list-inline.social-buttons
@@ -245,16 +247,16 @@ aside.clients
     .row
       .col-md-3.col-sm-6
         a(href='#')
-          img.img-responsive.img-centered(src='assets/images/agency/logos/envato.jpg', alt='')
+          img.img-responsive.img-centered(src='assets/images/logos/envato.jpg', alt='')
       .col-md-3.col-sm-6
         a(href='#')
-          img.img-responsive.img-centered(src='assets/images/agency/logos/designmodo.jpg', alt='')
+          img.img-responsive.img-centered(src='assets/images/logos/designmodo.jpg', alt='')
       .col-md-3.col-sm-6
         a(href='#')
-          img.img-responsive.img-centered(src='assets/images/agency/logos/themeforest.jpg', alt='')
+          img.img-responsive.img-centered(src='assets/images/logos/themeforest.jpg', alt='')
       .col-md-3.col-sm-6
         a(href='#')
-          img.img-responsive.img-centered(src='assets/images/agency/logos/creative-market.jpg', alt='')
+          img.img-responsive.img-centered(src='assets/images/logos/creative-market.jpg', alt='')
 section#contact
   .container
     .row
@@ -324,7 +326,7 @@ footer
                Project Details Go Here 
             h2 Project Name
             p.item-intro.text-muted Lorem ipsum dolor sit amet consectetur.
-            img.img-responsive(src='assets/images/agency/portfolio/roundicons-free.png', alt='')
+            img.img-responsive(src='assets/images/portfolio/roundicons-free.png', alt='')
             p
               | Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!
             p
@@ -354,7 +356,7 @@ footer
           .modal-body
             h2 Project Heading
             p.item-intro.text-muted Lorem ipsum dolor sit amet consectetur.
-            img.img-responsive.img-centered(src='assets/images/agency/portfolio/startup-framework-preview.png', alt='')
+            img.img-responsive.img-centered(src='assets/images/portfolio/startup-framework-preview.png', alt='')
             p
               a(href='http://designmodo.com/startup/?u=787') Startup Framework
               | is a website builder for professionals. Startup Framework contains components and complex blocks (PSD+HTML Bootstrap themes and templates) which can easily be integrated into almost any design. All of these components are made in the same style, and can easily be integrated into projects, allowing you to create hundreds of solutions for your future projects.
@@ -380,7 +382,7 @@ footer
                Project Details Go Here 
             h2 Project Name
             p.item-intro.text-muted Lorem ipsum dolor sit amet consectetur.
-            img.img-responsive.img-centered(src='assets/images/agency/portfolio/treehouse-preview.png', alt='')
+            img.img-responsive.img-centered(src='assets/images/portfolio/treehouse-preview.png', alt='')
             p
               | Treehouse is a free PSD web template built by
               a(href='https://www.behance.net/MathavanJaya') Mathavan Jaya
@@ -407,7 +409,7 @@ footer
                Project Details Go Here 
             h2 Project Name
             p.item-intro.text-muted Lorem ipsum dolor sit amet consectetur.
-            img.img-responsive.img-centered(src='assets/images/agency/portfolio/golden-preview.png', alt='')
+            img.img-responsive.img-centered(src='assets/images/portfolio/golden-preview.png', alt='')
             p
               | Start Bootstrap's Agency theme is based on Golden, a free PSD website template built by
               a(href='https://www.behance.net/MathavanJaya') Mathavan Jaya
@@ -434,7 +436,7 @@ footer
                Project Details Go Here 
             h2 Project Name
             p.item-intro.text-muted Lorem ipsum dolor sit amet consectetur.
-            img.img-responsive.img-centered(src='assets/images/agency/portfolio/escape-preview.png', alt='')
+            img.img-responsive.img-centered(src='assets/images/portfolio/escape-preview.png', alt='')
             p
               | Escape is a free PSD web template built by
               a(href='https://www.behance.net/MathavanJaya') Mathavan Jaya
@@ -461,7 +463,7 @@ footer
                Project Details Go Here 
             h2 Project Name
             p.item-intro.text-muted Lorem ipsum dolor sit amet consectetur.
-            img.img-responsive.img-centered(src='assets/images/agency/portfolio/dreams-preview.png', alt='')
+            img.img-responsive.img-centered(src='assets/images/portfolio/dreams-preview.png', alt='')
             p
               | Dreams is a free PSD web template built by
               a(href='https://www.behance.net/MathavanJaya') Mathavan Jaya

@@ -39,17 +39,18 @@ angular.module('worktajmApp')
             return p.enabled;
           }),
           '_id');
-      } 
+      }
 
       // Filter functions
       var filterByTime = function (timeEntry, selection) {
         // Two variants, either selectedDate is set or from/to
         var date = timeEntry.startTime;
+        var result;
         if (!date) {
           console.error('startTime undefined');
         } else if (selection.selectedDate) {
           var selectedDate = moment(selection.selectedDate);
-          var result = selectedDate.isSame(date, 'day');
+          result = selectedDate.isSame(date, 'day');
         } else if (selection.from && selection.to) {
           var fromDate = selection.from;
           var toDate = selection.to;
@@ -60,15 +61,11 @@ angular.module('worktajmApp')
         }
         return result;
       };
-      var filterByCustomer = function (timeEntry, selection) {
-        return true;
-        //return timeEntry.project.customerId === selection.customer;        
-      };
-      var filterByProject = function (timeEntry, selection) {
+      var filterByProject = function (timeEntry) {
         return enabledProjectsIds ? _.contains(enabledProjectsIds, timeEntry.projectId) : true;
       };
 
-      var filteredTimeEntries = _.filter(timeEntries, function (timeEntry) {  
+      var filteredTimeEntries = _.filter(timeEntries, function (timeEntry) {
         return filterByTime(timeEntry, selection) && filterByProject(timeEntry, selection);
       });
 
