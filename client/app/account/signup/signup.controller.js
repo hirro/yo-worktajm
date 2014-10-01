@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('worktajmApp')
-  .controller('SignupCtrl', function ($scope, Auth, $state) {
+  .controller('SignupCtrl', function ($scope, Auth, $state, $window) {
     $scope.user = {};
     $scope.errors = {};
 
@@ -30,5 +30,9 @@ angular.module('worktajmApp')
           });
         });
       }
+    };
+
+    $scope.loginOauth = function(provider) {
+      $window.location.href = '/auth/' + provider;
     };
   });

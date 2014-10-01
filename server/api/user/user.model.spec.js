@@ -1,19 +1,18 @@
 'use strict';
 
 var should = require('should');
+var app = require('../../app');
 var User = require('./user.model');
 
-var user;
-
-describe('User Model', function() {
-  before(function(done) {
-    user = new User({
+var user = new User({
       provider: 'local',
       name: 'Fake User',
       email: 'test@test.com',
       password: 'password'
     });
 
+describe('User Model', function() {
+  before(function(done) {
     // Clear users before testing
     User.remove().exec().then(function() {
       done();
@@ -52,10 +51,10 @@ describe('User Model', function() {
   });
 
   it("should authenticate user if password is valid", function() {
-    user.authenticate('password').should.be.true;
+    return user.authenticate('password').should.be.true;
   });
 
   it("should not authenticate user if password is invalid", function() {
-    user.authenticate('blah').should.not.be.true;
+    return user.authenticate('blah').should.not.be.true;
   });
 });

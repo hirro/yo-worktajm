@@ -30,10 +30,14 @@ angular.module('worktajmApp')
       syncUpdates: function (modelName, array, cb) {
         cb = cb || angular.noop;
 
+        console.log('syncUpdates');
+
         /**
          * Syncs item creation/updates on 'model:save'
          */
         socket.on(modelName + ':save', function (item) {
+
+          console.log(':save');
           var oldItem = _.find(array, {_id: item._id});
           var index = array.indexOf(oldItem);
           var event = 'created';
@@ -66,6 +70,7 @@ angular.module('worktajmApp')
        * @param modelName
        */
       unsyncUpdates: function (modelName) {
+        console.log('unsyncUpdates');        
         socket.removeAllListeners(modelName + ':save');
         socket.removeAllListeners(modelName + ':remove');
       },
@@ -83,11 +88,13 @@ angular.module('worktajmApp')
       syncUpdatesOnObject: function (modelName, objectToSynchronize, cb) {
         cb = cb || angular.noop;
 
+        console.log('syncUpdatesOnObject');
+
         /**
          * Syncs item updates on 'model:save'
          */
         socket.on(modelName + ':save', function (item) {
-          console.log('XXX');
+          console.log(':save');
           _.extend(objectToSynchronize, item);
           var event = 'updated';
           cb(event, item, objectToSynchronize);
@@ -97,6 +104,7 @@ angular.module('worktajmApp')
          * Syncs removed items on 'model:remove'
          */
         socket.on(modelName + ':remove', function () {
+          console.log(':remove');
         });
       },
 
@@ -106,6 +114,7 @@ angular.module('worktajmApp')
        * @param modelName
        */
       unsyncUpdatesOnObject: function (modelName) {
+        console.log('unsyncUpdatesOnObject');
         socket.removeAllListeners(modelName + ':save');
         socket.removeAllListeners(modelName + ':remove');
       },
