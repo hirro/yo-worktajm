@@ -1,7 +1,7 @@
 // Karma configuration
 // http://karma-runner.github.io/0.10/config/configuration-file.html
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
     // base path, that will be used to resolve files and exclude
     basePath: '',
@@ -22,18 +22,25 @@ module.exports = function(config) {
       'client/bower_components/lodash/dist/lodash.compat.js',
       'client/bower_components/angular-socket-io/socket.js',
       'client/bower_components/angular-ui-router/release/angular-ui-router.js',
-      'client/bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js',      
+      'client/bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js',
       'client/bower_components/moment/moment.js',
       'client/app/app.js',
       'client/app/app.coffee',
+
       'client/app/**/*.js',
       'client/app/**/*.coffee',
+      'client/app/**/*.jade',
+      'client/app/**/*.html',
+
       'client/components/**/*.js',
       'client/components/**/*.coffee',
-      'client/app/**/*.jade',
       'client/components/**/*.jade',
-      'client/app/**/*.html',
-      'client/components/**/*.html'
+      'client/components/**/*.html',
+
+      'client/directives/**/*.js',
+      'client/directives/**/*.coffee',
+      'client/directives/**/*.jade',
+      'client/directives/**/*.html'
     ],
 
     preprocessors: {
@@ -56,12 +63,12 @@ module.exports = function(config) {
     // use dots reporter, as travis terminal does not support escaping sequences
     // possible values: 'dots', 'progress', 'junit', 'teamcity'
     // CLI --reporters progress
-    reporters: ['progress', 'coverage','junit', 'growl'],
+    reporters: ['progress', 'coverage', 'junit', 'growl'],
 
     junitReporter: {
       // will be resolved to basePath (in the same way as files/exclude patterns)
       outputFile: 'test-results.xml'
-    }, 
+    },
 
     // // Coverage configuration
     // preprocessors: {
@@ -70,7 +77,7 @@ module.exports = function(config) {
     //   // (these files will be instrumented by Istanbul)
     //   //'app/scripts/**/*.js': ['coverage']
     // },
-    
+
     coverageReporter: {
       type: 'lcov',
       dir: 'coverage/'

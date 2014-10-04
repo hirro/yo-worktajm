@@ -14,26 +14,24 @@ nav.navbar.navbar-default(animated-header).navbar-fixed-top
         li.hidden
           a(href='#page-top')
         li
-          a.page-scroll(href='#services') Services
+          a(href='#features') Features
         li
-          a.page-scroll(href='#portfolio') Portfolio
+          a(href='#about') About
         li
-          a.page-scroll(href='#about') About
+          a(href='#team') Team
         li
-          a.page-scroll(href='#team') Team
-        li
-          a.page-scroll(href='#contact') Contact
+          a(href='#contact') Signup
         li
           a(href='/login') Login
-header
+
+header(full-height, ng-style='style()')
   .container
     .intro-text
-      .intro-lead-in Welcome To Worktajm
       .intro-heading Time Reports
-      a.page-scroll.btn.btn-xl(href='#services') More information
+      a.page-scroll.btn.btn-xl(href='#features') Continue
 //
-   Services Section 
-section#services
+   Features Section 
+section(full-height='min', ng-style='style()')#features
   .container
     .row
       .col-lg-12.text-center
@@ -44,202 +42,45 @@ section#services
         span.fa-stack.fa-4x
           i.fa.fa-circle.fa-stack-2x.text-primary
           i.fa.fa-shopping-cart.fa-stack-1x.fa-inverse
-        h4.service-heading E-Commerce
+        h4.service-heading Free and Easy to use
         p.text-muted
-          | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.
+          | Just register and you can start filing in your reports right now. 
       .col-md-4
         span.fa-stack.fa-4x
           i.fa.fa-circle.fa-stack-2x.text-primary
           i.fa.fa-laptop.fa-stack-1x.fa-inverse
-        h4.service-heading Responsive Design
+        h4.service-heading Mobile first, Modern, Responsive 
         p.text-muted
-          | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.
+          | The application works perfectly in any browser.
       .col-md-4
         span.fa-stack.fa-4x
           i.fa.fa-circle.fa-stack-2x.text-primary
           i.fa.fa-lock.fa-stack-1x.fa-inverse
-        h4.service-heading Web Security
+        h4.service-heading Reports
         p.text-muted
-          | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.
-//
-   Portfolio Grid Section 
-section#portfolio.bg-light-gray
-  .container
-    .row
-      .col-lg-12.text-center
-        h2.section-heading Portfolio
-        h3.section-subheading.text-muted Lorem ipsum dolor sit amet consectetur.
-    .row
-      .col-md-4.col-sm-6.portfolio-item
-        a.portfolio-link(href='#portfolioModal1', data-toggle='modal')
-          .portfolio-hover
-            .portfolio-hover-content
-              i.fa.fa-plus.fa-3x
-          img.img-responsive(src='assets/images/portfolio/roundicons.png', alt='')
-        .portfolio-caption
-          h4 Round Icons
-          p.text-muted Graphic Design
-      .col-md-4.col-sm-6.portfolio-item
-        a.portfolio-link(href='#portfolioModal2', data-toggle='modal')
-          .portfolio-hover
-            .portfolio-hover-content
-              i.fa.fa-plus.fa-3x
-          img.img-responsive(src='assets/images/portfolio/startup-framework.png', alt='')
-        .portfolio-caption
-          h4 Startup Framework
-          p.text-muted Website Design
-      .col-md-4.col-sm-6.portfolio-item
-        a.portfolio-link(href='#portfolioModal3', data-toggle='modal')
-          .portfolio-hover
-            .portfolio-hover-content
-              i.fa.fa-plus.fa-3x
-          img.img-responsive(src='assets/images/portfolio/treehouse.png', alt='')
-        .portfolio-caption
-          h4 Treehouse
-          p.text-muted Website Design
-      .col-md-4.col-sm-6.portfolio-item
-        a.portfolio-link(href='#portfolioModal4', data-toggle='modal')
-          .portfolio-hover
-            .portfolio-hover-content
-              i.fa.fa-plus.fa-3x
-          img.img-responsive(src='assets/images/portfolio/golden.png', alt='')
-        .portfolio-caption
-          h4 Golden
-          p.text-muted Website Design
-      .col-md-4.col-sm-6.portfolio-item
-        a.portfolio-link(href='#portfolioModal5', data-toggle='modal')
-          .portfolio-hover
-            .portfolio-hover-content
-              i.fa.fa-plus.fa-3x
-          img.img-responsive(src='assets/images/portfolio/escape.png', alt='')
-        .portfolio-caption
-          h4 Escape
-          p.text-muted Website Design
-      .col-md-4.col-sm-6.portfolio-item
-        a.portfolio-link(href='#portfolioModal6', data-toggle='modal')
-          .portfolio-hover
-            .portfolio-hover-content
-              i.fa.fa-plus.fa-3x
-          img.img-responsive(src='assets/images/portfolio/dreams.png', alt='')
-        .portfolio-caption
-          h4 Dreams
-          p.text-muted Website Design
-//
-   About Section 
-section#about
-  .container
-    .row
-      .col-lg-12.text-center
-        h2.section-heading About
-        h3.section-subheading.text-muted Lorem ipsum dolor sit amet consectetur.
-    .row
-      .col-lg-12
-        ul.timeline
-          li
-            .timeline-image
-              img.img-circle.img-responsive(src='assets/images/about/1.jpg', alt='')
-            .timeline-panel
-              .timeline-heading
-                h4 2009-2011
-                h4.subheading Our Humble Beginnings
-                p.text-muted
-                  | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!
-          li.timeline-inverted
-            .timeline-image
-              img.img-circle.img-responsive(src='assets/images/about/2.jpg', alt='')
-            .timeline-panel
-              .timeline-heading
-                h4 March 2011
-                h4.subheading An Agency is Born
-              .timeline-body
-                p.text-muted
-                  | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!
-          li
-            .timeline-image
-              img.img-circle.img-responsive(src='assets/images/about/3.jpg', alt='')
-            .timeline-panel
-              .timeline-heading
-                h4 December 2012
-                h4.subheading Transition to Full Service
-              .timeline-body
-                p.text-muted
-                  | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!
-          li.timeline-inverted
-            .timeline-image
-              img.img-circle.img-responsive(src='assets/images/about/4.jpg', alt='')
-            .timeline-panel
-              .timeline-heading
-                h4 July 2014
-                h4.subheading Phase Two Expansion
-              .timeline-body
-                p.text-muted
-                  | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!
-          li.timeline-inverted
-            .timeline-image
-              h4
-                | Be Part
-                br
-                | Of Our
-                br
-                | Story!
+          | Get a summary of your filed hour weekly or monthly.
+
 //
    Team Section 
-section#team.bg-light-gray
+section(full-height='min', ng-style='style()')#team.bg-light-gray
   .container
     .row
       .col-lg-12.text-center
-        h2.section-heading Our Amazing Team
-        h3.section-subheading.text-muted Lorem ipsum dolor sit amet consectetur.
+        h2.section-heading Team
+        h3.section-subheading.text-muted Me, myself and I.
     .row
       .col-sm-4
         .team-member
-          img.img-responsive.img-circle(src='assets/images/team/1.jpg', alt='')
-          h4 Kay Garland
-          p.text-muted Lead Designer
+          img.img-responsive.img-circle(src='assets/images/team/jim.jpg', alt='')
+          h4 Jim Arnell
+          p.text-muted Full monty
           ul.list-inline.social-buttons
             li
               a(href='#')
                 i.fa.fa-twitter
             li
               a(href='#')
-                i.fa.fa-facebook
-            li
-              a(href='#')
                 i.fa.fa-linkedin
-      .col-sm-4
-        .team-member
-          img.img-responsive.img-circle(src='assets/images/team/2.jpg', alt='')
-          h4 Larry Parker
-          p.text-muted Lead Marketer
-          ul.list-inline.social-buttons
-            li
-              a(href='#')
-                i.fa.fa-twitter
-            li
-              a(href='#')
-                i.fa.fa-facebook
-            li
-              a(href='#')
-                i.fa.fa-linkedin
-      .col-sm-4
-        .team-member
-          img.img-responsive.img-circle(src='assets/images/team/3.jpg', alt='')
-          h4 Diana Pertersen
-          p.text-muted Lead Developer
-          ul.list-inline.social-buttons
-            li
-              a(href='#')
-                i.fa.fa-twitter
-            li
-              a(href='#')
-                i.fa.fa-facebook
-            li
-              a(href='#')
-                i.fa.fa-linkedin
-    .row
-      .col-lg-8.col-lg-offset-2.text-center
-        p.large.text-muted
-          | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.
 //
    Clients Aside 
 aside.clients
@@ -257,12 +98,12 @@ aside.clients
       .col-md-3.col-sm-6
         a(href='#')
           img.img-responsive.img-centered(src='assets/images/logos/creative-market.jpg', alt='')
-section#contact
+section(full-height='min', ng-style='style()')#contact
   .container
     .row
       .col-lg-12.text-center
-        h2.section-heading Contact Us
-        h3.section-subheading.text-muted Lorem ipsum dolor sit amet consectetur.
+        h2.section-heading Sign up
+        h3.section-subheading.text-muted Start filing in your time reports now!
     .row
       .col-lg-12
         form#contactForm(name='sentMessage', novalidate='novalidate')
@@ -271,25 +112,19 @@ section#contact
               .form-group
                 input#name.form-control(type='text', placeholder='Your Name *', required='required', data-validation-required-message='Please enter your name.')
                 p.help-block.text-danger
-              .form-group
-                input#email.form-control(type='email', placeholder='Your Email *', required='required', data-validation-required-message='Please enter your email address.')
-                p.help-block.text-danger
-              .form-group
-                input#phone.form-control(type='tel', placeholder='Your Phone *', required='required', data-validation-required-message='Please enter your phone number.')
-                p.help-block.text-danger
             .col-md-6
               .form-group
-                textarea#message.form-control(placeholder='Your Message *', required='required', data-validation-required-message='Please enter a message.')
+                input#email.form-control(type='email', placeholder='Your Email *', required='required', data-validation-required-message='Please enter your email address.')
                 p.help-block.text-danger
             .clearfix
             .col-lg-12.text-center
               #success
-              button.btn.btn-xl(type='submit') Send Message
+              button.btn.btn-xl(type='submit') Join
 footer
   .container
     .row
       .col-md-4
-        span.copyright Copyright © Your Website 2014
+        span.copyright Copyright © Arnell Consulting AB 2014
       .col-md-4
         ul.list-inline.social-buttons
           li
