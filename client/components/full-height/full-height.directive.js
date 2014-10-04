@@ -14,8 +14,6 @@ angular.module('worktajmApp')
           htmlAttribute = 'max-height';
         }
 
-        console.log('fullHeight - link:', htmlAttribute);
-
         scope.$watch(function () {
           return {
             'h': w.height(),
@@ -25,11 +23,12 @@ angular.module('worktajmApp')
           w.windowHeight = newValue.h;
           w.windowWidth = newValue.w;
 
+
           scope.style = function () {
-            return {
-              height: (newValue.h) + 'px',
-              'width': (newValue.w) + 'px'
-            };
+            var updatedStyle = {};
+            updatedStyle[htmlAttribute] = (newValue.h) + 'px';
+            updatedStyle.width = (newValue.w) + 'px';
+            return updatedStyle;
           };
         }, true);
 
