@@ -18,6 +18,5 @@ describe('Controller: DashboardCtrl', function () {
   }));
 
   it('should attach a list of things to the scope', function () {
-    expect(scope.awesomeThings.length).toBe(0);
   });
 });

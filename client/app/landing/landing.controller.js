@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('worktajmApp')
-  .controller('LandingCtrl', function ($scope, Auth, $location, $anchorScroll) {
+  .controller('LandingCtrl', function ($scope, Auth, $location) {
     $scope.awesomeThings = [];
     $scope.user = {};
     $scope.errors = {};
@@ -33,9 +33,5 @@ angular.module('worktajmApp')
     };
     $scope.isAuthenticated = function () {
       return Auth.isLoggedIn();
-    };
-    $scope.scrollTo = function (to) {
-      $location.hash('team');
-      $anchorScroll();
     };
   });
