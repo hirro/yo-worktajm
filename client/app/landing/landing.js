@@ -6,6 +6,6 @@ angular.module('worktajmApp')
       .state('landing', {
         url: '/',
         templateUrl: 'app/landing/landing.html',
-        controller: 'DashboardCtrl'
+        controller: 'LandingCtrl'
       });
   });

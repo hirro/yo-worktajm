@@ -8,7 +8,8 @@ angular.module('worktajmApp', [
   'ui.router',
   'ui.bootstrap',
   'ui.bootstrap.datepicker',
-  'ui.bootstrap.datetimepicker'
+  'ui.bootstrap.datetimepicker',
+  'duScroll'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider

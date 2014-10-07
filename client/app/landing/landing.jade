@@ -9,22 +9,20 @@ nav.navbar.navbar-default(animated-header).navbar-fixed-top
         span.icon-bar
       a.navbar-brand.page-scroll(href='#page-top') Worktajm
     // Collect the nav links, forms, and other content for toggling 
-    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+    .collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-right
-        li.hidden
-          a(href='#page-top')
-        li
-          a(href='#features') Features
-        li
-          a(href='#about') About
-        li
-          a(href='#team') Team
-        li
-          a(href='#contact') Signup
+        li(du-scrollspy='anchor')
+          a(href='#page-top', du-smooth-scroll du-scrollspy ) Home
+        li(du-scrollspy='features')
+          a(href='#features', du-smooth-scroll du-scrollspy ) Features
+        li(du-scrollspy='team')
+          a(href='#team', du-smooth-scroll du-scrollspy ) Team
+        li(du-scrollspy='contanct')
+          a(href='#contact', du-smooth-scroll du-scrollspy ) Signup
         li
           a(href='/login') Login
 
-header(full-height, ng-style='style()')
+header(full-height, ng-style='style()')#page-top
   .container
     .intro-text
       .intro-heading Time Reports
