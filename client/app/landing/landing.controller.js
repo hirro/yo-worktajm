@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('worktajmApp')
-  .controller('LandingCtrl', function ($scope, Auth, $location) {
+  .controller('LandingCtrl', function ($scope, Auth, $location, $window) {
     $scope.awesomeThings = [];
     $scope.user = {};
     $scope.errors = {};
@@ -34,4 +34,11 @@ angular.module('worktajmApp')
     $scope.isAuthenticated = function () {
       return Auth.isLoggedIn();
     };
+
+    // XXX Duplicated from login controller
+    $scope.loginOauth = function(provider) {
+      console.log('loginOauth - provider [%s]', provider);
+      $window.location.href = '/auth/' + provider;
+    };
+
   });

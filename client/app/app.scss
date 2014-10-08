@@ -80,13 +80,14 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
 }
 
-.btn-xl {
+.btn-login {
     @include button-variant(white, $brand-primary, $brand-primary);
     @include heading-font;
     font-weight: 700;
     border-radius: 3px;
-    font-size: 18px;
-    padding: 20px 40px;
+    font-size: 14px;
+    padding: 6px 20px;
+    margin-bottom: 20px;
 }
 
 // Custom Navigation Bar
@@ -199,6 +200,16 @@ header {
             font-size: 50px;
             line-height: 50px;
             margin-bottom: 25px;
+        }
+        .intro-signin {
+            @include heading-font;
+            font-size: 22px;
+            line-height: 22px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+        .intro-scroll-down {
+            margin-top: 25px;
         }
     }
 }
@@ -745,6 +756,7 @@ body {
 @import 'dashboard/projects/projects.scss';
 @import 'dashboard/status/status.scss';
 @import 'dashboard/timeEntries/timeEntries.scss';
+@import 'grey.scss';
 @import 'landing/landing.scss';
 @import 'main/main.scss';
 @import 'mixins.scss';

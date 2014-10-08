@@ -26,7 +26,27 @@ header(full-height, ng-style='style()')#page-top
   .container
     .intro-text
       .intro-heading Time Reports
-      a.page-scroll.btn.btn-xl(href='#features') Continue
+
+      a.page-scroll.btn.btn-login(href='/login') Login
+
+      .intro-signin Or sign in with
+
+      a.page-scroll.btn.btn-facebook(href='', ng-click='loginOauth("facebook")')
+        i.fa.fa-facebook
+        |  Facebook
+      = ' '
+      a.page-scroll.btn.btn-google-plus(href='', ng-click='loginOauth("google")')
+        i.fa.fa-google-plus
+        |  Google+
+      = ' '
+      a.page-scroll.btn.btn-twitter(href='', ng-click='loginOauth("twitter")')
+        i.fa.fa-twitter
+        |  Twitter
+
+      .intro-scroll-down
+        a.btn.btn-circle.page-scroll(href='#features', du-smooth-scroll)
+          i.fa.fa-angle-double-down.animated
+
 //
    Features Section 
 section(full-height='min', ng-style='style()')#features
