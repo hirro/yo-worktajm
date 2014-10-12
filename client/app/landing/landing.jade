@@ -30,8 +30,6 @@ header(full-height, ng-style='style()')#page-top
       .intro-login
         a.page-scroll.btn.btn-login(href='/login') Login
 
-        hr 
-        
         .intro-signin Or sign in with
 
         a.page-scroll.btn.btn-facebook(href='', ng-click='loginOauth("facebook")')
@@ -130,30 +128,41 @@ section(full-height='min', ng-style='style()')#team.bg-light-gray
     .container
       .row
         .col-md-3.col-sm-6
-          a(href='#')
-            img.img-responsive.img-centered(src='assets/images/logos/angularjs.png', alt='')
+          a(href='https://angularjs.org/')
+            img.img-responsive.img-centered(src='assets/images/logos/angularjs.png', alt='AngularJS')
         .col-md-3.col-sm-6
-          a(href='#')
-            img.img-responsive.img-centered(src='assets/images/logos/bootstrap.png', alt='')
+          a(href='http://getbootstrap.com/')
+            img.img-responsive.img-centered(src='assets/images/logos/bootstrap.png', alt='Bootstrap')
         .col-md-3.col-sm-6
-          a(href='#')
-            img.img-responsive.img-centered(src='assets/images/logos/freebeies_express.png', alt='')
+          a(href='http://en.wikipedia.org/wiki/CSS3')
+            img.img-responsive.img-centered(src='assets/images/logos/css3.png', alt='CSS3')
         .col-md-3.col-sm-6
-          a(href='#')
-            img.img-responsive.img-centered(src='assets/images/logos/github.png', alt='')
-      .row
+          a(href='http://expressjs.com/')
+            img.img-responsive.img-centered(src='assets/images/logos/expressjs.png', alt='Express')
         .col-md-3.col-sm-6
-          a(href='#')
-            img.img-responsive.img-centered(src='assets/images/logos/mean.png', alt='')
+          a(href='https://github.com/').awesome-icon 
+            img.img-responsive.img-centered(src='assets/images/logos/github.png', alt='github')
         .col-md-3.col-sm-6
-          a(href='#')
-            img.img-responsive.img-centered(src='assets/images/logos/mongodb.png', alt='')
+          a(href='http://en.wikipedia.org/wiki/HTML5').awesome-icon 
+            img.img-responsive.img-centered(src='assets/images/logos/html5.png', alt='HTML5')
         .col-md-3.col-sm-6
-          a(href='#')
-            img.img-responsive.img-centered(src='assets/images/logos/nodejs.png', alt='')
+          a(href='http://www.mongodb.com/')
+            img.img-responsive.img-centered(src='assets/images/logos/mongodb.png', alt='mongoDB')
         .col-md-3.col-sm-6
-          a(href='#')
-            img.img-responsive.img-centered(src='assets/images/logos/yeoman.png', alt='')
+          a(href='http://nodejs.org/')
+            img.img-responsive.img-centered(src='assets/images/logos/nodejs.png', alt='nodejs')
+        .col-md-3.col-sm-6
+          a(href='http://passportjs.org/')
+            img.img-responsive.img-centered(src='assets/images/logos/passportjs.png', alt='passportjs')
+        .col-md-3.col-sm-6
+          a(href='http://sass-lang.com/')
+            img.img-responsive.img-centered(src='assets/images/logos/sass-less.png', alt='CSS with superpowers')
+        .col-md-3.col-sm-6
+          a(href='http://socket.io/')
+            img.img-responsive.img-centered(src='assets/images/logos/socketio.png', alt='socket.io')
+        .col-md-3.col-sm-6
+          a(href='http://yeoman.io/')
+            img.img-responsive.img-centered(src='assets/images/logos/yeoman.png', alt='Yeoman')
 
 
 section(full-height='min', ng-style='style()')#contact
@@ -166,13 +175,19 @@ section(full-height='min', ng-style='style()')#contact
       .col-lg-12
         form#contactForm(name='sentMessage', novalidate='novalidate')
           .row
-            .col-md-6
+            .col-md-offset-3.col-md-6
               .form-group
                 input#name.form-control(type='text', placeholder='Your Name *', required='required', data-validation-required-message='Please enter your name.')
                 p.help-block.text-danger
-            .col-md-6
+          .row
+            .col-md-offset-3.col-md-6
               .form-group
                 input#email.form-control(type='email', placeholder='Your Email *', required='required', data-validation-required-message='Please enter your email address.')
+                p.help-block.text-danger
+          .row
+            .col-md-offset-3.col-md-6
+              .form-group
+                input#email.form-control(type='password', placeholder='Your Password *', required='required', data-validation-required-message='Please enter your password')
                 p.help-block.text-danger
             .clearfix
             .col-lg-12.text-center
@@ -181,7 +196,7 @@ section(full-height='min', ng-style='style()')#contact
 footer
   .container
     .row
-      .col-md-4
+      .col-md-3
         span.copyright Copyright © Arnell Consulting AB 2014
       .col-md-4
         ul.list-inline.social-buttons
