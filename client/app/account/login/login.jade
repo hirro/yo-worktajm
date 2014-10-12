@@ -1,34 +1,61 @@
-.container
-  form.form-signin(name='form' role='form', ng-submit='login(form)', novalidate='')
-    h3.form-signin-heading Welcome Back!
-    p
-      input.form-control(type='email', placeholder='Email address', required='required', autofocus='autofocus', ng-model='user.email')
-      input.form-control(type='password', placeholder='Password', required='required', ng-model='user.password')
-      .form-group.has-error
-        p.help-block(ng-show='form.email.$error.required && form.password.$error.required && submitted')
-          | Please enter your email and password.
-        p.help-block {{ errors.other }}
-      button.btn.btn-lg.btn-primary.btn-block(type='submit') Sign in
-    p
-      a(href='forgot') Forgot password?
-    hr
-    p
-      | Don't have an account?
-      a(href='register')
-        |  Create one
-    hr
-    p
-      h4
-        | Or Sign in with:
-      p
-        a.btn.btn-facebook(href='', ng-click='loginOauth("facebook")')
-          i.fa.fa-facebook
-          |  Facebook
-        = ' '
-        a.btn.btn-google-plus(href='', ng-click='loginOauth("google")')
-          i.fa.fa-google-plus
-          |  Google+
-        = ' '
-        a.btn.btn-twitter(href='', ng-click='loginOauth("twitter")')
-          i.fa.fa-twitter
-          |  Twitter
+nav.navbar.navbar-default(animated-header).navbar-fixed-top
+  .container
+    // Brand and toggle get grouped for better mobile display 
+    .navbar-header.page-scroll
+      button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand.page-scroll(href='#page-top') Worktajm
+    // Collect the nav links, forms, and other content for toggling 
+    .collapse.navbar-collapse
+      ul.nav.navbar-nav.navbar-right
+        li()
+          a(href='/#page-top') Home
+        li()
+          a(href='/#features') Features
+        li()
+          a(href='/#team') Team
+        li()
+          a(href='/#contact') Signup
+        li
+          a(href='/login') Login
+
+header(full-height, ng-style='style()')#page-top
+
+  .container
+    .intro-text
+
+      form.form-signin(name='form' role='form', ng-submit='login(form)', novalidate='')
+        p
+          input.form-control(type='email', placeholder='Email address', required='required', autofocus='autofocus', ng-model='user.email')
+          input.form-control(type='password', placeholder='Password', required='required', ng-model='user.password')
+          .form-group.has-error
+            p.help-block(ng-show='form.email.$error.required && form.password.$error.required && submitted')
+              | Please enter your email and password.
+            p.help-block {{ errors.other }}
+          button.btn.btn-lg.btn-primary.btn-block(type='submit') Sign in
+        p
+          a(href='forgot') Forgot password?
+        hr
+        p
+          | Don't have an account?
+          a(href='signup')
+            |  Create one
+        hr
+        p
+          h4
+            | Or Sign in with:
+          p
+            a.btn.btn-facebook(href='', ng-click='loginOauth("facebook")')
+              i.fa.fa-facebook
+              |  Facebook
+            = ' '
+            a.btn.btn-google-plus(href='', ng-click='loginOauth("google")')
+              i.fa.fa-google-plus
+              |  Google+
+            = ' '
+            a.btn.btn-twitter(href='', ng-click='loginOauth("twitter")')
+              i.fa.fa-twitter
+              |  Twitter
