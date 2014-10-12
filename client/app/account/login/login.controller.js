@@ -17,7 +17,7 @@ angular.module('worktajmApp')
         .then( function() {
           // Logged in, redirect to home
           console.log('login - Logged in, redirect to home');
-          $state.go('dashboard');
+          $state.go('main.authenticated');
         })
         .catch( function(err) {
           console.log('login - error');
