@@ -25,4 +25,10 @@ angular.module('worktajmApp')
     $scope.isActive = function(route) {
       return route === $location.path();
     };
+
+    $scope.toggleNavbar = function() {
+      console.log('toggleNavbar');
+      $scope.isCollapsed = !$scope.isCollapsed;
+    };
+    
   });

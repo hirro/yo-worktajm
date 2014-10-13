@@ -525,29 +525,27 @@ section {
     }
 }
 
-// Team Section
-
-.team-member {
-    text-align: center;
-    margin-bottom: 50px;
-    img {
-        margin: 0 auto;
-        border: 7px solid white;
-    }
-    h4 {
-        margin-top: 25px;
-        margin-bottom: 0;
-        text-transform: none;
-    }
-    p {
-        margin-top: 0;
-    }
-}
-
 // Clients Aside
-
-aside {
-    margin: 50px auto;
+section#team {
+    .team-member {
+        text-align: center;
+        margin-bottom: 50px;
+        img {
+            margin: 0 auto;
+            border: 7px solid white;
+        }
+        h4 {
+            margin-top: 25px;
+            margin-bottom: 0;
+            text-transform: none;
+        }
+        p {
+            margin-top: 0;
+        }
+    }
+    .contributers {
+        margin: 0px auto;
+    }    
 }
 
 
@@ -655,74 +653,6 @@ ul.social-buttons {
     outline: none;
 }
 
-.portfolio-modal {
-    .modal-content {
-        border-radius: 0;
-        background-clip: border-box;
-        -webkit-box-shadow: none;
-        box-shadow: none;
-        border: none;
-        min-height: 100%;
-        padding: 100px 0;
-        text-align: center;
-        h2 {
-            margin-bottom: 15px;
-            font-size: 3em;
-        }
-        p {
-            margin-bottom: 30px;
-        }
-        p.item-intro {
-            margin: 20px 0 30px;
-            @include serif-font;
-            font-style: italic;
-            font-size: 16px;
-        }
-        ul.list-inline {
-            margin-bottom: 30px;
-            margin-top: 0;
-        }
-        img {
-            margin-bottom: 30px;
-        }
-    }
-    .close-modal {
-        position: absolute;
-        width:75px;
-        height:75px;
-        background-color:transparent;
-        top: 25px;
-        right: 25px;
-        cursor: pointer;
-        &:hover {
-            opacity: 0.3;
-        }
-        .lr {
-            height:75px;
-            width:1px;
-            margin-left:35px;
-            background-color:$gray-darkest;
-            transform: rotate(45deg);
-            -ms-transform: rotate(45deg);
-            /* IE 9 */
-            -webkit-transform: rotate(45deg);
-            /* Safari and Chrome */
-            z-index:1051;
-            .rl {
-                height:75px;
-                width:1px;
-                background-color:$gray-darkest;
-                transform: rotate(90deg);
-                -ms-transform: rotate(90deg);
-                /* IE 9 */
-                -webkit-transform: rotate(90deg);
-                /* Safari and Chrome */
-                z-index:1052;
-            }            
-        }        
-    }
-}
-
 // Highlight Color Customization
 
 ::-moz-selection {
@@ -758,7 +688,6 @@ body {
 @import 'dashboard/timeEntries/timeEntries.scss';
 @import 'grey.scss';
 @import 'landing/landing.scss';
-@import 'main/main.scss';
 @import 'mixins.scss';
 @import 'reports/reports.scss';
 @import 'variables.scss';

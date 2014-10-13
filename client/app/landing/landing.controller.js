@@ -5,6 +5,7 @@ angular.module('worktajmApp')
     $scope.awesomeThings = [];
     $scope.user = {};
     $scope.errors = {};
+    $scope.isCollapsed = true;
 
     $scope.register = function(form) {
       $scope.submitted = true;

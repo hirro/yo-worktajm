@@ -1,24 +1,24 @@
-nav.navbar.navbar-default(animated-header).navbar-fixed-top
+nav.navbar.navbar-default(animated-header).navbar-fixed-top(ng-controller='NavbarCtrl')
   .container
     // Brand and toggle get grouped for better mobile display 
     .navbar-header.page-scroll
-      button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+      button.navbar-toggle(type='button', ng-click='toggleNavbar()')
         span.sr-only Toggle navigation
         span.icon-bar
         span.icon-bar
         span.icon-bar
       a.navbar-brand.page-scroll(href='#page-top') Worktajm
     // Collect the nav links, forms, and other content for toggling 
-    .collapse.navbar-collapse
+    .collapse.navbar-collapse(collapse='isCollapsed')
       ul.nav.navbar-nav.navbar-right
         li(du-scrollspy='anchor')
-          a(href='#page-top', du-smooth-scroll) Home
+          a(href='#page-top', du-smooth-scroll, ng-click='toggleNavbar()') Home
         li(du-scrollspy='features')
-          a(href='#features', du-smooth-scroll) Features
+          a(href='#features', du-smooth-scroll, ng-click='toggleNavbar()') Features
         li(du-scrollspy='team')
-          a(href='#team', du-smooth-scroll ) Team
+          a(href='#team', du-smooth-scroll ,ng-click='toggleNavbar()') Team
         li(du-scrollspy='contact')
-          a(href='#contact', du-smooth-scroll) Signup
+          a(href='#contact', du-smooth-scroll, ng-click='toggleNavbar()') Signup
         li
           a(href='/login') Login
 
@@ -122,9 +122,7 @@ section(full-height='min', ng-style='style()')#team.bg-light-gray
             li
               a(href='#')
                 i.fa.fa-linkedin
-  //
-     Clients Aside 
-  aside.clients
+  .contributers
     .container
       .row
         .col-md-3.col-sm-6
@@ -192,7 +190,7 @@ section(full-height='min', ng-style='style()')#contact
             .clearfix
             .col-lg-12.text-center
               #success
-              button.btn.btn-xl(type='submit') Join
+              button.btn.btn-login(type='submit') Join
 footer
   .container
     .row
