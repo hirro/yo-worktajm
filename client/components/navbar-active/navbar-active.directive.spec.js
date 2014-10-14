@@ -13,8 +13,7 @@ describe('Directive: navbarActive', function () {
   }));
 
   it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<navbar-active></navbar-active>');
+    element = angular.element('<dive navbar-active="/main"/>');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the navbarActive directive');
   }));
 });
