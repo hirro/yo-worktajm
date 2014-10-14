@@ -1,14 +1,12 @@
 div(ng-include='"app/navbar/navbar.html"')
-br
-br	
-section(full-height='min', ng-style='style()')
-	.container
-	  .row
-	    .col-md-4
-	        div(ui-view="projects")
-	    .col-sm-8
-	        div(ui-view="timeEntries")
+
+.container
+  .row
+    .col-md-4
+        div(ui-view="projects")
+    .col-sm-8
+        div(ui-view="timeEntries")
+    //- .col-md-3
+    //-     div(ui-view="status")
 
 div(ng-include='"app/footer.html"')
-
-

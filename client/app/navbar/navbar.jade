@@ -1,4 +1,4 @@
-.nav.navbar.navbar-default(animated-header).navbar-shrink.navbar-static-top(ng-controller='NavbarCtrl')
+.nav.navbar.navbar-default.navbar-shrink.navbar-static-top(ng-controller='NavbarCtrl')
   .container
 
     // Brand and toggle get grouped for better mobile display 
@@ -13,11 +13,11 @@
     // Collect the nav links, forms, and other content for toggling 
     .collapse.navbar-collapse(collapse='isCollapsed')
       ul.nav.navbar-nav.navbar-right
-        li(du-scrollspy='anchor')
-          a(href='/dashboard', du-smooth-scroll, ng-click='toggleNavbar()') Home
-        li(du-scrollspy='features')
-          a(href='/reports', du-smooth-scroll, ng-click='toggleNavbar()') Reports
-        li(du-scrollspy='team')
-          a(href='/settings', du-smooth-scroll ,ng-click='toggleNavbar()') Settings
+        li(navbar-active='/dashboard')
+          a(href='/dashboard', ng-click='toggleNavbar()') Home
+        li(navbar-active='/reports')
+          a(href='/reports', ng-click='toggleNavbar()') Reports
+        li(navbar-active='/settings')
+          a(href='/settings', ng-click='toggleNavbar()') Settings
         li
           a(href='#', ng-click='logout()') Logout
