@@ -1,3 +1,27 @@
+nav.navbar.navbar-default(animated-header).navbar-fixed-top(ng-controller='NavbarCtrl')
+  .container
+    // Brand and toggle get grouped for better mobile display 
+    .navbar-header.page-scroll
+      button.navbar-toggle(type='button', ng-click='toggleNavbar()')
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand.page-scroll(href='#page-top') Worktajm
+    // Collect the nav links, forms, and other content for toggling 
+    .collapse.navbar-collapse(collapse='isCollapsed')
+      ul.nav.navbar-nav.navbar-right
+        li(du-scrollspy='anchor')
+          a(href='#page-top', du-smooth-scroll, ng-click='toggleNavbar()') Home
+        li(du-scrollspy='features')
+          a(href='#features', du-smooth-scroll, ng-click='toggleNavbar()') Features
+        li(du-scrollspy='team')
+          a(href='#team', du-smooth-scroll ,ng-click='toggleNavbar()') Team
+        li(du-scrollspy='contact')
+          a(href='#contact', du-smooth-scroll, ng-click='toggleNavbar()') Signup
+        li
+          a(href='/login') Login
+
 header(full-height, ng-style='style()')#page-top
   .container
     .intro-text
