@@ -1,5 +1,5 @@
 # Dashboard
-Dashboard is the main working place where the user spends the most of its time while being on the site. It should be possible to manage all daily tasks from this page. More complex items are made in “[Settings](https://github.com/hirro/yo-worktajm/docs/settings.md)”. 
+Dashboard is the main working place where the user spends the most of the time on the site. The design goal is at it should be possible to manage all daily tasks from this page. More complex items are made in “[Settings](https://github.com/hirro/yo-worktajm/docs/settings.md)”. 
 
 # Header and footer
 The menu has two choices:
@@ -34,12 +34,20 @@ Only enabled if project is associated to a customer. Allows the user to edit the
 Allow the user to assign labels/tags to a project.
 
 ## Time Entry View
-The time entry view allows the user to see the logged time entries filtered by:
-* Tag (one or more tags selected)
+The time entry view allows the user to see the logged time entries.
+### Filters
+It is possible to apply one or more filters. 
+The following filters may be implemented:
+* Date [#implemented]: Select a single date/week/month depending of the view option.
+* Project [#NNN] (one or more projects selected)
+* Tag [Requires filters] (one or more tags selected)
 * Customer (one or more customers selected)
-* Project (one or more projects selected)
 
-The entries are then grouped displayed / grouped by day, week or month.
+### Views
+* By day
+* By week
+* By month
+
 
 ### Random implementation note
 *Currently all time entries are kept in memory, this will make it easier to implement offline mode.*
