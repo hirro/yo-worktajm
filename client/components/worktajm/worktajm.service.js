@@ -1,14 +1,29 @@
+/*globals console, moment */
+
 'use strict';
 
 angular.module('worktajmApp')
-  .service('Worktajm', function ($http, $q, socket, Project, TimeEntry, User) {
+  .service('Worktajm', function ($http, $q, socket, $interval, Project, TimeEntry, User) {
     // AngularJS will instantiate a singleton by calling "new" on this function
     var projects = [];
     var projectsIndexedById = [];
+    var projectNames = [];
     var timeEntries = [];
     var currentUser = {};
+    var activeTimeEntry = null;
 
-    return {
+    var svc = {
+
+      update: function () {
+        if (activeTimeEntry && !_.isEmpty(activeTimeEntry)) {
+          var index = _.findIndex(timeEntries, { '_id': activeTimeEntry._id });
+          timeEntries[index].endTime = moment();
+        }
+      },
+
+      load: function () {
+        console.log('');
+      },
 
       getProjects: function () {
         return projects;
@@ -40,10 +55,11 @@ angular.module('worktajmApp')
           });
         } else if ('created' === event) {
           console.log('projectsCallback - created');
-          projectsIndexedById[project._id] = project;          
+          projectsIndexedById[project._id] = project;
         } else {
           console.log('projectsCallback - Unhandled event [%s]', event);
         }
+        projectNames = _.pluck(projects, 'name');
       },
 
       timeEntryCallback: function (event, timeEntry) {
@@ -68,6 +84,7 @@ angular.module('worktajmApp')
           _.forEach(projectList, function (project) {
             projects.push(project);
             projectsIndexedById[project._id] = project;
+            projectNames = _.pluck(projects, 'name');
           });
           socket.syncUpdates('project', projects, self.projectsCallback);
           deferred.resolve(projects);
@@ -109,8 +126,7 @@ angular.module('worktajmApp')
 
       setActiveTimeEntry: function (timeEntry) {
         var deferred = $q.defer();
-
-        console.log('AFTER');
+        activeTimeEntry = timeEntry;
 
         if (currentUser) {
           var newTimeEntryId = timeEntry ? timeEntry._id : null;
@@ -250,6 +266,10 @@ angular.module('worktajmApp')
         return deferred.promise;
       },
 
+      getProjectNames: function () {
+        return projectNames;
+      },
+
       createTimeEntry: function (project) {
         var deferred = $q.defer();
         TimeEntry.save(
@@ -309,7 +329,7 @@ angular.module('worktajmApp')
       startTimer: function (project) {
         var self = this;
         var deferred = $q.defer();
-        var newTimeEntry = {};
+        var newTimeEntry = null;
 
         console.log('startTimer - project id [%s]', project._id);
 
@@ -321,12 +341,12 @@ angular.module('worktajmApp')
           console.log('startTimer failed - [%s]', err);
         };
         var createNewTimeEntry = function () {
-          var deferred = $q.defer();
+          var deferred2 = $q.defer();
           self.createTimeEntry(project).then(function (result) {
-            deferred.resolve(result);
+            deferred2.resolve(result);
           });
-          return deferred.promise;
-        };        
+          return deferred2.promise;
+        };
         this.stopTimer()
           .then(createNewTimeEntry)
           .then(this.setActiveTimeEntry)
@@ -340,6 +360,7 @@ angular.module('worktajmApp')
         console.log('stopTimer');
         var deferred = $q.defer();
         var self = this;
+        activeTimeEntry = null;
 
         var stopCurrentTimeEntry = function (timeEntry) {
           if (timeEntry) {
@@ -376,4 +397,10 @@ angular.module('worktajmApp')
         return deferred.promise;
       }
     };
+    svc.load();
+
+    // Update 
+    $interval(svc.update, 1000, 0, false);
+
+    return svc;
   });

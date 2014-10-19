@@ -1,7 +1,9 @@
+/*globals console, moment */
+
 'use strict';
 
 angular.module('worktajmApp')
-  .controller('TimeentriesCtrl', function ($scope, $modal, $q, Worktajm) {
+  .controller('TimeentriesCtrl', function ($scope, $modal, Worktajm) {
 
     $scope.timeEntries = [];
     $scope.projects = [];
@@ -17,7 +19,7 @@ angular.module('worktajmApp')
       viewMode: 'Day'
     };
 
-    $scope.load = function() {
+    $scope.load = function () {
       console.log('load');
 
       // Start download of objects from BE
@@ -28,6 +30,7 @@ angular.module('worktajmApp')
       $scope.projects = Worktajm.getProjects();
       $scope.projectsIndexedById = Worktajm.getProjectsIndexedById();
       $scope.timeEntries = Worktajm.getTimeEntries();
+      $scope.projectNames = Worktajm.getProjectNames();
     };
 
     $scope.load();
@@ -117,10 +120,17 @@ angular.module('worktajmApp')
     };
 
     // Date selector
-    $scope.openDatePicker = function($event) {
+    $scope.openDatePicker = function ($event) {
       $event.preventDefault();
       $event.stopPropagation();
       $scope.datePickerOpened = true;
+    };
+
+    $scope.duration = function (timeEntry) {
+      var ms = moment(timeEntry.endTime,'DD/MM/YYYY HH:mm:ss').diff(moment(timeEntry.startTime,'DD/MM/YYYY HH:mm:ss'));
+      var d = moment.duration(ms);
+      var s = Math.floor(d.asHours()) + moment.utc(ms).format(':mm:ss');
+      return s;
     };
 
   });

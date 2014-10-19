@@ -6,7 +6,6 @@ angular.module('worktajmApp')
       template: '',
       restrict: 'A',
       link: function (scope, element, attrs) {
-      	console.log('XXX', $location.path());
         if (attrs.navbarActive === $location.path()) {
           element.addClass('active');
         } else if (attrs.htmlAttribute === 'max') {

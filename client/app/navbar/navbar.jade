@@ -8,13 +8,13 @@
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand.page-scroll(href='#page-top') Worktajm
+      .navbar-brand.page-scroll Worktajm
 
     // Collect the nav links, forms, and other content for toggling 
     .collapse.navbar-collapse(collapse='isCollapsed')
       ul.nav.navbar-nav.navbar-right
         li(navbar-active='/dashboard')
-          a(href='/dashboard', ng-click='toggleNavbar()') Home
+          a(href='/dashboard', ng-click='toggleNavbar()') Timer
         li(navbar-active='/reports')
           a(href='/reports', ng-click='toggleNavbar()') Reports
         li(navbar-active='/settings')

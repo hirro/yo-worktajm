@@ -57,6 +57,31 @@ describe('Service: worktajm', function () {
     return currentUser;
   };
 
+  describe('project', function () {
+
+    beforeEach(function () {
+      var currentUser;
+      loginAs(userA);
+      Worktajm.loadCurrentUser()
+        .then(function(result) {
+          currentUser = result;
+        });
+
+      $scope.$digest();
+    });
+
+    it('should load all project names', function () {
+      Worktajm.loadProjects();
+      $httpBackend.expectGET('/api/projects').respond([projectA]);
+      $httpBackend.flush();
+      $scope.$digest();
+
+      var names = Worktajm.getProjectNames();
+      expect(names.length).toBe(1);
+      expect(names[0]).toBe(projectA.name);
+    });
+  });
+
   describe('currentUser', function () {
 
     it('should get the current user first time it is called but not second time', function () {
