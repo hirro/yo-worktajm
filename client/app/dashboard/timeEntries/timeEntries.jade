@@ -41,9 +41,7 @@
                 button.btn.btn-default.btn-sm.glyphicon.glyphicon-trash(type='button', ng-click='deleteTimeEntry(timeEntry)', popover='Remove', popover-placement='right', popover-trigger='mouseenter')
         tfoot
           tr
+            td Sum
             td
-              | Sum
-            td
-            td  
-              | 20h30m
+            td {{timeEntries | timeEntryFilter:selected | timeentrySum }}
 

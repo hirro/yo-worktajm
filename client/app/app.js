@@ -23,10 +23,8 @@ angular.module('worktajmApp', [
     return {
       // Add authorization token to headers
       request: function (config) {
-        console.log('authInterceptor::request');
         config.headers = config.headers || {};
         if ($cookieStore.get('token')) {
-          console.log('authInterceptor::request got token', $location.path());
           config.headers.Authorization = 'Bearer ' + $cookieStore.get('token');
           if (($location.path() === '/main') || ($location.path() === '/')) {
             $location.path('/dashboard');

@@ -275,7 +275,8 @@ angular.module('worktajmApp')
         TimeEntry.save(
           {
             projectId: project._id,
-            startTime: moment()
+            startTime: moment(),
+            endTime: moment()
           },
           function (newTimeEntry) {
             newTimeEntry.project = project;

@@ -30,8 +30,6 @@ angular.module('worktajmApp')
       syncUpdates: function (modelName, array, cb) {
         cb = cb || angular.noop;
 
-        console.log('syncUpdates');
-
         /**
          * Syncs item creation/updates on 'model:save'
          */
@@ -87,8 +85,6 @@ angular.module('worktajmApp')
        */
       syncUpdatesOnObject: function (modelName, objectToSynchronize, cb) {
         cb = cb || angular.noop;
-
-        console.log('syncUpdatesOnObject');
 
         /**
          * Syncs item updates on 'model:save'
