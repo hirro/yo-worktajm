@@ -127,9 +127,15 @@ angular.module('worktajmApp')
     };
 
     $scope.duration = function (timeEntry) {
-      var ms = moment(timeEntry.endTime,'DD/MM/YYYY HH:mm:ss').diff(moment(timeEntry.startTime,'DD/MM/YYYY HH:mm:ss'));
+      var endTime = moment(timeEntry.endTime);
+      var startTime = moment(timeEntry.startTime);
+      console.log('startTime', startTime.format());
+      console.log('endtime', endTime.format());
+      var ms = endTime.diff(startTime);
       var d = moment.duration(ms);
       var s = Math.floor(d.asHours()) + moment.utc(ms).format(':mm:ss');
+      console.log('ms:', ms);
+      console.log('duration:', d);
       return s;
     };
 

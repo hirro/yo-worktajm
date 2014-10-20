@@ -44,7 +44,7 @@ angular.module('worktajmApp')
       // Filter functions
       var filterByTime = function (timeEntry, selection) {
         // Two variants, either selectedDate is set or from/to
-        var date = timeEntry.startTime;
+        var date = moment(timeEntry.startTime);
         var result;
         if (!date) {
           console.error('startTime undefined');
