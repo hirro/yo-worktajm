@@ -15,9 +15,11 @@ angular.module('worktajmApp')
     var svc = {
 
       update: function () {
-        if (activeTimeEntry && !_.isEmpty(activeTimeEntry)) {
-          var index = _.findIndex(timeEntries, { '_id': activeTimeEntry._id });
-          timeEntries[index].endTime = moment().utc().format();
+        if (currentUser && currentUser.activeTimeEntryId) {
+          var activeTimeEntryIndex = _.findIndex(timeEntries, function (timeEntry) {
+            return timeEntry._id === currentUser.activeTimeEntryId;
+          });
+          timeEntries[activeTimeEntryIndex].endTime =  moment().utc().format();
         }
       },
 

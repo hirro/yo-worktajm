@@ -2,7 +2,14 @@
 	.timentry-cell {
 		vertical-align: middle;
 	}
+	tbody {
+	}
 	tfoot {
 		font-weight: bold;
+		tr {
+			td {
+				border-top: 4px solid #ddd;
+			}
+		}
 	}
 }
