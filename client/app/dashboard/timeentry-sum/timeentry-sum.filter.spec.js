@@ -12,8 +12,17 @@ describe('Filter: timeentrySum', function () {
   }));
 
   it('should return the input prefixed with "timeentrySum filter:"', function () {
-    var text = 'angularjs';
-    expect(timeentrySum(text)).toBe('timeentrySum filter: ' + text);
+    var timeEntryList = [
+      {
+        startTime: moment(1318874398800),
+        endTime:   moment(1318874408800)
+      },
+      {
+        startTime: moment(1318874398800),
+        endTime:   moment(1318874408800)
+      }
+    ];
+    expect(timeentrySum(timeEntryList)).toBe('0:00:20');
   });
 
 });
