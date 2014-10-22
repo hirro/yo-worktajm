@@ -19,6 +19,11 @@ angular.module('worktajmApp')
       viewMode: 'Day'
     };
 
+
+    Worktajm.loadCurrentUser().then(function (result) {
+      $scope.currentUser = result;
+    });
+
     $scope.load = function () {
       console.log('load');
 
@@ -129,14 +134,18 @@ angular.module('worktajmApp')
     $scope.duration = function (timeEntry) {
       var endTime = moment(timeEntry.endTime);
       var startTime = moment(timeEntry.startTime);
-      console.log('startTime', startTime.format());
-      console.log('endtime', endTime.format());
+      // console.log('startTime', startTime.format());
+      // console.log('endtime', endTime.format());
       var ms = endTime.diff(startTime);
       var d = moment.duration(ms);
       var s = Math.floor(d.asHours()) + moment.utc(ms).format(':mm:ss');
-      console.log('ms:', ms);
-      console.log('duration:', d);
+      // console.log('ms:', ms);
+      // console.log('duration:', d);
       return s;
+    };
+
+    $scope.isActive = function (timeEntry) {
+      return $scope.currentUser.activeTimeEntryId === timeEntry._id;
     };
 
   });

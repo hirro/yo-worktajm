@@ -5,10 +5,11 @@ angular.module('worktajmApp')
     return function (timeEntries) {
       var sum = 0;
       _.each(timeEntries, function (timeEntry) {
-        var ms = moment(timeEntry.endTime,'DD/MM/YYYY HH:mm:ss').diff(moment(timeEntry.startTime,'DD/MM/YYYY HH:mm:ss'));
+        var endTime = moment(timeEntry.endTime,'YYYY-MM-DD HH:mm:ss');
+        var startTime = moment(timeEntry.startTime, 'YYYY-MM-DD HH:mm:ss');
+        var ms = endTime.diff(startTime);
         sum += moment.duration(ms);
       });
-
 
       var d = moment.duration(sum);
       var s = Math.floor(d.asHours()) + moment.utc(sum).format(':mm:ss');

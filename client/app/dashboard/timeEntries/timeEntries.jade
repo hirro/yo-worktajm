@@ -37,8 +37,8 @@
             td.timentry-cell {{duration(timeEntry)}}
             td
               .btn-group.pull-right
-                button.btn.btn-default.btn-sm.glyphicon.glyphicon-edit(type='button', ng-click='editTimeEntry(timeEntry)', popover='Edit', popover-placement='left', popover-trigger='mouseenter')
-                button.btn.btn-default.btn-sm.glyphicon.glyphicon-trash(type='button', ng-click='deleteTimeEntry(timeEntry)', popover='Remove', popover-placement='right', popover-trigger='mouseenter')
+                button.btn.btn-default.btn-sm.glyphicon.glyphicon-edit(type='button', ng-click='editTimeEntry(timeEntry)', popover='Edit', popover-placement='left', popover-trigger='mouseenter', ng-disabled='isActive(timeEntry)')
+                button.btn.btn-default.btn-sm.glyphicon.glyphicon-trash(type='button', ng-click='deleteTimeEntry(timeEntry)', popover='Remove', popover-placement='right', popover-trigger='mouseenter', ng-disabled='isActive(timeEntry)')
         tfoot
           tr
             td Sum

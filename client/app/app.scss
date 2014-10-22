@@ -289,6 +289,12 @@ footer {
     background: $brand-background;
 }
 
+input::selection {
+    text-shadow: none;
+    background: $brand-primary;
+    color: #ffffff;
+}
+
 img::selection {
     background: transparent;
 }
