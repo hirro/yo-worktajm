@@ -44,18 +44,37 @@ angular.module('worktajmApp')
     var TimeEntryModalCtrl = function ($scope, $modalInstance, modalParams) {
       _.extend($scope, modalParams);
       $scope.timeEntry = _.clone(modalParams.timeEntry);
+      var startTime = moment(modalParams.timeEntry.startTime);
+      var endTime = moment(modalParams.timeEntry.endTime);
+      $scope.modalParams = {
+        'project': modalParams.timeEntry.project,
+        'startDate': startTime,
+        'startTime': startTime.format('HH:mm:ss'),
+        'endDate': endTime,
+        'endTime': endTime.format('HH:mm:ss')
+      };
 
       $scope.ok = function () {
         // FIXME
         // Make sure timeEntry name is unique for the logged in person.
         // If not, set the error status on the input
         //$scope.timeEntryForm.timeEntry.$setValidity('uniqueTimeEntryPerUser', false);
+        console.log($scope.modalParams);
         $modalInstance.close($scope.timeEntry);
       };
 
       $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
       };
+
+      $scope.updateStartDate = function (a) {
+        modalParams.startDate = moment(a);
+      };
+
+      $scope.updateEndDate = function (a) {
+        modalParams.endDate = moment(a);
+      };
+
     };
 
     $scope.createTimeEntry = function () {

@@ -4,33 +4,36 @@
       form(role='form')
         .form-group
           label(for='project') Project
-          input.form-control(type='text', ng-model='timeEntry.project.name', typeahead='project for project in projectNames | filter:$viewValue | limitTo:8', required='required')
+          input.form-control(
+            type='text', 
+            ng-model='modalParams.project.name', 
+            typeahead='project for project in projectNames | filter:$viewValue | limitTo:8', 
+            required='required')
           p
-            .alert.alert-info(ng-hide='timeEntry.project.id')
+            .alert.alert-info(ng-hide='modalParams.project._id')
               | Project name does not exist, new project will be created
-        .form-group
-          label(for='startDate') Start time
-          .dropdown
-            a#dropdown1.dropdown-toggle(role='button', data-toggle='dropdown', data-target='#', href='#')
-              .input-group
-                input.form-control(type='text', data-ng-model='timeEntry.startTime', ng-required='ng-required')
-                span.input-group-addon
-                  i.glyphicon.glyphicon-calendar
-            ul.dropdown-menu(role='menu', aria-labelledby='dLabel')
-              datetimepicker(data-ng-model='timeEntry.startTime', data-datetimepicker-config='{ dropdownSelector: \'#dropdown1\' }')
-        .form-group
-          label(for='endDate') End time
-          .dropdown
-            a#dropdown2.dropdown-toggle(role='button', data-toggle='dropdown', data-target='#', href='#')
-              .input-group
-                input.form-control(type='text', data-ng-model='timeEntry.endTime', ng-required='ng-required')
-                span.input-group-addon
-                  i.glyphicon.glyphicon-calendar
-            ul.dropdown-menu(role='menu', aria-labelledby='dLabel')
-              datetimepicker(data-ng-model='timeEntry.endTime', data-datetimepicker-config='{ dropdownSelector: \'#dropdown2\' }')
+        .row
+          .col-md-6
+            .form-group
+              label(for='startTime') Start time
+              p 
+                input.form-control(type='text', data-ng-model='modalParams.startTime')
+                datetimepicker(
+                  data-ng-model='modalParams.startDate', 
+                  on-set-time='updateStartDate'
+                  data-datetimepicker-config='{ startView:"day", minView:"day" }')
+          .col-md-6
+            .form-group
+              label(for='endTime') End time
+              p
+                input.form-control(type='text', data-ng-model='modalParams.endTime')
+                datetimepicker(
+                  data-ng-model='modalParams.endDate', 
+                  on-set-time='updateEndDate'
+                  data-datetimepicker-config='{ startView:"day", minView:"day" }')
         .form-group
           label(for='comment') Comment
-          textarea#comment.form-control(rows='10', placeholder='Enter comment', ng-model='timeEntry.comment')
+          textarea#comment.form-control(rows='5', placeholder='Enter comment', ng-model='modalParams.comment')
     .modal-footer
       button.btn.btn-default(type='button', ng-click='cancel()') {{cancelText}}
       button.btn.btn-primary(type='button', ng-click='ok()') {{okText}}
