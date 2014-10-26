@@ -164,7 +164,11 @@ angular.module('worktajmApp')
     };
 
     $scope.isActive = function (timeEntry) {
-      return $scope.currentUser.activeTimeEntryId === timeEntry._id;
+      var isActive = $scope.currentUser.activeTimeEntryId === timeEntry._id;
+      if (isActive) {
+        console.log('isActive: %s', timeEntry.endTime);
+      }
+      return isActive;
     };
 
   });

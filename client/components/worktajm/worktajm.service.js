@@ -19,7 +19,9 @@ angular.module('worktajmApp')
           var activeTimeEntryIndex = _.findIndex(timeEntries, function (timeEntry) {
             return timeEntry._id === currentUser.activeTimeEntryId;
           });
-          timeEntries[activeTimeEntryIndex].endTime =  moment().utc().format();
+          timeEntries[activeTimeEntryIndex].endTime = moment().utc().format();
+          timeEntries[activeTimeEntryIndex].name = 'Bajskorv';
+          console.log('Updated active time entry');
         }
       },
 
