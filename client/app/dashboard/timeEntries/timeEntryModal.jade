@@ -10,7 +10,7 @@
 				.col-sm-9
 					input#project.form-control(
 						type='text', 
-						ng-model='modalParams.project.name', 
+						ng-model='modalParams.projectName', 
 						typeahead='project for project in projectNames | filter:$viewValue | limitTo:8', 
 						required='required')
 					p
@@ -24,7 +24,7 @@
 						input#startDate.form-control(
 							type='text', 
 							datepicker-popup='{{dateFormat}}', 
-							ng-model='startDate', 
+							ng-model='modalParams.startDate', 
 							is-open='startDatePickerOpened', 
 							ng-required='true', 
 							close-text='Close')
@@ -32,7 +32,7 @@
 							i.glyphicon.glyphicon-calendar
 				.col-sm-4
 					.input-group
-						input.form-control
+						input.form-control(ng-model='modalParams.startTime')
 						span.input-group-addon
 							i.glyphicon.glyphicon-time
 
@@ -44,7 +44,7 @@
 						input#endDate.form-control(
 							type='text', 
 							datepicker-popup='{{dateFormat}}', 
-							ng-model='endDate', 
+							ng-model='modalParams.endDate', 
 							is-open='endDatePickerOpened', 
 							ng-required='true', 
 							close-text='Close')
@@ -52,7 +52,7 @@
 							i.glyphicon.glyphicon-calendar
 				.col-sm-4
 					.input-group
-						input.form-control
+						input.form-control(ng-model='modalParams.endTime')
 						span.input-group-addon
 							i.glyphicon.glyphicon-time
 

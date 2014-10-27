@@ -50,7 +50,7 @@ angular.module('worktajmApp')
         'projectName': modalParams.timeEntry.project.name,
         'startDate': startTime.format(''),
         'startTime': startTime.format('HH:mm:ss'),
-        'endDate': endTime,
+        'endDate': endTime.format(''),
         'endTime': endTime.format('HH:mm:ss'),
         'comment': modalParams.timeEntry.comment
       };      
