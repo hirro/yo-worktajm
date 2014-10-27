@@ -3,13 +3,6 @@
 	.modal-body
 
 		form.form-horizontal(role='form')
-			.form-group
-				.col-sm-3
-					label.control-label(for='inputEmail3') Email
-				.col-sm-9
-					input#inputEmail3.form-control(
-						type='email', 
-						placeholder='Email')      
 
 			.form-group
 				.col-sm-3
@@ -23,12 +16,6 @@
 					p
 						.alert.alert-info(ng-hide='modalParams.project._id')
 							| Project name does not exist, new project will be created
-			.form-group
-				.col-sm-3
-					label.control-label(for='comment') Comment
-				.col-sm-9
-					textarea#comment.form-control(rows='5', placeholder='Enter comment', ng-model='modalParams.comment')
-
 			.form-group
 				.col-sm-3
 					label.control-label(for='startDate') Start Time
@@ -68,6 +55,12 @@
 						input.form-control
 						span.input-group-addon
 							i.glyphicon.glyphicon-time
+
+			.form-group
+				.col-sm-3
+					label.control-label(for='comment') Comment
+				.col-sm-9
+					textarea#comment.form-control(rows='5', placeholder='Enter comment', ng-model='modalParams.comment')
 
 	.modal-footer
 		button.btn.btn-default(type='button', ng-click='cancel()') {{cancelText}}
