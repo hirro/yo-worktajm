@@ -47,11 +47,12 @@ angular.module('worktajmApp')
       var startTime = moment(modalParams.timeEntry.startTime);
       var endTime = moment(modalParams.timeEntry.endTime);
       $scope.modalParams = {
-        'project': modalParams.timeEntry.project,
-        'startDate': startTime,
+        'projectName': modalParams.timeEntry.project.name,
+        'startDate': startTime.format(''),
         'startTime': startTime.format('HH:mm:ss'),
         'endDate': endTime,
-        'endTime': endTime.format('HH:mm:ss')
+        'endTime': endTime.format('HH:mm:ss'),
+        'comment': modalParams.timeEntry.comment
       };
 
       $scope.ok = function () {
@@ -60,6 +61,8 @@ angular.module('worktajmApp')
         // If not, set the error status on the input
         //$scope.timeEntryForm.timeEntry.$setValidity('uniqueTimeEntryPerUser', false);
         console.log($scope.modalParams);
+        $scope.timeEntry.comment = $scope.modalParams.comment;
+        //var startTime = moment(startD)
         $modalInstance.close($scope.timeEntry);
       };
 
@@ -68,11 +71,23 @@ angular.module('worktajmApp')
       };
 
       $scope.updateStartDate = function (a) {
+        console.log('xxxx');
         modalParams.startDate = moment(a);
       };
 
       $scope.updateEndDate = function (a) {
         modalParams.endDate = moment(a);
+      };
+
+      $scope.onUpdateStartDate = function (a, b) {
+        console.log('asdasd', a, b);
+      };
+
+      // Date selector
+      $scope.openDatePicker = function ($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+        $scope.datePickerOpened = true;
       };
 
     };
@@ -129,7 +144,10 @@ angular.module('worktajmApp')
       return project ? project.name : '';
     };
 
-    $scope.onUpdateTimeEntry = function (timeEntry) {
+    $scope.onUpdateTimeEntry = function (timeEntry, a) {
+      console.log('XXX');
+      console.log(timeEntry);
+      console.log(a);
       if (timeEntry._id) {
         console.log('onUpdateTimeEntry - updating [%s]', timeEntry);
 
@@ -164,11 +182,16 @@ angular.module('worktajmApp')
     };
 
     $scope.isActive = function (timeEntry) {
-      var isActive = $scope.currentUser.activeTimeEntryId === timeEntry._id;
-      if (isActive) {
-        console.log('isActive: %s', timeEntry.endTime);
+      
+      if ($scope.currentUser &&
+          $scope.currentUser.activeTimeEntryId === timeEntry._id) {
+        return true;
       }
-      return isActive;
+      return false;
+    };
+
+    $scope.onUpdateStartDate = function (a, b) {
+      console.log('asdasd', a, b);
     };
 
   });
