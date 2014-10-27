@@ -53,7 +53,7 @@ angular.module('worktajmApp')
         'endDate': endTime,
         'endTime': endTime.format('HH:mm:ss'),
         'comment': modalParams.timeEntry.comment
-      };
+      };      
 
       $scope.ok = function () {
         // FIXME
@@ -84,12 +84,21 @@ angular.module('worktajmApp')
       };
 
       // Date selector
-      $scope.openDatePicker = function ($event) {
+      $scope.startDatePickerOpened = false;
+      $scope.openStartDatePicker = function ($event) {
+        console.log('xxxx');
         $event.preventDefault();
         $event.stopPropagation();
-        $scope.datePickerOpened = true;
+        $scope.startDatePickerOpened = true;
       };
 
+      // Date selector
+      $scope.endDatePickerOpened = false;
+      $scope.openEndDatePicker = function ($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+        $scope.endDatePickerOpened = true;
+      };
     };
 
     $scope.createTimeEntry = function () {

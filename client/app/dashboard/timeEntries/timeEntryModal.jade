@@ -1,56 +1,74 @@
 .modal-header
-    h4 {{titleText}}
-    .modal-body
-      form(role='form')
-        .form-group
-          label(for='project') Project
-          input.form-control(
-            type='text', 
-            ng-model='modalParams.project.name', 
-            typeahead='project for project in projectNames | filter:$viewValue | limitTo:8', 
-            required='required')
-          p
-            .alert.alert-info(ng-hide='modalParams.project._id')
-              | Project name does not exist, new project will be created
-        .row
-          .col-md-8
-            .form-group
-              label(for='startTime') Start date
-              p.input-group
-                input.form-control(
-                  type='text', 
-                  datepicker-popup='{{dateFormat}}', 
-                  ng-model='selected.selectedDate', 
-                  is-open='datePickerOpened', 
-                  ng-required='true', 
-                  close-text='Close')
-                span(ng-click='openDatePicker($event)').input-group-addon
-                  i.glyphicon.glyphicon-calendar
-          .col-md-4
-            input-group
-              label Start time
-              input.form-control()
-              span(ng-click='openDatePicker($event)').input-group-addon
-                i.glyphicon.glyphicon-calendar
+	h4 {{titleText}}
+	.modal-body
 
-        //- .form-group
-        //-   label(for='endTime') End time
-        //-   p 
-        //-     .dropdown              
-        //-       .input-group
-        //-         input.form-control(type='text', data-ng-model='data.dateDropDownInput', disabled='true')
-        //-         span.input-group-addon
-        //-           a#dropdown2.dropdown-toggle(role='button', data-toggle='dropdown', data-target='#', href='#')
-        //-             i.glyphicon.glyphicon-calendar
-        //-       ul.dropdown-menu(role='menu', aria-labelledby='dLabel')
-        //-         datetimepicker(
-        //-           data-ng-model='modalParams.startDate', 
-        //-           data-on-set-time='onUpdateEndDate(newDate, oldDate)',
-        //-           data-datetimepicker-config='{ dropdownSelector: \'#dropdown2\', minView: \'day\' }')
+		form.form-horizontal(role='form')
+			.form-group
+				.col-sm-3
+					label.control-label(for='inputEmail3') Email
+				.col-sm-9
+					input#inputEmail3.form-control(
+						type='email', 
+						placeholder='Email')      
 
-      .form-group
-        label(for='comment') Comment
-        textarea#comment.form-control(rows='5', placeholder='Enter comment', ng-model='modalParams.comment')
-    .modal-footer
-      button.btn.btn-default(type='button', ng-click='cancel()') {{cancelText}}
-      button.btn.btn-primary(type='button', ng-click='ok()') {{okText}}
+			.form-group
+				.col-sm-3
+					label.control-label(for='project') Project
+				.col-sm-9
+					input#project.form-control(
+						type='text', 
+						ng-model='modalParams.project.name', 
+						typeahead='project for project in projectNames | filter:$viewValue | limitTo:8', 
+						required='required')
+					p
+						.alert.alert-info(ng-hide='modalParams.project._id')
+							| Project name does not exist, new project will be created
+			.form-group
+				.col-sm-3
+					label.control-label(for='comment') Comment
+				.col-sm-9
+					textarea#comment.form-control(rows='5', placeholder='Enter comment', ng-model='modalParams.comment')
+
+			.form-group
+				.col-sm-3
+					label.control-label(for='startDate') Start Time
+				.col-sm-5
+					.input-group
+						input#startDate.form-control(
+							type='text', 
+							datepicker-popup='{{dateFormat}}', 
+							ng-model='startDate', 
+							is-open='startDatePickerOpened', 
+							ng-required='true', 
+							close-text='Close')
+						span(ng-click='openStartDatePicker($event)').input-group-addon
+							i.glyphicon.glyphicon-calendar
+				.col-sm-4
+					.input-group
+						input.form-control
+						span.input-group-addon
+							i.glyphicon.glyphicon-time
+
+			.form-group
+				.col-sm-3
+					label.control-label(for='endDate') End Time
+				.col-sm-5
+					.input-group
+						input#endDate.form-control(
+							type='text', 
+							datepicker-popup='{{dateFormat}}', 
+							ng-model='endDate', 
+							is-open='endDatePickerOpened', 
+							ng-required='true', 
+							close-text='Close')
+						span(ng-click='openEndDatePicker($event)').input-group-addon
+							i.glyphicon.glyphicon-calendar
+				.col-sm-4
+					.input-group
+						input.form-control
+						span.input-group-addon
+							i.glyphicon.glyphicon-time
+
+	.modal-footer
+		button.btn.btn-default(type='button', ng-click='cancel()') {{cancelText}}
+		button.btn.btn-primary(type='button', ng-click='ok()') {{okText}}
