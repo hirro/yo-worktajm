@@ -11,7 +11,7 @@
 					input#project.form-control(
 						type='text', 
 						ng-model='modalParams.projectName', 
-						typeahead='project for project in projectNames | filter:$viewValue | limitTo:8', 
+						typeahead='name for project in projects | filter:$viewValue | limitTo:8', 
 						required='required')
 					p
 						.alert.alert-info(ng-hide='modalParams.project._id')
