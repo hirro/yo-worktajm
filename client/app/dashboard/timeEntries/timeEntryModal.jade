@@ -11,10 +11,10 @@
 					input#project.form-control(
 						type='text', 
 						ng-model='modalParams.projectName', 
-						typeahead='name for project in projects | filter:$viewValue | limitTo:8', 
+						typeahead='name for name in projectNames | filter:$viewValue | limitTo:8', 
 						required='required')
 					p
-						.alert.alert-info(ng-hide='modalParams.project._id')
+						.alert.alert-info(ng-hide='projectNameExists(modalParams)')
 							| Project name does not exist, new project will be created
 			.form-group
 				.col-sm-3

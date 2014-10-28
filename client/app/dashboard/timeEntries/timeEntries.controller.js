@@ -3,7 +3,7 @@
 'use strict';
 
 angular.module('worktajmApp')
-  .controller('TimeentriesCtrl', function ($scope, $modal, Worktajm) {
+  .controller('TimeentriesCtrl', function ($scope, $modal, $q, $log, Worktajm) {
 
     $scope.timeEntries = [];
     $scope.projects = [];
@@ -25,7 +25,7 @@ angular.module('worktajmApp')
     });
 
     $scope.load = function () {
-      console.log('load');
+      $log.debug('load');
 
       // Start download of objects from BE
       Worktajm.loadProjects();
@@ -41,20 +41,20 @@ angular.module('worktajmApp')
     $scope.load();
 
     $scope.createTimeEntry = function () {
-      console.log('createTimeEntry');
+      $log.debug('createTimeEntry');
     };
 
     $scope.editTimeEntry = function () {
-      console.log('editTimeEntry');
+      $log.debug('editTimeEntry');
     };
 
     $scope.deleteTimeEntry = function (timeEntry) {
-      console.log('deleteTimeEntry');
+      $log.debug('deleteTimeEntry');
       Worktajm.deleteTimeEntry(timeEntry);
     };
 
     $scope.editTimeEntry = function (timeEntry) {
-      console.log('TimeEntries::editTimeEntry, timeEntryName: %s', timeEntry._id);
+      $log.debug('TimeEntries::editTimeEntry, timeEntryName: %s', timeEntry._id);
       $scope.openModal(timeEntry, 'Update TimeEntry', '', 'Update', 'Cancel');
     };
 
@@ -69,17 +69,51 @@ angular.module('worktajmApp')
     };
 
     $scope.onUpdateTimeEntry = function (timeEntry) {
-      if (timeEntry._id) {
-        console.log('onUpdateTimeEntry - updating [%s]', timeEntry);
+      var createProjectIfRequired = function () {
+        var deferred = $q.defer();
+        if (timeEntry.projectName) {
+          // Must create a new project
+          Worktajm.createProject({
+            name: timeEntry.projectName
+          }).then(function(project) {
+            $log.debug('Project created', project);
+            deferred.resolve(project);
+          });
+        } else {
+          // Resolve to existing project
+          var projectIndex = _.findIndex($scope.projects, function (p) {
+            return p._id === timeEntry.projectId;
+          });
+          if (projectIndex >= 0) {
+            deferred.resolve($scope.projects[projectIndex]);
+          } else {
+            deferred.reject('Invalid project id');
+          }
+        }
+        return deferred.promise;
+      };
+      var updateOrCreateTimeEntry = function (project) {
+        $log.debug('Project:', project);
+        if (timeEntry._id) {
+          $log.debug('onUpdateTimeEntry - updating [%s]', timeEntry);
 
-        // Extend existing entry
-        var existingTimeEntry = _.find($scope.timeEntries, { '_id': timeEntry._id });
-        _.extend(existingTimeEntry, timeEntry);
-        Worktajm.updateTimeEntry(existingTimeEntry);
-      } else {
-        console.log('onUpdateTimeEntry - creating [%s]', timeEntry);
-        Worktajm.createTimeEntry(timeEntry);
-      }
+          // Extend existing entry
+          var existingTimeEntry = _.find($scope.timeEntries, { '_id': timeEntry._id });
+          _.extend(existingTimeEntry, timeEntry);
+          existingTimeEntry.projectId = project._id;
+          Worktajm.updateTimeEntry(existingTimeEntry);
+        } else {
+          $log.debug('onUpdateTimeEntry - creating [%s]', timeEntry);
+          timeEntry.projectId = project._id;
+          Worktajm.createTimeEntry(timeEntry);
+        }
+      };
+      var reportProblems = function(fault) {
+        $log.error( String(fault) );
+      };
+      return createProjectIfRequired()
+        .then(updateOrCreateTimeEntry)
+        .catch(reportProblems);
     };
 
     // Date selector
@@ -92,13 +126,13 @@ angular.module('worktajmApp')
     $scope.duration = function (timeEntry) {
       var endTime = moment(timeEntry.endTime);
       var startTime = moment(timeEntry.startTime);
-      // console.log('startTime', startTime.format());
-      // console.log('endtime', endTime.format());
+      // $log.debug('startTime', startTime.format());
+      // $log.debug('endtime', endTime.format());
       var ms = endTime.diff(startTime);
       var d = moment.duration(ms);
       var s = Math.floor(d.asHours()) + moment.utc(ms).format(':mm:ss');
-      // console.log('ms:', ms);
-      // console.log('duration:', d);
+      // $log.debug('ms:', ms);
+      // $log.debug('duration:', d);
       return s;
     };
 
@@ -126,11 +160,31 @@ angular.module('worktajmApp')
         'endTime': endTime.format('HH:mm:ss'),
         'comment': modalParams.timeEntry.comment
       };
+      $scope.projects = modalParams.projects;
+      $scope.projectNames = _.pluck($scope.projects, 'name');
+      $log.debug($scope.projectNames);
+      $log.debug($scope.projects);
+
 
       $scope.ok = function () {
         $scope.timeEntry.comment = $scope.modalParams.comment;
         $scope.timeEntry.startTime  = $scope.parseDateTime($scope.modalParams.startDate, $scope.modalParams.startTime);
         $scope.timeEntry.endTime  = $scope.parseDateTime($scope.modalParams.endDate, $scope.modalParams.endTime);
+        var projectId = _.findIndex($scope.projects, function (p) {
+          var result = p.name === $scope.modalParams.projectName;
+          $log.debug($scope.modalParams.projectName, p, result);
+          return result;
+        });
+        if (projectId === -1) {
+          $scope.timeEntry.projectId = undefined;
+          $scope.timeEntry.projectName = $scope.modalParams.projectName;
+          $log.debug('Project id cleared');
+        } else {
+          if ($scope.timeEntry.projectId !== $scope.projects[projectId]._id) {
+            $log.debug('Project changed');
+            $scope.timeEntry.projectId = $scope.projects[projectId]._id;
+          }
+        }
         $modalInstance.close($scope.timeEntry);
       };
 
@@ -161,19 +215,26 @@ angular.module('worktajmApp')
 
         return result;
       };
+
+      $scope.projectNameExists = function (params) {
+        var index = _.findIndex($scope.projectNames, function (item) {
+          return item === params.projectName;
+        });
+        return index>=0;
+      };
+
     };
 
     // Modal functions
     $scope.openModal = function (timeEntry, titleText, messageText, okText, cancelText) {
-      console.log('TimeEntriesCtrl::openModal', timeEntry._id);
-      console.log(timeEntry);
       var modalParams = {
         timeEntry: timeEntry,
         titleText: titleText,
         messageText: messageText,
         okText: okText,
         cancelText: cancelText,
-        subject: _.clone(timeEntry)
+        subject: _.clone(timeEntry),
+        projects: $scope.projects
       };
       var modalInstance = $modal.open({
         templateUrl: 'app/dashboard/timeEntries/timeEntryModal.html',
