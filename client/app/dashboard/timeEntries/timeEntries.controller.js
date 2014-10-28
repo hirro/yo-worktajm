@@ -1,4 +1,4 @@
-/*globals console, moment */
+/*globals moment */
 
 'use strict';
 
