@@ -1,215 +1,229 @@
 nav.navbar.navbar-default(animated-header).navbar-fixed-top(ng-controller='NavbarCtrl')
-  .container
-    // Brand and toggle get grouped for better mobile display 
-    .navbar-header.page-scroll
-      button.navbar-toggle(type='button', ng-click='toggleNavbar()')
-        span.sr-only Toggle navigation
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
-      a.navbar-brand.page-scroll(href='#page-top') Worktajm
-    // Collect the nav links, forms, and other content for toggling 
-    .collapse.navbar-collapse(collapse='isCollapsed')
-      ul.nav.navbar-nav.navbar-right
-        li(du-scrollspy='anchor')
-          a(href='#page-top', du-smooth-scroll) Home
-        li(du-scrollspy='features')
-          a(href='#features', du-smooth-scroll) Features
-        li(du-scrollspy='team')
-          a(href='#team', du-smooth-scroll) Team
-        li(du-scrollspy='contact')
-          a(href='#contact', du-smooth-scroll) Signup
-        li
-          a(href='/login') Login
+	.container
+		// Brand and toggle get grouped for better mobile display 
+		.navbar-header.page-scroll
+			button.navbar-toggle(type='button', ng-click='toggleNavbar()')
+				span.sr-only Toggle navigation
+				span.icon-bar
+				span.icon-bar
+				span.icon-bar
+			a.navbar-brand.page-scroll(href='#page-top') Worktajm
+		// Collect the nav links, forms, and other content for toggling 
+		.collapse.navbar-collapse(collapse='isCollapsed')
+			ul.nav.navbar-nav.navbar-right
+				li(du-scrollspy='anchor')
+					a(href='#page-top', du-smooth-scroll) Home
+				li(du-scrollspy='features')
+					a(href='#features', du-smooth-scroll) Features
+				li(du-scrollspy='team')
+					a(href='#team', du-smooth-scroll) Team
+				li(du-scrollspy='contact')
+					a(href='#contact', du-smooth-scroll) Signup
+				li
+					a(href='/login') Login
 
 header(full-height, ng-style='style()')#page-top
-  .container
-    .intro-text
-      .intro-heading Time Reports
+	.container
+		.intro-text
+			.intro-heading Time Reports
 
-      .intro-login
-        a.page-scroll.btn.btn-login(href='/login') Login
+			.intro-login
+				a.page-scroll.btn.btn-login(href='/login') Login
 
-        .intro-signin Or sign in with
+				.intro-signin Or sign in with
 
-        a.page-scroll.btn.btn-facebook(href='', ng-click='loginOauth("facebook")')
-          i.fa.fa-facebook
-          |  Facebook
-        = ' '
-        a.page-scroll.btn.btn-google-plus(href='', ng-click='loginOauth("google")')
-          i.fa.fa-google-plus
-          |  Google+
-        = ' '
-        a.page-scroll.btn.btn-twitter(href='', ng-click='loginOauth("twitter")')
-          i.fa.fa-twitter
-          |  Twitter
+				a.page-scroll.btn.btn-facebook(href='', ng-click='loginOauth("facebook")')
+					i.fa.fa-facebook
+					|  Facebook
+				= ' '
+				a.page-scroll.btn.btn-google-plus(href='', ng-click='loginOauth("google")')
+					i.fa.fa-google-plus
+					|  Google+
+				= ' '
+				a.page-scroll.btn.btn-twitter(href='', ng-click='loginOauth("twitter")')
+					i.fa.fa-twitter
+					|  Twitter
 
-        .intro-scroll-down
-          a.btn.btn-circle.page-scroll(href='#features', du-smooth-scroll)
-            i.fa.fa-angle-double-down.animated
+				.intro-scroll-down
+					a.btn.btn-circle.page-scroll(href='#features', du-smooth-scroll)
+						i.fa.fa-angle-double-down.animated
 
-//
-   Features Section 
+// Features Section
 section(full-height='min', ng-style='style()')#features
-  .container
-    .row
-      .col-lg-12.text-center
-        h2.section-heading Features
-        h3.section-subheading.text-muted Easy to use time reporting system.
-    .row.text-center
-      .col-md-4
-        span.fa-stack.fa-4x
-          i.fa.fa-circle.fa-stack-2x.text-primary
-          i.fa.fa-mobile.fa-stack-1x.fa-inverse
-        h4.service-heading Mobile first 
-        p.text-muted
-          | The web application is works with any modern browser on any device. 
-          | 
-      .col-md-4
-        span.fa-stack.fa-4x
-          i.fa.fa-circle.fa-stack-2x.text-primary
-          i.fa.fa-clock-o.fa-stack-1x.fa-inverse
-        h4.service-heading Free and Easy to use
-        p.text-muted
-          | Just register and you can start filing in your reports right now. 
-      .col-md-4
-        span.fa-stack.fa-4x
-          i.fa.fa-circle.fa-stack-2x.text-primary
-          i.fa.fa-bar-chart-o.fa-stack-1x.fa-inverse
-        h4.service-heading Charts
-        p.text-muted
-          | Get a summary of your filed hour weekly or monthly.
-    .row.text-center
-      .col-md-4
-        span.fa-stack.fa-4x
-          i.fa.fa-circle.fa-stack-2x.text-primary
-          i.fa.fa-desktop.fa-stack-1x.fa-inverse
-        h4.service-heading Responsive Design
-        p.text-muted
-          | The web application is works with any modern browser on any device. 
-          | 
-      .col-md-4
-        span.fa-stack.fa-4x
-          i.fa.fa-circle.fa-stack-2x.text-primary
-          i.fa.fa-usd.fa-stack-1x.fa-inverse
-        h4.service-heading Free 
-        p.text-muted
-          | That's right free.
-      .col-md-4
-        span.fa-stack.fa-4x
-          i.fa.fa-circle.fa-stack-2x.text-primary
-          i.fa.fa-envelope.fa-stack-1x.fa-inverse
-        h4.service-heading Reports via email
-        p.text-muted
-          | Get an email of your billed hours on daily, weekly or monthly basis.
-//
-   Team Section 
+	.container
+		.row
+			.col-lg-12.text-center
+				h2.section-heading Features
+				h3.section-subheading.text-muted Easy to use time reporting system.
+		.row.text-center
+			.col-md-4
+				span.fa-stack.fa-4x
+					i.fa.fa-circle.fa-stack-2x.text-primary
+					i.fa.fa-mobile.fa-stack-1x.fa-inverse
+				h4.service-heading Mobile first 
+				p.text-muted
+					| The web application is works with any modern browser on any device. 
+					| 
+			.col-md-4
+				span.fa-stack.fa-4x
+					i.fa.fa-circle.fa-stack-2x.text-primary
+					i.fa.fa-clock-o.fa-stack-1x.fa-inverse
+				h4.service-heading Free and Easy to use
+				p.text-muted
+					| Just register and you can start filing in your reports right now. 
+			.col-md-4
+				span.fa-stack.fa-4x
+					i.fa.fa-circle.fa-stack-2x.text-primary
+					i.fa.fa-bar-chart-o.fa-stack-1x.fa-inverse
+				h4.service-heading Charts
+				p.text-muted
+					| Get a summary of your filed hour weekly or monthly.
+		.row.text-center
+			.col-md-4
+				span.fa-stack.fa-4x
+					i.fa.fa-circle.fa-stack-2x.text-primary
+					i.fa.fa-desktop.fa-stack-1x.fa-inverse
+				h4.service-heading Responsive Design
+				p.text-muted
+					| The web application is works with any modern browser on any device. 
+					| 
+			.col-md-4
+				span.fa-stack.fa-4x
+					i.fa.fa-circle.fa-stack-2x.text-primary
+					i.fa.fa-usd.fa-stack-1x.fa-inverse
+				h4.service-heading Free 
+				p.text-muted
+					| That's right free.
+			.col-md-4
+				span.fa-stack.fa-4x
+					i.fa.fa-circle.fa-stack-2x.text-primary
+					i.fa.fa-envelope.fa-stack-1x.fa-inverse
+				h4.service-heading Reports via email
+				p.text-muted
+					| Get an email of your billed hours on daily, weekly or monthly basis.
+
+// Team Section 
 section(full-height='min', ng-style='style()')#team.bg-light-gray
-  .container
-    .row
-      .col-lg-12.text-center
-        h2.section-heading Team
-    .row
-      .col-sm-4
-        .team-member
-          img.img-responsive.img-circle(src='assets/images/team/jim.jpg', alt='')
-          h4 Jim Arnell
-          p.text-muted
-          ul.list-inline.social-buttons
-            li
-              a(href='#')
-                i.fa.fa-twitter
-            li
-              a(href='#')
-                i.fa.fa-linkedin
-  .contributers
-    .container
-      .row
-        .col-md-3.col-sm-6
-          a(href='https://angularjs.org/')
-            img.img-responsive.img-centered(src='assets/images/logos/angularjs.png', alt='AngularJS')
-        .col-md-3.col-sm-6
-          a(href='http://getbootstrap.com/')
-            img.img-responsive.img-centered(src='assets/images/logos/bootstrap.png', alt='Bootstrap')
-        .col-md-3.col-sm-6
-          a(href='http://en.wikipedia.org/wiki/CSS3')
-            img.img-responsive.img-centered(src='assets/images/logos/css3.png', alt='CSS3')
-        .col-md-3.col-sm-6
-          a(href='http://expressjs.com/')
-            img.img-responsive.img-centered(src='assets/images/logos/expressjs.png', alt='Express')
-        .col-md-3.col-sm-6
-          a(href='https://github.com/').awesome-icon 
-            img.img-responsive.img-centered(src='assets/images/logos/github.png', alt='github')
-        .col-md-3.col-sm-6
-          a(href='http://en.wikipedia.org/wiki/HTML5').awesome-icon 
-            img.img-responsive.img-centered(src='assets/images/logos/html5.png', alt='HTML5')
-        .col-md-3.col-sm-6
-          a(href='http://www.mongodb.com/')
-            img.img-responsive.img-centered(src='assets/images/logos/mongodb.png', alt='mongoDB')
-        .col-md-3.col-sm-6
-          a(href='http://nodejs.org/')
-            img.img-responsive.img-centered(src='assets/images/logos/nodejs.png', alt='nodejs')
-        .col-md-3.col-sm-6
-          a(href='http://passportjs.org/')
-            img.img-responsive.img-centered(src='assets/images/logos/passportjs.png', alt='passportjs')
-        .col-md-3.col-sm-6
-          a(href='http://sass-lang.com/')
-            img.img-responsive.img-centered(src='assets/images/logos/sass-less.png', alt='CSS with superpowers')
-        .col-md-3.col-sm-6
-          a(href='http://socket.io/')
-            img.img-responsive.img-centered(src='assets/images/logos/socketio.png', alt='socket.io')
-        .col-md-3.col-sm-6
-          a(href='http://yeoman.io/')
-            img.img-responsive.img-centered(src='assets/images/logos/yeoman.png', alt='Yeoman')
+	.container
+		.row
+			.col-lg-12.text-center
+				h2.section-heading Team
+		.row
+			.col-sm-4
+				.team-member
+					img.img-responsive.img-circle(src='assets/images/team/jim.jpg', alt='')
+					h4 Jim Arnell
+					p.text-muted
+					ul.list-inline.social-buttons
+						li
+							a(href='#')
+								i.fa.fa-twitter
+						li
+							a(href='#')
+								i.fa.fa-linkedin
+	.contributers
+		.container
+			.row
+				.col-md-3.col-sm-6
+					a(href='https://angularjs.org/')
+						img.img-responsive.img-centered(src='assets/images/logos/angularjs.png', alt='AngularJS')
+				.col-md-3.col-sm-6
+					a(href='http://getbootstrap.com/')
+						img.img-responsive.img-centered(src='assets/images/logos/bootstrap.png', alt='Bootstrap')
+				.col-md-3.col-sm-6
+					a(href='http://en.wikipedia.org/wiki/CSS3')
+						img.img-responsive.img-centered(src='assets/images/logos/css3.png', alt='CSS3')
+				.col-md-3.col-sm-6
+					a(href='http://expressjs.com/')
+						img.img-responsive.img-centered(src='assets/images/logos/expressjs.png', alt='Express')
+				.col-md-3.col-sm-6
+					a(href='https://github.com/').awesome-icon 
+						img.img-responsive.img-centered(src='assets/images/logos/github.png', alt='github')
+				.col-md-3.col-sm-6
+					a(href='http://en.wikipedia.org/wiki/HTML5').awesome-icon 
+						img.img-responsive.img-centered(src='assets/images/logos/html5.png', alt='HTML5')
+				.col-md-3.col-sm-6
+					a(href='http://www.mongodb.com/')
+						img.img-responsive.img-centered(src='assets/images/logos/mongodb.png', alt='mongoDB')
+				.col-md-3.col-sm-6
+					a(href='http://nodejs.org/')
+						img.img-responsive.img-centered(src='assets/images/logos/nodejs.png', alt='nodejs')
+				.col-md-3.col-sm-6
+					a(href='http://passportjs.org/')
+						img.img-responsive.img-centered(src='assets/images/logos/passportjs.png', alt='passportjs')
+				.col-md-3.col-sm-6
+					a(href='http://sass-lang.com/')
+						img.img-responsive.img-centered(src='assets/images/logos/sass-less.png', alt='CSS with superpowers')
+				.col-md-3.col-sm-6
+					a(href='http://socket.io/')
+						img.img-responsive.img-centered(src='assets/images/logos/socketio.png', alt='socket.io')
+				.col-md-3.col-sm-6
+					a(href='http://yeoman.io/')
+						img.img-responsive.img-centered(src='assets/images/logos/yeoman.png', alt='Yeoman')
 
 
 section(full-height='min', ng-style='style()')#contact
-  .container
-    .row
-      .col-lg-12.text-center
-        h2.section-heading Sign up
-        h3.section-subheading.text-muted Start filing in your time reports now!
-    .row
-      .col-lg-12
-        form#contactForm(name='sentMessage', novalidate='novalidate')
-          .row
-            .col-md-offset-3.col-md-6
-              .form-group
-                input#name.form-control(type='text', placeholder='Your Name *', required='required', data-validation-required-message='Please enter your name.')
-                p.help-block.text-danger
-          .row
-            .col-md-offset-3.col-md-6
-              .form-group
-                input#email.form-control(type='email', placeholder='Your Email *', required='required', data-validation-required-message='Please enter your email address.')
-                p.help-block.text-danger
-          .row
-            .col-md-offset-3.col-md-6
-              .form-group
-                input#email.form-control(type='password', placeholder='Your Password *', required='required', data-validation-required-message='Please enter your password')
-                p.help-block.text-danger
-            .clearfix
-            .col-lg-12.text-center
-              #success
-              button.btn.btn-login(type='submit') Join
+	.container
+		.row
+			.col-lg-12.text-center
+				h2.section-heading Sign up
+				h3.section-subheading.text-muted Start filing in your time reports now!
+		.row
+			.col-lg-12
+				form#contactForm(name='form', ng-submit='register(form)', novalidate='novalidate')
+					.row
+						.col-md-offset-3.col-md-6
+							.form-group
+								input#name.form-control(
+									type='text', 
+									placeholder='Your Name *', 
+									required='required', 
+									data-validation-required-message='Please enter your name.'
+									ng-model='user.name')
+								p.help-block.text-danger
+					.row
+						.col-md-offset-3.col-md-6
+							.form-group
+								input#email.form-control(
+									type='email', 
+									placeholder='Your Email *', 
+									required='required', 
+									data-validation-required-message='Please enter your email address.',
+									ng-model='user.email')
+								p.help-block.text-danger
+					.row
+						.col-md-offset-3.col-md-6
+							.form-group
+								input#email.form-control(
+									type='password', 
+									placeholder='Your Password *', 
+									required='required', 
+									data-validation-required-message='Please enter your password',
+									ng-model='user.password')
+								p.help-block.text-danger
+						.clearfix
+						.col-lg-12.text-center
+							#success
+							button.btn.btn-login(type='submit') Join
 footer
-  .container
-    .row
-      .col-md-3
-        span.copyright Copyright © Arnell Consulting AB 2014
-      .col-md-4
-        ul.list-inline.social-buttons
-          li
-            a(href='#')
-              i.fa.fa-twitter
-          li
-            a(href='#')
-              i.fa.fa-facebook
-          li
-            a(href='#')
-              i.fa.fa-linkedin
-      .col-md-4
-        ul.list-inline.quicklinks
-          li
-            a(href='#') Privacy Policy
-          li
-            a(href='#') Terms of Use
+	.container
+		.row
+			.col-md-3
+				span.copyright Copyright © Arnell Consulting AB 2014
+			.col-md-4
+				ul.list-inline.social-buttons
+					li
+						a(href='#')
+							i.fa.fa-twitter
+					li
+						a(href='#')
+							i.fa.fa-facebook
+					li
+						a(href='#')
+							i.fa.fa-linkedin
+			.col-md-4
+				ul.list-inline.quicklinks
+					li
+						a(href='#') Privacy Policy
+					li
+						a(href='#') Terms of Use
