@@ -52,8 +52,8 @@ angular.module('worktajmApp')
           var selectedDate = moment(selection.selectedDate);
           result = selectedDate.isSame(date, 'day');
         } else if (selection.from && selection.to) {
-          var fromDate = selection.from;
-          var toDate = selection.to;
+          var fromDate = moment(selection.from);
+          var toDate = moment(selection.to);
           result = (date.valueOf() >= fromDate.valueOf()) && (date.valueOf() <= toDate.valueOf());
         } else {
           console.error('Invalid/unsufficient properties specified in selection [%s]', selection);

@@ -1,15 +1,10 @@
 div(ng-include='"app/navbar/navbar.html"')
 
 .container
-  .row
-    h1 Reports
-  .row
-    .col-md-2
-        div(ui-view="projects")
-    .col-sm-8
-        div(ui-view="timeEntries")
-    .col-md-2
-        div(ui-view="status")    
+	.row
+		.col-sm-3.col-xs-12
+				div(ui-view="filters")
+		.col-sm-9.col-xs-12
+				div(ui-view="results")
 
 div(ng-include='"app/footer.html"')
-
