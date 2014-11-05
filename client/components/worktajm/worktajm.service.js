@@ -274,16 +274,19 @@ angular.module('worktajmApp')
         return projectNames;
       },
 
-      createTimeEntry: function (project) {
+      createTimeEntry: function (timeEntry, project) {
         var deferred = $q.defer();
         var currentTime = moment();
         currentTime.millisecond(0);
+        if (!timeEntry.startTime) {
+          timeEntry.startTime = currentTime;
+        }
+        if (!timeEntry.endTime) {
+          timeEntry.endTime = currentTime;
+        }
+        timeEntry.projectId = project._id;
         TimeEntry.save(
-          {
-            projectId: project._id,
-            startTime: currentTime,
-            endTime: currentTime
-          },
+          timeEntry,
           function (newTimeEntry) {
             newTimeEntry.project = project;
             deferred.resolve(newTimeEntry);
@@ -349,7 +352,7 @@ angular.module('worktajmApp')
         };
         var createNewTimeEntry = function () {
           var deferred2 = $q.defer();
-          self.createTimeEntry(project).then(function (result) {
+          self.createTimeEntry({}, project).then(function (result) {
             deferred2.resolve(result);
           });
           return deferred2.promise;

@@ -40,14 +40,6 @@ angular.module('worktajmApp')
 
     $scope.load();
 
-    $scope.createTimeEntry = function () {
-      $log.debug('createTimeEntry');
-    };
-
-    $scope.editTimeEntry = function () {
-      $log.debug('editTimeEntry');
-    };
-
     $scope.deleteTimeEntry = function (timeEntry) {
       $log.debug('deleteTimeEntry');
       Worktajm.deleteTimeEntry(timeEntry);
@@ -59,6 +51,7 @@ angular.module('worktajmApp')
     };
 
     $scope.createTimeEntry = function () {
+      $log.debug('TimeEntries::createTimeEntry');
       var timeEntry = { name: ''};
       $scope.openModal(timeEntry, 'Create TimeEntry', '', 'Create', 'Cancel');
     };
@@ -103,9 +96,8 @@ angular.module('worktajmApp')
           existingTimeEntry.projectId = project._id;
           Worktajm.updateTimeEntry(existingTimeEntry);
         } else {
-          $log.debug('onUpdateTimeEntry - creating [%s]', timeEntry);
-          timeEntry.projectId = project._id;
-          Worktajm.createTimeEntry(timeEntry);
+          $log.debug('onUpdateTimeEntry - creating new time entry projectId: [%s]', project._id);
+          Worktajm.createTimeEntry(timeEntry, project);
         }
       };
       var reportProblems = function(fault) {
@@ -152,8 +144,12 @@ angular.module('worktajmApp')
       $scope.timeEntry = _.clone(modalParams.timeEntry);
       var startTime = moment(modalParams.timeEntry.startTime);
       var endTime = moment(modalParams.timeEntry.endTime);
+      var projectName = '';
+      if (modalParams.timeEntry.project) {
+        projectName = modalParams.timeEntry.project.name;
+      }
       $scope.modalParams = {
-        'projectName': modalParams.timeEntry.project.name,
+        'projectName': projectName,
         'startDate': startTime.format(''),
         'startTime': startTime.format('HH:mm:ss'),
         'endDate': endTime.format(''),
