@@ -3,7 +3,7 @@
 'use strict';
 
 angular.module('worktajmApp')
-  .controller('TimeentriesCtrl', function ($scope, $modal, $q, $log, Worktajm) {
+  .controller('TimeentriesCtrl', function ($scope, $modal, $q, $log, Worktajm, WorktajmUtil) {
 
     $scope.timeEntries = [];
     $scope.projects = [];
@@ -18,7 +18,7 @@ angular.module('worktajmApp')
       month: false,
       viewMode: 'Day'
     };
-
+    $scope.orderByField = 'startTime';
 
     Worktajm.loadCurrentUser().then(function (result) {
       $scope.currentUser = result;
@@ -116,16 +116,7 @@ angular.module('worktajmApp')
     };
 
     $scope.duration = function (timeEntry) {
-      var endTime = moment(timeEntry.endTime);
-      var startTime = moment(timeEntry.startTime);
-      // $log.debug('startTime', startTime.format());
-      // $log.debug('endtime', endTime.format());
-      var ms = endTime.diff(startTime);
-      var d = moment.duration(ms);
-      var s = Math.floor(d.asHours()) + moment.utc(ms).format(':mm:ss');
-      // $log.debug('ms:', ms);
-      // $log.debug('duration:', d);
-      return s;
+      return WorktajmUtil.duration(timeEntry);
     };
 
     $scope.isActive = function (timeEntry) {

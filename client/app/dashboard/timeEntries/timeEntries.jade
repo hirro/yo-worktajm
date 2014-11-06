@@ -34,7 +34,7 @@
 								th.col-md-3 Time
 								th.col-md-2 Duration
 								th.col-md-2
-						tbody(ng-repeat='timeEntry in timeEntries | timeEntryFilter:selected')
+						tbody(ng-repeat='timeEntry in timeEntries | orderBy:orderByField | timeEntryFilter:selected')
 							tr
 								td.timentry-cell {{timeEntry.project.name}}
 								td.timentry-cell {{timeEntry.startTime | date: 'HH:mm:ss'}}-{{timeEntry.endTime | date: 'HH:mm:ss'}}

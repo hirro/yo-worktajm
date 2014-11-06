@@ -13,6 +13,6 @@ angular.module('worktajmApp')
 
       var d = moment.duration(sum);
       var s = Math.floor(d.asHours()) + moment.utc(sum).format(':mm:ss');
-      return s;
+      return d.asHours().toFixed(2);
     };
   });

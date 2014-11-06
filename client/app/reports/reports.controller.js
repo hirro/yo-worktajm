@@ -3,7 +3,7 @@
 'use strict';
 
 angular.module('worktajmApp')
-  .controller('ReportsCtrl', function ($scope, Worktajm, $log) {
+  .controller('ReportsCtrl', function ($scope, Worktajm, WorktajmUtil, $log) {
     $scope.startTime = null;
     $scope.endTime = null;
     $scope.type = 'pivotal|table';
@@ -23,6 +23,7 @@ angular.module('worktajmApp')
       month: false,
       viewMode: 'Day'
     };
+    $scope.orderByField = 'startTime';
 
     // Date selector
     $scope.startDatePickerOpened = false;
@@ -62,8 +63,8 @@ angular.module('worktajmApp')
     };
 
     $scope.selectYesterday = function () {
-      $scope.selected.from = moment().date(-1).hour(0).minute(0).second(0).utc().format();
-      $scope.selected.to   = moment().date(-1).hour(24).minute(0).second(0).utc().format();
+      $scope.selected.from = moment().subtract(1, 'days').hour(0).minute(0).second(0).utc().format();
+      $scope.selected.to   = moment().hour(0).minute(0).second(-1).utc().format();
       $scope.logSelected();
     };
 
@@ -102,6 +103,10 @@ angular.module('worktajmApp')
       console.log('from: ', $scope.selected.from);
       console.log('to:   ', $scope.selected.to);
     };
+
+    $scope.duration = function (timeEntry) {
+      return WorktajmUtil.duration(timeEntry);
+    };    
 
     $scope.load();
   });

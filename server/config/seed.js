@@ -273,255 +273,270 @@ var createTimeEntriesForOctober = function (user, project) {
   console.log('Creating time entries');
 
   TimeEntry.create({
+    endTime: "2014-10-31T18:00:00Z",
+    startTime: "2014-10-31T15:50:17Z",
+    projectId: project,
+    createdBy: user
+  }, {
+    endTime: "2014-10-31T14:30:00Z",
+    startTime: "2014-10-31T13:47:23Z",
+    projectId: project,
+    createdBy: user
+  }, {
+    endTime: "2014-10-31T12:59:28Z",
+    startTime: "2014-10-31T11:56:11Z",
+    projectId: project,
+    createdBy: user
+  }, {
     endTime: "2014-10-30T15:50:53Z",
-    startTime: "2014-10-30T12:25:51Z",  
-    createdBy: user,
-    projectId: project
+    startTime: "2014-10-30T12:25:51Z",
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-30T11:37:45Z",
     startTime: "2014-10-30T09:25:32Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-29T16:53:58Z",
     startTime: "2014-10-29T11:44:56Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-29T11:25:53Z",
     startTime: "2014-10-29T08:30:08Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-28T15:45:33Z",
     startTime: "2014-10-28T13:07:09Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-28T12:31:43Z",
     startTime: "2014-10-28T11:22:44Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-27T17:00:00Z",
     startTime: "2014-10-27T12:54:04Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-27T12:52:04Z",
     startTime: "2014-10-27T12:50:07Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-27T12:18:41Z",
     startTime: "2014-10-27T09:42:03Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-24T15:08:37Z",
     startTime: "2014-10-24T14:02:44Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-24T13:24:05Z",
     startTime: "2014-10-24T11:12:52Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-24T11:01:35Z",
     startTime: "2014-10-24T07:55:49Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-23T16:41:58Z",
     startTime: "2014-10-23T11:55:58Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-23T11:45:11Z",
     startTime: "2014-10-23T09:38:06Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-23T09:38:05Z",
     startTime: "2014-10-23T09:30:56Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-23T09:15:11Z",
     startTime: "2014-10-23T08:10:31Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-22T16:13:31Z",
     startTime: "2014-10-22T12:46:08Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-22T11:52:01Z",
     startTime: "2014-10-22T09:36:08Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-21T15:48:45Z",
     startTime: "2014-10-21T13:06:55Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-21T12:03:32Z",
     startTime: "2014-10-21T09:25:36Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-20T15:51:09Z",
     startTime: "2014-10-20T13:03:26Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-20T12:35:24Z",
     startTime: "2014-10-20T09:31:13Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-20T09:28:24Z",
     startTime: "2014-10-20T09:28:12Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-16T17:43:11Z",
     startTime: "2014-10-16T14:10:51Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-16T13:31:19Z",
     startTime: "2014-10-16T09:47:05Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-15T15:47:26Z",
     startTime: "2014-10-15T12:34:35Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-15T11:18:11Z",
     startTime: "2014-10-15T09:17:09Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-15T08:50:00Z",
     startTime: "2014-10-15T08:28:00Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-15T07:34:23Z",
     startTime: "2014-10-15T06:34:09Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-14T13:55:41Z",
     startTime: "2014-10-14T13:06:53Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-14T13:06:51Z",
     startTime: "2014-10-14T12:30:00Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-14T11:41:21Z",
     startTime: "2014-10-14T09:56:32Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-13T17:21:28Z",
     startTime: "2014-10-13T09:31:25Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-10T17:40:06Z",
     startTime: "2014-10-10T12:20:09Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-10T11:28:40Z",
     startTime: "2014-10-10T09:34:41Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-10T09:25:42Z",
     startTime: "2014-10-10T09:10:35Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-09T15:34:02Z",
     startTime: "2014-10-09T13:18:21Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-09T12:50:00Z",
     startTime: "2014-10-09T10:00:00Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-08T15:20:18Z",
     startTime: "2014-10-08T12:56:24Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-08T11:47:06Z",
     startTime: "2014-10-08T09:20:12Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-07T15:19:25Z",
     startTime: "2014-10-07T12:21:19Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-07T11:52:26Z",
     startTime: "2014-10-07T08:09:51Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-06T17:00:00Z",
     startTime: "2014-10-06T16:24:28Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-06T15:56:18Z",
     startTime: "2014-10-06T12:30:23Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-06T12:00:00Z",
     startTime: "2014-10-06T09:33:53Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-02T15:10:00Z",
     startTime: "2014-10-02T12:29:58Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-02T11:45:00Z",
     startTime: "2014-10-02T09:26:50Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-02T09:11:11Z",
     startTime: "2014-10-02T08:45:38Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-02T08:24:47Z",
     startTime: "2014-10-02T07:14:44Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, {
     endTime: "2014-10-01T15:44:32Z",
     startTime: "2014-10-01T10:08:50Z",
-    createdBy: user,
-    projectId: project
+    projectId: project,
+    createdBy: user
   }, function (e) {
     console.log('Created time entries for october', e);
   });
@@ -530,8 +545,18 @@ var createTimeEntriesForOctober = function (user, project) {
 var createTimeEntriesForNovember = function (user, project) {
   console.log('Creating time entries');
 
-  TimeEntry.create({
-    endTime: "2014-11-04T15:50:45Z",
+  TimeEntry.create(  {
+    endTime: "2014-11-05T16:53:27Z",
+    startTime: "2014-11-05T12:44:18Z",
+    createdBy: user,
+    projectId: project
+  }, {
+    endTime: "2014-11-05T12:08:57Z",
+    startTime: "2014-11-05T09:13:16Z",
+    createdBy: user,
+    projectId: project
+  }, {
+    endTime: "2014-11-04T15:51:22Z",
     startTime: "2014-11-04T11:46:45Z",
     createdBy: user,
     projectId: project
@@ -541,7 +566,7 @@ var createTimeEntriesForNovember = function (user, project) {
     createdBy: user,
     projectId: project
   }, {
-    endTime: "2014-11-01T15:00:14Z",
+    endTime: "2014-11-01T12:00:14Z",
     startTime: "2014-11-01T10:36:39Z",
     createdBy: user,
     projectId: project

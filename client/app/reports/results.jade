@@ -18,16 +18,14 @@
 					.col-sm-10
 						.btn-group
 							label.btn.btn-default(ng-model='dateSelection', btn-radio='\'today\'' ng-click='selectToday()') Today
-							label.btn.btn-default(ng-model='dateSelection', btn-radio='\'thisWeek\'' ng-click='selectThisWeek()') This week
-							label.btn.btn-default(ng-model='dateSelection', btn-radio='\'thisMonth\'' ng-click='selectThisMonth()') This month
-							label.btn.btn-default(ng-model='dateSelection', btn-radio='\'lastWeek\'' ng-click='selectLastWeek()') Last week
 							label.btn.btn-default(ng-model='dateSelection', btn-radio='\'yesterday\'' ng-click='selectYesterday()') Yesterday
+							label.btn.btn-default(ng-model='dateSelection', btn-radio='\'thisWeek\'' ng-click='selectThisWeek()') This week
+							label.btn.btn-default(ng-model='dateSelection', btn-radio='\'lastWeek\'' ng-click='selectLastWeek()') Last week
+							label.btn.btn-default(ng-model='dateSelection', btn-radio='\'thisMonth\'' ng-click='selectThisMonth()') This month
 							label.btn.btn-default(ng-model='dateSelection', btn-radio='\'lastMonth\'' ng-click='selectLastMonth()') Last month
-							label.btn.btn-default(ng-model='dateSelection', btn-radio='\'custom\'') Custom
-			.row(ng-show='dateSelection===\'custom\'')
+			.row
 				p.input-group
 					.col-md-2
-						label.control-label(for='inputStartDate') Date interval
 					.col-sm-5
 						.input-group
 							input#startDate.form-control(
@@ -60,7 +58,7 @@
 									th.col-md-3 Date
 									th.col-md-3 Time
 									th.col-md-2 Duration
-							tbody(ng-repeat='timeEntry in timeEntries | timeEntryFilter:selected')
+							tbody(ng-repeat='timeEntry in timeEntries | orderBy:orderByField | timeEntryFilter:selected')
 								tr
 									td.timentry-cell {{timeEntry.project.name}}
 									td.timentry-cell {{timeEntry.startTime | date: 'yyyy-MM-dd'}}
