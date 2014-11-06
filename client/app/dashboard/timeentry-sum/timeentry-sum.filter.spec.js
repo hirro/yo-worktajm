@@ -22,7 +22,7 @@ describe('Filter: timeentrySum', function () {
         endTime:   moment(1318874408800)
       }
     ];
-    expect(timeentrySum(timeEntryList)).toBe('0:00:20');
+    expect(timeentrySum(timeEntryList)).toBe('0.01');
   });
 
 });
