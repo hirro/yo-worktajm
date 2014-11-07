@@ -4,24 +4,68 @@
 		"selected_items":
 		[
 			[
-				"date",
-				"dateTimeString"
+				"create",
+				"createTimeEntriesForSeptember"
 			],
 			[
-				"modal",
+				"user",
+				"userIds"
+			],
+			[
+				"b",
+				"brand-primary"
+			],
+			[
+				"exi",
+				"existingTimeEntry"
+			],
+			[
+				"de",
+				"deferred"
+			],
+			[
+				"pa",
+				"padding-left"
+			],
+			[
+				"mar",
+				"margin-right"
+			],
+			[
+				"lef",
+				"margin-left"
+			],
+			[
+				"moda",
 				"modalParams"
 			],
 			[
+				"pro",
+				"projectId"
+			],
+			[
+				"find",
+				"findIndex"
+			],
+			[
+				"pr",
+				"projectNames"
+			],
+			[
+				"projec",
+				"projectName"
+			],
+			[
+				"project",
+				"projectNames"
+			],
+			[
+				"col",
+				"col-sm-10"
+			],
+			[
 				"form",
-				"form-control"
-			],
-			[
-				"input",
-				"input-group"
-			],
-			[
-				"is",
-				"isActive"
+				"form-group"
 			],
 			[
 				"mod",
@@ -56,10 +100,6 @@
 				"margin-bottom"
 			],
 			[
-				"mar",
-				"margin-top"
-			],
-			[
 				"margin",
 				"margin-top"
 			],
@@ -82,10 +122,6 @@
 			[
 				"back",
 				"background-color"
-			],
-			[
-				"projec",
-				"projectList"
 			],
 			[
 				"proj",
@@ -128,44 +164,26 @@
 	"buffers":
 	[
 		{
-			"file": "client/app/dashboard/timeEntries/timeEntries.jade",
+			"file": "client/app/account/settings/settings.jade",
 			"settings":
 			{
-				"buffer_size": 2353,
+				"buffer_size": 211,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "client/app/dashboard/timeEntries/timeEntries.controller.js",
+			"file": "client/app/account/settings/password.jade",
 			"settings":
 			{
-				"buffer_size": 6125,
+				"buffer_size": 786,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "Searching 155 files for \"XXX\"\n\n/Users/jiar/git/yo-worktajm/master/client/index.html:\n   31      <div ui-view=\"\"></div>\n   32  \n   33:     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->\n   34       <script>\n   35         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){\n   ..\n   38         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');\n   39  \n   40:        ga('create', 'UA-XXXXX-X');\n   41         ga('send', 'pageview');\n   42      </script>\n\n/Users/jiar/git/yo-worktajm/master/client/app/dashboard/timeEntries/timeEntries.controller.js:\n   70  \n   71      $scope.onUpdateTimeEntry = function (timeEntry, a) {\n   72:       console.log('XXX');\n   73        console.log(timeEntry);\n   74        console.log(a);\n\n/Users/jiar/git/yo-worktajm/master/client/app/landing/landing.controller.js:\n   37      };\n   38  \n   39:     // XXX Duplicated from login controller\n   40      $scope.loginOauth = function(provider) {\n   41        console.log('loginOauth - provider [%s]', provider);\n\n4 matches across 3 files\n",
+			"file": "client/app/account/settings/integration.jade",
 			"settings":
 			{
-				"buffer_size": 1084,
-				"line_ending": "Unix",
-				"name": "Find Results",
-				"scratch": true
-			}
-		},
-		{
-			"file": "client/app/dashboard/timeEntries/timeEntryModal.jade",
-			"settings":
-			{
-				"buffer_size": 2085,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "client/app/app.js",
-			"settings":
-			{
-				"buffer_size": 1737,
+				"buffer_size": 824,
 				"line_ending": "Unix"
 			}
 		}
@@ -210,38 +228,64 @@
 	},
 	"file_history":
 	[
-		"/Users/jiar/git/yo-worktajm/master/client/components/worktajm/worktajm.service.js",
-		"/Users/jiar/git/yo-worktajm/master/worktajm.sublime-project",
-		"/Users/jiar/git/yo-worktajm/master/bower.json",
-		"/Users/jiar/git/yo-worktajm/master/client/app/dashboard/timeEntries/timeEntries.controller.js",
-		"/Users/jiar/Dropbox/Applications/Sublime/Packages/User/Preferences.sublime-settings",
-		"/Users/jiar/git/yo-worktajm/master/client/app/dashboard/timeEntries/timeEntryModal.jade",
-		"/Users/jiar/git/yo-worktajm/master/package.json",
-		"/Users/jiar/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/jiar/git/yo-worktajm/master/client/app/account/settings/integration.jade",
+		"/Users/jiar/git/yo-worktajm/master/client/app/account/settings/integration",
+		"/Users/jiar/git/yo-worktajm/master/client/app/dashboard/timeentry-sum/timeentry-sum.filter.spec.js",
+		"/Users/jiar/git/yo-worktajm/master/server/config/seed.js",
 		"/Users/jiar/git/yo-worktajm/master/client/app/dashboard/timeEntries/timeEntries.jade",
+		"/Users/jiar/git/yo-worktajm/master/client/app/reports/results.jade",
 		"/Users/jiar/git/yo-worktajm/master/client/app/dashboard/timeentry-sum/timeentry-sum.filter.js",
+		"/Users/jiar/git/yo-worktajm/master/client/app/reports/reports.controller.js",
+		"/Users/jiar/git/yo-worktajm/master/client/components/worktajm/utility.service.js",
+		"/Users/jiar/git/yo-worktajm/master/client/app/dashboard/timeEntries/timeEntries.controller.js",
+		"/Users/jiar/git/yo-worktajm/master/client/components/worktajm/utility.service.spec.js",
+		"/Users/jiar/git/yo-worktajm/master/client/app/dashboard/timeEntries/timeEntries.controller.spec.js",
+		"/Users/jiar/git/yo-worktajm/master/client/app/reports/filters.jade",
+		"/Users/jiar/git/yo-worktajm/master/client/components/worktajm/worktajm.service.js",
+		"/Users/jiar/git/yo-worktajm/master/server/api/project/project.model.js",
+		"/Users/jiar/git/yo-worktajm/master/server/config/local.env.js",
+		"/Users/jiar/git/yo-worktajm/master/worktajm.sublime-project",
+		"/Users/jiar/git/yo-worktajm/master/node_modules/mongoose/lib/schema.js",
+		"/Users/jiar/git/yo-worktajm/master/node_modules/mongoose/lib/schema/objectid.js",
+		"/Users/jiar/git/yo-worktajm/master/server/api/user/user.model.js",
+		"/Users/jiar/git/yo-worktajm/master/client/components/resources/user.service.js",
+		"/Users/jiar/git/yo-worktajm/master/client/app/account/password/password.jade",
+		"/Users/jiar/git/yo-worktajm/master/client/app/account/password/settings.controller.js",
+		"/Users/jiar/git/yo-worktajm/master/client/app/account/account.js",
+		"/Users/jiar/git/yo-worktajm/master/client/app/app.js",
+		"/Users/jiar/git/yo-worktajm/master/bower.json",
+		"/Users/jiar/git/yo-worktajm/master/client/app/account/settings/password.jade",
+		"/Users/jiar/git/yo-worktajm/master/client/app/settings/settings.js",
+		"/Users/jiar/git/yo-worktajm/master/client/app/account/settings/settings.jade",
+		"/Users/jiar/git/yo-worktajm/master/client/app/account/signup/signup.jade",
+		"/Users/jiar/git/yo-worktajm/master/client/app/landing/landing.controller.js",
+		"/Users/jiar/git/yo-worktajm/master/client/app/landing/landing.jade",
+		"/Users/jiar/git/yo-worktajm/master/client/app/account/signup/signup.controller.js",
+		"/Users/jiar/git/yo-worktajm/master/client/app/navbar/navbar.jade",
+		"/Users/jiar/git/yo-worktajm/master/client/app/app.scss",
+		"/Users/jiar/git/yo-worktajm/master/client/bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/_navs.scss",
+		"/Users/jiar/git/yo-worktajm/master/client/app/variables.scss",
+		"/Users/jiar/git/yo-worktajm/master/client/app/dashboard/dashboard.jade",
+		"/Users/jiar/git/yo-worktajm/master/client/app/dashboard/timeEntries/timeEntries.scss",
+		"/Users/jiar/git/yo-worktajm/master/client/app/dashboard/timeEntries/timeEntryModal.jade",
+		"/Users/jiar/git/yo-worktajm/master/client/app/dashboard/dashboard.controller.js",
+		"/Users/jiar/git/yo-worktajm/master/Gruntfile.js",
+		"/Users/jiar/git/yo-worktajm/master/client/app/dashboard/timeEntryFilter/timeEntryFilter.filter.spec.js",
+		"/Users/jiar/git/yo-worktajm/master/karma.conf.js",
+		"/Users/jiar/git/yo-worktajm/master/.travis.yml",
+		"/Users/jiar/git/yo-worktajm/master/package.json",
 		"/Users/jiar/git/yo-worktajm/master/client/app/dashboard/projects/projects.controller.js",
 		"/Users/jiar/git/yo-worktajm/master/client/app/footer.jade",
-		"/Users/jiar/git/yo-worktajm/master/client/app/app.scss",
 		"/Users/jiar/git/yo-worktajm/master/client/app/account/login/login.scss",
-		"/Users/jiar/git/yo-worktajm/master/client/app/dashboard/timeentry-sum/timeentry-sum.filter.spec.js",
 		"/Users/jiar/git/yo-worktajm/master/client/app/dashboard/timeEntryFilter/timeEntryFilter.filter.js",
-		"/Users/jiar/git/yo-worktajm/master/client/app/dashboard/timeEntries/timeEntries.scss",
 		"/Users/jiar/git/yo-worktajm/master/bin/setup_gems.sh",
-		"/Users/jiar/git/yo-worktajm/master/Gruntfile.js",
 		"/Users/jiar/git/yo-worktajm/master/docs/requirements/reports.md",
 		"/Users/jiar/git/yo-worktajm/master/client/app/reports/reports.jade",
-		"/Users/jiar/git/yo-worktajm/master/client/app/reports/reports.controller.js",
-		"/Users/jiar/git/yo-worktajm/master/client/app/navbar/navbar.jade",
 		"/Users/jiar/git/yo-worktajm/master/client/components/socket/socket.service.js",
-		"/Users/jiar/git/yo-worktajm/master/client/app/app.js",
-		"/Users/jiar/git/yo-worktajm/master/client/app/dashboard/dashboard.jade",
 		"/Users/jiar/git/yo-worktajm/master/docs/dashboard.md",
 		"/Users/jiar/git/yo-worktajm/master/client/components/navbar-active/navbar-active.directive.spec.js",
 		"/Users/jiar/git/yo-worktajm/master/client/components/navbar-active/navbar-active.directive.js",
-		"/Users/jiar/git/yo-worktajm/master/client/app/landing/landing.jade",
 		"/Users/jiar/git/yo-worktajm/master/client/app/landing/landing.scss",
-		"/Users/jiar/git/yo-worktajm/master/client/app/landing/landing.controller.js",
 		"/Users/jiar/git/yo-worktajm/master/client/app/landing/landing.js",
 		"/Users/jiar/git/yo-worktajm/master/client/app/navbar/navbar.controller.js",
 		"/Users/jiar/git/yo-worktajm/master/client/app/account/login/login.controller.js",
@@ -252,22 +296,18 @@
 		"/Users/jiar/git/yo-worktajm/master/client/app/grey.scss",
 		"/Users/jiar/git/yo-worktajm/master/client/app/account/login/login.jade",
 		"/Users/jiar/git/yo-worktajm/master/client/app/landing/landing.controller.spec.js",
-		"/Users/jiar/git/yo-worktajm/master/karma.conf.js",
 		"/Users/jiar/git/yo-worktajm/master/client/app/bootswatch.less",
 		"/Users/jiar/git/yo-worktajm/master/server/app.js",
 		"/Users/jiar/git/yo-worktajm/master/client/index.html",
-		"/Users/jiar/git/yo-worktajm/master/client/app/account/signup/signup.controller.js",
 		"/Users/jiar/git/mideye/push-smsc/docs/test/smsc-loadtest.pl",
 		"/Users/jiar/git/mideye/push-smsc/docs/test/populate_devices.sql",
 		"/Users/jiar/git/yo-worktajm/master/server/api/user/user.model.spec.js",
 		"/Users/jiar/git/yo-worktajm/master/client/assets/images/agency/header-bg.jpg",
 		"/Users/jiar/git/yo-worktajm/master/client/app/animated-header/animated-header.directive.spec.js",
-		"/Users/jiar/git/yo-worktajm/master/client/app/dashboard/timeEntryFilter/timeEntryFilter.filter.spec.js",
 		"/Users/jiar/git/yo-worktajm/master/client/app/dashboard/projects/projects.jade",
 		"/Users/jiar/git/yo-worktajm/master/client/components/navbar/navbar.jade",
 		"/Users/jiar/git/yo-worktajm/master/client/app/animated-header/animated-header.directive.js",
 		"/Users/jiar/git/yo-worktajm/master/client/app/untitled folder/variables.less",
-		"/Users/jiar/git/yo-worktajm/master/client/app/variables.scss",
 		"/Users/jiar/git/yo-worktajm/master/client/app/dashboard/customers/customerModal.jade",
 		"/Users/jiar/git/yo-worktajm/master/client/app/landing/variables.scss",
 		"/Users/jiar/git/yo-worktajm/master/client/app/main/landing.jade",
@@ -321,7 +361,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 95.0,
+		"height": 0.0,
 		"where_history":
 		[
 			"",
@@ -340,21 +380,56 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"XXX",
-			"dropdown1",
-			"startTime",
-			"dropdown2",
-			"onDa",
-			"newTime",
-			"startTime",
-			">=1.2.26",
-			"1.2.*",
-			"update",
-			"$interval",
+			"<time-entry>",
+			"-31",
+			"<time-entry>",
+			"custom",
+			"1",
+			"<time-entry>",
+			"Worktajm",
+			"duration",
+			"createTimeEntry",
+			"onUpdate",
+			"editTimeEntry",
+			"createProject",
+			"endOfLastDayThisWeek",
+			"startOfFirstDayThisWeek",
+			"firstDayOfWeek",
+			"<time-entry>",
+			"createdBy: user,\n    projectId: project\n  },",
+			"\"endTime\"",
+			"<time-entry>",
+			"<coworkers>",
+			"<hours type=\"float\">662.54</hours>",
+			"ObjectID",
+			"Object",
+			"User",
+			"find",
+			"console.log('Admin: ', admin._id);\nUsers.",
+			"console.log('Admin: ', admin._id);\nUser.",
+			"nav-pill",
+			"  ",
+			"\n			 	",
+			"	 ",
+			"  ",
+			"		  ",
+			"  ",
+			"console.log",
+			"resolve",
 			"onUpdateTimeEntry",
-			"loglevel",
-			"loglevel=\"win\"",
-			"phant",
+			"create",
+			"projectNames",
+			"sdfs",
+			".col-sm-10",
+			".col-sm-2",
+			"startDatePickerOpened",
+			"Start",
+			"start",
+			"startDate",
+			"startTime",
+			"span",
+			"font",
+			"angular",
 			"endTime",
 			"input",
 			"timeEntryModal",
@@ -432,42 +507,7 @@
 			"route",
 			"main",
 			"wp:",
-			"wp:Toast",
-			"Toast",
-			"Notification",
-			"Project",
-			"project",
-			"Project",
-			"project",
-			"Project",
-			"projects2",
-			"name",
-			"}",
-			"'name':",
-			"name",
-			"awesomeThings",
-			"AAA",
-			"'",
-			"templateUrl",
-			"template",
-			"	",
-			"            ",
-			"	",
-			"function(",
-			"role",
-			"http",
-			"Restangular",
-			"geron",
-			"mail",
-			"EntityManager",
-			"LocalContainerEntityManagerFactoryBean",
-			"entityManagerFactory",
-			"EnableJpaRepositories",
-			"ComponentScan",
-			"@Import",
-			"WebMvcConfigurerAdapter",
-			"cors",
-			"WebApplicationInitializer"
+			"wp:Toast"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -490,23 +530,23 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "client/app/dashboard/timeEntries/timeEntries.jade",
+					"file": "client/app/account/settings/settings.jade",
 					"settings":
 					{
-						"buffer_size": 2353,
+						"buffer_size": 211,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								969,
-								560
+								149,
+								211
 							]
 						],
 						"settings":
@@ -668,6 +708,7 @@
 								"Python Django": "Python"
 							},
 							"codeintel_tooltips": "popup",
+							"color_scheme": "Packages/User/Color Highlighter/themes/Pastels on Dark.tmTheme",
 							"csslint_options":
 							{
 								"adjoining-classes": "warning",
@@ -713,33 +754,7 @@
 							"jshint_options":
 							{
 								"browser": true,
-								"camelcase": false,
-								"eqeqeq": true,
 								"evil": true,
-								"globals":
-								{
-									"beforeEach": false,
-									"describe": false,
-									"expect": false,
-									"spyOn": false
-								},
-								"indent": 2.0,
-								"predef":
-								[
-									"confirm",
-									"alert",
-									"jasmine",
-									"spyOn",
-									"it",
-									"console",
-									"describe",
-									"expect",
-									"beforeEach",
-									"waits",
-									"waitsFor",
-									"runs"
-								],
-								"quotmark": "single",
 								"regexdash": true,
 								"sub": true,
 								"trailing": true,
@@ -779,8 +794,8 @@
 							},
 							"sublimelinter_wrap_find": true,
 							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"tab_size": 3,
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -790,18 +805,18 @@
 				},
 				{
 					"buffer": 1,
-					"file": "client/app/dashboard/timeEntries/timeEntries.controller.js",
+					"file": "client/app/account/settings/password.jade",
 					"settings":
 					{
-						"buffer_size": 6125,
+						"buffer_size": 786,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								857,
-								857
+								0,
+								786
 							]
 						],
 						"settings":
@@ -963,6 +978,7 @@
 								"Python Django": "Python"
 							},
 							"codeintel_tooltips": "popup",
+							"color_scheme": "Packages/User/Color Highlighter/themes/Pastels on Dark.tmTheme",
 							"csslint_options":
 							{
 								"adjoining-classes": "warning",
@@ -1008,535 +1024,7 @@
 							"jshint_options":
 							{
 								"browser": true,
-								"camelcase": false,
-								"eqeqeq": true,
 								"evil": true,
-								"globals":
-								{
-									"beforeEach": false,
-									"describe": false,
-									"expect": false,
-									"spyOn": false
-								},
-								"indent": 2.0,
-								"predef":
-								[
-									"confirm",
-									"alert",
-									"jasmine",
-									"spyOn",
-									"it",
-									"console",
-									"describe",
-									"expect",
-									"beforeEach",
-									"waits",
-									"waitsFor",
-									"runs"
-								],
-								"quotmark": "single",
-								"regexdash": true,
-								"sub": true,
-								"trailing": true,
-								"wsh": true
-							},
-							"pep8": true,
-							"pep8_ignore":
-							[
-								"E501"
-							],
-							"perl_linter": "perlcritic",
-							"pyflakes_ignore":
-							[
-							],
-							"pyflakes_ignore_import_*": true,
-							"sublime_auto_complete": true,
-							"sublimelinter": true,
-							"sublimelinter_delay": 2.0,
-							"sublimelinter_disable":
-							[
-							],
-							"sublimelinter_executable_map":
-							{
-							},
-							"sublimelinter_fill_outlines": false,
-							"sublimelinter_gutter_marks": true,
-							"sublimelinter_gutter_marks_theme": "simple",
-							"sublimelinter_mark_style": "none",
-							"sublimelinter_notes": false,
-							"sublimelinter_objj_check_ascii": false,
-							"sublimelinter_popup_errors_on_save": false,
-							"sublimelinter_syntax_map":
-							{
-								"C++": "c",
-								"Python Django": "python",
-								"Ruby on Rails": "ruby"
-							},
-							"sublimelinter_wrap_find": true,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 142.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"settings":
-					{
-						"buffer_size": 1084,
-						"regions":
-						{
-							"match":
-							{
-								"flags": 112,
-								"regions":
-								[
-									[
-										171,
-										174
-									],
-									[
-										452,
-										455
-									],
-									[
-										716,
-										719
-									],
-									[
-										903,
-										906
-									]
-								],
-								"scope": ""
-							}
-						},
-						"selection":
-						[
-							[
-								718,
-								718
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"codeintel": true,
-							"codeintel_config":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2.0,
-									"codeintel_scan_files_in_project": false,
-									"javascriptExtraPaths":
-									[
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 5.0,
-									"codeintel_scan_files_in_project": false,
-									"phpExtraPaths":
-									[
-									]
-								},
-								"Python":
-								{
-									"env":
-									{
-									}
-								}
-							},
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_live": true,
-							"codeintel_live_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_max_recursive_dir_depth": 10.0,
-							"codeintel_scan_exclude_dir":
-							{
-								"JavaScript":
-								[
-									"/build/",
-									"/min/"
-								]
-							},
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-								"PyWin32",
-								"jQuery",
-								"Rails"
-							],
-							"codeintel_snippets": true,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"detect_indentation": false,
-							"output_tag": 1,
-							"result_base_dir": "",
-							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
-							"result_line_regex": "^ +([0-9]+):",
-							"scroll_past_end": true,
-							"sublime_auto_complete": true,
-							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "client/app/dashboard/timeEntries/timeEntryModal.jade",
-					"settings":
-					{
-						"buffer_size": 2085,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								319,
-								319
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"annotations":
-							[
-								"TODO",
-								"README",
-								"FIXME"
-							],
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"codeintel": true,
-							"codeintel_config":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2.0,
-									"codeintel_scan_files_in_project": false,
-									"javascriptExtraPaths":
-									[
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 5.0,
-									"codeintel_scan_files_in_project": false,
-									"phpExtraPaths":
-									[
-									]
-								},
-								"Python":
-								{
-									"env":
-									{
-									}
-								}
-							},
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_live": true,
-							"codeintel_live_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_max_recursive_dir_depth": 10.0,
-							"codeintel_scan_exclude_dir":
-							{
-								"JavaScript":
-								[
-									"/build/",
-									"/min/"
-								]
-							},
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-								"PyWin32",
-								"jQuery",
-								"Rails"
-							],
-							"codeintel_snippets": true,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"csslint_options":
-							{
-								"adjoining-classes": "warning",
-								"box-model": true,
-								"box-sizing": "warning",
-								"compatible-vendor-prefixes": "warning",
-								"display-property-grouping": true,
-								"duplicate-background-images": "warning",
-								"duplicate-properties": true,
-								"empty-rules": true,
-								"errors": true,
-								"fallback-colors": "warning",
-								"floats": "warning",
-								"font-faces": "warning",
-								"font-sizes": "warning",
-								"gradients": "warning",
-								"ids": "warning",
-								"import": "warning",
-								"important": "warning",
-								"known-properties": true,
-								"outline-none": "warning",
-								"overqualified-elements": "warning",
-								"qualified-headings": "warning",
-								"regex-selectors": "warning",
-								"rules-count": "warning",
-								"shorthand": "warning",
-								"star-property-hack": "warning",
-								"text-indent": "warning",
-								"underscore-property-hack": "warning",
-								"unique-headings": "warning",
-								"universal-selector": "warning",
-								"vendor-prefix": true,
-								"zero-units": "warning"
-							},
-							"gjslint_ignore":
-							[
-								110.0
-							],
-							"gjslint_options":
-							[
-							],
-							"javascript_linter": "jshint",
-							"jshint_options":
-							{
-								"browser": true,
-								"camelcase": false,
-								"eqeqeq": true,
-								"evil": true,
-								"globals":
-								{
-									"beforeEach": false,
-									"describe": false,
-									"expect": false,
-									"spyOn": false
-								},
-								"indent": 2.0,
-								"predef":
-								[
-									"confirm",
-									"alert",
-									"jasmine",
-									"spyOn",
-									"it",
-									"console",
-									"describe",
-									"expect",
-									"beforeEach",
-									"waits",
-									"waitsFor",
-									"runs"
-								],
-								"quotmark": "single",
 								"regexdash": true,
 								"sub": true,
 								"trailing": true,
@@ -1576,8 +1064,7 @@
 							},
 							"sublimelinter_wrap_find": true,
 							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1586,19 +1073,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "client/app/app.js",
+					"buffer": 2,
+					"file": "client/app/account/settings/integration.jade",
 					"settings":
 					{
-						"buffer_size": 1737,
+						"buffer_size": 824,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								232,
-								232
+								824,
+								824
 							]
 						],
 						"settings":
@@ -1760,6 +1247,7 @@
 								"Python Django": "Python"
 							},
 							"codeintel_tooltips": "popup",
+							"color_scheme": "Packages/User/Color Highlighter/themes/Pastels on Dark.tmTheme",
 							"csslint_options":
 							{
 								"adjoining-classes": "warning",
@@ -1805,33 +1293,7 @@
 							"jshint_options":
 							{
 								"browser": true,
-								"camelcase": false,
-								"eqeqeq": true,
 								"evil": true,
-								"globals":
-								{
-									"beforeEach": false,
-									"describe": false,
-									"expect": false,
-									"spyOn": false
-								},
-								"indent": 2.0,
-								"predef":
-								[
-									"confirm",
-									"alert",
-									"jasmine",
-									"spyOn",
-									"it",
-									"console",
-									"describe",
-									"expect",
-									"beforeEach",
-									"waits",
-									"waitsFor",
-									"runs"
-								],
-								"quotmark": "single",
 								"regexdash": true,
 								"sub": true,
 								"trailing": true,
@@ -1870,9 +1332,8 @@
 								"Ruby on Rails": "ruby"
 							},
 							"sublimelinter_wrap_find": true,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1933,12 +1394,64 @@
 		"selected_items":
 		[
 			[
-				"timeentries",
+				"settings",
+				"client/app/account/settings/settings.jade"
+			],
+			[
+				"seed.js",
+				"server/config/seed.js"
+			],
+			[
+				"seed",
+				"server/config/seed.js"
+			],
+			[
+				"worktajm",
+				"client/components/worktajm/worktajm.service.js"
+			],
+			[
+				"project",
+				"server/api/project/project.model.js"
+			],
+			[
+				"user.model",
+				"server/api/user/user.model.js"
+			],
+			[
+				"user",
+				"server/api/user/user.model.js"
+			],
+			[
+				"users.",
+				"client/components/resources/user.service.js"
+			],
+			[
+				"timeentries.controller.js",
 				"client/app/dashboard/timeEntries/timeEntries.controller.js"
 			],
 			[
-				"timeent",
-				"client/app/dashboard/timeEntries/timeEntries.controller.js"
+				"dash",
+				"client/app/dashboard/dashboard.controller.js"
+			],
+			[
+				"worktj",
+				"client/components/worktajm/worktajm.service.js"
+			],
+			[
+				"work",
+				"client/components/worktajm/worktajm.service.js"
+			],
+			[
+				"timeentry-sum.filter.js",
+				"client/app/dashboard/timeentry-sum/timeentry-sum.filter.js"
+			],
+			[
+				"karma",
+				"karma.conf.js"
+			],
+			[
+				"timeentyr",
+				"client/app/dashboard/timeEntryFilter/timeEntryFilter.filter.spec.js"
 			],
 			[
 				"sum",
@@ -1949,12 +1462,12 @@
 				"client/app/footer.jade"
 			],
 			[
-				"work",
-				"client/components/worktajm/worktajm.service.js"
-			],
-			[
 				"timeentryfilter",
 				"client/app/dashboard/timeEntryFilter/timeEntryFilter.filter.js"
+			],
+			[
+				"timeentries",
+				"client/app/dashboard/timeEntries/timeEntries.jade"
 			],
 			[
 				"landing.jade",
@@ -1967,10 +1480,6 @@
 			[
 				"landingcon",
 				"client/app/landing/landing.controller.spec.js"
-			],
-			[
-				"karma",
-				"karma.conf.js"
 			],
 			[
 				"landing.controller.js",
