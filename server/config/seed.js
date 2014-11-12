@@ -545,28 +545,63 @@ var createTimeEntriesForOctober = function (user, project) {
 var createTimeEntriesForNovember = function (user, project) {
   console.log('Creating time entries');
 
-  TimeEntry.create(  {
-    endTime: "2014-11-05T16:53:27Z",
+  TimeEntry.create({
+    endTime: "2014-11-10T15:47:59Z",  
+    startTime: "2014-11-10T12:13:08Z",
+    createdBy: user,
+    projectId: project
+  }, {
+    endTime: "2014-11-10T11:31:27Z",  
+    startTime: "2014-11-10T11:01:40Z",
+    createdBy: user,
+    projectId: project
+  }, {
+    endTime: "2014-11-10T10:54:35Z",  
+    startTime: "2014-11-10T09:43:26Z",
+    createdBy: user,
+    projectId: project
+  }, {
+    endTime: "2014-11-07T16:55:56Z",  
+    startTime: "2014-11-07T12:36:20Z",
+    createdBy: user,
+    projectId: project
+  }, {
+    endTime: "2014-11-07T11:55:06Z",  
+    startTime: "2014-11-07T09:55:35Z",
+    createdBy: user,
+    projectId: project
+  }, {
+    endTime: "2014-11-06T15:44:28Z",  
+    startTime: "2014-11-06T12:27:25Z",
+    createdBy: user,
+    projectId: project
+  }, {
+    endTime: "2014-11-06T11:53:23Z",  
+    startTime: "2014-11-06T09:46:17Z",
+    createdBy: user,
+    projectId: project
+  }, {
+    endTime: "2014-11-05T16:53:27Z",  
     startTime: "2014-11-05T12:44:18Z",
     createdBy: user,
     projectId: project
   }, {
-    endTime: "2014-11-05T12:08:57Z",
+    endTime: "2014-11-05T12:08:57Z",  
     startTime: "2014-11-05T09:13:16Z",
     createdBy: user,
     projectId: project
   }, {
-    endTime: "2014-11-04T15:51:22Z",
+    endTime: "2014-11-04T15:51:22Z",  
     startTime: "2014-11-04T11:46:45Z",
     createdBy: user,
     projectId: project
   }, {
-    endTime: "2014-11-04T11:27:47Z",
+    endTime: "2014-11-04T11:27:47Z",  
     startTime: "2014-11-04T08:10:21Z",
     createdBy: user,
     projectId: project
   }, {
-    endTime: "2014-11-01T12:00:14Z",
+    endTime: "2014-11-01T12:00:14Z",  
     startTime: "2014-11-01T10:36:39Z",
     createdBy: user,
     projectId: project

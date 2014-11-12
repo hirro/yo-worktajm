@@ -6,14 +6,6 @@
 			.row
 				p.input-group
 					.col-sm-2
-						label.control-label(for='reportType') Report type
-					.col-sm-10
-						.btn-group
-							label.btn.btn-default(ng-model='reportType', btn-radio='\'timesheet\'') Time sheet
-							label.btn.btn-default(ng-model='reportType', btn-radio='\'groupByProject\'') Group by project
-			.row
-				p.input-group
-					.col-sm-2
 						label.control-label(for='reportType') Date
 					.col-sm-10
 						.btn-group
@@ -24,7 +16,7 @@
 							label.btn.btn-default(ng-model='dateSelection', btn-radio='\'thisMonth\'' ng-click='selectThisMonth()') This month
 							label.btn.btn-default(ng-model='dateSelection', btn-radio='\'lastMonth\'' ng-click='selectLastMonth()') Last month
 			.row
-				p.input-group
+				.input-group
 					.col-md-2
 					.col-sm-5
 						.input-group
@@ -49,25 +41,28 @@
 							span(ng-click='openEndDatePicker($event)').input-group-addon
 								i.glyphicon.glyphicon-calendar
 			.row
-				p
-					.col-xs-12
-						table.table.table-condensed.table-hover.time-entry-table
-							thead
-								tr
-									th.col-md-5 Project
-									th.col-md-3 Date
-									th.col-md-3 Time
-									th.col-md-2 Duration
-							tbody(ng-repeat='timeEntry in timeEntries | orderBy:orderByField | timeEntryFilter:selected')
-								tr
-									td.timentry-cell {{timeEntry.project.name}}
-									td.timentry-cell {{timeEntry.startTime | date: 'yyyy-MM-dd'}}
-									td.timentry-cell {{timeEntry.startTime | date: 'HH:mm:ss'}}-{{timeEntry.endTime | date: 'HH:mm:ss'}}
-									td.timentry-cell {{duration(timeEntry)}}
-							tfoot
-								tr
-									td Sum
-									td
-									td
-									td {{timeEntries | timeEntryFilter:selected | timeentrySum }}
+				.col-xs-12
+					h3 Week view
+			.row
+				.col-xs-12
+					h3 Time Entries
+					table.table.table-condensed.table-hover.time-entry-table
+						thead
+							tr
+								th.col-md-5 Project
+								th.col-md-3 Date
+								th.col-md-3 Time
+								th.col-md-2 Duration
+						tbody(ng-repeat='timeEntry in timeEntries | orderBy:orderByField | timeEntryFilter:selected')
+							tr
+								td.timentry-cell {{timeEntry.project.name}}
+								td.timentry-cell {{timeEntry.startTime | date: 'yyyy-MM-dd'}}
+								td.timentry-cell {{timeEntry.startTime | date: 'HH:mm:ss'}}-{{timeEntry.endTime | date: 'HH:mm:ss'}}
+								td.timentry-cell {{duration(timeEntry)}}
+						tfoot
+							tr
+								td Sum
+								td
+								td
+								td {{timeEntries | timeEntryFilter:selected | timeentrySum }}
 
