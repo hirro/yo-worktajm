@@ -4,7 +4,7 @@
 [![Code Climate](https://codeclimate.com/github/hirro/yo-worktajm.png)](https://codeclimate.com/github/hirro/yo-worktajm)
 
 # WorkTajm
-Dev build hosted at: http://worktajm.herokuapp.com/
+Dev build hosted at: http://www.worktajm.com/
 
 ***
 

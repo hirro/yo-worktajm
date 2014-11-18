@@ -30,5 +30,19 @@ describe('Service: worktajm.util', function () {
         })
       ).toBe('0:01:06');
     });
+
+    it('should calculate time difference in milliseconds correctly', function () {
+      expect(
+        WorktajmUtil.durationInMs({
+          startTime: '2014-10-19T22:59:40.770Z',
+          endTime: '2014-10-19T23:00:47.499Z'
+        })
+      ).toBe(66729);
+    });
+
+    it('should build a 2 (rows) x 3 (columns) matrix with 0 values', function () {
+      expect(WorktajmUtil.buildMatrix(2, 3)).toEqual([[0, 0, 0], [0, 0, 0]]);
+    });
+
   });
 });
