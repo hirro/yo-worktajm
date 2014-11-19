@@ -22,11 +22,11 @@ angular.module('worktajmApp')
       },
       buildMatrix: function (rows, columns) {
         var result = [];
-        var row = [];
-        for (var m = 0; m < columns; m++) {
-          row.push(0);
-        }
         for (var n = 0; n < rows; n++) {
+          var row = [];
+          for (var m = 0; m < columns; m++) {
+            row.push(0);
+          }
           result.push(row);
         }
         return result;

@@ -81,21 +81,19 @@ angular.module('worktajmApp')
           return timeEntry.timeUnit;
         });
 
+        console.log(timeEntriesGroupedByTimeUnit);
+
         // Divide the subgroups by project and calculate total per project and time unit
         _.each(timeEntriesGroupedByTimeUnit, function (timeEntriesPerTimeUnit, timeUnit) {
-          console.log({
-            timeUnit: timeUnit,
-            timeEntriesPerTimeUnit: timeEntriesPerTimeUnit.length
-          });
+          // console.log({
+          //   timeUnit: timeUnit,
+          //   timeEntriesPerTimeUnit: timeEntriesPerTimeUnit.length
+          // });
           var timeEntriesPerTimeUnitGroupedByProject = _.groupBy(timeEntriesPerTimeUnit, function(timeEntry) {
             return timeEntry.projectId;
           });
 
           _.each(timeEntriesPerTimeUnitGroupedByProject, function (timeEntriesPerTimeUnitPerProject, project) {
-            console.log('   ', {
-              project: project,
-              timeEntriesPerTimeUnitPerProject: timeEntriesPerTimeUnitPerProject.length
-            });
             
             // Calculate sum
             var projectSum = 0;
@@ -105,10 +103,19 @@ angular.module('worktajmApp')
 
             var projectIndex = _.indexOf(result.projects, project);
             var timeUnitIndex = _.indexOf(result.timeUnits, timeUnit);
-            console.log({ week: timeUnitIndex, project: projectIndex, sum:  projectSum});
+            // console.log('   ', {
+            //   project: project,
+            //   timeEntriesPerTimeUnitPerProject: timeEntriesPerTimeUnitPerProject.length,
+            //   timeUnit: timeUnit,
+            //   sum:  projectSum/(1000*60*60),
+            //   row: timeUnitIndex,
+            //   column: projectIndex
+            // });
 
-            if ((projectIndex > 0) && (timeUnitIndex > 0)) {
-              result.report[timeUnitIndex][projectIndex] = projectSum;
+            if ((projectIndex >= 0) && (timeUnitIndex >= 0)) {
+              // console.log(result.report[timeUnitIndex]);
+              result.report[timeUnitIndex][projectIndex] = (projectSum/(1000*60*60)).toFixed(1);
+              // console.log(result.report);
             }
           });
         });
