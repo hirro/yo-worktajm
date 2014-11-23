@@ -21,12 +21,10 @@ angular.module('worktajmApp')
           });
           timeEntries[activeTimeEntryIndex].endTime = moment().utc().format();
           timeEntries[activeTimeEntryIndex].name = 'Bajskorv';
-          console.log('Updated active time entry');
         }
       },
 
       load: function () {
-        console.log('');
       },
 
       getProjects: function () {
@@ -48,7 +46,6 @@ angular.module('worktajmApp')
       projectsCallback: function (event, project) {
         if ('updated' === event) {
           // Propagate changes to indexed list
-          console.log('projectsCallback - updated');
           projectsIndexedById[project._id] = project;
 
           // Find projects with matching project and update
@@ -58,7 +55,6 @@ angular.module('worktajmApp')
             }
           });
         } else if ('created' === event) {
-          console.log('projectsCallback - created');
           projectsIndexedById[project._id] = project;
         } else {
           console.log('projectsCallback - Unhandled event [%s]', event);
@@ -68,10 +64,8 @@ angular.module('worktajmApp')
 
       timeEntryCallback: function (event, timeEntry) {
         if ('updated' === event) {
-          console.log('timeEntryCallback - updated');
           timeEntry.project = projectsIndexedById[timeEntry.projectId];
         } else if ('created' === event) {
-          console.log('timeEntryCallback - created time entry, fetching associated project');
           timeEntry.project = projectsIndexedById[timeEntry.projectId];
         } else {
           console.log('timeEntryCallback - Unhandled event [%s]', event);
@@ -115,14 +109,12 @@ angular.module('worktajmApp')
       loadCurrentUser: function () {
         var deferred = $q.defer();
         if (currentUser._id) {
-          console.log('Using cached user id: [%s]', currentUser._id);
           deferred.resolve(currentUser);
         } else {
           $http.get('/api/users/me').success(function (userEntry) {
             currentUser = userEntry;
             socket.syncUpdatesOnObject('user', currentUser);
             deferred.resolve(currentUser);
-            console.log('getCurrentUser - id: [%s]', currentUser._id);
           });
         }
         return deferred.promise;
@@ -146,7 +138,6 @@ angular.module('worktajmApp')
               currentUser.activeTimeEntryId = newTimeEntryId;
               currentUser.activeProjectId = newProjectId;
               deferred.resolve();
-              console.log('setActiveTimeEntry - User updated');
             },
             function (error) {
               console.log('Failed to setActiveTimeEntry');
@@ -175,7 +166,6 @@ angular.module('worktajmApp')
             }
           );
         } else {
-          console.log('User does not have any active timer');
           deferred.resolve(null);
         }
         return deferred.promise;
@@ -257,7 +247,6 @@ angular.module('worktajmApp')
             id: project._id
           },
           function (project) {
-            console.log('Deleted project');
             cb(project);
             deferred.resolve(project);
           },
@@ -323,7 +312,6 @@ angular.module('worktajmApp')
             id: timeEntry._id
           },
           function (timeEntry) {
-            console.log('Deleted time entry');
             cb(timeEntry);
             deferred.resolve(timeEntry);
           },
@@ -341,10 +329,7 @@ angular.module('worktajmApp')
         var deferred = $q.defer();
         var newTimeEntry = null;
 
-        console.log('startTimer - project id [%s]', project._id);
-
         var resolveTimeEntry = function () {
-          console.log('startTimer - resolveTimeEntry');
           deferred.resolve(newTimeEntry);
         };
         var reportProblem = function (err) {
@@ -367,14 +352,12 @@ angular.module('worktajmApp')
       },
 
       stopTimer: function () {
-        console.log('stopTimer');
         var deferred = $q.defer();
         var self = this;
         activeTimeEntry = null;
 
         var stopCurrentTimeEntry = function (timeEntry) {
           if (timeEntry) {
-            console.log('stopCurrentTimeEntry');
             var now = moment();
             now.millisecond(0);
             timeEntry.endTime = now;

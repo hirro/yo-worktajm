@@ -25,6 +25,7 @@
 								datepicker-popup='{{dateFormat}}', 
 								ng-model='selected.from', 
 								is-open='startDatePickerOpened', 
+								ng-change='updateSummary',
 								ng-required='true', 
 								close-text='Close')
 							span(ng-click='openStartDatePicker($event)').input-group-addon
@@ -35,6 +36,7 @@
 								type='text', 
 								datepicker-popup='{{dateFormat}}', 
 								ng-model='selected.to', 
+								ng-change='updateSummary',
 								is-open='endDatePickerOpened', 
 								ng-required='true', 
 								close-text='Close')
@@ -66,3 +68,16 @@
 								td
 								td {{timeEntries | timeEntryFilter:selected | timeentrySum }}
 
+			.row
+				.col-xs-12
+					h3 Grouped by project
+					table.table.table-condensed.table-hover.time-entry-table
+						thead
+							tr
+								th Project
+								th(ng-repeat='timeUnit in summary.timeUnits') {{timeUnit}}
+								th Total
+						tbody
+							tr(ng-repeat='project in summary.projects')
+								td {{project}}
+								td(ng-repeat='timeUnit in summary.timeUnits').timentry-cell {{summary[timeUnit][project]}}

@@ -44,5 +44,14 @@ describe('Service: worktajm.util', function () {
       expect(WorktajmUtil.buildMatrix(2, 3)).toEqual([[0, 0, 0], [0, 0, 0]]);
     });
 
+    it('should build a 2 (rows) x 3 (columns) result matrix with 0 values', function () {
+      var expectedResult = {
+        'a': { '1': 0, '2': 0 },
+        'b': { '1': 0, '2': 0 },
+        'c': { '1': 0, '2': 0 }
+      };
+      expect(WorktajmUtil.buildJsonMatrix(['a', 'b', 'c'], ['1', '2'])).toEqual(expectedResult);
+    });
+
   });
 });

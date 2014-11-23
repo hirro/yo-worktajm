@@ -30,6 +30,17 @@ angular.module('worktajmApp')
           result.push(row);
         }
         return result;
+      },
+      buildJsonMatrix: function (rowNames, columnNames) {
+        var result = {};
+        _.each(rowNames, function (rowName) {
+          var resultColumns = {};
+          _.each(columnNames, function(columnName) {
+            resultColumns[columnName] = 0;
+          });
+          result[rowName] = resultColumns;
+        });
+        return result;
       }
     };
     return svc;

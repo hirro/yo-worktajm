@@ -23,7 +23,7 @@ angular.module('worktajmApp')
         var result = [];
         var i;
 
-        if (endDate <= startDate) {
+        if (endDate < startDate) {
           return null;
         }
 
@@ -43,28 +43,43 @@ angular.module('worktajmApp')
         return result;
       },
 
-      getPivot: function (timeEntries, timeUnit, startDateString, endDateString, selectedProjectsIds) {
-        var result = {};
+      getPivot: function (params) {
+
+        // Params
+        var timeEntries = params.timeEntries,
+          timeUnit = params.timeUnit,
+          startDateString = params.startDate,
+          endDateString = params.endDate,
+          selectedProjectsIds = params.selectedProjectsIds;
 
         // Parse the start time and end time
         var startDate = moment(startDateString);
         var endDate = moment(endDateString);
 
         // Build the array of columns for the date range
-        var dateVector = svc.getDateVector({
+        var timeUnits = svc.getDateVector({
           timeUnit: timeUnit,
           startDate: startDate,
           endDate: endDate,
           timeEntries: timeEntries
         });
-        result.timeUnits = _.union(result.timeUnits, dateVector);
 
         // Get a list of all involved projects filtered by selected project id (if provided)
         var projectsIds = _.uniq(_.pluck(timeEntries, 'projectId'));
-        result.projects = projectsIds;
+        var projects = projectsIds;
 
-        // Build NxM result matrix with 0 as initial value
-        result.report = WorktajmUtil.buildMatrix(result.timeUnits.length, result.projects.length);
+        // Build result
+        var report = WorktajmUtil.buildJsonMatrix(timeUnits, projects);
+
+        var result = {
+          startTime: startDate.format('YYYY-MM-DD'),
+          endTime: endDate.format('YYYY-MM-DD'),
+          timeUnits: timeUnits,
+          projects: projects,
+          report: report
+        };
+
+        console.log(result);
 
         // Filter time entries by projects
         var filteredTimeEntries = _.filter(timeEntries, function (timeEntry) {
@@ -81,7 +96,7 @@ angular.module('worktajmApp')
           return timeEntry.timeUnit;
         });
 
-        console.log(timeEntriesGroupedByTimeUnit);
+        //console.log(timeEntriesGroupedByTimeUnit);
 
         // Divide the subgroups by project and calculate total per project and time unit
         _.each(timeEntriesGroupedByTimeUnit, function (timeEntriesPerTimeUnit, timeUnit) {
@@ -101,21 +116,12 @@ angular.module('worktajmApp')
               projectSum += WorktajmUtil.durationInMs(timeEntry);
             });
 
-            var projectIndex = _.indexOf(result.projects, project);
-            var timeUnitIndex = _.indexOf(result.timeUnits, timeUnit);
-            // console.log('   ', {
-            //   project: project,
-            //   timeEntriesPerTimeUnitPerProject: timeEntriesPerTimeUnitPerProject.length,
-            //   timeUnit: timeUnit,
-            //   sum:  projectSum/(1000*60*60),
-            //   row: timeUnitIndex,
-            //   column: projectIndex
-            // });
-
-            if ((projectIndex >= 0) && (timeUnitIndex >= 0)) {
-              // console.log(result.report[timeUnitIndex]);
-              result.report[timeUnitIndex][projectIndex] = (projectSum/(1000*60*60)).toFixed(1);
-              // console.log(result.report);
+            if (result.report[timeUnit] === undefined) {
+              console.log('Failed to find time unit [', timeUnit, '] in array ', result.report);
+            } else if (result.report[timeUnit][project] === undefined) {
+              console.log('Failed to find project [', project, '] in array ', result.report);
+            } else {
+              result.report[timeUnit][project] = (projectSum/(1000*60*60)).toFixed(1);
             }
           });
         });

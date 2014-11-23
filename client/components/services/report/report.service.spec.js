@@ -87,6 +87,28 @@ describe('Service: Report', function () {
     );
   });
 
+  it('should get all weeks between the provided dates', function () {
+    var params = {
+      timeUnit: 'w',
+      startDate: moment('2014-09-01'),
+      endDate: moment('2014-09-02')
+    };
+    expect(Report.getDateVector(params)).toEqual(
+      ['36' ]
+    );
+  });
+
+  it('should get all weeks between the provided date', function () {
+    var params = {
+      timeUnit: 'w',
+      startDate: moment('2014-09-01'),
+      endDate: moment('2014-09-01')
+    };
+    expect(Report.getDateVector(params)).toEqual(
+      ['36' ]
+    );
+  });
+
   it('should get all months between the provided dates', function () {
     var params = {
       timeUnit: 'M',
@@ -99,31 +121,42 @@ describe('Service: Report', function () {
     );
   });
 
-  it('should build a report by weeks', function () {
-    expect(Report.getPivot(timeEntries, 'week', '2014-09-01', '2014-09-30', null)).toEqual({
+  iit('should build a report by weeks', function () {
+
+    var expectedResult = {
+      startDate: '2014-09-01',
+      endDate: '2014-09-30',
       timeUnits: [ '36', '37', '38', '39', '40' ],
       projects: [ projectA._id, projectB._id ],
-      report: [
-        [ (7*8).toFixed(1), (7*8).toFixed(1) ],
-        [ (5*8).toFixed(1), (6*8).toFixed(1) ],
-        [ (3*8).toFixed(1), (7*8).toFixed(1) ],
-        [ (8*8).toFixed(1), (3*8).toFixed(1) ],
-        [ (1*8).toFixed(1), (2*8).toFixed(1) ]
-      ]
-    });
+      report: {
+        '36': {
+          '2234234': (7*8).toFixed(1),
+          '2234235': (7*8).toFixed(1)
+        },
+        '37': {
+          '2234234': (5*8).toFixed(1),
+          '2234235': (6*8).toFixed(1)
+        },
+        '38': {
+          '2234234': (3*8).toFixed(1),
+          '2234235': (7*8).toFixed(1)
+        },
+        '39': {
+          '2234234': (8*8).toFixed(1),
+          '2234235': (3*8).toFixed(1),
+        },
+        '40': {
+          '2234234': (1*8).toFixed(1),
+          '2234235': (2*8).toFixed(1)
+        }
+      }
+    };
+    var params = {
+      timeEntries: timeEntries,
+      timeUnit: 'week',
+      startTime: '2014-09-01',
+      endTime: '2014-09-30'
+    };
+    expect(Report.getPivot(params)).toEqual(expectedResult);
   });
-
-  xit('should build a report by months', function () {
-    expect(Report.getPivot(timeEntries, 'month', '2014-09-01', '2014-12-14', null)).toEqual({
-      timeUnits: [ '2014-09-01', '2014-10-01', '2014-11-01', '2014-12-01' ],
-      projects: [ projectA._id, projectB._id ],
-      report: [
-        [ (24*8).toFixed(1), (25*8).toFixed(1) ],
-        [ ( 0*8).toFixed(1), ( 0*8).toFixed(1) ],
-        [ ( 0*8).toFixed(1), ( 0*8).toFixed(1) ],
-        [ ( 0*8).toFixed(1), ( 0*8).toFixed(1) ]
-      ]
-    });
-  });
-
 });
