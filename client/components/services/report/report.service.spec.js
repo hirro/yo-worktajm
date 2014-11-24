@@ -121,7 +121,7 @@ describe('Service: Report', function () {
     );
   });
 
-  iit('should build a report by weeks', function () {
+  it('should build a report by weeks', function () {
 
     var expectedResult = {
       startDate: '2014-09-01',
@@ -154,8 +154,8 @@ describe('Service: Report', function () {
     var params = {
       timeEntries: timeEntries,
       timeUnit: 'week',
-      startTime: '2014-09-01',
-      endTime: '2014-09-30'
+      startDate: '2014-09-01',
+      endDate: '2014-09-30'
     };
     expect(Report.getPivot(params)).toEqual(expectedResult);
   });

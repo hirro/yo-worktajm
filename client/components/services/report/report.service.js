@@ -16,8 +16,8 @@ angular.module('worktajmApp')
 
       getDateVector: function (params) {
 
-        var startDate = params.startDate;
-        var endDate = params.endDate;
+        var startDate = moment(params.startDate);
+        var endDate = moment(params.endDate);
         var timeUnit = params.timeUnit;
         var timeEntries = params.timeEntries;
         var result = [];
@@ -59,7 +59,7 @@ angular.module('worktajmApp')
         // Build the array of columns for the date range
         var timeUnits = svc.getDateVector({
           timeUnit: timeUnit,
-          startDate: startDate,
+          startDate: _.clone(startDate),
           endDate: endDate,
           timeEntries: timeEntries
         });
@@ -71,15 +71,14 @@ angular.module('worktajmApp')
         // Build result
         var report = WorktajmUtil.buildJsonMatrix(timeUnits, projects);
 
+        // Build result struct
         var result = {
-          startTime: startDate.format('YYYY-MM-DD'),
-          endTime: endDate.format('YYYY-MM-DD'),
+          startDate: startDate.format('YYYY-MM-DD'),
+          endDate: endDate.format('YYYY-MM-DD'),
           timeUnits: timeUnits,
           projects: projects,
           report: report
         };
-
-        console.log(result);
 
         // Filter time entries by projects
         var filteredTimeEntries = _.filter(timeEntries, function (timeEntry) {
@@ -96,14 +95,8 @@ angular.module('worktajmApp')
           return timeEntry.timeUnit;
         });
 
-        //console.log(timeEntriesGroupedByTimeUnit);
-
         // Divide the subgroups by project and calculate total per project and time unit
         _.each(timeEntriesGroupedByTimeUnit, function (timeEntriesPerTimeUnit, timeUnit) {
-          // console.log({
-          //   timeUnit: timeUnit,
-          //   timeEntriesPerTimeUnit: timeEntriesPerTimeUnit.length
-          // });
           var timeEntriesPerTimeUnitGroupedByProject = _.groupBy(timeEntriesPerTimeUnit, function(timeEntry) {
             return timeEntry.projectId;
           });
