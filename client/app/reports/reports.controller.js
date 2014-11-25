@@ -119,7 +119,12 @@ angular.module('worktajmApp')
 
     $scope.updateSummary = function() {
       console.log('updateSummary');
-      $scope.summary = Report.getPivot($scope.timeEntries, 'week', $scope.selected.from, $scope.selected.to);
+      $scope.summary = Report.getPivot({
+        timeEntries: $scope.timeEntries,
+        timeUnit: 'week',
+        startDate: $scope.selected.from,
+        endDate: $scope.selected.to
+      });
       console.log($scope.summary);
     };
 

@@ -79,8 +79,8 @@ describe('Service: Report', function () {
   it('should get all weeks between the provided dates', function () {
     var params = {
       timeUnit: 'w',
-      startDate: moment('2014-09-01'),
-      endDate: moment('2014-09-30')
+      startDate: '2014-09-01',
+      endDate: '2014-09-30'
     };
     expect(Report.getDateVector(params)).toEqual(
       ['36', '37', '38', '39', '40']
@@ -90,8 +90,8 @@ describe('Service: Report', function () {
   it('should get all weeks between the provided dates', function () {
     var params = {
       timeUnit: 'w',
-      startDate: moment('2014-09-01'),
-      endDate: moment('2014-09-02')
+      startDate: '2014-09-01',
+      endDate: '2014-09-02'
     };
     expect(Report.getDateVector(params)).toEqual(
       ['36' ]
@@ -101,8 +101,8 @@ describe('Service: Report', function () {
   it('should get all weeks between the provided date', function () {
     var params = {
       timeUnit: 'w',
-      startDate: moment('2014-09-01'),
-      endDate: moment('2014-09-01')
+      startDate: '2014-09-01',
+      endDate: '2014-09-01'
     };
     expect(Report.getDateVector(params)).toEqual(
       ['36' ]
@@ -112,8 +112,8 @@ describe('Service: Report', function () {
   it('should get all months between the provided dates', function () {
     var params = {
       timeUnit: 'M',
-      startDate: moment('2014-01-04'),
-      endDate: moment('2014-09-30'),
+      startDate: '2014-01-04',
+      endDate: '2014-09-30',
       monthFormat: 'YYYY-MM-DD'
     };
     expect(Report.getDateVector(params)).toEqual(

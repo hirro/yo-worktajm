@@ -16,10 +16,21 @@ angular.module('worktajmApp')
 
       getDateVector: function (params) {
 
-        var startDate = moment(params.startDate);
-        var endDate = moment(params.endDate);
-        var timeUnit = params.timeUnit;
-        var timeEntries = params.timeEntries;
+        // Validate
+        if (!WorktajmUtil.validateParams(params, [
+          { key: 'timeUnit', required: true },
+          { key: 'startDate', required: true },
+          { key: 'endDate', required: true }
+        ])) {
+          throw 'Invalid parameters';
+        }
+
+        // Params
+        var timeEntries = params.timeEntries,
+          timeUnit = params.timeUnit,
+          startDate = moment(params.startDate),
+          endDate = moment(params.endDate);
+
         var result = [];
         var i;
 
@@ -45,24 +56,25 @@ angular.module('worktajmApp')
 
       getPivot: function (params) {
 
+        // Validate
+        if (!WorktajmUtil.validateParams(params, [
+          { key: 'timeEntries', required: true},
+          { key: 'timeUnit', required: true },
+          { key: 'startDate', required: true },
+          { key: 'endDate', required: true }
+        ])) {
+          throw 'Invalid params';
+        }
+
         // Params
         var timeEntries = params.timeEntries,
           timeUnit = params.timeUnit,
-          startDateString = params.startDate,
-          endDateString = params.endDate,
+          startDate = moment(params.startDate),
+          endDate = moment(params.endDate),
           selectedProjectsIds = params.selectedProjectsIds;
 
-        // Parse the start time and end time
-        var startDate = moment(startDateString);
-        var endDate = moment(endDateString);
-
         // Build the array of columns for the date range
-        var timeUnits = svc.getDateVector({
-          timeUnit: timeUnit,
-          startDate: _.clone(startDate),
-          endDate: endDate,
-          timeEntries: timeEntries
-        });
+        var timeUnits = svc.getDateVector(params);
 
         // Get a list of all involved projects filtered by selected project id (if provided)
         var projectsIds = _.uniq(_.pluck(timeEntries, 'projectId'));
@@ -109,11 +121,7 @@ angular.module('worktajmApp')
               projectSum += WorktajmUtil.durationInMs(timeEntry);
             });
 
-            if (result.report[timeUnit] === undefined) {
-              console.log('Failed to find time unit [', timeUnit, '] in array ', result.report);
-            } else if (result.report[timeUnit][project] === undefined) {
-              console.log('Failed to find project [', project, '] in array ', result.report);
-            } else {
+            if ((result.report[timeUnit] !== undefined) && (result.report[timeUnit][project] !== undefined)) {
               result.report[timeUnit][project] = (projectSum/(1000*60*60)).toFixed(1);
             }
           });

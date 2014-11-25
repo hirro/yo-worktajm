@@ -53,5 +53,13 @@ describe('Service: worktajm.util', function () {
       expect(WorktajmUtil.buildJsonMatrix(['a', 'b', 'c'], ['1', '2'])).toEqual(expectedResult);
     });
 
+    it('should validate the parameters (success)', function () {
+      expect(WorktajmUtil.validateParams({a: true}, [{ key: 'a',  required: true }])).toBe(true);
+    });
+
+    it('should not validate the missing parameters (fail)', function () {
+      expect(WorktajmUtil.validateParams({a: true}, [{ key: 'b',  required: true }])).toBe(false);
+    });
+
   });
 });

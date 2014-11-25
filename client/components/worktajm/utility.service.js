@@ -41,6 +41,16 @@ angular.module('worktajmApp')
           result[rowName] = resultColumns;
         });
         return result;
+      },
+      validateParams: function (params, spec) {
+        var result = true;
+        _.each(spec, function (item) {
+          if (item.required && !params[item.key]) {
+            console.log('Parameter ' + item.key + ' is required');
+            result = false;
+          }
+        });
+        return result;
       }
     };
     return svc;
