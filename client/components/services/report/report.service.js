@@ -26,8 +26,7 @@ angular.module('worktajmApp')
         }
 
         // Params
-        var timeEntries = params.timeEntries,
-          timeUnit = params.timeUnit,
+        var timeUnit = params.timeUnit,
           startDate = moment(params.startDate),
           endDate = moment(params.endDate);
 
@@ -70,8 +69,7 @@ angular.module('worktajmApp')
         var timeEntries = params.timeEntries,
           timeUnit = params.timeUnit,
           startDate = moment(params.startDate),
-          endDate = moment(params.endDate),
-          selectedProjectsIds = params.selectedProjectsIds;
+          endDate = moment(params.endDate);
 
         // Build the array of columns for the date range
         var timeUnits = svc.getDateVector(params);
