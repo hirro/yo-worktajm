@@ -1,0 +1,50 @@
+.panel.panel-default
+		.panel-heading
+			.panel-title
+				h4.panel-title Filters
+		.panel-body
+			.row
+				.col-xs-12
+					h3 Date
+			.row
+				p.input-group
+					.col-xs-11
+						label.control-label(for='reportType') 
+						.btn-group
+							label.btn.btn-default(ng-model='dateSelection', btn-radio='\'today\'' ng-click='selectToday()') Today
+							label.btn.btn-default(ng-model='dateSelection', btn-radio='\'yesterday\'' ng-click='selectYesterday()') Yesterday
+							label.btn.btn-default(ng-model='dateSelection', btn-radio='\'thisWeek\'' ng-click='selectThisWeek()') This week
+							label.btn.btn-default(ng-model='dateSelection', btn-radio='\'lastWeek\'' ng-click='selectLastWeek()') Last week
+							label.btn.btn-default(ng-model='dateSelection', btn-radio='\'thisMonth\'' ng-click='selectThisMonth()') This month
+							label.btn.btn-default(ng-model='dateSelection', btn-radio='\'lastMonth\'' ng-click='selectLastMonth()') Last month
+			.row
+				br
+			.row
+				.input-group
+					.col-xs-11.col-sm-5
+						label.control-label(for='startDate') From
+						.input-group
+							input#startDate.form-control(
+								type='text', 
+								datepicker-popup='{{dateFormat}}', 
+								ng-model='selected.from', 
+								is-open='startDatePickerOpened', 
+								ng-change='updateSummary',
+								ng-required='true', 
+								close-text='Close')
+							span(ng-click='openStartDatePicker($event)').input-group-addon
+								i.glyphicon.glyphicon-calendar
+					.col-xs-1
+					.col-xs-11.col-sm-5
+						label.control-label(for='endDate') To
+						.input-group
+							input#endDate.form-control(
+								type='text', 
+								datepicker-popup='{{dateFormat}}', 
+								ng-model='selected.to', 
+								ng-change='updateSummary',
+								is-open='endDatePickerOpened', 
+								ng-required='true', 
+								close-text='Close')
+							span(ng-click='openEndDatePicker($event)').input-group-addon
+								i.glyphicon.glyphicon-calendar

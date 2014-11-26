@@ -109,6 +109,17 @@ describe('Service: Report', function () {
     );
   });
 
+  it('should get all weeks between the provided date', function () {
+    var params = {
+      timeUnit: 'w',
+      startDate: '2014-11-24',
+      endDate: '2014-11-30'
+    };
+    expect(Report.getDateVector(params)).toEqual(
+      ['48' ]
+    );
+  });
+
   it('should get all months between the provided dates', function () {
     var params = {
       timeUnit: 'M',
