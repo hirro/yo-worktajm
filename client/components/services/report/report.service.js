@@ -38,7 +38,7 @@ angular.module('worktajmApp')
         }
 
         if (timeUnit === 'week' || timeUnit === 'w') {
-          for (i = startDate.day(0); i <= endDate; startDate.add(1, 'w')) {
+          for (i = startDate; i <= endDate; i.add(1, 'w')) {
             result.push(i.format('w'));
           }
         } else if (timeUnit === 'month' || timeUnit === 'M') {

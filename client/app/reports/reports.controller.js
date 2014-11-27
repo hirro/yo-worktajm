@@ -61,7 +61,7 @@ angular.module('worktajmApp')
 
     $scope.selectToday = function () {
       $scope.selected.from = moment().hour(0).minute(0).second(0).utc().format();
-      $scope.selected.to = moment().hour(24).minute(0).second(0).utc().format();
+      $scope.selected.to = moment().hour(23).minute(59).second(59).utc().format();
       $scope.logSelected();
       $scope.updateSummary();
     };
@@ -74,36 +74,29 @@ angular.module('worktajmApp')
     };
 
     $scope.selectThisWeek = function () {
-      var startOfFirstDayThisWeek = moment().day('Monday').hour(0).minute(0).second(0).utc();
-      var endOfLastDayThisWeek = moment().day(7).hour(24).minute(59).second(59).utc();
-      $scope.selected.from = startOfFirstDayThisWeek.format();
-      $scope.selected.to   = endOfLastDayThisWeek.format();
+      $scope.selected.from = moment().day('Monday').hour(0).minute(0).second(0).utc().format();
+      $scope.selected.to  =  moment().day('Monday').hour(0).minute(0).second(0).utc().add('7', 'days').add(-1, 'second').format();
       $scope.logSelected();
       $scope.updateSummary();
     };
 
     $scope.selectLastWeek = function () {
-      var startOfFirstDayLastWeek = moment().day(-6).hour(0).minute(0).second(0).utc();
-      var endOfLastDayLastWeek = moment().day(0).hour(24).minute(59).second(59).utc();
-      $scope.selected.from = startOfFirstDayLastWeek.format();
-      $scope.selected.to   = endOfLastDayLastWeek.format();
+      $scope.selected.from = moment().day('Monday').hour(0).minute(0).second(0).utc().add('-7', 'days').format();
+      $scope.selected.to = moment().day('Monday').hour(0).minute(0).second(0).utc().add(-1, 'second').format();
       $scope.logSelected();
       $scope.updateSummary();
     };
 
     $scope.selectThisMonth = function () {
-      var firstDayThisMonth = moment().date(1).hour(0).minute(0).second(0).utc();
-      $scope.selected.from = firstDayThisMonth.format();
-      $scope.selected.to   = firstDayThisMonth.hour(24).add(1, 'month').format();
+      $scope.selected.from = moment().date(1).hour(0).minute(0).second(0).utc().format();
+      $scope.selected.to   = moment().date(0).hour(0).minute(0).second(0).utc().hour(24).add(1, 'month').format();
       $scope.logSelected();
       $scope.updateSummary();
     };
 
     $scope.selectLastMonth = function () {
-      var startOfFirstDayThisMonth = moment().date(1).hour(0).minute(0).second(0).utc();
-      var endOfLastDayLastMonth = moment().date(1).hour(0).minute(0).second(-1).utc();
-      $scope.selected.from = startOfFirstDayThisMonth.add(-1, 'month').format();
-      $scope.selected.to   = endOfLastDayLastMonth.format();
+      $scope.selected.from = moment().date(1).hour(0).minute(0).second(0).utc().add(-1, 'month').format();
+      $scope.selected.to   = moment().date(1).hour(0).minute(0).second(-1).utc().format();
       $scope.logSelected();
       $scope.updateSummary();
     };
