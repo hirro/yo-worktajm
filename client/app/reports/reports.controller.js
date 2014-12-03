@@ -121,8 +121,8 @@ angular.module('worktajmApp')
       console.log($scope.summary);
     };
 
-    $scope.getProjectName = function () {
-      
+    $scope.getProjectName = function (projectId) {
+      return Worktajm.getProjectById(projectId).name;
     };
 
     $scope.load();

@@ -14,7 +14,7 @@
 						tbody
 							tr(ng-repeat='projectId in summary.projects')
 								td {{getProjectName(projectId)}}
-								td(ng-repeat='timeUnit in summary.timeUnits').timentry-cell {{summary.report[timeUnit][project]}}
+								td(ng-repeat='timeUnit in summary.timeUnits').timentry-cell {{summary.report[timeUnit][projectId]}}
 			.row
 				.col-xs-12
 					h3 Time Entries
