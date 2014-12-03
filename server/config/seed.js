@@ -200,19 +200,25 @@ var createProjectForUser = function (error, users) {
   } else{
     var user = users[0];
     console.log('createProjectForUser: ', user._id);
-    Project.create({
+
+    var projectA = {
       name: 'Project A',
       createdBy: user
-    }, {
+    };
+    var projectB = {
       name: 'Project B',
       createdBy: user
-    }, function(e) {
+    };
+
+    Project.create(projectA, projectB, function(e) {
       console.log('Created projects, now creating time entries', e);
 
       Project.find({name: 'Project A'}).find(function(error, project) {
         createTimeEntriesForSeptember(user, project[0]);
-        createTimeEntriesForOctober(user, project[0]);
         createTimeEntriesForNovember(user, project[0]);
+      });
+      Project.find({name: 'Project B'}).find(function(error, project) {
+        createTimeEntriesForOctober(user, project[0]);
       });
     });    
   }
