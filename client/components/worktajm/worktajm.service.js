@@ -263,6 +263,10 @@ angular.module('worktajmApp')
         return projectNames;
       },
 
+      getProjectById: function (projectId) {
+        return projectsIndexedById[projectId];
+      },
+
       createTimeEntry: function (timeEntry, project) {
         var deferred = $q.defer();
         var currentTime = moment();
@@ -393,7 +397,7 @@ angular.module('worktajmApp')
     };
     svc.load();
 
-    // Update 
+    // Update
     $interval(svc.update, 1000, 0, false);
 
     return svc;

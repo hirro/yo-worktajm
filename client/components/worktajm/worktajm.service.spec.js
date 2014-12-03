@@ -80,6 +80,16 @@ describe('Service: worktajm', function () {
       expect(names.length).toBe(1);
       expect(names[0]).toBe(projectA.name);
     });
+
+    it('should get the project corresponding to the provided id', function () {
+      Worktajm.loadProjects();
+      $httpBackend.expectGET('/api/projects').respond([projectA]);
+      $httpBackend.flush();
+      $scope.$digest();
+
+      var project = Worktajm.getProjectById(projectA._id);
+      expect(project._id).toBe(projectA._id);x
+    });
   });
 
   describe('currentUser', function () {

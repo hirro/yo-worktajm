@@ -121,5 +121,9 @@ angular.module('worktajmApp')
       console.log($scope.summary);
     };
 
+    $scope.getProjectName = function () {
+      
+    };
+
     $scope.load();
   });

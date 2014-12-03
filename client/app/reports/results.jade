@@ -12,8 +12,8 @@
 								th Project
 								th(ng-repeat='timeUnit in summary.timeUnits') {{timeUnit}}
 						tbody
-							tr(ng-repeat='project in summary.projects')
-								td {{project}}
+							tr(ng-repeat='projectId in summary.projects')
+								td {{getProjectName(projectId)}}
 								td(ng-repeat='timeUnit in summary.timeUnits').timentry-cell {{summary.report[timeUnit][project]}}
 			.row
 				.col-xs-12
@@ -37,6 +37,3 @@
 								td
 								td
 								td {{timeEntries | timeEntryFilter:selected | timeentrySum }}
-
-
-
