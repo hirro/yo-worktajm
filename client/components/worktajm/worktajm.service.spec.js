@@ -88,7 +88,7 @@ describe('Service: worktajm', function () {
       $scope.$digest();
 
       var project = Worktajm.getProjectById(projectA._id);
-      expect(project._id).toBe(projectA._id);x
+      expect(project._id).toBe(projectA._id);
     });
   });
 
