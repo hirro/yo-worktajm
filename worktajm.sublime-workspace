@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"Workj",
+				"Worktajm"
+			],
+			[
 				"lab",
 				"control-label"
 			],
@@ -239,23 +243,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "server/config/seed.js",
-			"settings":
-			{
-				"buffer_size": 18709,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "  { endTime: \"2014-11-29T14:00:00Z\", startTime: \"2014-11-29T10:00:00Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-28T18:10:05Z\", startTime: \"2014-11-28T13:37:30Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-28T12:42:02Z\", startTime: \"2014-11-28T08:23:01Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-26T17:27:15Z\", startTime: \"2014-11-26T13:02:34Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-26T11:59:24Z\", startTime: \"2014-11-26T09:24:13Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-25T16:34:25Z\", startTime: \"2014-11-25T13:00:26Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-25T11:31:54Z\", startTime: \"2014-11-25T09:35:53Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-24T16:33:00Z\", startTime: \"2014-11-24T13:28:42Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-24T12:31:34Z\", startTime: \"2014-11-24T08:59:29Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-21T15:42:23Z\", startTime: \"2014-11-21T12:25:45Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-21T11:24:10Z\", startTime: \"2014-11-21T08:52:14Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-20T17:07:33Z\", startTime: \"2014-11-20T11:57:24Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-19T17:51:18Z\", startTime: \"2014-11-19T17:41:25Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-19T17:20:37Z\", startTime: \"2014-11-19T13:03:18Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-19T12:25:50Z\", startTime: \"2014-11-19T09:25:43Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-18T15:51:18Z\", startTime: \"2014-11-18T12:19:18Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-18T11:36:15Z\", startTime: \"2014-11-18T10:16:38Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-17T15:37:46Z\", startTime: \"2014-11-17T12:51:42Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-17T12:13:07Z\", startTime: \"2014-11-17T09:08:02Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-14T17:23:37Z\", startTime: \"2014-11-14T12:58:43Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-14T12:22:39Z\", startTime: \"2014-11-14T09:14:41Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-13T16:23:10Z\", startTime: \"2014-11-13T13:51:16Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-13T13:22:32Z\", startTime: \"2014-11-13T12:36:40Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-12T17:20:46Z\", startTime: \"2014-11-12T13:14:29Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-12T11:58:52Z\", startTime: \"2014-11-12T10:06:56Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-11T17:55:57Z\", startTime: \"2014-11-11T17:35:54Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-11T17:10:14Z\", startTime: \"2014-11-11T13:02:57Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-11T12:01:01Z\", startTime: \"2014-11-11T08:59:48Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-10T15:47:59Z\", startTime: \"2014-11-10T12:13:08Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-10T11:31:27Z\", startTime: \"2014-11-10T11:01:40Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-10T10:54:35Z\", startTime: \"2014-11-10T09:43:26Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-07T16:55:56Z\", startTime: \"2014-11-07T12:36:20Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-07T11:55:06Z\", startTime: \"2014-11-07T09:55:35Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-06T15:44:28Z\", startTime: \"2014-11-06T12:27:25Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-06T11:53:23Z\", startTime: \"2014-11-06T09:46:17Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-05T16:53:27Z\", startTime: \"2014-11-05T12:44:18Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-05T12:08:57Z\", startTime: \"2014-11-05T09:13:16Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-04T15:51:22Z\", startTime: \"2014-11-04T11:46:45Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-04T11:27:47Z\", startTime: \"2014-11-04T08:10:21Z\", createdBy: user, projectId: project },\n  { endTime: \"2014-11-01T12:00:14Z\", startTime: \"2014-11-01T10:36:39Z\", createdBy: user, projectId: project }\n",
-			"settings":
-			{
-				"buffer_size": 4439,
-				"line_ending": "Unix",
-				"name": "{ endTime: \"2014-11-29T14:00:00Z\", startTime: \"2"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -301,18 +288,20 @@
 	},
 	"file_history":
 	[
-		"/Users/jiar/git/yo-worktajm/master/bower.json",
+		"/Users/jiar/git/yo-worktajm/master/client/app/reports/reports.controller.js",
+		"/Users/jiar/git/yo-worktajm/master/client/components/worktajm/worktajm.service.js",
+		"/Users/jiar/git/yo-worktajm/master/server/config/seed.js",
 		"/Users/jiar/git/yo-worktajm/master/client/app/reports/filters.jade",
+		"/Users/jiar/git/yo-worktajm/master/client/app/reports/results.jade",
+		"/Users/jiar/git/yo-worktajm/master/client/components/worktajm/worktajm.service.spec.js",
+		"/Users/jiar/git/yo-worktajm/master/client/app/app.scss",
+		"/Users/jiar/git/yo-worktajm/master/bower.json",
 		"/Users/jiar/git/yo-worktajm/master/client/components/services/report/report.service.spec.js",
 		"/Users/jiar/git/yo-worktajm/master/client/components/services/report/report.service.js",
-		"/Users/jiar/git/yo-worktajm/master/client/app/reports/reports.controller.js",
-		"/Users/jiar/git/yo-worktajm/master/client/app/reports/results.jade",
 		"/Users/jiar/git/yo-worktajm/master/client/app/reports/reports.jade",
 		"/Users/jiar/git/yo-worktajm/master/.travis.yml",
 		"/Users/jiar/git/yo-worktajm/master/client/components/worktajm/utility.service.spec.js",
 		"/Users/jiar/git/yo-worktajm/master/client/components/worktajm/utility.service.js",
-		"/Users/jiar/git/yo-worktajm/master/server/config/seed.js",
-		"/Users/jiar/git/yo-worktajm/master/client/components/worktajm/worktajm.service.js",
 		"/Users/jiar/git/yo-worktajm/master/client/app/dashboard/timeentry-sum/timeentry-sum.filter.js",
 		"/Users/jiar/git/yo-worktajm/master/server/config/local.env.js",
 		"/Users/jiar/git/yo-worktajm/master/README.md",
@@ -343,7 +332,6 @@
 		"/Users/jiar/git/yo-worktajm/master/client/app/landing/landing.jade",
 		"/Users/jiar/git/yo-worktajm/master/client/app/account/signup/signup.controller.js",
 		"/Users/jiar/git/yo-worktajm/master/client/app/navbar/navbar.jade",
-		"/Users/jiar/git/yo-worktajm/master/client/app/app.scss",
 		"/Users/jiar/git/yo-worktajm/master/client/bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/_navs.scss",
 		"/Users/jiar/git/yo-worktajm/master/client/app/variables.scss",
 		"/Users/jiar/git/yo-worktajm/master/client/app/dashboard/dashboard.jade",
@@ -427,8 +415,7 @@
 		"/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/api/PersonController.java",
 		"/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/api/CustomerController.java",
 		"/Users/jiar/git/be-worktajm/rest-api/src/main/java/com/arnellconsulting/tps/api/AuthenticationController.java",
-		"/Users/jiar/git/be-worktajm/core/src/main/java/com/arnellconsulting/tps/service/TpsServiceImpl.java",
-		"/Users/jiar/git/be-worktajm/core/src/main/java/com/arnellconsulting/tps/security/TpsUserDetailsService.java"
+		"/Users/jiar/git/be-worktajm/core/src/main/java/com/arnellconsulting/tps/service/TpsServiceImpl.java"
 	],
 	"find":
 	{
@@ -455,6 +442,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"getProjectBy",
+			"projectsIndexedById",
+			"getProject",
 			"<time-entry>",
 			"lodash.compat.js",
 			"{ startTime:",
@@ -579,10 +569,7 @@
 			"active",
 			"getCurrentUser",
 			"user",
-			"active",
-			"brand-background",
-			"form-signin",
-			"currentUser"
+			"active"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -607,457 +594,6 @@
 		{
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "server/config/seed.js",
-					"settings":
-					{
-						"buffer_size": 18709,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								17351,
-								17351
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"annotations":
-							[
-								"TODO",
-								"README",
-								"FIXME"
-							],
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"codeintel": true,
-							"codeintel_config":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2.0,
-									"codeintel_scan_files_in_project": false,
-									"javascriptExtraPaths":
-									[
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 5.0,
-									"codeintel_scan_files_in_project": false,
-									"phpExtraPaths":
-									[
-									]
-								},
-								"Python":
-								{
-									"env":
-									{
-									}
-								}
-							},
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_live": true,
-							"codeintel_live_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_max_recursive_dir_depth": 10.0,
-							"codeintel_scan_exclude_dir":
-							{
-								"JavaScript":
-								[
-									"/build/",
-									"/min/"
-								]
-							},
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-								"PyWin32",
-								"jQuery",
-								"Rails"
-							],
-							"codeintel_snippets": true,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"color_scheme": "Packages/User/Color Highlighter/themes/Pastels on Dark.tmTheme",
-							"csslint_options":
-							{
-								"adjoining-classes": "warning",
-								"box-model": true,
-								"box-sizing": "warning",
-								"compatible-vendor-prefixes": "warning",
-								"display-property-grouping": true,
-								"duplicate-background-images": "warning",
-								"duplicate-properties": true,
-								"empty-rules": true,
-								"errors": true,
-								"fallback-colors": "warning",
-								"floats": "warning",
-								"font-faces": "warning",
-								"font-sizes": "warning",
-								"gradients": "warning",
-								"ids": "warning",
-								"import": "warning",
-								"important": "warning",
-								"known-properties": true,
-								"outline-none": "warning",
-								"overqualified-elements": "warning",
-								"qualified-headings": "warning",
-								"regex-selectors": "warning",
-								"rules-count": "warning",
-								"shorthand": "warning",
-								"star-property-hack": "warning",
-								"text-indent": "warning",
-								"underscore-property-hack": "warning",
-								"unique-headings": "warning",
-								"universal-selector": "warning",
-								"vendor-prefix": true,
-								"zero-units": "warning"
-							},
-							"gjslint_ignore":
-							[
-								110.0
-							],
-							"gjslint_options":
-							[
-							],
-							"javascript_linter": "jshint",
-							"jshint_options":
-							{
-								"browser": true,
-								"evil": true,
-								"regexdash": true,
-								"sub": true,
-								"trailing": true,
-								"wsh": true
-							},
-							"pep8": true,
-							"pep8_ignore":
-							[
-								"E501"
-							],
-							"perl_linter": "perlcritic",
-							"pyflakes_ignore":
-							[
-							],
-							"pyflakes_ignore_import_*": true,
-							"sublime_auto_complete": true,
-							"sublimelinter": true,
-							"sublimelinter_delay": 2.0,
-							"sublimelinter_disable":
-							[
-							],
-							"sublimelinter_executable_map":
-							{
-							},
-							"sublimelinter_fill_outlines": false,
-							"sublimelinter_gutter_marks": true,
-							"sublimelinter_gutter_marks_theme": "simple",
-							"sublimelinter_mark_style": "none",
-							"sublimelinter_notes": false,
-							"sublimelinter_objj_check_ascii": false,
-							"sublimelinter_popup_errors_on_save": false,
-							"sublimelinter_syntax_map":
-							{
-								"C++": "c",
-								"Python Django": "python",
-								"Ruby on Rails": "ruby"
-							},
-							"sublimelinter_wrap_find": true,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 2704.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"settings":
-					{
-						"buffer_size": 4439,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								4439
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"auto_name": "{ endTime: \"2014-11-29T14:00:00Z\", startTime: \"2",
-							"bh_regions":
-							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close"
-							],
-							"codeintel": true,
-							"codeintel_config":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2.0,
-									"codeintel_scan_files_in_project": false,
-									"javascriptExtraPaths":
-									[
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 5.0,
-									"codeintel_scan_files_in_project": false,
-									"phpExtraPaths":
-									[
-									]
-								},
-								"Python":
-								{
-									"env":
-									{
-									}
-								}
-							},
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_live": true,
-							"codeintel_live_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_max_recursive_dir_depth": 10.0,
-							"codeintel_scan_exclude_dir":
-							{
-								"JavaScript":
-								[
-									"/build/",
-									"/min/"
-								]
-							},
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-								"PyWin32",
-								"jQuery",
-								"Rails"
-							],
-							"codeintel_snippets": true,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"color_scheme": "Packages/User/Color Highlighter/themes/Pastels on Dark.tmTheme",
-							"sublime_auto_complete": true,
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -1111,11 +647,23 @@
 		"selected_items":
 		[
 			[
-				"seed",
+				"seed.js",
 				"server/config/seed.js"
 			],
 			[
-				"seed.js",
+				"app.scss",
+				"client/app/app.scss"
+			],
+			[
+				"wor",
+				"client/components/worktajm/worktajm.service.spec.js"
+			],
+			[
+				"work",
+				"client/components/worktajm/worktajm.service.js"
+			],
+			[
+				"seed",
 				"server/config/seed.js"
 			],
 			[
@@ -1168,10 +716,6 @@
 			],
 			[
 				"worktj",
-				"client/components/worktajm/worktajm.service.js"
-			],
-			[
-				"work",
 				"client/components/worktajm/worktajm.service.js"
 			],
 			[
