@@ -6,21 +6,15 @@
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/hirro/yo-worktajm?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 # WorkTajm
-Dev build hosted at: http://www.worktajm.com/
-
-***
-
-## Description
-
 Worktajm is a simple time reporting tool that helps you keep track of your work time.
 
-## Description
+Hosted by Heroku at: http://www.worktajm.com/ 
 
+# Thanks
 This project is implemented using the MEAN stack (MongoDB, ExpressJS, AngularJS and Node.js).
-The project is using angular-fullstack.
 
-## Misc
-These metrics are currently not working.
+The project was initially generated using [angular-fullstack](https://github.com/DaftMonk/generator-angular-fullstack)
+
 
 
 
