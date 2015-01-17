@@ -5,10 +5,11 @@
 angular.module('worktajmApp')
   .controller('TimeentriesCtrl', function ($scope, $modal, $q, $log, Worktajm, WorktajmUtil) {
 
-    $scope.timeEntries = [];
-    $scope.projects = [];
-    $scope.projectsIndexedById = [];
-    $scope.projectNames = [];
+    // The references will be updated
+    $scope.projects = Worktajm.getProjects();
+    $scope.projectsIndexedById = Worktajm.getProjectsIndexedById();
+    $scope.timeEntries = Worktajm.getTimeEntries();
+    $scope.projectNames = Worktajm.getProjectNames();
     $scope.datePickerOpened = false;
     $scope.dateFormat = 'yyyy-MM-dd';
     $scope.selected = {
@@ -30,12 +31,6 @@ angular.module('worktajmApp')
       // Start download of objects from BE
       Worktajm.loadProjects();
       Worktajm.loadTimeEntries();
-
-      // The references will be updated
-      $scope.projects = Worktajm.getProjects();
-      $scope.projectsIndexedById = Worktajm.getProjectsIndexedById();
-      $scope.timeEntries = Worktajm.getTimeEntries();
-      $scope.projectNames = Worktajm.getProjectNames();
     };
 
     $scope.load();
@@ -68,7 +63,7 @@ angular.module('worktajmApp')
           // Must create a new project
           Worktajm.createProject({
             name: timeEntry.projectName
-          }).then(function(project) {
+          }).then(function (project) {
             $log.debug('Project created', project);
             deferred.resolve(project);
           });
@@ -100,8 +95,8 @@ angular.module('worktajmApp')
           Worktajm.createTimeEntry(timeEntry, project);
         }
       };
-      var reportProblems = function(fault) {
-        $log.error( String(fault) );
+      var reportProblems = function (fault) {
+        $log.error(String(fault));
       };
       return createProjectIfRequired()
         .then(updateOrCreateTimeEntry)
@@ -207,7 +202,7 @@ angular.module('worktajmApp')
         var index = _.findIndex($scope.projectNames, function (item) {
           return item === params.projectName;
         });
-        return index>=0;
+        return index >= 0;
       };
 
     };

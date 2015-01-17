@@ -6,7 +6,7 @@ angular.module('worktajmApp')
   .controller('ProjectsCtrl', function ($scope, $modal, Worktajm) {
     $scope.message = 'Hello';
 
-    $scope.projects = [];
+    $scope.projects = Worktajm.getProjects();
     $scope.currentUser = {};
 
     Worktajm.loadCurrentUser().then(function (result) {

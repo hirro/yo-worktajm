@@ -22,7 +22,7 @@ angular.module('worktajmApp', [
 
   .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {
     return {
-      // Add authorization token to headers
+      // Add authorization token to headers 
       request: function (config) {
         config.headers = config.headers || {};
         if ($cookieStore.get('token')) {
