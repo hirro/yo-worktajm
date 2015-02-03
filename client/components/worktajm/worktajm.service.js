@@ -396,5 +396,7 @@ angular.module('worktajmApp')
     };
     svc.load();
 
+    $interval(svc.update, 1000);
+
     return svc;
   });

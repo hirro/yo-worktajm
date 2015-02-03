@@ -22,11 +22,6 @@ angular.module('worktajmApp')
     };
     $scope.orderByField = 'startTime';
 
-    $scope.update = function () {
-      Worktajm.update();
-      $scope.$digest();
-    };
-
     Worktajm.loadCurrentUser().then(function (result) {
       $scope.currentUser = result;
     });
@@ -235,7 +230,5 @@ angular.module('worktajmApp')
       });
       modalInstance.result.then($scope.onUpdateTimeEntry);
     };
-
-    $interval($scope.update, 1000, 0, false);
 
   });
