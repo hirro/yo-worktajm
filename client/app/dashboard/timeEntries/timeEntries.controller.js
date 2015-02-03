@@ -3,13 +3,14 @@
 'use strict';
 
 angular.module('worktajmApp')
-  .controller('TimeentriesCtrl', function ($scope, $modal, $q, $log, Worktajm, WorktajmUtil) {
+  .controller('TimeentriesCtrl', function ($scope, $modal, $q, $log, $interval, Worktajm, WorktajmUtil) {
 
     // The references will be updated
     $scope.projects = Worktajm.getProjects();
     $scope.projectsIndexedById = Worktajm.getProjectsIndexedById();
     $scope.timeEntries = Worktajm.getTimeEntries();
     $scope.projectNames = Worktajm.getProjectNames();
+    $scope.activeTimeEntry = Worktajm.getActiveTimeEntry();
     $scope.datePickerOpened = false;
     $scope.dateFormat = 'yyyy-MM-dd';
     $scope.selected = {
@@ -20,6 +21,11 @@ angular.module('worktajmApp')
       viewMode: 'Day'
     };
     $scope.orderByField = 'startTime';
+
+    $scope.update = function () {
+      Worktajm.update();
+      $scope.$digest();
+    };
 
     Worktajm.loadCurrentUser().then(function (result) {
       $scope.currentUser = result;
@@ -229,5 +235,7 @@ angular.module('worktajmApp')
       });
       modalInstance.result.then($scope.onUpdateTimeEntry);
     };
+
+    $interval($scope.update, 1000, 0, false);
 
   });

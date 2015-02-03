@@ -10,7 +10,7 @@ angular.module('worktajmApp')
     var projectNames = [];
     var timeEntries = [];
     var currentUser = {};
-    var activeTimeEntry = null;
+    var activeTimeEntry = {};
 
     var svc = {
 
@@ -20,7 +20,6 @@ angular.module('worktajmApp')
             return timeEntry._id === currentUser.activeTimeEntryId;
           });
           timeEntries[activeTimeEntryIndex].endTime = moment().utc().format();
-          timeEntries[activeTimeEntryIndex].name = 'Bajskorv';
         }
       },
 
@@ -122,7 +121,7 @@ angular.module('worktajmApp')
 
       setActiveTimeEntry: function (timeEntry) {
         var deferred = $q.defer();
-        activeTimeEntry = timeEntry;
+        _.extend(activeTimeEntry, timeEntry);
 
         if (currentUser) {
           var newTimeEntryId = timeEntry ? timeEntry._id : null;
@@ -396,9 +395,6 @@ angular.module('worktajmApp')
       }
     };
     svc.load();
-
-    // Update
-    $interval(svc.update, 1000, 0, false);
 
     return svc;
   });
