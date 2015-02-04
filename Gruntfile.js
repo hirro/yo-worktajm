@@ -462,7 +462,7 @@ module.exports = function (grunt) {
       chrome: {
         options: {
           args: {
-            browser: 'ChromeCanary'
+            browser: 'chrome'
           }
         }
       }

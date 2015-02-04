@@ -28,7 +28,7 @@ header(full-height, ng-style='style()')#page-top
 			.intro-heading Time Reports
 
 			.intro-login
-				a.page-scroll.btn.btn-login(href='/login') Login
+				a.page-scroll.btn.btn-login(id='loginButton', href='/login') Login
 
 				.intro-signin Or sign in with
 
@@ -174,7 +174,7 @@ section(full-height='min', ng-style='style()')#contact
 									type='text', 
 									placeholder='Your Name *', 
 									required='required', 
-									data-validation-required-message='Please enter your name.'
+									data-validation-required-message='Please enter your name.',
 									ng-model='user.name')
 								p.help-block.text-danger
 					.row

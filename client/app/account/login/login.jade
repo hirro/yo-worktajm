@@ -35,7 +35,7 @@ header(full-height, ng-style='style()')#page-top
             p.help-block(ng-show='form.email.$error.required && form.password.$error.required && submitted')
               | Please enter your email and password.
             p.help-block {{ errors.other }}
-          button.btn.btn-lg.btn-primary.btn-block(type='submit') Sign in
+          button.btn.btn-lg.btn-primary.btn-block(id='loginButton' type='submit') Sign in
         p
           a(href='forgot') Forgot password?
         hr
