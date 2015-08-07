@@ -1,37 +1,29 @@
+FROM node:0.12.2
+MAINTAINER Jim Arnell <jim@arnellconsulting.com>
 
-#
-# Node.js w/ Bower & Grunt runtime Dockerfile
-#
-# https://github.com/DigitallySeamless/nodejs-bower-grunt-runtime
-#
+ENV APP_PATH /opt/app
+ENV NODE_ENV production
 
-# Pull base image.
-FROM ruby:2.2.0
+# Install global tools
+RUN npm install -g grunt-cli
+RUN npm install -g bower
+RUN npm install -g tsd
 
-# Install image libs
-ONBUILD RUN apt-get update && apt-get install -y graphicsmagick imagemagick && \
-            apt-get clean && \
-            rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# Install Gem
+RUN apt-get update && apt-get install -y \
+	ruby-full \
+	rubygems-integration 
+RUN gem install compass
 
-# Set instructions on build.
-ONBUILD ADD package.json /app/
-ONBUILD RUN npm install
-ONBUILD ADD bower.json /app/
-ONBUILD ADD .bowerrc /app/
-ONBUILD RUN bower install --allow-root
-ONBUILD ADD . /app
-ONBUILD RUN grunt build
-ONBUILD WORKDIR /app/dist
-ONBUILD ENV NODE_ENV production
-ONBUILD RUN npm install
+RUN mkdir -p /opt/app
+COPY dist /opt/app
+COPY node_modules /opt/app/node_modules
+WORKDIR /opt/app
 
-COPY . /app
+EXPOSE 9000
 
-# Define working directory.
-WORKDIR /app
-
-# Define default command.
-CMD ["grunt", "serve:dist"]
-
-# Expose ports.
-EXPOSE 8080
+# CMD [ "grunt", "serve:dist" ]
+#CMD [ "/usr/sbin/sshd", "-D" ]
+#CMD ["node", "index.js"]
+CMD ["npm", "start"]
+#CMD ["npm", "/opt/app"]
