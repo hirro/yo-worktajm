@@ -21,6 +21,5 @@ COPY dist /opt/app
 COPY node_modules /opt/app/node_modules
 WORKDIR /opt/app
 
-EXPOSE 8080
-
+# Starting node server on port 8080, make it configurable
 CMD ["npm", "start"]
