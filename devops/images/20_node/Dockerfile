@@ -3,7 +3,7 @@ MAINTAINER Jim Arnell <jim@arnellconsulting.com>
 
 ENV APP_PATH /opt/app
 ENV NODE_ENV production
-ENV MONGOHQ_URL mongodb://dbuser:dbl33t@mongodb:27017/worktajm
+ENV MONGOHQ_URL mongodb://mongodb:27017/worktajm
 
 # Install global tools
 RUN npm install -g grunt-cli

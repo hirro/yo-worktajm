@@ -6,3 +6,6 @@ docker run -d \
     -e MONGODB_PASSWORD=dbl33t \
     -e MONGODB_DBNAME=worktajm \
     worktajm-mongodb
+
+# Wait for the service to start
+sleep 10

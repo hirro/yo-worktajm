@@ -1,2 +1,2 @@
-FROM frodenas/mongodb
+FROM mongo
 
