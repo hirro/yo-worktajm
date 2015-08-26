@@ -9,8 +9,12 @@ else
     exit 0
 fi
 
-
 for path in $PWD/images/*; do
-	echo $path
-	( cd $path && ./start.sh )
+	if [[ "$path" =~ /_ ]]
+	then
+		echo "Skipping service $path"
+	else	
+		echo "Starting service $path"
+		( cd $path && ./start.sh )
+	fi
 done
