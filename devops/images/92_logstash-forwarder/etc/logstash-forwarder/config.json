@@ -1,9 +1,7 @@
 {
     "network": {
         "servers": [ "logstash:5043" ],
-        "ssl certificate": "/etc/ssl/logstash/logstash.crt",
-        "ssl key": "/etc/ssl/logstash/logstash.key",
-        "ssl ca": "/etc/ssl/logstash/logstash.crt"
+        "ssl ca": "/etc/logstash-forwarder/logstash.crt"
     },
     "files": [
         {
