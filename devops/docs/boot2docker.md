@@ -2,6 +2,9 @@ BOOT2DOCKER
 ===========
 
 # How to expose accessible ports to other computers on the network
+http://stackoverflow.com/questions/31331270/docker-access-port-running-on-host
+
+Browser <- TLS 443 -> FW <- 443:10443 -> Boot2docker <- 10043:443 -> NGINX
 
 1. Open virtual box.
 2. Select the Docker VM

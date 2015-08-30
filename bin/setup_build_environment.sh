@@ -14,30 +14,8 @@ function verify_command()
   fi
 }
 
-function uninstall() {
-  if [ -d  /usr/local/Cellar/node/ ]; then
-    brew unlink node 
-    brew uninstall node
-  else 
-    echo "Nothing to clean"
-  fi
-}
-
 function install() {
-  if [ -d  /usr/local/Cellar/node/ ]; then
-    echo "npm is not clean, exiting"
-    exit 0
-  fi  
 
-  # Install latest npm from brew
-  echo "brew update"
-  brew update
-
-  echo "brew install node"
-  brew install node
-
-  echo "brew link node"
-  brew link node
 
   # Install yeoman
   echo "Installing yeoman"
@@ -64,6 +42,9 @@ function install() {
 
   # Install grunt 
   npm install -g grunt-cli
+
+  # Sass
+  npm install -g grunt-contrib-sass
 }
 
 function verify() {
@@ -73,6 +54,5 @@ function verify() {
   verify_command karma
 }
 
-uninstall
 install
 verify
