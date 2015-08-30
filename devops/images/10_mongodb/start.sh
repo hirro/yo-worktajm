@@ -5,6 +5,7 @@ docker run -d \
     -e MONGODB_USERNAME=dbuser \
     -e MONGODB_PASSWORD=dbl33t \
     -e MONGODB_DBNAME=worktajm \
+    --volumes-from mongo_data \
     worktajm-mongodb
 
 # Wait for the service to start
