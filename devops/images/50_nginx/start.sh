@@ -2,6 +2,7 @@
 docker run --name nginx -d \
 	--link node:node \
 	-p 443:443 \
-	-v ~/worktajm.com/ssl:/etc/ssl:ro \
+	--privileged=true \
+	-v ~/worktajm.com/ssl:/etc/ssl/ \
 	worktajm-nginx
 
