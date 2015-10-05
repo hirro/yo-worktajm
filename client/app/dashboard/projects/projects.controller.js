@@ -8,6 +8,7 @@ angular.module('worktajmApp')
 
     $scope.projects = Worktajm.getProjects();
     $scope.currentUser = {};
+    $scope.isProcessing = false;
 
     Worktajm.loadCurrentUser().then(function (result) {
       $scope.currentUser = result;
@@ -88,7 +89,13 @@ angular.module('worktajmApp')
     };
 
     $scope.startTimer = function (project) {
-      return Worktajm.startTimer(project);
+      $scope.isProcessing = true;
+      return Worktajm.startTimer(project).then(
+        function() {
+          $scope.isProcessing = false;
+        }), function() {
+          $scope.isProcessing = false;
+        };
     };
 
     $scope.stopTimer = function (project) {

@@ -16,9 +16,9 @@
                   span
                     | {{project.name}}
               th.col-md-4
-                a.btn.btn-xs.btn-danger.pull-right(ng-click='stopTimer(project)', role='button', ng-show='isProjectActive(project)')
+                a.btn.btn-xs.btn-danger.pull-right(ng-click='stopTimer(project)', role='button', ng-show='isProjectActive(project)', ng-disabled='isProcessing')
                   | Stop
-                a.btn.btn-xs.btn-success.pull-right(ng-click='startTimer(project)', role='button', ng-hide='isProjectActive(project)')
+                a.btn.btn-xs.btn-success.pull-right(ng-click='startTimer(project)', role='button', ng-hide='isProjectActive(project)', ng-disabled='isProcessing')
                   | Start
           // Second part, only visable if project is open 
           form(role='form', collapse='!project.isOpen')
