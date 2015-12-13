@@ -8,3 +8,4 @@ dist
 test-results.xml
 coverage
 worktajm.sublime-workspace
+npm-debug.log
